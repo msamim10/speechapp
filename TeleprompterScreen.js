@@ -11,6 +11,7 @@ import {
   Easing,
   Button,
 } from 'react-native';
+import { Audio } from 'expo-av';
 
 // Get screen height for calculations
 const { height: screenHeight } = Dimensions.get('window');
@@ -66,6 +67,45 @@ function TeleprompterScreen({ route, navigation }) {
   const [containerHeight, setContainerHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   const animationRef = useRef(null);
+  const [sound, setSound] = useState(); // Add state for the sound object
+
+  // --- Load Sound Effect ---
+  useEffect(() => {
+    // --- Configure Audio Session ---
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      playsInSilentModeIOS: true, // Important for playing sound even if the device is on silent
+      staysActiveInBackground: false,
+      shouldDuckAndroid: true, // Optional: Reduce volume of other apps on Android
+      playThroughEarpieceAndroid: false,
+    }).catch(error => {
+      console.error('Failed to set audio mode', error);
+    });
+    // --- End Audio Session Configuration ---
+
+    async function loadSound() {
+      console.log('Loading Sound');
+      try {
+        const { sound } = await Audio.Sound.createAsync(
+           require('./assets/sounds/clapping.mp3') // Use placeholder path
+        );
+        setSound(sound);
+        console.log('Sound loaded successfully');
+      } catch (error) {
+        console.error('Failed to load sound', error);
+        // Handle error appropriately, maybe disable the sound feature
+      }
+    }
+    loadSound();
+
+    // --- Unload Sound Effect on Unmount ---
+    return () => {
+      if (sound) {
+        console.log('Unloading Sound');
+        sound.unloadAsync();
+      }
+    };
+  }, []); // Empty dependency array ensures this runs once on mount and cleanup on unmount
 
   // --- Get fixed paddingBottom from styles --- (Helper)
   const getPaddingBottom = () => {
@@ -211,7 +251,25 @@ function TeleprompterScreen({ route, navigation }) {
   };
 
   // --- Determine Next Prompt Logic ---
-  const handleNextPrompt = () => {
+  const handleNextPrompt = async () => { // Make the function async
+    // Play sound
+    if (sound) {
+      try {
+        console.log('Playing Sound');
+        await sound.replayAsync(); // Replay the sound from the beginning
+        // Optional: Stop the sound after 3 seconds
+        setTimeout(() => {
+          sound.stopAsync();
+          console.log('Sound stopped after 3 seconds');
+        }, 3000);
+      } catch (error) {
+        console.error('Failed to play sound', error);
+      }
+    } else {
+      console.log('Sound object not loaded, cannot play.');
+    }
+
+    // Existing navigation logic
     if (!categoryPrompts || categoryPrompts.length < 2) {
       console.log("Not enough prompts in category to navigate.");
       return; // Cannot navigate if only 0 or 1 prompt
