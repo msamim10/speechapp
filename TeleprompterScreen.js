@@ -11,9 +11,6 @@ import {
   Easing,
   Button,
 } from 'react-native';
-import Slider from '@react-native-community/slider'; // Use community slider
-// import defaultBackground from './assets/image.png'; // Old image
-import defaultBackground from './assets/good.png'; // New image extension
 
 // Get screen height for calculations
 const { height: screenHeight } = Dimensions.get('window');
@@ -51,7 +48,7 @@ function TeleprompterScreen({ route, navigation }) {
   }, [categoryPrompts, selectedPromptId]);
 
   // --- Fallback if data isn't found (should not happen with proper navigation) ---
-  const imageSource = currentPromptData?.image || require('./assets/good.png'); // Fallback image
+  const imageSource = currentPromptData?.image || require('./assets/prompt-backgrounds/good.png'); // Fallback image
   const initialPromptText = currentPromptData?.text || 'Prompt text not found.'; // Fallback text
   const routeLayoutConfig = currentPromptData?.layout; // Layout from current prompt
   
@@ -270,7 +267,7 @@ function TeleprompterScreen({ route, navigation }) {
             // Keep transform if needed for flipped text
             transform={[{ scaleY: -1 }]} 
           >
-            <Text style={styles.promptText}>
+            <Text style={currentPromptData?.textColor == 'white' ? styles.promptTextWhite : styles.promptTextDefault}>
               {promptText}
             </Text>
           </ScrollView>
@@ -307,7 +304,7 @@ const styles = StyleSheet.create({
   },
   backgroundImageElement: {
     ...StyleSheet.absoluteFillObject,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     width: '100%',
     height: '100%',
   },
@@ -337,8 +334,15 @@ const styles = StyleSheet.create({
     paddingBottom: 50, 
     paddingHorizontal: 10, // Added horizontal padding for text
   },
-  promptText: {
+  promptTextDefault: {
     color: '#000000',
+    fontSize: 14,
+    lineHeight: 14 * 1.5,
+    textAlign: 'center',
+    transform: [{ scaleY: -1 }], // Flip the text back upright
+  },
+  promptTextWhite: {
+    color: '#FFFFFF',
     fontSize: 14,
     lineHeight: 14 * 1.5,
     textAlign: 'center',
