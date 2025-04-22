@@ -60,7 +60,7 @@ function TeleprompterScreen({ route, navigation }) {
   // --- End console log ---
 
   const [promptText] = useState(initialPromptText || sampleText); // Use selected or fallback
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(true); // Default to true for auto-start
   const [scrollSpeed, setScrollSpeed] = useState(1.0); // Keep speed control logic
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollViewRef = useRef(null);
@@ -232,24 +232,6 @@ function TeleprompterScreen({ route, navigation }) {
     setIsScrolling(prev => !prev); // Enable state change
   };
 
-  const handleStop = () => {
-    console.log("handleStop called.");
-    setIsScrolling(false); // Stop scrolling
-    if (animationRef.current) {
-      console.log("Stopping existing animation.");
-      animationRef.current.stop(); // Stop the animation if running
-      animationRef.current = null; // Clear the ref
-    }
-    // Reset scroll position to the top (0) for the flipped view
-    const initialPos = 0; // Reset to the top for flipped view
-    console.log(`Resetting scrollY to initial position (flipped view): ${initialPos}`);
-    scrollY.setValue(initialPos); // Reset scroll value
-    // Manually scroll the ScrollView to the reset position immediately
-    if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ y: initialPos, animated: false });
-    }
-  };
-
   // --- Determine Next Prompt Logic ---
   const handleNextPrompt = async () => { // Make the function async
     // Play sound
@@ -338,9 +320,6 @@ function TeleprompterScreen({ route, navigation }) {
             </TouchableOpacity>
             <TouchableOpacity onPress={handleStartPause} style={styles.controlButton}>
               <Text style={styles.controlButtonText}>{isScrolling ? 'Pause' : 'Start'}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleStop} style={styles.controlButton}>
-              <Text style={styles.controlButtonText}>Stop</Text>
             </TouchableOpacity>
             {categoryPrompts && categoryPrompts.length > 1 && (
               <TouchableOpacity onPress={handleNextPrompt} style={styles.controlButton}>
