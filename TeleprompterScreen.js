@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
   },
   backgroundImageElement: {
     ...StyleSheet.absoluteFillObject,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     width: '100%',
     height: '100%',
   },
