@@ -12,6 +12,7 @@ import {
   Button,
 } from 'react-native';
 import { Audio } from 'expo-av';
+import { Ionicons } from '@expo/vector-icons';
 
 // Get screen height for calculations
 const { height: screenHeight } = Dimensions.get('window');
@@ -344,15 +345,15 @@ function TeleprompterScreen({ route, navigation }) {
 
         <View style={styles.controlsContainer}>
           <View style={styles.actionButtons}>
-            <TouchableOpacity onPress={handleGoBack} style={styles.controlButton}>
-              <Text style={styles.controlButtonText}>Back</Text>
+            <TouchableOpacity onPress={handleGoBack} style={styles.iconButton}>
+              <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleStartPause} style={styles.controlButton}>
-              <Text style={styles.controlButtonText}>{isScrolling ? 'Pause' : 'Start'}</Text>
+            <TouchableOpacity onPress={handleStartPause} style={styles.iconButton}>
+              <Ionicons name={isScrolling ? "pause" : "play"} size={24} color="#FFFFFF" />
             </TouchableOpacity>
             {categoryPrompts && categoryPrompts.length > 1 && (
-              <TouchableOpacity onPress={handleNextPrompt} style={styles.controlButton}>
-                <Text style={styles.controlButtonText}>Next</Text>
+              <TouchableOpacity onPress={handleNextPrompt} style={styles.iconButton}>
+                <Ionicons name="arrow-forward" size={24} color="#FFFFFF" />
               </TouchableOpacity>
             )}
           </View>
@@ -416,8 +417,8 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     alignItems: 'center',
   },
   controlLabel: {
@@ -446,21 +447,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    flexWrap: 'wrap',
     alignItems: 'center',
   },
-  controlButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    backgroundColor: '#007AFF',
-    borderRadius: 5,
-    marginHorizontal: 5,
-    marginVertical: 5,
-  },
-  controlButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
+  iconButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgba(0, 122, 255, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   // Add Countdown Timer Styles
   countdownOverlay: {
