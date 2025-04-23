@@ -60,7 +60,7 @@ function TeleprompterScreen({ route, navigation }) {
   // --- End console log ---
 
   const [promptText] = useState(initialPromptText || sampleText); // Use selected or fallback
-  const [isScrolling, setIsScrolling] = useState(true); // Default to true for auto-start
+  const [isScrolling, setIsScrolling] = useState(false); // Start paused until countdown finishes
   const [scrollSpeed, setScrollSpeed] = useState(1.0); // Keep speed control logic
   const scrollY = useRef(new Animated.Value(0)).current;
   const scrollViewRef = useRef(null);
@@ -68,6 +68,8 @@ function TeleprompterScreen({ route, navigation }) {
   const [contentHeight, setContentHeight] = useState(0);
   const animationRef = useRef(null);
   const [sound, setSound] = useState(); // Add state for the sound object
+  const [countdown, setCountdown] = useState(3); // Add countdown state
+  const [showCountdown, setShowCountdown] = useState(true); // State to show/hide countdown
 
   // --- Load Sound Effect ---
   useEffect(() => {
@@ -106,6 +108,42 @@ function TeleprompterScreen({ route, navigation }) {
       }
     };
   }, []); // Empty dependency array ensures this runs once on mount and cleanup on unmount
+
+  // --- Countdown Timer Effect ---
+  useEffect(() => {
+    if (!showCountdown) return; // Don't run if countdown is hidden
+
+    if (countdown === 0) {
+      setShowCountdown(false);
+      setIsScrolling(true); // Start scrolling after countdown
+      // Play sound when countdown finishes
+      if (sound) {
+        try {
+          console.log('Playing Sound (after countdown)');
+          sound.replayAsync().then(() => {
+            // Optional: Stop the sound after 3 seconds
+            setTimeout(() => {
+              sound.stopAsync();
+              console.log('Sound stopped after 3 seconds');
+            }, 3000);
+          });
+        } catch (error) {
+          console.error('Failed to play sound', error);
+        }
+      } else {
+        console.log('Sound object not loaded, cannot play.');
+      }
+      return;
+    }
+
+    const timerId = setInterval(() => {
+      setCountdown(prev => prev - 1);
+    }, 1000); // Decrease every second
+
+    // Cleanup interval on component unmount or when countdown finishes
+    return () => clearInterval(timerId);
+
+  }, [countdown, showCountdown]); // Rerun effect when countdown or its visibility changes
 
   // --- Get fixed paddingBottom from styles --- (Helper)
   const getPaddingBottom = () => {
@@ -234,22 +272,22 @@ function TeleprompterScreen({ route, navigation }) {
 
   // --- Determine Next Prompt Logic ---
   const handleNextPrompt = async () => { // Make the function async
-    // Play sound
-    if (sound) {
-      try {
-        console.log('Playing Sound');
-        await sound.replayAsync(); // Replay the sound from the beginning
-        // Optional: Stop the sound after 3 seconds
-        setTimeout(() => {
-          sound.stopAsync();
-          console.log('Sound stopped after 3 seconds');
-        }, 3000);
-      } catch (error) {
-        console.error('Failed to play sound', error);
-      }
-    } else {
-      console.log('Sound object not loaded, cannot play.');
-    }
+    // REMOVE SOUND LOGIC FROM HERE
+    // if (sound) {
+    //   try {
+    //     console.log('Playing Sound');
+    //     await sound.replayAsync(); // Replay the sound from the beginning
+    //     // Optional: Stop the sound after 3 seconds
+    //     setTimeout(() => {
+    //       sound.stopAsync();
+    //       console.log('Sound stopped after 3 seconds');
+    //     }, 3000);
+    //   } catch (error) {
+    //     console.error('Failed to play sound', error);
+    //   }
+    // } else {
+    //   console.log('Sound object not loaded, cannot play.');
+    // }
 
     // Existing navigation logic
     if (!categoryPrompts || categoryPrompts.length < 2) {
@@ -312,6 +350,13 @@ function TeleprompterScreen({ route, navigation }) {
             </Text>
           </ScrollView>
         </View>
+
+        {/* Countdown Timer Overlay */} 
+        {showCountdown && (
+          <View style={styles.countdownOverlay}>
+            <Text style={styles.countdownText}>{countdown}</Text>
+          </View>
+        )}
 
         <View style={styles.controlsContainer}>
           <View style={styles.actionButtons}>
@@ -435,6 +480,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
   },
+  // Add Countdown Timer Styles
+  countdownOverlay: {
+    ...StyleSheet.absoluteFillObject, // Make it cover the whole screen
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background
+    zIndex: 10, // Ensure it's above other elements except maybe modals
+  },
+  countdownText: {
+    fontSize: 120, // Large text
+    fontWeight: 'bold',
+    color: 'rgba(255, 255, 255, 0.7)', // Semi-transparent white text
+    textShadowColor: 'rgba(0, 0, 0, 0.5)', // Optional text shadow for better visibility
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5,
+  },
+  // End Countdown Timer Styles
 });
 
 // Default layout config (cleaned up)
