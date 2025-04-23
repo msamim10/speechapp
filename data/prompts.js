@@ -208,5 +208,22 @@ export const promptsData = [
       borderRadius: 10,
     }
   },
+  {
+    id: 'prompt12',
+    title: 'Shark Tank Pitch',
+    category: 'Public Speech',
+    image: require('../assets/prompt-backgrounds/shark-tank.png'),
+    text: `Good evening Sharks, I'm here today seeking $500,000 for 10% equity in my company, SmartShelf.\n\nSmartShelf is an AI-powered smart storage system that automatically organizes and tracks your belongings. Using computer vision and RFID technology, it knows exactly what you have, where it is, and when you last used it.\n\nHere's why this is a game-changer: The average person spends 2.5 hours per week looking for lost items, costing businesses $2.7 billion annually in lost productivity. SmartShelf solves this problem with our patent-pending technology.\n\nOur current traction: We've secured $250,000 in pre-orders from 500 early adopters, and we have letters of intent from three major office supply chains. Our manufacturing costs are $199 per unit, and we'll retail at $499, giving us a 60% gross margin.\n\nThe investment will be used for: 40% manufacturing scale-up, 30% marketing, 20% R&D, and 10% operations. With your expertise and network, we project $5 million in revenue by year two.\n\nWhat makes us different? Unlike other smart storage solutions, SmartShelf requires no manual input - it learns and organizes automatically. Plus, our AI gets smarter over time, learning your usage patterns.\n\nSharks, this is your chance to get in on the ground floor of the next big thing in smart home and office organization. Who's ready to make a deal?`,
+    layout: {
+      position: 'absolute',
+      width: '70%',
+      height: '38%',
+      top: '50%',
+      left: '15%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
   // Add more prompts here in the future
 ]; 
