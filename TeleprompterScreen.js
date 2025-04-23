@@ -12,6 +12,7 @@ import {
   Button,
 } from 'react-native';
 import { Audio } from 'expo-av';
+import { Ionicons } from '@expo/vector-icons';
 
 // Get screen height for calculations
 const { height: screenHeight } = Dimensions.get('window');
@@ -153,11 +154,10 @@ function TeleprompterScreen({ route, navigation }) {
              : screenHeight; // Fallback to screenHeight if style is dynamic/unavailable
   };
 
-  // --- Calculate Initial Scroll Position --- (Helper - Always Start at Top for Flipped View)
+  // --- Calculate Initial Scroll Position --- (Helper - Start at Top)
   const calculateInitialScrollPos = () => {
-      // For a flipped view, the starting visual point (first line at the bottom)
-      // corresponds to a scrollY of 0.
-      console.log("CALC Initial Scroll (Flipped View): Returning 0.");
+      // For normal scrolling, start at the top (0)
+      console.log("CALC Initial Scroll (Normal View): Returning 0.");
       return 0;
   }
 
@@ -177,67 +177,56 @@ function TeleprompterScreen({ route, navigation }) {
   }, [contentHeight, containerHeight]); // Keep dependencies
   /* */
 
-  // --- Scrolling Animation Effect (UPDATED for Bottom-Up) ---
-  /* DEBUG: Disable animation effect */
+  // --- Scrolling Animation Effect (UPDATED for Top-Down) ---
   useEffect(() => {
     if (isScrolling && contentHeight > 0 && containerHeight > 0 && contentHeight > containerHeight) {
       const currentScrollY = scrollY._value; // Get current animated value
 
-      // Target is the END of the scroll view for flipped content
+      // Target is the END of the scroll view
       const targetScrollY = Math.max(0, contentHeight - containerHeight);
 
       // If we are already at or past the target end, stop
       if (currentScrollY >= targetScrollY - 1) { // Small threshold
         console.log("Animation already at or past target end. Stopping.");
         setIsScrolling(false);
-        // Optional: Reset to 0 on completion?
-        // scrollY.setValue(0);
-        // if (scrollViewRef.current) scrollViewRef.current.scrollTo({ y: 0, animated: false });
         return;
       }
 
-      // Calculate remaining distance (from current position up to targetScrollY)
+      // Calculate remaining distance
       const remainingDistance = targetScrollY - currentScrollY;
       const pixelsPerSecond = scrollSpeed * 50; // Adjust base speed (pixels/sec) if needed
       const duration = Math.max((remainingDistance / pixelsPerSecond) * 1000, 1); // Ensure duration is positive
 
-      console.log(`Starting/Resuming flipped animation: Current=${currentScrollY.toFixed(2)}, Target=${targetScrollY.toFixed(2)}, Remaining=${remainingDistance.toFixed(2)}, Duration=${duration.toFixed(0)}ms`);
+      console.log(`Starting/Resuming animation: Current=${currentScrollY.toFixed(2)}, Target=${targetScrollY.toFixed(2)}, Remaining=${remainingDistance.toFixed(2)}, Duration=${duration.toFixed(0)}ms`);
 
-      // Stop previous animation if any (e.g., resuming after pause)
+      // Stop previous animation if any
       if (animationRef.current) {
         animationRef.current.stop();
       }
 
-      // Create and start the timing animation towards the end
+      // Create and start the timing animation
       const animation = Animated.timing(scrollY, {
-        toValue: targetScrollY, // Animate towards the maximum scroll offset
+        toValue: targetScrollY,
         duration: duration,
-        useNativeDriver: false, // Still need false for ScrollView interaction
+        useNativeDriver: false,
         easing: Easing.linear,
       });
-      animationRef.current = animation; // Store the animation reference
+      animationRef.current = animation;
       animation.start(({ finished }) => {
-        animationRef.current = null; // Clear ref when animation ends or is stopped
+        animationRef.current = null;
         if (finished) {
-          console.log("Flipped animation finished naturally.");
-          setIsScrolling(false); // Update state
-          // Decide if we reset here or let 'Stop' button handle reset
-          // scrollY.setValue(0);
-          // if (scrollViewRef.current) scrollViewRef.current.scrollTo({ y: 0, animated: false });
+          console.log("Animation finished naturally.");
+          setIsScrolling(false);
         } else {
-          console.log("Flipped animation stopped/interrupted (likely paused or stopped manually).");
-          // State is already false if stopped, or still true if paused (stop handled in handleStartPause)
+          console.log("Animation stopped/interrupted.");
         }
       });
 
     } else if (!isScrolling && animationRef.current) {
-      // If scrolling is toggled OFF (Pause or Stop), and an animation is running
-      console.log("Pausing/Stopping flipped animation via isScrolling=false.");
+      console.log("Pausing/Stopping animation via isScrolling=false.");
       animationRef.current.stop();
-      // animationRef.current = null; // Clear ref here? No, handleStop clears it. handleStartPause (pause) keeps it.
     }
 
-    // Cleanup: Stop animation if component unmounts or dependencies change unexpectedly
     return () => {
       if (animationRef.current) {
         console.log("Cleanup: Stopping animation.");
@@ -245,9 +234,7 @@ function TeleprompterScreen({ route, navigation }) {
         animationRef.current = null;
       }
     };
-  // Add scrollY to dependencies? No, it causes loops. Rely on isScrolling, speed, and dimensions.
   }, [isScrolling, scrollSpeed, contentHeight, containerHeight]);
-  /* */
 
   // --- ScrollView Position Update Listener ---
   /* DEBUG: Disable scroll listener */
@@ -342,8 +329,6 @@ function TeleprompterScreen({ route, navigation }) {
             onContentSizeChange={(width, height) => {
               setContentHeight(height);
             }}
-            // Keep transform if needed for flipped text
-            transform={[{ scaleY: -1 }]} 
           >
             <Text style={currentPromptData?.textColor == 'white' ? styles.promptTextWhite : styles.promptTextDefault}>
               {promptText}
@@ -360,15 +345,15 @@ function TeleprompterScreen({ route, navigation }) {
 
         <View style={styles.controlsContainer}>
           <View style={styles.actionButtons}>
-            <TouchableOpacity onPress={handleGoBack} style={styles.controlButton}>
-              <Text style={styles.controlButtonText}>Back</Text>
+            <TouchableOpacity onPress={handleGoBack} style={styles.iconButton}>
+              <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleStartPause} style={styles.controlButton}>
-              <Text style={styles.controlButtonText}>{isScrolling ? 'Pause' : 'Start'}</Text>
+            <TouchableOpacity onPress={handleStartPause} style={styles.iconButton}>
+              <Ionicons name={isScrolling ? "pause" : "play"} size={24} color="#FFFFFF" />
             </TouchableOpacity>
             {categoryPrompts && categoryPrompts.length > 1 && (
-              <TouchableOpacity onPress={handleNextPrompt} style={styles.controlButton}>
-                <Text style={styles.controlButtonText}>Next</Text>
+              <TouchableOpacity onPress={handleNextPrompt} style={styles.iconButton}>
+                <Ionicons name="arrow-forward" size={24} color="#FFFFFF" />
               </TouchableOpacity>
             )}
           </View>
@@ -421,21 +406,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 14 * 1.5,
     textAlign: 'center',
-    transform: [{ scaleY: -1 }], // Flip the text back upright
   },
   promptTextWhite: {
     color: '#FFFFFF',
     fontSize: 14,
     lineHeight: 14 * 1.5,
     textAlign: 'center',
-    transform: [{ scaleY: -1 }], // Flip the text back upright
   },
   controlsContainer: {
     width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     alignItems: 'center',
   },
   controlLabel: {
@@ -464,21 +447,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    flexWrap: 'wrap',
     alignItems: 'center',
   },
-  controlButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    backgroundColor: '#007AFF',
-    borderRadius: 5,
-    marginHorizontal: 5,
-    marginVertical: 5,
-  },
-  controlButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
+  iconButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgba(0, 122, 255, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   // Add Countdown Timer Styles
   countdownOverlay: {
