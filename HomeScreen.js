@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import colors from './constants/colors';
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -10,15 +11,18 @@ function HomeScreen() {
       <Text style={styles.title}>Welcome!</Text>
       <Text style={styles.subtitle}>Select a category to practice:</Text>
       
-      {/* Button to navigate to Prompt Selection for Public Speech */}
+      {/* Button to navigate to Category Selection - REMOVED */}
+      {/* 
       <TouchableOpacity 
-        style={styles.categoryButton}
-        onPress={() => navigation.navigate('PromptSelection', { category: 'Public Speech' })} // Pass category name
+        style={styles.actionButton}
+        onPress={() => navigation.navigate('CategorySelection')} 
+        activeOpacity={0.7}
       >
-        <Text style={styles.buttonText}>Public Speech</Text>
+        <Text style={styles.actionButtonText}>Let's Practice</Text>
       </TouchableOpacity>
+      */}
 
-      {/* Add more category buttons here later */}
+      {/* Removed old category buttons */}
     </View>
   );
 }
@@ -28,28 +32,37 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 25,
+    paddingTop: 50,
+    backgroundColor: colors.background,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    fontSize: 28,
+    fontWeight: '600',
+    marginBottom: 15,
+    color: colors.textPrimary,
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    marginBottom: 20,
-    color: 'gray',
+    marginBottom: 30,
+    color: colors.textSecondary,
+    textAlign: 'center',
   },
-  categoryButton: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 8,
-    marginBottom: 15,
+  actionButton: {
+    backgroundColor: colors.primary,
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
   },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
+  actionButtonText: {
+    color: colors.buttonText,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
