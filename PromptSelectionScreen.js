@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { promptsData } from './data/prompts.js'; // Import the full data
 import colors from './constants/colors'; // Import colors
+import Ionicons from '@expo/vector-icons/Ionicons'; // Ensure Ionicons is imported
 
 function PromptSelectionScreen({ route, navigation }) {
   // Get the category passed from HomeScreen
@@ -33,6 +34,10 @@ function PromptSelectionScreen({ route, navigation }) {
   };
   // --- End New Handler ---
 
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   const renderItem = ({ item }) => (
     <TouchableOpacity 
       style={styles.promptCard} 
@@ -51,37 +56,58 @@ function PromptSelectionScreen({ route, navigation }) {
   );
 
   return (
-    <View style={styles.container}>
-      {/* <Text style={styles.header}>{headerText}</Text> */}
-      
-      {/* --- Add Random Prompt Button --- */}
-      {displayPrompts && displayPrompts.length > 0 && (
-        <TouchableOpacity 
-          style={styles.randomButton} 
-          onPress={handleRandomPromptSelect}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.randomButtonText}>Choose Random Prompt</Text>
-        </TouchableOpacity>
-      )}
-      {/* --- End Random Prompt Button --- */}
+    <View style={styles.safeAreaContainer}>
+      {/* Back Button */}
+      <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
+        <Ionicons name="arrow-back" size={28} color={colors.primary} />
+      </TouchableOpacity>
 
-      <FlatList
-        data={displayPrompts} // Use the determined list
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        ListEmptyComponent={<Text>No prompts found for this category.</Text>}
-      />
+      {/* Existing Content - Wrapped in a container View for layout */}
+      <View style={styles.contentContainer}>
+        {/* Random Prompt Button */}
+        {displayPrompts && displayPrompts.length > 0 && (
+          <TouchableOpacity 
+            style={styles.randomButton} 
+            onPress={handleRandomPromptSelect}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.randomButtonText}>Choose Random Prompt</Text>
+          </TouchableOpacity>
+        )}
+
+        {/* Prompt List */}
+        <FlatList
+          data={displayPrompts}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          ListEmptyComponent={<Text>No prompts found for this category.</Text>}
+          style={styles.listStyle}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { 
+  safeAreaContainer: {
     flex: 1, 
-    padding: 15,
     paddingTop: 50,
     backgroundColor: colors.background,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 55,
+    left: 15, 
+    zIndex: 10,
+    padding: 5,
+  },
+  contentContainer: {
+    flex: 1,
+    paddingHorizontal: 15,
+    paddingTop: 40,
+  },
+  listStyle: {
+    flex: 1,
   },
   header: {
     fontSize: 24,
@@ -117,7 +143,6 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     flex: 1,
   },
-  // --- Style for Random Button ---
   randomButton: {
     backgroundColor: colors.success,
     paddingVertical: 12,
@@ -137,7 +162,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  // --- End Style for Random Button ---
 });
 
 export default PromptSelectionScreen; 

@@ -77,6 +77,23 @@ function TeleprompterScreen({ route, navigation }) {
   const [countdown, setCountdown] = useState(4); // Countdown duration
   const [showCountdown, setShowCountdown] = useState(true); // Countdown visibility
 
+  // --- Helper function to stop all sounds ---
+  const stopAllSounds = async () => {
+    console.log("Stopping all sounds...");
+    if (sound && (await sound.getStatusAsync()).isPlaying) {
+      await sound.stopAsync();
+      console.log("Stopped Clapping Sound");
+    }
+    if (raceSound && (await raceSound.getStatusAsync()).isPlaying) {
+      await raceSound.stopAsync();
+      console.log("Stopped Race Sound");
+    }
+    if (roomSound && (await roomSound.getStatusAsync()).isPlaying) {
+      await roomSound.stopAsync();
+      console.log("Stopped Room Sound");
+    }
+  };
+
   // --- Load Sound Effect ---
   useEffect(() => {
     // --- Configure Audio Session ---
@@ -331,29 +348,6 @@ function TeleprompterScreen({ route, navigation }) {
   }, [scrollY]);
   /* */
 
-  // --- Add this helper function ---
-  const stopAllSounds = async () => {
-    console.log('Stopping all sounds due to navigation...');
-    try {
-      if (sound) {
-        const status = await sound.getStatusAsync();
-        if (status.isPlaying) await sound.stopAsync();
-      }
-      if (raceSound) {
-        const status = await raceSound.getStatusAsync();
-        if (status.isPlaying) await raceSound.stopAsync();
-      }
-      if (roomSound) {
-        const status = await roomSound.getStatusAsync();
-        if (status.isPlaying) await roomSound.stopAsync();
-      }
-      console.log('Sounds stopped.');
-    } catch (error) {
-      console.error('Error stopping sounds:', error);
-    }
-  };
-  // --- End helper function ---
-
   // --- Button Handlers ---
   const handleStartPause = () => {
     console.log(`handleStartPause called. Current state: ${isScrolling ? 'Scrolling' : 'Paused/Stopped'}`);
@@ -380,10 +374,8 @@ function TeleprompterScreen({ route, navigation }) {
   };
 
   // --- Determine Next Prompt Logic ---
-  const handleNextPrompt = async () => { // Make the function async
-    // Add this line: Stop sounds before navigating
-    await stopAllSounds();
-
+  const handleNextPrompt = async () => {
+    await stopAllSounds(); // Stop sounds before navigating
     // Existing navigation logic
     if (!categoryPrompts || categoryPrompts.length < 2) {
       console.log("Not enough prompts in category to navigate.");
@@ -409,9 +401,8 @@ function TeleprompterScreen({ route, navigation }) {
   };
 
   // --- Go Back Handler ---
-  const handleGoBack = async () => { // Make the function async
-    // Add this line: Stop sounds before navigating
-    await stopAllSounds();
+  const handleGoBack = async () => {
+    await stopAllSounds(); // Stop sounds before navigating
     navigation.goBack(); // Navigate to the previous screen in the stack
   };
   // --- END Go Back Handler ---
