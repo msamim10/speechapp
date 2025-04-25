@@ -225,5 +225,235 @@ export const promptsData = [
       borderRadius: 10,
     }
   },
+
+  // --- Presentation Prompts (Placeholders - Customize details below!) ---
+  // Remember to:
+  // 1. Ensure image files are in 'assets/presentationpics/'
+  // 2. Update `require('../assets/presentationpics/...')` with actual filenames.
+  // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
+  {
+    id: 'presentation1',
+    title: 'Boardroom Update', // Example Title
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic23.png'), // Updated filename
+    text: `Placeholder text for the boardroom update presentation. Focus on key metrics and next steps. Remember to pause for questions.`, // Add real text later
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '50%', 
+      height: '30%',
+      top: '45%',
+      left: '25%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'presentation2',
+    title: 'Conference Keynote Intro', // Example Title
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic45.png'), // Updated filename
+    text: `Placeholder text for the conference keynote introduction. Start with a strong opening, introduce the main topic, and outline the talk structure.`, // Add real text later
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '45%', 
+      height: '35%',
+      top: '40%',
+      left: '27.5%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'presentation3',
+    title: 'Product Demo', // Example Title
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic9.png'), // Updated filename
+    text: `Placeholder text for a product demonstration. Clearly explain the problem, show the solution, and highlight key benefits. Keep it concise.`, // Add real text later
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '60%', 
+      height: '40%',
+      top: '50%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'presentation4',
+    title: 'Team Update', // Example Title
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic34.png'), // Added filename
+    text: `Placeholder text for a team update meeting. Cover progress, challenges, and upcoming deadlines. Keep it focused.`, // Add real text later
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '55%', 
+      height: '35%',
+      top: '48%',
+      left: '22.5%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'presentation5',
+    title: 'Informal Presentation', // Example Title
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic2.png'), // Added filename
+    text: `Placeholder text for an informal presentation. Relaxed tone, clear message, engage the audience.`, // Add real text later
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '50%', 
+      height: '40%',
+      top: '42%',
+      left: '25%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'presentation6',
+    title: 'Workshop Facilitation', // Example Title
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic1.png'), // Added filename
+    text: `Placeholder text for facilitating a workshop. Explain the activity, manage time, and encourage participation.`, // Add real text later
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '48%', 
+      height: '38%',
+      top: '46%',
+      left: '26%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  // --- End Presentation Prompts ---
+
+  // --- Speech Prompts (Placeholders - Customize details below!) ---
+  // Remember to:
+  // 1. Ensure image files are in 'assets/speechpics/'
+  // 2. Update `require('../assets/speechpics/...')` with actual filenames if needed.
+  // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
+  {
+    id: 'speech1',
+    title: 'Speech Placeholder 1', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic8222.png'),
+    text: `Placeholder text for speech 1.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech2',
+    title: 'Speech Placeholder 2', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic2003.png'),
+    text: `Placeholder text for speech 2.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech3',
+    title: 'Speech Placeholder 3', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic8401.png'),
+    text: `Placeholder text for speech 3.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech4',
+    title: 'Speech Placeholder 4', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic6000.png'),
+    text: `Placeholder text for speech 4.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech5',
+    title: 'Speech Placeholder 5', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic239.png'),
+    text: `Placeholder text for speech 5.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech6',
+    title: 'Speech Placeholder 6', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic992.png'),
+    text: `Placeholder text for speech 6.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech7',
+    title: 'Speech Placeholder 7', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic8581.png'),
+    text: `Placeholder text for speech 7.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech8',
+    title: 'Speech Placeholder 8', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic092.png'),
+    text: `Placeholder text for speech 8.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech9',
+    title: 'Speech Placeholder 9', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic893.png'),
+    text: `Placeholder text for speech 9.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech10',
+    title: 'Speech Placeholder 10', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic805.png'),
+    text: `Placeholder text for speech 10.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech11',
+    title: 'Speech Placeholder 11', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic6712.png'),
+    text: `Placeholder text for speech 11.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech12',
+    title: 'Speech Placeholder 12', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/pic776.png'),
+    text: `Placeholder text for speech 12.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech13',
+    title: 'NASA Announcement',
+    category: 'Speeches',
+    image: require('../assets/speechpics/nasa.png'),
+    text: `Placeholder text for a NASA announcement speech.`,
+    layout: {
+      position: 'absolute',
+      width: '50%',
+      height: '30%',
+      top: '45%',
+      left: '25%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  // --- End Speech Prompts ---
+
   // Add more prompts here in the future
 ]; 

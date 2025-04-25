@@ -23,8 +23,14 @@ function CategorySelectionScreen() {
     if (category.id === 'random') {
       // Random navigates to PromptSelection with 'All'
       navigation.navigate('PromptSelection', { category: 'All' });
+    } else if (category.name === 'Presentations') {
+      // Presentations navigates to PromptSelection with 'Presentations'
+      navigation.navigate('PromptSelection', { category: 'Presentations' });
+    } else if (category.name === 'Speeches') {
+      // Speeches navigates to PromptSelection with 'Speeches'
+      navigation.navigate('PromptSelection', { category: 'Speeches' });
     } else {
-      // ALL others navigate to ComingSoonScreen, passing the name
+      // ALL others still navigate to ComingSoonScreen
       navigation.navigate('ComingSoonScreen', { categoryName: category.name });
     }
   };

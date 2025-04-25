@@ -91,6 +91,7 @@ function TeleprompterScreen({ route, navigation }) {
   const [sound, setSound] = useState(); // Clapping sound state
   const [raceSound, setRaceSound] = useState(); // Race noise sound state
   const [roomSound, setRoomSound] = useState(); // Room sound state
+  const [speechSound, setSpeechSound] = useState(); // New state for speech sound
   const [countdown, setCountdown] = useState(4); // Countdown duration
   const [showCountdown, setShowCountdown] = useState(true); // Countdown visibility
 
@@ -108,6 +109,10 @@ function TeleprompterScreen({ route, navigation }) {
     if (roomSound && (await roomSound.getStatusAsync()).isPlaying) {
       await roomSound.stopAsync();
       console.log("Stopped Room Sound");
+    }
+    if (speechSound && (await speechSound.getStatusAsync()).isPlaying) {
+      await speechSound.stopAsync();
+      console.log("Stopped Speech Sound");
     }
   };
 
@@ -146,11 +151,16 @@ function TeleprompterScreen({ route, navigation }) {
         const { sound: loadedRoomSound } = await Audio.Sound.createAsync(
            require('./assets/sounds/room.mp3')
         );
-        // Add this line: Set room sound to loop
         await loadedRoomSound.setIsLoopingAsync(true);
         setRoomSound(loadedRoomSound);
         console.log('Room sound loaded successfully and set to loop');
-        // End modification
+        
+        // Load Speech Sound
+        const { sound: loadedSpeechSound } = await Audio.Sound.createAsync(
+           require('./assets/sounds/soundforspeech.mp3')
+        );
+        setSpeechSound(loadedSpeechSound);
+        console.log('Speech sound loaded successfully');
 
       } catch (error) {
         console.error('Failed to load sound(s)', error);
@@ -171,6 +181,10 @@ function TeleprompterScreen({ route, navigation }) {
       if (roomSound) {
         console.log('Unloading Room Sound');
         roomSound.unloadAsync();
+      }
+      if (speechSound) {
+        console.log('Unloading Speech Sound');
+        speechSound.unloadAsync();
       }
     };
   }, []);
@@ -208,21 +222,40 @@ function TeleprompterScreen({ route, navigation }) {
       setShowCountdown(false);
       setIsScrolling(true);
 
-      // --- Play Room Sound (Always and Looping) ---
-      if (roomSound) {
+      // --- Play Speech Sound (Speeches Category Only, Once) ---
+      if (speechSound && !isWarmUpMode && currentPromptData && 
+          currentPromptData.category === 'Speeches') {
         try {
-          console.log('Playing Room Sound (Looping)');
-          // Start playing (it's set to loop, no stop timeout needed)
-          roomSound.replayAsync();
+          console.log('Playing Speech Sound (Once) for Speeches category');
+          speechSound.replayAsync(); // Plays once as looping is disabled
+        } catch (error) {
+          console.error('Failed to play speech sound', error);
+        }
+      } else if (speechSound) {
+         // Log if not played
+      } else {
+         // Log if not loaded
+      }
+      
+      // --- Play Room Sound (All Categories except Warm-up, Looping) ---
+      // Check if roomSound is loaded AND it's NOT warm-up mode
+      if (roomSound && !isWarmUpMode) { // <<< CONDITION CHANGED: Play for all categories
+        try {
+          console.log(`Playing Room Sound (Looping) for category: ${currentPromptData?.category || 'Unknown'}`);
+          roomSound.replayAsync(); // Plays and loops as looping is enabled
         } catch (error) {
           console.error('Failed to play room sound', error);
         }
+      } else if (roomSound) {
+        // Log why it wasn't played if the sound exists
+        console.log('Room sound exists but not playing (Warm-up mode).');
       } else {
         console.log('Room sound object not loaded, cannot play.');
       }
 
-      // --- Play Clapping Sound (Conditionally) ---
-      if (CLAPPING_PROMPT_IDS.includes(selectedPromptId) && sound) {
+      // --- Play Clapping Sound (Conditionally and NOT in warm-up) ---
+      // (Keep clapping logic conditional on prompt ID and NOT warm-up mode)
+      if (!isWarmUpMode && CLAPPING_PROMPT_IDS.includes(selectedPromptId) && sound) {
         try {
           console.log('Playing Clapping Sound (conditional)');
           sound.replayAsync().then(() => {
@@ -233,7 +266,7 @@ function TeleprompterScreen({ route, navigation }) {
         } catch (error) {
           console.error('Failed to play clapping sound', error);
         }
-      } else if (CLAPPING_PROMPT_IDS.includes(selectedPromptId)) {
+      } else if (!isWarmUpMode && CLAPPING_PROMPT_IDS.includes(selectedPromptId)) {
            console.log('Clapping appropriate, but sound object not loaded.');
       }
       // --- End Play Clapping Sound ---
@@ -246,19 +279,29 @@ function TeleprompterScreen({ route, navigation }) {
       clearTimeout(raceSoundTimeoutId);
       clearTimeout(clapSoundTimeoutId);
 
-      // Add this block: Explicitly stop looping sound if component unmounts *after* countdown finished
-      if (roomSound && !showCountdown) { // Check if roomSound exists and countdown finished
+      // Stop looping sounds on cleanup (if countdown finished)
+      if (!showCountdown) { 
+        if (roomSound) { 
           roomSound.getStatusAsync().then(status => {
-              if (status.isPlaying) {
-                  console.log('Stopping looping room sound on cleanup');
-                  roomSound.stopAsync();
-              }
+            if (status.isPlaying) {
+              console.log('Stopping looping room sound on cleanup');
+              roomSound.stopAsync();
+            }
           }).catch(error => console.error("Error checking room sound status on cleanup", error));
+        }
+        // Add speechSound stop to cleanup
+        if (speechSound) { 
+          speechSound.getStatusAsync().then(status => {
+            if (status.isPlaying) {
+              console.log('Stopping looping speech sound on cleanup');
+              speechSound.stopAsync();
+            }
+          }).catch(error => console.error("Error checking speech sound status on cleanup", error));
+        }
       }
-      // End block
     };
 
-  }, [countdown, showCountdown, sound, raceSound, roomSound, selectedPromptId]);
+  }, [countdown, showCountdown, sound, raceSound, roomSound, speechSound, selectedPromptId, isWarmUpMode, currentPromptData]); // Added speechSound dependency
 
   // --- Get fixed paddingBottom from styles --- (Helper)
   const getPaddingBottom = () => {
@@ -438,6 +481,14 @@ function TeleprompterScreen({ route, navigation }) {
     ? styles.promptTextWhite // Always white for warm-up on dark overlay
     : (currentPromptData?.textColor === 'white' ? styles.promptTextWhite : styles.promptTextDefault);
 
+  // --- Determine Control Bar Style ---
+  const controlsStyle = [
+    styles.controlsContainer, // Base style
+    imageSource && !isWarmUpMode // Apply override only if image exists and not in warm-up mode
+      ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' } // Minimally visible white background
+      : {} // Otherwise, use the default (semi-transparent black) from styles.controlsContainer
+  ];
+
   return (
     <View style={styles.container}>
       {/* Conditionally render background image */}
@@ -471,7 +522,7 @@ function TeleprompterScreen({ route, navigation }) {
           </View>
         )}
 
-        <View style={styles.controlsContainer}>
+        <View style={controlsStyle}>
           <View style={styles.actionButtons}>
             <TouchableOpacity onPress={handleGoBack} style={styles.iconButton}>
               <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
