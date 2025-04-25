@@ -35,8 +35,12 @@ function CategorySelectionScreen() {
     } else if (category.name === 'Situational/Specific') {
       // Situational/Specific navigates to PromptSelection with 'Situational/Specific'
       navigation.navigate('PromptSelection', { category: 'Situational/Specific' });
+    } else if (category.id === 'meetings') {
+      // Social & Casual navigates to PromptSelection with 'Social & Casual'
+      navigation.navigate('PromptSelection', { category: 'Social & Casual' });
     } else {
-      // ALL others (currently just Social & Casual) still navigate to ComingSoonScreen
+      // Fallback for any other unexpected category
+      console.warn(`Unhandled category navigation: ${category.name} (ID: ${category.id})`);
       navigation.navigate('ComingSoonScreen', { categoryName: category.name });
     }
   };

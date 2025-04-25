@@ -573,5 +573,52 @@ export const promptsData = [
   },
   // --- End Situational/Specific Prompts ---
 
+  // --- Social & Casual Prompts (Placeholders - Customize details below!) ---
+  // Remember to:
+  // 1. Ensure image files are in 'assets/socialpics/'
+  // 2. Update `require('../assets/socialpics/...')` with actual filenames.
+  // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
+  {
+    id: 'social1', // Using 'social' prefix for ID
+    title: 'Social Scene 1', 
+    category: 'Social & Casual', // Correct display category name
+    image: require('../assets/socialpics/pic2789.png'),
+    text: `Placeholder text for social & casual scene 1.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'social2',
+    title: 'Social Scene 2', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/pic6712.png'),
+    text: `Placeholder text for social & casual scene 2.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'social3',
+    title: 'Social Scene 3', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/pic4002.png'),
+    text: `Placeholder text for social & casual scene 3.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'social4',
+    title: 'Social Scene 4', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/pic5021.png'),
+    text: `Placeholder text for social & casual scene 4.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'social5',
+    title: 'Social Scene 5', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/pic8203.png'),
+    text: `Placeholder text for social & casual scene 5.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  // --- End Social & Casual Prompts ---
+
   // Add more prompts here in the future
 ]; 
