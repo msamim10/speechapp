@@ -455,5 +455,76 @@ export const promptsData = [
   },
   // --- End Speech Prompts ---
 
+  // --- Interview Prompts (Placeholders - Customize details below!) ---
+  // Remember to:
+  // 1. Ensure image files are in 'assets/interviewpics/'
+  // 2. Update `require('../assets/interviewpics/...')` with actual filenames.
+  // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
+  {
+    id: 'interview1',
+    title: 'Interview Scene 1', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic9300.png'),
+    text: `Placeholder text for interview scene 1. Prepare your answers.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview2',
+    title: 'Interview Scene 2', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic8025.png'),
+    text: `Placeholder text for interview scene 2. Tell me about yourself.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview3',
+    title: 'Interview Scene 3', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic7621.png'),
+    text: `Placeholder text for interview scene 3. What are your strengths?`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview4',
+    title: 'Interview Scene 4', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic7800.png'),
+    text: `Placeholder text for interview scene 4. What are your weaknesses?`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview5',
+    title: 'Interview Scene 5', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/01234.png'),
+    text: `Placeholder text for interview scene 5. Why do you want this job?`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview6',
+    title: 'Interview Scene 6', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic3921.png'),
+    text: `Placeholder text for interview scene 6. Where do you see yourself in 5 years?`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview7',
+    title: 'Interview Scene 7', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic3401.png'),
+    text: `Placeholder text for interview scene 7. Do you have any questions for us?`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview8',
+    title: 'Interview Scene 8', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/444.png'),
+    text: `Placeholder text for interview scene 8. Behavioral questions.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  // --- End Interview Prompts ---
+
   // Add more prompts here in the future
 ]; 
