@@ -11,8 +11,8 @@ const categories = [
   { id: 'speeches', name: 'Speeches', icon: 'megaphone-outline' },
   { id: 'interviews', name: 'Interviews', icon: 'people-outline' },
   { id: 'presentations', name: 'Presentations', icon: 'easel-outline' },
-  { id: 'social', name: 'Social & Casual', icon: 'chatbubbles-outline' },
-  { id: 'meetings', name: 'Meetings', icon: 'briefcase-outline' },
+  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline' },
+  { id: 'meetings', name: 'Social & Casual', icon: 'briefcase-outline' },
   // Add more categories here
 ];
 
@@ -32,8 +32,11 @@ function CategorySelectionScreen() {
     } else if (category.name === 'Interviews') {
       // Interviews navigates to PromptSelection with 'Interviews'
       navigation.navigate('PromptSelection', { category: 'Interviews' });
+    } else if (category.name === 'Situational/Specific') {
+      // Situational/Specific navigates to PromptSelection with 'Situational/Specific'
+      navigation.navigate('PromptSelection', { category: 'Situational/Specific' });
     } else {
-      // ALL others still navigate to ComingSoonScreen
+      // ALL others (currently just Social & Casual) still navigate to ComingSoonScreen
       navigation.navigate('ComingSoonScreen', { categoryName: category.name });
     }
   };
@@ -85,9 +88,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cardBackground, 
     borderRadius: 12, // Slightly more rounded
     padding: 15, // Adjusted padding
-    width: '46%', // Keep approx two cards per row
+    width: '47%', // Slightly wider 
     aspectRatio: 1, 
-    marginBottom: 15, // Adjusted spacing
+    marginBottom: 20, // Increased spacing
     alignItems: 'center', 
     justifyContent: 'center', 
     // Refined shadow

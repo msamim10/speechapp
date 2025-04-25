@@ -526,5 +526,52 @@ export const promptsData = [
   },
   // --- End Interview Prompts ---
 
+  // --- Situational/Specific Prompts (Placeholders - Customize details below!) ---
+  // Remember to:
+  // 1. Ensure image files are in 'assets/specificpics/'
+  // 2. Update `require('../assets/specificpics/...')` with actual filenames.
+  // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
+  {
+    id: 'specific1',
+    title: 'Specific Scene 1', 
+    category: 'Situational/Specific', // Correct category name
+    image: require('../assets/specificpics/pic2215.png'),
+    text: `Placeholder text for situational/specific scene 1.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific2',
+    title: 'Specific Scene 2', 
+    category: 'Situational/Specific', // Correct category name
+    image: require('../assets/specificpics/pic82501.png'),
+    text: `Placeholder text for situational/specific scene 2.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific3',
+    title: 'Specific Scene 3', 
+    category: 'Situational/Specific', // Correct category name
+    image: require('../assets/specificpics/pic8931.png'),
+    text: `Placeholder text for situational/specific scene 3.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific4',
+    title: 'Specific Scene 4', 
+    category: 'Situational/Specific', // Correct category name
+    image: require('../assets/specificpics/pic7649.png'),
+    text: `Placeholder text for situational/specific scene 4.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific5',
+    title: 'Specific Scene 5', 
+    category: 'Situational/Specific', // Correct category name
+    image: require('../assets/specificpics/pic8333.png'),
+    text: `Placeholder text for situational/specific scene 5.`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  // --- End Situational/Specific Prompts ---
+
   // Add more prompts here in the future
 ]; 
