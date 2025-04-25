@@ -233,15 +233,15 @@ export const promptsData = [
   // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
   {
     id: 'presentation1',
-    title: 'Boardroom Update', // Example Title
+    title: 'Boardroom Update',
     category: 'Presentations',
-    image: require('../assets/presentationpics/pic23.png'), // Updated filename
-    text: `Placeholder text for the boardroom update presentation. Focus on key metrics and next steps. Remember to pause for questions.`, // Add real text later
+    image: require('../assets/presentationpics/pic23.png'),
+    text: `Good morning, board members and distinguished guests.\n\nI'm pleased to present our quarterly performance update. Let's start with the key metrics: Revenue has grown by 15% year-over-year, with our new product line contributing 35% of total sales.\n\nOur market share in the Asia-Pacific region has increased to 22%, exceeding our target of 20%. However, we're seeing some challenges in the European market that we need to address.\n\nLooking at our operational efficiency, we've reduced production costs by 8% through our automation initiatives. Our customer satisfaction scores remain strong at 4.7 out of 5.\n\nFor the next quarter, we're focusing on three strategic priorities: expanding our digital transformation efforts, launching our sustainability initiative, and strengthening our supply chain resilience.\n\nI'll now open the floor for questions and discussion.`, 
     layout: { // Adjust layout percentages based on image!
       position: 'absolute',
-      width: '50%', 
-      height: '30%',
-      top: '45%',
+      width: '50%',
+      height: '42%',
+      top: '49%',
       left: '25%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
@@ -250,16 +250,16 @@ export const promptsData = [
   },
   {
     id: 'presentation2',
-    title: 'Conference Keynote Intro', // Example Title
+    title: 'Conference Keynote Intro',
     category: 'Presentations',
-    image: require('../assets/presentationpics/pic45.png'), // Updated filename
-    text: `Placeholder text for the conference keynote introduction. Start with a strong opening, introduce the main topic, and outline the talk structure.`, // Add real text later
+    image: require('../assets/presentationpics/pic45.png'),
+    text: `Welcome to TechForward 2024!\n\nIt's an honor to stand before such an impressive gathering of innovators, thought leaders, and change-makers. Over the next three days, we'll explore how technology is reshaping our world in ways we could barely imagine just a few years ago.\n\nThis year's theme, "The Future of Human-Machine Collaboration," couldn't be more timely. We're at a pivotal moment where AI, quantum computing, and biotechnology are converging to create unprecedented opportunities.\n\nOur agenda is packed with insights from industry pioneers, hands-on workshops, and thought-provoking panel discussions. You'll hear from leaders who are pushing the boundaries of what's possible in healthcare, education, and sustainable development.\n\nBut before we dive in, I want to share a story that perfectly illustrates why we're here today. It's about how technology, when guided by human values, can transform lives in ways we never expected.\n\nLet's begin this journey together.`, 
     layout: { // Adjust layout percentages based on image!
       position: 'absolute',
-      width: '45%', 
-      height: '35%',
-      top: '40%',
-      left: '27.5%',
+      width: '70%',
+      height: '48%',
+      top: '30%',
+      left: '15%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
       borderRadius: 10,
@@ -267,13 +267,13 @@ export const promptsData = [
   },
   {
     id: 'presentation3',
-    title: 'Product Demo', // Example Title
+    title: 'Product Demo',
     category: 'Presentations',
-    image: require('../assets/presentationpics/pic9.png'), // Updated filename
-    text: `Placeholder text for a product demonstration. Clearly explain the problem, show the solution, and highlight key benefits. Keep it concise.`, // Add real text later
+    image: require('../assets/presentationpics/pic9.png'),
+    text: `Good afternoon everyone, and thank you for joining us for this exciting product demonstration.\n\nToday, I'm thrilled to introduce you to our latest innovation: the SmartHome Pro system. This isn't just another smart home device - it's a complete ecosystem that learns and adapts to your lifestyle.\n\nLet me show you how it works. With a simple voice command, you can control your entire home. Watch as the lights adjust automatically based on the time of day, the temperature optimizes for comfort, and your security system activates.\n\nWhat sets SmartHome Pro apart is its AI-powered personalization. It learns your routines, anticipates your needs, and even suggests energy-saving opportunities. The system can reduce your energy consumption by up to 30% while maintaining perfect comfort.\n\nBut don't just take my word for it. Let's see it in action with a live demonstration of its key features.\n\nAny questions before we begin?`, 
     layout: { // Adjust layout percentages based on image!
       position: 'absolute',
-      width: '60%', 
+      width: '60%',
       height: '40%',
       top: '50%',
       left: '20%',
@@ -284,16 +284,16 @@ export const promptsData = [
   },
   {
     id: 'presentation4',
-    title: 'Team Update', // Example Title
+    title: 'Team Update',
     category: 'Presentations',
-    image: require('../assets/presentationpics/pic34.png'), // Added filename
-    text: `Placeholder text for a team update meeting. Cover progress, challenges, and upcoming deadlines. Keep it focused.`, // Add real text later
+    image: require('../assets/presentationpics/pic34.png'),
+    text: `Team, thank you for gathering for our weekly update.\n\nLet's start with our progress on the Q2 initiatives. The new client onboarding system is now 80% complete, and we're on track to launch next week. Great work from the development team on meeting the tight deadline.\n\nOur customer support metrics show a 15% improvement in response times, but we're still seeing some challenges with the new ticketing system. The support team will be running additional training sessions this week.\n\nFor upcoming projects, we have three major deadlines to focus on: the product launch on the 15th, the quarterly review on the 22nd, and the team offsite on the 29th. Let's make sure we're all aligned on these dates.\n\nI want to highlight some outstanding work from Sarah's team, who completed their sprint two days early while maintaining excellent code quality.\n\nBefore we break, does anyone have updates or challenges they'd like to share?`, 
     layout: { // Adjust layout percentages based on image!
       position: 'absolute',
-      width: '55%', 
-      height: '35%',
+      width: '55%',
+      height: '42%',
       top: '48%',
-      left: '22.5%',
+      left: '20%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
       borderRadius: 10,
@@ -301,16 +301,16 @@ export const promptsData = [
   },
   {
     id: 'presentation5',
-    title: 'Informal Presentation', // Example Title
+    title: 'Informal Presentation',
     category: 'Presentations',
-    image: require('../assets/presentationpics/pic2.png'), // Added filename
-    text: `Placeholder text for an informal presentation. Relaxed tone, clear message, engage the audience.`, // Add real text later
+    image: require('../assets/presentationpics/pic2.png'),
+    text: `Hey everyone, thanks for coming to our casual catch-up today!\n\nI thought we'd do something a bit different this time - less formal, more interactive. We're all here because we share a passion for innovation and making a difference.\n\nLet me start by sharing a quick story about how our team's work is making an impact. Just last week, I got an email from a user who told us our product helped them start their own business. That's the kind of impact we're all working towards.\n\nI want this to be more of a conversation than a presentation. Feel free to jump in with questions or share your own experiences. We're all learning from each other here.\n\nBefore we dive into the details, who's had an interesting challenge or success they'd like to share?\n\nLet's make this session as valuable for you as possible.`, 
     layout: { // Adjust layout percentages based on image!
       position: 'absolute',
-      width: '50%', 
+      width: '60%',
       height: '40%',
-      top: '42%',
-      left: '25%',
+      top: '54%',
+      left: '20%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
       borderRadius: 10,
@@ -318,15 +318,15 @@ export const promptsData = [
   },
   {
     id: 'presentation6',
-    title: 'Workshop Facilitation', // Example Title
+    title: 'Workshop Facilitation',
     category: 'Presentations',
-    image: require('../assets/presentationpics/pic1.png'), // Added filename
-    text: `Placeholder text for facilitating a workshop. Explain the activity, manage time, and encourage participation.`, // Add real text later
+    image: require('../assets/presentationpics/pic1.png'),
+    text: `Welcome to our Design Thinking Workshop!\n\nToday, we're going to explore how to solve complex problems through creative collaboration. This is a hands-on session, so get ready to roll up your sleeves and dive in.\n\nWe'll be following a structured process: First, we'll empathize with our users. Then, we'll define the problem clearly. After that, we'll ideate solutions, create prototypes, and test our ideas.\n\nEach activity will take about 20 minutes, and we'll have short breaks in between. I encourage you to work with people you haven't collaborated with before - that's where the magic happens!\n\nRemember, there are no bad ideas in this phase. We're here to explore possibilities and build on each other's thoughts.\n\nLet's start with our first activity: the empathy mapping exercise.`, 
     layout: { // Adjust layout percentages based on image!
       position: 'absolute',
-      width: '48%', 
-      height: '38%',
-      top: '46%',
+      width: '48%',
+      height: '35%',
+      top: '52%',
       left: '26%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
@@ -342,116 +342,108 @@ export const promptsData = [
   // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
   {
     id: 'speech1',
-    title: 'Speech Placeholder 1', 
+    title: 'Google Cloud Keynote',
     category: 'Speeches',
     image: require('../assets/speechpics/pic8222.png'),
-    text: `Placeholder text for speech 1.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Good morning everyone, and welcome to Google Cloud Next '24!\n\nToday, we're going to take you on a journey through the future of cloud computing. Over the next hour, you'll see how we're pushing the boundaries of what's possible with AI, security, and infrastructure.\n\nLet me start by sharing some exciting numbers: Google Cloud now serves over 1.5 billion users daily, with our infrastructure processing more than 100,000 queries per second. But what's truly remarkable is how our customers are using this power to transform their businesses.\n\nI want to share a story about one of our customers, a healthcare provider that's using our AI tools to analyze medical images. What used to take hours now takes minutes, helping doctors make faster, more accurate diagnoses.\n\nToday, we're announcing several groundbreaking innovations that will help you build, deploy, and scale your applications faster than ever before. From our new AI-powered development tools to enhanced security features, we're making cloud computing more accessible and powerful for everyone.\n\nBut before we dive into the details, let me introduce our amazing team who have worked tirelessly to bring these innovations to life.`,
+    layout: { position: 'absolute', width: '80%', height: '35%', top: '62%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech2',
-    title: 'Speech Placeholder 2', 
+    title: 'Stock Market Presentation',
     category: 'Speeches',
     image: require('../assets/speechpics/pic2003.png'),
-    text: `Placeholder text for speech 2.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Ladies and gentlemen, thank you for joining us for our Q4 earnings call.\n\nI'm pleased to report that we've achieved record-breaking results this quarter, with revenue growth of 23% year-over-year. Our strategic investments in digital transformation and AI integration have paid off significantly.\n\nLet's look at the numbers: Our cloud services division grew by 45%, while our consumer products segment maintained steady growth at 12%. We've also successfully reduced operational costs by 8% through our efficiency initiatives.\n\nLooking ahead, we're seeing strong indicators for continued growth in the coming quarters. Our pipeline of new projects is the strongest it's ever been, and we're well-positioned to capitalize on emerging market opportunities.\n\nI'd like to take a moment to thank our incredible team whose hard work and dedication have made these results possible. Their innovative spirit and commitment to excellence continue to drive our success.\n\nNow, let's open the floor for questions.`,
+    layout: { position: 'absolute', width: '70%', height: '30%', top: '68%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech3',
-    title: 'Speech Placeholder 3', 
+    title: 'Y Combinator Pitch',
     category: 'Speeches',
     image: require('../assets/speechpics/pic8401.png'),
-    text: `Placeholder text for speech 3.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Hi everyone, I'm Sarah, and I'm here to introduce you to our startup, EcoCharge.\n\nWe're solving a critical problem: the lack of reliable charging infrastructure for electric vehicles in urban areas. Our solution? A network of smart, solar-powered charging stations that can be installed in any parking space.\n\nHere's why this matters: By 2030, there will be 145 million EVs on the road, but current charging infrastructure can only support about 30% of that demand. We're bridging this gap with our innovative technology.\n\nOur traction speaks for itself: We've secured partnerships with three major cities, have 500 pre-orders for our stations, and have raised $2 million in seed funding. Our unit economics show a 60% margin, with payback in just 18 months.\n\nWe're seeking $1.5 million to scale our manufacturing and expand to five new cities. With your support, we can accelerate the transition to sustainable transportation.\n\nThank you for your time. I'd be happy to answer any questions.`,
+    textColor: 'white',
+    layout: { position: 'absolute', width: '55%', height: '40%', top: '55%', left: '24%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,  transform: [{ rotate: '-1deg' }]}
   },
   {
     id: 'speech4',
-    title: 'Speech Placeholder 4', 
+    title: 'Apple Keynote',
     category: 'Speeches',
     image: require('../assets/speechpics/pic6000.png'),
-    text: `Placeholder text for speech 4.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Good morning, and welcome to Apple's September event!\n\nToday, we're going to show you some incredible new products that push the boundaries of what's possible. But first, let me share some exciting news: We've just reached a new milestone with over 2 billion active Apple devices worldwide.\n\nOur focus this year has been on three key areas: performance, sustainability, and user experience. Every product we're announcing today reflects these priorities.\n\nLet's start with our new iPhone lineup. We've completely redesigned the camera system, introducing revolutionary computational photography features. The new A17 chip delivers unprecedented performance while being more energy efficient than ever.\n\nBut what I'm most excited about is our commitment to the environment. Every product we're announcing today is made with 100% recycled materials, and we're on track to be carbon neutral by 2030.\n\nNow, let me show you what we've been working on.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '62%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech5',
-    title: 'Speech Placeholder 5', 
+    title: 'Church Sermon',
     category: 'Speeches',
     image: require('../assets/speechpics/pic239.png'),
-    text: `Placeholder text for speech 5.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Good morning, my dear brothers and sisters in Christ.\n\nToday, I want to talk about the power of faith in challenging times. In our reading from Matthew 17:20, Jesus tells us that faith as small as a mustard seed can move mountains.\n\nThink about that for a moment. A mustard seed is tiny, almost insignificant. Yet, with faith, it can grow into something powerful and transformative. This is the message we need to hear today.\n\nIn our daily lives, we face many challenges - health issues, financial struggles, relationship problems. But through faith, we find strength. Through faith, we find hope. Through faith, we find the courage to keep moving forward.\n\nLet me share a story about one of our parishioners who faced a difficult diagnosis. Through prayer and faith, they found not only healing but also a deeper connection with God and their community.\n\nAs we go forth today, remember that your faith, no matter how small it may seem, has the power to transform your life and the lives of those around you.`,
+    layout: { position: 'absolute', width: '75%', height: '32%', top: '55%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '9deg' }] }
   },
   {
     id: 'speech6',
-    title: 'Speech Placeholder 6', 
+    title: 'TEDx Talk',
     category: 'Speeches',
     image: require('../assets/speechpics/pic992.png'),
-    text: `Placeholder text for speech 6.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Have you ever wondered why some people seem to bounce back from failure while others get stuck?\n\nI spent the last decade studying resilience, and what I discovered might surprise you. It's not about being born with special abilities or having a perfect life. It's about how we think about our challenges.\n\nLet me tell you about a study we conducted with 1,000 participants. We found that people who viewed their failures as learning opportunities were 40% more likely to achieve their goals. That's a significant difference!\n\nBut here's the really interesting part: resilience isn't just about bouncing back. It's about bouncing forward. Every setback contains within it the seeds of growth and transformation.\n\nI want to share three simple practices that can help anyone develop greater resilience. These aren't complicated theories - they're practical tools you can start using today.\n\nRemember, the most successful people aren't those who never fail. They're the ones who learn to fail better.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech7',
-    title: 'Speech Placeholder 7', 
+    title: 'United Nations Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/pic8581.png'),
-    text: `Placeholder text for speech 7.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Mr. Secretary-General, distinguished delegates, ladies and gentlemen,\n\nToday, we gather at a critical moment in human history. The challenges we face - climate change, global inequality, and the threat of conflict - require unprecedented cooperation and commitment.\n\nLet me be clear: the time for incremental change has passed. We need bold, decisive action. The science is clear, the evidence is overwhelming, and the cost of inaction is too great to bear.\n\nI stand before you today to announce my country's commitment to reduce carbon emissions by 50% by 2030. But this is not enough. We need every nation to step up and do their part.\n\nThe good news is that we have the technology, the resources, and the knowledge to address these challenges. What we need now is the political will and collective action to make it happen.\n\nLet us remember that we are not just representatives of our nations, but stewards of our planet and guardians of future generations. The time to act is now.`,
+    layout: { position: 'absolute', width: '60%', height: '36%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech8',
-    title: 'Speech Placeholder 8', 
+    title: 'Election Campaign Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/pic092.png'),
-    text: `Placeholder text for speech 8.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `My fellow citizens,\n\nToday, I stand before you not just as a candidate, but as someone who shares your hopes, your dreams, and your concerns for our community's future.\n\nOver the past year, I've traveled across our district, listening to your stories. I've heard about the struggles of small business owners, the challenges facing our schools, and the need for better healthcare access.\n\nMy vision for our community is simple: a place where every child has access to quality education, where businesses can thrive, and where our seniors can retire with dignity. A place where we invest in infrastructure, create good-paying jobs, and protect our environment.\n\nBut this isn't just about me. It's about us - about what we can achieve together. I'm asking for your vote not just to represent you, but to work with you to build a better future for all of us.\n\nTogether, we can make our community stronger, more prosperous, and more united than ever before.`,
+    layout: { position: 'absolute', width: '65%', height: '45%', top: '45%', left: '18%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech9',
-    title: 'Speech Placeholder 9', 
+    title: 'Church Communion',
     category: 'Speeches',
     image: require('../assets/speechpics/pic893.png'),
-    text: `Placeholder text for speech 9.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Beloved brothers and sisters in Christ,\n\nAs we gather around this table today, we remember the Last Supper, when Jesus shared bread and wine with his disciples. This simple meal represents the greatest gift ever given - the gift of salvation through Christ's sacrifice.\n\nIn 1 Corinthians 11:24, we read: "This is my body, which is for you. Do this in remembrance of me." These words remind us that communion is not just a ritual, but a sacred moment of connection with our Savior.\n\nAs you come forward today, remember that you are part of something much larger than yourself. You are part of the body of Christ, united with believers across time and space.\n\nLet us prepare our hearts as we come to the table. Let us examine ourselves, confess our sins, and receive God's grace with thankful hearts.\n\nMay this communion strengthen our faith, renew our commitment to Christ, and deepen our love for one another.`,
+    layout: { position: 'absolute', width: '60%', height: '42%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech10',
-    title: 'Speech Placeholder 10', 
+    title: 'Art Exhibition Opening',
     category: 'Speeches',
     image: require('../assets/speechpics/pic805.png'),
-    text: `Placeholder text for speech 10.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Welcome, everyone, to the opening of "Reflections of Light" - an extraordinary exhibition that explores the intersection of art and technology.\n\nTonight, we celebrate the work of 12 visionary artists who have pushed the boundaries of what's possible in contemporary art. Each piece in this exhibition tells a unique story about our relationship with light, space, and perception.\n\nI want to draw your attention to the centerpiece of our exhibition - a stunning installation that uses AI to create an ever-changing light sculpture. This work represents the perfect marriage of traditional artistic vision and cutting-edge technology.\n\nWhat makes this exhibition particularly special is how it invites us to question our perceptions. As you move through the space, you'll notice how the artworks transform based on your perspective and movement.\n\nI encourage you to take your time, engage with the pieces, and let yourself be transported by the artists' visions. Thank you for joining us on this journey through light and imagination.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech11',
-    title: 'Speech Placeholder 11', 
+    title: 'Library Book Launch',
     category: 'Speeches',
     image: require('../assets/speechpics/pic6712.png'),
-    text: `Placeholder text for speech 11.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Good evening, book lovers!\n\nIt's an absolute pleasure to be here tonight to celebrate the launch of "The Last Chapter" - a novel that has already captured the hearts of readers around the world.\n\nThis book represents three years of research, writing, and countless cups of coffee. It's a story about resilience, about finding hope in the darkest of times, and about the power of human connection.\n\nI want to share a little secret with you: The main character, Sarah, was inspired by a real person I met in this very library five years ago. Her story of overcoming adversity touched me deeply, and I knew I had to share it with the world.\n\nTonight, as we celebrate the written word, let's remember the power of stories to connect us, to teach us, and to help us understand ourselves and others better.\n\nThank you all for being here. I'm looking forward to signing your copies and hearing your thoughts about the book.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech12',
-    title: 'Speech Placeholder 12', 
+    title: 'Basketball Coach Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/pic776.png'),
-    text: `Placeholder text for speech 12.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Listen up, team!\n\nWe've worked hard all season for this moment. Tonight's game isn't just about winning or losing - it's about playing with heart, playing as a team, and leaving everything we've got on that court.\n\nRemember our core values: Discipline. Determination. Teamwork. These aren't just words - they're what got us here. When we're down, we don't quit. When we're up, we don't let up.\n\nI want you to focus on three things tonight: Defense wins championships, so let's lock them down. Move the ball - find the open man. And most importantly, trust each other.\n\nEach of you has a role to play. Whether you're starting or coming off the bench, your contribution matters. This is our time to shine.\n\nNow, let's get out there and show them what we're made of!`,
+    layout: { position: 'absolute', width: '60%', height: '45%', top: '45%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'speech13',
     title: 'NASA Announcement',
     category: 'Speeches',
     image: require('../assets/speechpics/nasa.png'),
-    text: `Placeholder text for a NASA announcement speech.`,
-    layout: {
-      position: 'absolute',
-      width: '50%',
-      height: '30%',
-      top: '45%',
-      left: '25%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
+    text: `Good afternoon, and welcome to this historic announcement from NASA.\n\nToday, we stand on the brink of a new era in space exploration. After years of research and development, we are ready to announce our next major mission to Mars.\n\nThis mission represents a quantum leap in our understanding of the Red Planet. Our new rover, equipped with cutting-edge technology, will search for signs of ancient life and test technologies for future human exploration.\n\nWhat makes this mission unique is our partnership with international space agencies and private sector innovators. Together, we're pushing the boundaries of what's possible in space exploration.\n\nI want to take a moment to acknowledge the incredible team behind this mission. Their dedication and expertise have brought us to this moment.\n\nAs we prepare for launch next year, we invite the world to join us on this journey of discovery. This is not just NASA's mission - it's humanity's mission.`,
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   // --- End Speech Prompts ---
 
@@ -525,6 +517,5 @@ export const promptsData = [
     layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   // --- End Interview Prompts ---
-
   // Add more prompts here in the future
 ]; 
