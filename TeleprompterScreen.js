@@ -52,10 +52,10 @@ function TeleprompterScreen({ route, navigation }) {
     return categoryPrompts?.find(p => p.id === selectedPromptId);
   }, [categoryPrompts, selectedPromptId]);
 
-  // --- Fallback if data isn't found (should not happen with proper navigation) ---
-  const imageSource = currentPromptData?.image || require('./assets/prompt-backgrounds/good.png'); // Fallback image
-  const initialPromptText = currentPromptData?.text || 'Prompt text not found.'; // Fallback text
-  const routeLayoutConfig = currentPromptData?.layout; // Layout from current prompt
+  // --- Fallback if data isn't found ---
+  const imageSource = currentPromptData?.image || require('./assets/prompt-backgrounds/good.png'); // Reverted path
+  const initialPromptText = currentPromptData?.text || 'Prompt text not found.';
+  const routeLayoutConfig = currentPromptData?.layout;
   
   // --- Add console log to check the layout being used --- 
   console.log("--- TeleprompterScreen Rendering ---");
