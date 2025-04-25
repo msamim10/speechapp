@@ -454,67 +454,70 @@ export const promptsData = [
   // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
   {
     id: 'interview1',
-    title: 'Interview Scene 1', 
+    title: 'Google Networking Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic9300.png'),
-    text: `Placeholder text for interview scene 1. Prepare your answers.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Welcome to your interview with TechInnovate Solutions. I'm Sarah, the hiring manager for the Software Engineer position.\n\nBefore we begin, I'd like to understand your background and experience. Could you walk me through your resume, focusing on your most recent role and key achievements?\n\nPay attention to:\n- Clear communication of your experience\n- Highlighting relevant technical skills\n- Demonstrating problem-solving abilities\n- Showing enthusiasm for the role\n\nRemember to maintain good eye contact and speak confidently about your experience.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '64%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '8deg' }] }
   },
   {
     id: 'interview2',
-    title: 'Interview Scene 2', 
+    title: 'TV Presenter Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic8025.png'),
-    text: `Placeholder text for interview scene 2. Tell me about yourself.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `"Tell me about yourself" is often the first question in an interview. This is your chance to make a strong first impression.\n\nStructure your answer to include:\n- Brief professional background\n- Key skills and expertise\n- Relevant achievements\n- Why you're interested in this role\n\nExample structure:\n"I'm a software engineer with 5 years of experience in full-stack development. I specialize in building scalable web applications using React and Node.js. In my current role at XYZ Company, I led a team that improved application performance by 40%. I'm particularly excited about this opportunity because..."\n\nKeep it concise (2-3 minutes) and relevant to the position.`, 
+    layout: { position: 'absolute', width: '55%', height: '35%', top: '55%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '5deg' }] }
   },
   {
     id: 'interview3',
     title: 'Interview Scene 3', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic7621.png'),
-    text: `Placeholder text for interview scene 3. What are your strengths?`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `"What are your greatest strengths?" is a common interview question that allows you to highlight your most relevant skills.\n\nWhen answering:\n- Choose 2-3 strengths relevant to the job\n- Provide specific examples\n- Show how these strengths benefit the company\n\nExample structure:\n"One of my key strengths is problem-solving. In my last role, I identified a bottleneck in our deployment process and implemented an automated solution that reduced deployment time by 50%. Another strength is my ability to collaborate effectively. I regularly work with cross-functional teams to ensure smooth project delivery..."\n\nBe honest but strategic in your response.`, 
+    textColor: 'white',
+    layout: { position: 'absolute', width: '70%', height: '30%', top: '20%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'interview4',
-    title: 'Interview Scene 4', 
+    title: 'Business Analyst Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic7800.png'),
-    text: `Placeholder text for interview scene 4. What are your weaknesses?`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `"What is your greatest weakness?" is a challenging question that tests your self-awareness and honesty.\n\nWhen answering:\n- Choose a real but not critical weakness\n- Show how you're working to improve it\n- Turn it into a positive\n\nExample structure:\n"One area I've been working on is public speaking. Early in my career, I found it challenging to present technical concepts to non-technical stakeholders. To improve this, I've taken public speaking courses and regularly volunteer to lead team presentations. This has helped me become more confident and effective in communicating complex ideas..."\n\nAvoid clichés like "I'm a perfectionist" or "I work too hard."`, 
+    layout: { position: 'absolute', width: '50%', height: '34%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,
+      transform: [{ rotate: '2deg' }]
+     }
   },
   {
     id: 'interview5',
-    title: 'Interview Scene 5', 
+    title: 'Marketing Manager Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/01234.png'),
-    text: `Placeholder text for interview scene 5. Why do you want this job?`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `"Why do you want this job?" is your opportunity to show your enthusiasm and alignment with the company.\n\nStructure your answer to include:\n- What attracts you to the company\n- How your skills match the role\n- Your career goals\n\nExample structure:\n"I'm excited about this opportunity because TechInnovate's focus on AI-driven solutions aligns perfectly with my passion for machine learning. The role's emphasis on full-stack development matches my experience building scalable applications. I'm particularly drawn to your company culture of innovation and continuous learning, which matches my own values..."\n\nShow that you've researched the company and understand the role.`, 
+    layout: { position: 'absolute', width: '55%', height: '34%', top: '60%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'interview6',
-    title: 'Interview Scene 6', 
+    title: 'News Reporter Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic3921.png'),
-    text: `Placeholder text for interview scene 6. Where do you see yourself in 5 years?`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `"Where do you see yourself in 5 years?" helps interviewers understand your career aspirations and commitment.\n\nWhen answering:\n- Show ambition but be realistic\n- Align with company growth\n- Demonstrate long-term interest\n\nExample structure:\n"In five years, I see myself as a senior software engineer leading complex projects and mentoring junior developers. I'm particularly interested in growing my expertise in cloud architecture and AI integration. I hope to contribute to TechInnovate's mission of transforming industries through technology while developing my leadership skills..."\n\nAvoid mentioning plans that might conflict with the role or company.`, 
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
   },
   {
     id: 'interview7',
-    title: 'Interview Scene 7', 
+    title: 'Interview with a Panel', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic3401.png'),
-    text: `Placeholder text for interview scene 7. Do you have any questions for us?`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `"Do you have any questions for us?" is your chance to show interest and gather important information.\n\nPrepare questions about:\n- Team dynamics and culture\n- Growth opportunities\n- Current projects\n- Performance expectations\n\nExample questions:\n"Could you tell me about the team I'll be working with and how projects are typically structured?"\n"What opportunities are there for professional development and learning new technologies?"\n"How does the company measure success in this role?"\n"What are the biggest challenges the team is currently facing?"\n\nAvoid questions about salary or benefits at this stage.`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '56%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
     id: 'interview8',
-    title: 'Interview Scene 8', 
+    title: 'One to One Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/444.png'),
-    text: `Placeholder text for interview scene 8. Behavioral questions.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Behavioral questions assess how you've handled situations in the past. They often start with "Tell me about a time when..."\n\nUse the STAR method to structure your answers:\nSituation: Describe the context\nTask: Explain what needed to be done\nAction: Detail what you did\nResult: Share the outcome\n\nExample question: "Tell me about a time you faced a difficult technical challenge."\n\nExample answer structure:\n"Situation: Our team was facing performance issues with our database queries...\nTask: We needed to improve response times by 50%...\nAction: I analyzed the queries, implemented indexing, and optimized the code...\nResult: We achieved a 60% improvement in performance..."\n\nPrepare multiple examples for different scenarios.`, 
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   // --- End Interview Prompts ---
   // Add more prompts here in the future
