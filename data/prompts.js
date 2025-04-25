@@ -528,43 +528,43 @@ export const promptsData = [
   // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
   {
     id: 'specific1',
-    title: 'Specific Scene 1', 
-    category: 'Situational/Specific', // Correct category name
+    title: 'Student Academic Progress', 
+    category: 'Situational/Specific',
     image: require('../assets/specificpics/pic2215.png'),
-    text: `Placeholder text for situational/specific scene 1.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `\n\nGood morning, I'm here to discuss your academic progress this semester. Looking at your grades and performance, I've noticed some interesting patterns.\n\nYour mathematics scores have shown significant improvement, with a 15% increase from last quarter. However, we should focus on strengthening your writing skills, particularly in research papers.\n\nI recommend:\n- Attending the weekly writing workshop\n- Meeting with the writing center tutor\n- Setting up a study schedule for research projects\n\nWould you like to discuss specific strategies for improving your writing while maintaining your strong performance in other subjects?`, 
+    layout: { position: 'absolute', width: '50%', height: '30%', top: '61%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '4deg' }] }
   },
   {
     id: 'specific2',
-    title: 'Specific Scene 2', 
-    category: 'Situational/Specific', // Correct category name
+    title: 'Fire Fighter Training', 
+    category: 'Situational/Specific',
     image: require('../assets/specificpics/pic82501.png'),
-    text: `Placeholder text for situational/specific scene 2.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Welcome to today's firefighter training session. We'll be focusing on high-rise building fire scenarios.\n\nKey points to remember:\n- Always check your oxygen levels before entry\n- Maintain constant communication with your team\n- Follow the established evacuation procedures\n- Be aware of potential structural hazards\n\nToday's drill will simulate:\n- Smoke-filled environment navigation\n- Victim search and rescue\n- Emergency communication protocols\n- Equipment handling under pressure\n\nSafety is our top priority. Let's begin with the equipment check.`, 
+    layout: { position: 'absolute', width: '58%', height: '34%', top: '65%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '10deg' }] }
   },
   {
     id: 'specific3',
-    title: 'Specific Scene 3', 
-    category: 'Situational/Specific', // Correct category name
+    title: 'Museum Guide', 
+    category: 'Situational/Specific',
     image: require('../assets/specificpics/pic8931.png'),
-    text: `Placeholder text for situational/specific scene 3.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Welcome to the Museum of Modern Art. Today, we'll be exploring our special exhibition of 20th-century masterpieces.\n\nAs we walk through the galleries, you'll see works by:\n- Pablo Picasso's revolutionary cubist period\n- Salvador Dalí's surreal dreamscapes\n- Jackson Pollock's abstract expressionism\n- Andy Warhol's pop art icons\n\nPlease remember:\n- No flash photography\n- Maintain a respectful distance from the artwork\n- Feel free to ask questions\n- Take your time to appreciate each piece\n\nLet's begin our journey through modern art history.`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '10deg' }] }
   },
   {
     id: 'specific4',
-    title: 'Specific Scene 4', 
-    category: 'Situational/Specific', // Correct category name
+    title: 'Fighter Jet Guide', 
+    category: 'Situational/Specific',
     image: require('../assets/specificpics/pic7649.png'),
-    text: `Placeholder text for situational/specific scene 4.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Welcome to the F-35 Lightning II demonstration. This fifth-generation fighter represents the pinnacle of modern aviation technology.\n\nKey features we'll explore:\n- Advanced stealth capabilities\n- Supersonic speed performance\n- State-of-the-art avionics systems\n- Vertical takeoff and landing capabilities\n\nSafety protocols:\n- Stay within designated viewing areas\n- Wear provided ear protection\n- Follow all instructions from ground crew\n- No photography during active demonstrations\n\nLet's begin with a walk-around of the aircraft.`, 
+    layout: { position: 'absolute', width: '60%', height: '34%', top: '55%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '-3deg' }] }
   },
   {
     id: 'specific5',
-    title: 'Specific Scene 5', 
-    category: 'Situational/Specific', // Correct category name
+    title: 'Safari Park Guide', 
+    category: 'Situational/Specific',
     image: require('../assets/specificpics/pic8333.png'),
-    text: `Placeholder text for situational/specific scene 5.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Welcome to our African Safari Park! Today, we'll be exploring the savanna habitat and its magnificent inhabitants.\n\nDuring our tour, you'll encounter:\n- Majestic lions in their pride\n- Graceful giraffes browsing the treetops\n- Playful zebras in their herds\n- Endangered white rhinos\n\nImportant guidelines:\n- Remain seated at all times\n- Keep windows closed\n- No feeding the animals\n- Listen for guide instructions\n\nLet's begin our journey into the wild!`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   // --- End Situational/Specific Prompts ---
 
@@ -574,44 +574,44 @@ export const promptsData = [
   // 2. Update `require('../assets/socialpics/...')` with actual filenames.
   // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
   {
-    id: 'social1', // Using 'social' prefix for ID
-    title: 'Social Scene 1', 
-    category: 'Social & Casual', // Correct display category name
+    id: 'social1',
+    title: 'Couple Social Scene', 
+    category: 'Social & Casual',
     image: require('../assets/socialpics/pic2789.png'),
-    text: `Placeholder text for social & casual scene 1.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Hey, I've been thinking about our weekend plans. Would you like to try that new Italian restaurant downtown? I heard they have amazing pasta dishes and a cozy atmosphere.\n\nWe could make it a date night - maybe catch a movie afterward? I know you've been wanting to see that new romantic comedy that just came out.\n\nWhat do you think? I'm free Friday or Saturday evening.`, 
+    layout: { position: 'absolute', width: '50%', height: '36%', top: '55%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '6deg' }] }
   },
   {
     id: 'social2',
-    title: 'Social Scene 2', 
+    title: 'Office Social Scene', 
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic6712.png'),
-    text: `Placeholder text for social & casual scene 2.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Good morning everyone! I just wanted to share some exciting news - we've hit our quarterly targets ahead of schedule!\n\nTo celebrate, we're having a team lunch this Friday at that new fusion restaurant around the corner. It's on the company, so make sure to RSVP by Thursday.\n\nAlso, don't forget about our weekly coffee catch-up tomorrow at 10 AM. We'll be discussing the new project updates and brainstorming some ideas for the next quarter.`, 
+    layout: { position: 'absolute', width: '50%', height: '36%', top: '55%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '6deg' }] }
   },
   {
     id: 'social3',
-    title: 'Social Scene 3', 
+    title: 'Family Social Scene', 
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic4002.png'),
-    text: `Placeholder text for social & casual scene 3.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Hey everyone, I was thinking we should plan a family game night this weekend. We haven't had one in a while, and it would be great to spend some quality time together.\n\nI can make your favorite snacks, and we can play some board games or maybe even have a movie marathon. The kids can pick the first movie, and then we can watch something more grown-up after they go to bed.\n\nWhat do you all think? Saturday evening work for everyone?`, 
+    layout: { position: 'absolute', width: '50%', height: '36%', top: '55%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '6deg' }] }
   },
   {
     id: 'social4',
-    title: 'Social Scene 4', 
+    title: 'Library Social Scene', 
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic5021.png'),
-    text: `Placeholder text for social & casual scene 4.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `Shh... I know we're in the library, but I just had to tell you about this amazing book I found in the new arrivals section.\n\nIt's a historical fiction novel set in ancient Rome, and the writing is absolutely captivating. I think you'd really enjoy it too.\n\nWould you like to join our book club meeting next week? We're discussing this month's pick, and I know you'd have some great insights to share.\n\nWe meet in the community room every Thursday at 6 PM.`, 
+    layout: { position: 'absolute', width: '55%', height: '40%', top: '53%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,transform: [{ rotate: '7deg' }] }
   },
   {
     id: 'social5',
-    title: 'Social Scene 5', 
+    title: 'Park Social Scene', 
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic8203.png'),
-    text: `Placeholder text for social & casual scene 5.`, 
-    layout: { position: 'absolute', width: '50%', height: '30%', top: '45%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+    text: `What a beautiful day for a picnic in the park! I brought some sandwiches, fruit, and drinks for everyone.\n\nThere's a great spot over by the big oak tree with plenty of shade. We can set up our blankets there and enjoy the afternoon.\n\nAfter we eat, we could play some frisbee or maybe take a walk around the lake. I heard they just added some new walking trails that are really nice.\n\nDon't forget to bring your sunscreen - it's quite sunny today!`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
   },
   // --- End Social & Casual Prompts ---
 
