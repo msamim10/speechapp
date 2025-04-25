@@ -29,6 +29,9 @@ function CategorySelectionScreen() {
     } else if (category.name === 'Speeches') {
       // Speeches navigates to PromptSelection with 'Speeches'
       navigation.navigate('PromptSelection', { category: 'Speeches' });
+    } else if (category.name === 'Interviews') {
+      // Interviews navigates to PromptSelection with 'Interviews'
+      navigation.navigate('PromptSelection', { category: 'Interviews' });
     } else {
       // ALL others still navigate to ComingSoonScreen
       navigation.navigate('ComingSoonScreen', { categoryName: category.name });

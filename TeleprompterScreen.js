@@ -92,6 +92,7 @@ function TeleprompterScreen({ route, navigation }) {
   const [raceSound, setRaceSound] = useState(); // Race noise sound state
   const [roomSound, setRoomSound] = useState(); // Room sound state
   const [speechSound, setSpeechSound] = useState(); // New state for speech sound
+  const [interviewSound, setInterviewSound] = useState(); // Add state for interview sound
   const [countdown, setCountdown] = useState(4); // Countdown duration
   const [showCountdown, setShowCountdown] = useState(true); // Countdown visibility
 
@@ -113,6 +114,10 @@ function TeleprompterScreen({ route, navigation }) {
     if (speechSound && (await speechSound.getStatusAsync()).isPlaying) {
       await speechSound.stopAsync();
       console.log("Stopped Speech Sound");
+    }
+    if (interviewSound && (await interviewSound.getStatusAsync()).isPlaying) {
+      await interviewSound.stopAsync();
+      console.log("Stopped Interview Sound");
     }
   };
 
@@ -162,6 +167,13 @@ function TeleprompterScreen({ route, navigation }) {
         setSpeechSound(loadedSpeechSound);
         console.log('Speech sound loaded successfully');
 
+        // Load Interview Sound
+        const { sound: loadedInterviewSound } = await Audio.Sound.createAsync(
+           require('./assets/sounds/soundforinterview.mp3')
+        );
+        setInterviewSound(loadedInterviewSound);
+        console.log('Interview sound loaded successfully');
+
       } catch (error) {
         console.error('Failed to load sound(s)', error);
       }
@@ -185,6 +197,10 @@ function TeleprompterScreen({ route, navigation }) {
       if (speechSound) {
         console.log('Unloading Speech Sound');
         speechSound.unloadAsync();
+      }
+      if (interviewSound) {
+        console.log('Unloading Interview Sound');
+        interviewSound.unloadAsync();
       }
     };
   }, []);
@@ -237,9 +253,23 @@ function TeleprompterScreen({ route, navigation }) {
          // Log if not loaded
       }
       
+      // --- Play Interview Sound (Interviews Category Only, Once) ---
+      if (interviewSound && !isWarmUpMode && currentPromptData && 
+          currentPromptData.category === 'Interviews') {
+        try {
+          console.log('Playing Interview Sound (Once) for Interviews category');
+          interviewSound.replayAsync(); // Play once
+        } catch (error) {
+          console.error('Failed to play interview sound', error);
+        }
+      } else if (interviewSound) {
+         // Log if not played (wrong mode/category)
+      } else {
+         // Log if not loaded
+      }
+
       // --- Play Room Sound (All Categories except Warm-up, Looping) ---
-      // Check if roomSound is loaded AND it's NOT warm-up mode
-      if (roomSound && !isWarmUpMode) { // <<< CONDITION CHANGED: Play for all categories
+      if (roomSound && !isWarmUpMode) { 
         try {
           console.log(`Playing Room Sound (Looping) for category: ${currentPromptData?.category || 'Unknown'}`);
           roomSound.replayAsync(); // Plays and loops as looping is enabled
@@ -254,7 +284,6 @@ function TeleprompterScreen({ route, navigation }) {
       }
 
       // --- Play Clapping Sound (Conditionally and NOT in warm-up) ---
-      // (Keep clapping logic conditional on prompt ID and NOT warm-up mode)
       if (!isWarmUpMode && CLAPPING_PROMPT_IDS.includes(selectedPromptId) && sound) {
         try {
           console.log('Playing Clapping Sound (conditional)');
@@ -279,7 +308,7 @@ function TeleprompterScreen({ route, navigation }) {
       clearTimeout(raceSoundTimeoutId);
       clearTimeout(clapSoundTimeoutId);
 
-      // Stop looping sounds on cleanup (if countdown finished)
+      // Stop looping/playing sounds on cleanup (if countdown finished)
       if (!showCountdown) { 
         if (roomSound) { 
           roomSound.getStatusAsync().then(status => {
@@ -293,15 +322,24 @@ function TeleprompterScreen({ route, navigation }) {
         if (speechSound) { 
           speechSound.getStatusAsync().then(status => {
             if (status.isPlaying) {
-              console.log('Stopping looping speech sound on cleanup');
+              console.log('Stopping speech sound on cleanup'); // Updated log
               speechSound.stopAsync();
             }
           }).catch(error => console.error("Error checking speech sound status on cleanup", error));
         }
+        // Add interviewSound stop to cleanup
+        if (interviewSound) { 
+          interviewSound.getStatusAsync().then(status => {
+            if (status.isPlaying) {
+              console.log('Stopping interview sound on cleanup');
+              interviewSound.stopAsync();
+            }
+          }).catch(error => console.error("Error checking interview sound status on cleanup", error));
+        }
       }
     };
 
-  }, [countdown, showCountdown, sound, raceSound, roomSound, speechSound, selectedPromptId, isWarmUpMode, currentPromptData]); // Added speechSound dependency
+  }, [countdown, showCountdown, sound, raceSound, roomSound, speechSound, interviewSound, selectedPromptId, isWarmUpMode, currentPromptData]); // Added interviewSound dependency
 
   // --- Get fixed paddingBottom from styles --- (Helper)
   const getPaddingBottom = () => {
