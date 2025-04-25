@@ -7,12 +7,12 @@ import Ionicons from '@expo/vector-icons/Ionicons'; // Keep Ionicons
 
 // Define categories (including Random and placeholders)
 const categories = [
-  { id: 'random', name: 'Random', icon: 'shuffle-outline' }, // Add icon names
+  { id: 'meetings', name: 'Social & Casual', icon: 'briefcase-outline' },
   { id: 'speeches', name: 'Speeches', icon: 'megaphone-outline' },
   { id: 'interviews', name: 'Interviews', icon: 'people-outline' },
   { id: 'presentations', name: 'Presentations', icon: 'easel-outline' },
-  { id: 'social', name: 'Social & Casual', icon: 'chatbubbles-outline' },
-  { id: 'meetings', name: 'Meetings', icon: 'briefcase-outline' },
+  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline' },
+  { id: 'random', name: 'Random', icon: 'shuffle-outline' },
   // Add more categories here
 ];
 
@@ -32,8 +32,15 @@ function CategorySelectionScreen() {
     } else if (category.name === 'Interviews') {
       // Interviews navigates to PromptSelection with 'Interviews'
       navigation.navigate('PromptSelection', { category: 'Interviews' });
+    } else if (category.name === 'Situational/Specific') {
+      // Situational/Specific navigates to PromptSelection with 'Situational/Specific'
+      navigation.navigate('PromptSelection', { category: 'Situational/Specific' });
+    } else if (category.id === 'meetings') {
+      // Social & Casual navigates to PromptSelection with 'Social & Casual'
+      navigation.navigate('PromptSelection', { category: 'Social & Casual' });
     } else {
-      // ALL others still navigate to ComingSoonScreen
+      // Fallback for any other unexpected category
+      console.warn(`Unhandled category navigation: ${category.name} (ID: ${category.id})`);
       navigation.navigate('ComingSoonScreen', { categoryName: category.name });
     }
   };
@@ -85,9 +92,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cardBackground, 
     borderRadius: 12, // Slightly more rounded
     padding: 15, // Adjusted padding
-    width: '46%', // Keep approx two cards per row
-    aspectRatio: 1, 
-    marginBottom: 15, // Adjusted spacing
+    width: '48%', // Wider 
+    // aspectRatio: 1, // Removed to allow non-square cards
+    minHeight: 200, // Increased minimum height further
+    marginBottom: 25, // Reduced margin for better grouping
     alignItems: 'center', 
     justifyContent: 'center', 
     // Refined shadow
