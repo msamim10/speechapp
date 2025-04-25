@@ -4,11 +4,32 @@ import { useNavigation } from '@react-navigation/native';
 import colors from './constants/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+// Define simple warm-up prompts
+const warmUpPrompts = [
+  { id: 'warmup1', text: "The quick brown fox jumps over the lazy dog. Repeat clearly." },
+  { id: 'warmup2', text: "She sells seashells by the seashore. Focus on the 's' sounds." },
+  { id: 'warmup3', text: "Unique New York, unique New York. Practice articulation." },
+  { id: 'warmup4', text: "Take a deep breath in... and exhale slowly. Focus on breath control." },
+  { id: 'warmup5', text: "Red lorry, yellow lorry. Speed up gradually." }
+];
+
 function HomeScreen() {
   const navigation = useNavigation();
 
   const navigateToPractice = () => {
     navigation.navigate('PracticeTab');
+  };
+
+  // Handler for the warm-up button
+  const handleWarmUpPress = () => {
+    // 1. Select random warm-up prompt text
+    const randomIndex = Math.floor(Math.random() * warmUpPrompts.length);
+    const randomWarmUpText = warmUpPrompts[randomIndex].text;
+
+    // 2. Navigate to the dedicated WarmUpScreen
+    navigation.navigate('WarmUp', { // Navigate to 'WarmUp' route
+      warmUpText: randomWarmUpText, // Pass text as param
+    });
   };
 
   return (
@@ -42,6 +63,19 @@ function HomeScreen() {
             <Text style={styles.statsText}>Streak: <Text style={styles.statsValue}>0</Text> days</Text>
           </View>
         </View>
+
+        {/* --- Quick Warm-up Button --- */}
+        <View style={styles.warmUpSection}> 
+          <TouchableOpacity 
+            style={styles.warmUpButton} 
+            onPress={handleWarmUpPress}
+            activeOpacity={0.7}
+          >
+            <Ionicons name="flame-outline" size={20} color={colors.buttonText} />
+            <Text style={styles.warmUpButtonText}>Quick Warm-up</Text>
+          </TouchableOpacity>
+        </View>
+
       </ScrollView>
     </View>
   );
@@ -140,6 +174,33 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.textPrimary,
   },
+  // --- Styles for Warm-up Button --- 
+  warmUpSection: {
+    alignItems: 'center', // Center the button horizontally
+    marginTop: 10, // Add space above the warm-up button
+    marginHorizontal: 15, // Align with other content
+  },
+  warmUpButton: {
+    flexDirection: 'row', // Icon and text side-by-side
+    alignItems: 'center',
+    backgroundColor: colors.success, // Use a different color (e.g., green)
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 25, // Make it pill-shaped
+    // Add shadow
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  warmUpButtonText: {
+    color: colors.buttonText,
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 8, // Space between icon and text
+  },
+  // --- End Warm-up Styles --- 
 });
 
 export default HomeScreen; 

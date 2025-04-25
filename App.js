@@ -11,30 +11,32 @@ import CategorySelectionScreen from './CategorySelectionScreen'; // Start of pra
 import PromptSelectionScreen from './PromptSelectionScreen';
 import TeleprompterScreen from './TeleprompterScreen';
 import ComingSoonScreen from './ComingSoonScreen'; // Import ComingSoonScreen
+import WarmUpScreen from './WarmUpScreen'; // Import the new screen
 // Removed SavedPromptsScreen and SettingsScreen imports
 
 // Define Navigators
-const Stack = createNativeStackNavigator();
+const PracticeStackNav = createNativeStackNavigator(); // Renamed for clarity
 const Tab = createBottomTabNavigator();
+const RootStack = createNativeStackNavigator(); // New Root Stack
 
 // Define the Stack for the Practice Flow
 function PracticeStack() {
   return (
     // This Stack Navigator handles navigation within the Practice tab
-    <Stack.Navigator 
+    <PracticeStackNav.Navigator 
       initialRouteName="CategorySelection" 
       screenOptions={{ headerShown: false }} // Headers managed within this stack if needed, or none
     >
-      <Stack.Screen 
+      <PracticeStackNav.Screen 
         name="CategorySelection" 
         component={CategorySelectionScreen} 
         // options={{ title: 'Select Category' }} // Example if header was shown
       />
-      <Stack.Screen 
+      <PracticeStackNav.Screen 
         name="PromptSelection" 
         component={PromptSelectionScreen} 
       />
-      <Stack.Screen 
+      <PracticeStackNav.Screen 
         name="Teleprompter" 
         component={TeleprompterScreen} 
         // Remove options from here, handle visibility in Tab options
@@ -42,58 +44,72 @@ function PracticeStack() {
         //   tabBarStyle: { display: 'none' }, 
         // }}
       />
-      <Stack.Screen 
+      <PracticeStackNav.Screen 
         name="ComingSoonScreen" 
         component={ComingSoonScreen} 
       />
-    </Stack.Navigator>
+    </PracticeStackNav.Navigator>
   );
 }
 
-// Main App Component using Tab Navigator with two tabs
+// Define the Main Tab Navigator
+function MainTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName="HomeTab"
+      screenOptions={({ route }) => ({ 
+        headerShown: false, 
+        tabBarActiveTintColor: colors.primary, 
+        tabBarInactiveTintColor: colors.textSecondary, 
+        tabBarStyle: { display: getTabBarVisibility(route) },
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'HomeTab') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'PracticeTab') {
+            iconName = focused ? 'mic' : 'mic-outline';
+          }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+    >
+      <Tab.Screen 
+        name="HomeTab" 
+        component={HomeScreen} 
+        options={{ title: 'Home' }} // Title is now set here, icon in screenOptions 
+      />
+      <Tab.Screen 
+        name="PracticeTab" 
+        component={PracticeStack} 
+        options={{ title: 'Practice' }} // Title is now set here, icon in screenOptions
+        // Note: We removed the dynamic tabBarStyle from here, it's now in screenOptions
+      />
+    </Tab.Navigator>
+  );
+}
+
+// Main App Component using the Root Stack
 function App() {
   return (
     <NavigationContainer>
-      {/* Tab Navigator is the main navigator */}
-      <Tab.Navigator
-        initialRouteName="HomeTab" // Start on the Home tab
-        screenOptions={({ route }) => ({ // Changed to function to access route
-          headerShown: false, 
-          tabBarActiveTintColor: colors.primary, // Active icon/label color
-          tabBarInactiveTintColor: colors.textSecondary, // Inactive icon/label color
-          tabBarStyle: { 
-            // Determine display based on focused route in PracticeStack
-            display: getTabBarVisibility(route), 
-            // Add other styles like background color if needed
-            // backgroundColor: colors.cardBackground, 
-          },
-          // Define icons based on route name
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            if (route.name === 'HomeTab') {
-              iconName = focused ? 'home' : 'home-outline';
-            } else if (route.name === 'PracticeTab') {
-              iconName = focused ? 'mic' : 'mic-outline';
-            }
-            // Return the icon component
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-        })}
+      {/* Root Stack Navigator handles Tabs and Modal/Standalone screens */}
+      <RootStack.Navigator
+        screenOptions={{ headerShown: false }} // Hide header for RootStack screens by default
       >
-        {/* Home Tab: Links directly to HomeScreen */}
-        <Tab.Screen 
-          name="HomeTab" 
-          component={HomeScreen} 
-          options={{ title: 'Home' }} // Title is now set here, icon in screenOptions 
+        {/* Main Tab screen group */}
+        <RootStack.Screen 
+          name="MainTabs" 
+          component={MainTabs} 
+          // No header needed here as tabs handle their structure
         />
-        {/* Practice Tab: Dynamically hide tab bar based on nested route */}
-        <Tab.Screen 
-          name="PracticeTab" 
-          component={PracticeStack} 
-          options={{ title: 'Practice' }} // Title is now set here, icon in screenOptions
-          // Note: We removed the dynamic tabBarStyle from here, it's now in screenOptions
+        {/* Standalone WarmUp Screen */}
+        <RootStack.Screen 
+          name="WarmUp" 
+          component={WarmUpScreen} 
+          // Options for WarmUpScreen (e.g., presentation style, header)
+          // options={{ presentation: 'modal' }} // Optional: Make it look like a modal
         />
-      </Tab.Navigator>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }

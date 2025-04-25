@@ -45,23 +45,40 @@ const CLAPPING_PROMPT_IDS = ['prompt2', 'prompt4', 'prompt6', 'prompt7', 'prompt
 
 function TeleprompterScreen({ route, navigation }) {
   // --- Get data passed from navigation ---
-  const { selectedPromptId, categoryPrompts } = route.params || {};
-
-  // --- Find the current prompt's data using selectedPromptId ---
-  const currentPromptData = useMemo(() => {
-    return categoryPrompts?.find(p => p.id === selectedPromptId);
-  }, [categoryPrompts, selectedPromptId]);
-
-  // --- Fallback if data isn't found ---
-  const imageSource = currentPromptData?.image || require('./assets/prompt-backgrounds/good.png'); // Reverted path
-  const initialPromptText = currentPromptData?.text || 'Prompt text not found.';
-  const routeLayoutConfig = currentPromptData?.layout;
+  // Check for directText first
+  const directText = route.params?.directText;
+  // Get regular params only if directText is not present
+  const { selectedPromptId, categoryPrompts } = directText ? {} : route.params || {};
   
-  // --- Add console log to check the layout being used --- 
+  // Determine mode (Warm-up or Regular)
+  const isWarmUpMode = !!directText;
+
+  // --- Find the current prompt's data (only if NOT warm-up mode) ---
+  const currentPromptData = useMemo(() => {
+    if (isWarmUpMode) return null; // No prompt data needed for warm-up
+    return categoryPrompts?.find(p => p.id === selectedPromptId);
+  }, [categoryPrompts, selectedPromptId, isWarmUpMode]);
+
+  // --- Determine Image Source ---
+  const imageSource = isWarmUpMode ? null : (currentPromptData?.image || require('./assets/prompt-backgrounds/good.png'));
+  
+  // --- Determine Initial Text ---
+  const initialPromptText = isWarmUpMode ? directText : (currentPromptData?.text || 'Prompt text not found.');
+  
+  // --- Determine Layout Config (Not used in warm-up) ---
+  const routeLayoutConfig = isWarmUpMode ? null : currentPromptData?.layout;
+
+  // --- Logging ---
   console.log("--- TeleprompterScreen Rendering ---");
-  console.log("Selected Prompt ID:", selectedPromptId);
-  console.log("Layout Config Used:", JSON.stringify(routeLayoutConfig, null, 2));
-  // --- End console log ---
+  if (isWarmUpMode) {
+    console.log("Mode: Warm-up");
+    console.log("Text:", directText);
+  } else {
+    console.log("Mode: Regular Prompt");
+    console.log("Selected Prompt ID:", selectedPromptId);
+    console.log("Layout Config Used:", JSON.stringify(routeLayoutConfig, null, 2));
+  }
+  // --- End Logging ---
 
   const [promptText] = useState(initialPromptText || sampleText); // Use selected or fallback
   const [isScrolling, setIsScrolling] = useState(false); // Start paused until countdown finishes
@@ -408,14 +425,23 @@ function TeleprompterScreen({ route, navigation }) {
   // --- END Go Back Handler ---
 
   // --- Determine Text Overlay Style ---
+  // Use default or dynamic style, but ensure background is appropriate for warm-up
   const textOverlayStyle = {
     ...defaultLayoutConfig,
     ...(routeLayoutConfig || {}),
+    // Override background for warm-up mode to ensure visibility
+    backgroundColor: isWarmUpMode ? 'rgba(0,0,0,0.8)' : (routeLayoutConfig?.backgroundColor || defaultLayoutConfig.backgroundColor),
   };
+  
+  // Determine text color for warm-up
+  const dynamicTextStyle = isWarmUpMode 
+    ? styles.promptTextWhite // Always white for warm-up on dark overlay
+    : (currentPromptData?.textColor === 'white' ? styles.promptTextWhite : styles.promptTextDefault);
 
   return (
     <View style={styles.container}>
-      <Image source={imageSource} style={styles.backgroundImageElement} />
+      {/* Conditionally render background image */}
+      {imageSource && <Image source={imageSource} style={styles.backgroundImageElement} />}
       <View style={styles.contentWrapper}>
         <View style={textOverlayStyle}>
           <ScrollView
@@ -431,7 +457,8 @@ function TeleprompterScreen({ route, navigation }) {
               setContentHeight(height);
             }}
           >
-            <Text style={currentPromptData?.textColor == 'white' ? styles.promptTextWhite : styles.promptTextDefault}>
+            {/* Use dynamic text style */}
+            <Text style={dynamicTextStyle}>
               {promptText}
             </Text>
           </ScrollView>
@@ -452,11 +479,14 @@ function TeleprompterScreen({ route, navigation }) {
             <TouchableOpacity onPress={handleStartPause} style={styles.iconButton}>
               <Ionicons name={isScrolling ? "pause" : "play"} size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            {categoryPrompts && categoryPrompts.length > 1 && (
+            {/* Conditionally render Next button (only if NOT warm-up) */}
+            {!isWarmUpMode && categoryPrompts && categoryPrompts.length > 1 && (
               <TouchableOpacity onPress={handleNextPrompt} style={styles.iconButton}>
                 <Ionicons name="arrow-forward" size={24} color="#FFFFFF" />
               </TouchableOpacity>
             )}
+            {/* Add placeholder if in warm-up mode and only two buttons shown */}
+            {isWarmUpMode && <View style={styles.iconButtonPlaceholder} />}
           </View>
         </View>
       </View>
@@ -584,6 +614,11 @@ const styles = StyleSheet.create({
     textShadowRadius: 5,
   },
   // End Countdown Timer Styles
+  iconButtonPlaceholder: { // Style to maintain layout spacing when next button is hidden
+    width: 50,
+    height: 50,
+    marginHorizontal: 10,
+  },
 });
 
 // Default layout config (cleaned up)
