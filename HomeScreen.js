@@ -9,17 +9,39 @@ import {
   ImageBackground,
   Dimensions,
   Image,
+  Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import colors from './constants/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { categoryImageSources, preloadImages } from './constants/imageUtils';
+import { useUser } from './context/UserContext'; // Import the useUser hook
 
-// --- Placeholder Data ---
-const USER_NAME = "User"; // Replace with actual data
-const CURRENT_STREAK = 3;
-const LAST_PRACTICED = "today at 10:00 AM";
-const SHOW_STREAK = true; 
+// --- Date Formatting Helper (Copied from UserProfileScreen) ---
+const isSameDay = (d1, d2) => {
+  if (!d1 || !d2) return false;
+  return d1.getFullYear() === d2.getFullYear() &&
+         d1.getMonth() === d2.getMonth() &&
+         d1.getDate() === d2.getDate();
+};
+
+const formatTimestamp = (timestamp) => {
+  if (!timestamp) return 'Never';
+  const date = new Date(timestamp);
+  const now = new Date();
+  if (isSameDay(date, now)) {
+    return `Today at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  if (isSameDay(date, yesterday)) {
+    return `Yesterday at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+  return date.toLocaleDateString([], {
+    year: 'numeric', month: 'short', day: 'numeric'
+  });
+};
+// --- End Date Formatting ---
 
 // Categories with preloaded images
 const categories = [
@@ -38,12 +60,15 @@ const cardHeight = 160;
 
 function HomeScreen() {
   const navigation = useNavigation();
+  // Get user data from context, including stats
+  const { username, currentStreak, lastPracticedTimestamp, isLoading: isUserLoading } = useUser();
   // State for press effects
   const [cardStates, setCardStates] = useState({});
   const [imagesReady, setImagesReady] = useState(false);
 
   // Preload images when component mounts
   useEffect(() => {
+    console.log("--- HomeScreen Rendering --- Username:", username); // Log HomeScreen render start
     const loadImages = async () => {
       try {
         // Preload all category images
@@ -58,7 +83,7 @@ function HomeScreen() {
     };
     
     loadImages();
-  }, []);
+  }, [username]); // Add username dependency to log changes
 
   // --- Handlers ---
   const handleStartPractice = () => {
@@ -123,8 +148,11 @@ function HomeScreen() {
     );
   };
 
-  // Use a loading state while images are being cached
-  if (!imagesReady) {
+  // Format the date for display
+  const formattedLastPracticed = formatTimestamp(lastPracticedTimestamp);
+
+  // Use a loading state while images are being cached OR user is loading
+  if (!imagesReady || isUserLoading) { // Check both loading states
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.loadingContainer}>
@@ -139,19 +167,27 @@ function HomeScreen() {
       <View style={styles.container}>
         {/* --- Large Welcome Box --- */}
         <View style={styles.welcomeBox}>
-          <Text style={styles.welcomeHeader}>Welcome, {USER_NAME}!</Text>
-          {/* Start Practice Button (Moved Inside Box) */} 
+          <Text style={styles.welcomeHeader}>Welcome, {username}!</Text>
+          {/* Start Practice Button Container */}
           <View style={styles.ctaButtonContainer}>
             <TouchableOpacity style={styles.ctaButton} onPress={handleStartPractice}>
               <Text style={styles.ctaButtonText}>Start Practice</Text>
             </TouchableOpacity>
-            {/* Quick Practice Button */}
-            <TouchableOpacity 
-              style={[styles.ctaButton, styles.quickPracticeButton]} 
-              onPress={handleQuickPractice}
-            >
-              <Text style={styles.ctaButtonText}>Quick Practice</Text>
-            </TouchableOpacity>
+          </View>
+
+          {/* --- Practice Stats Section (Moved Inside Welcome Box) --- */}
+          <View style={styles.statsContainer}>
+              <View style={styles.statItem}>
+                  <Ionicons name="flame" size={24} color={colors.accentOrange} style={styles.statIcon} />
+                  <Text style={styles.statValue}>{currentStreak}</Text>
+                  <Text style={styles.statLabel}>Day Streak</Text>
+              </View>
+              <View style={styles.statSeparator} />
+              <View style={styles.statItem}>
+                  <Ionicons name="calendar" size={24} color={colors.accentPurple} style={styles.statIcon} />
+                  <Text style={styles.statValueSmall}>{formattedLastPracticed}</Text>
+                  <Text style={styles.statLabel}>Last Practiced</Text>
+              </View>
           </View>
         </View>
 
@@ -163,8 +199,8 @@ function HomeScreen() {
           </View>
         </View>
 
-        {/* Spacer view to push content up if needed */}
-        <View style={{ flex: 1 }} /> 
+        {/* Spacer view */}
+        <View style={{ flex: 1 }} />
 
       </View>
     </SafeAreaView>
@@ -196,9 +232,10 @@ const styles = StyleSheet.create({
     width: '90%', // Make the box wide
     backgroundColor: colors.cardBackground, // Example background
     borderRadius: 16,
-    padding: 25, // Generous padding
+    paddingVertical: 25, // Keep vertical padding
+    paddingHorizontal: 20, // Adjust horizontal padding slightly if needed
     marginTop: 30, // Space from top
-    marginBottom: 20, // Space below box
+    marginBottom: 25, // Increased margin below welcome box to compensate for removed stats margin
     alignItems: 'center', // Center content inside the box
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -210,34 +247,36 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: colors.primaryDark,
-    marginBottom: 30, // Space below header
+    marginBottom: 25, // Adjust spacing
   },
   // --- CTA Button (Styles adjusted for context) ---
   ctaButtonContainer: {
-    width: '90%',
-    marginBottom: 10,
+    width: '100%', // Make button container full width of box padding
+    alignItems: 'center', // Center the button(s) within the container
+    marginBottom: 25, // Add space between button and stats
   },
   ctaButton: {
-    backgroundColor: colors.accentTeal, 
-    paddingVertical: 18,
-    paddingHorizontal: 20, 
-    borderRadius: 30, 
-    alignItems: 'center', 
+    width: '90%', // Make button slightly less wide than container
+    backgroundColor: colors.accentTeal,
+    paddingVertical: 15, // Slightly smaller button
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.25,
     shadowRadius: 5,
     elevation: 6,
-    marginBottom: 12,
+    // Removed marginBottom as only one button now
   },
   ctaButtonText: {
     color: colors.textLight,
-    fontSize: 18,
+    fontSize: 16, // Slightly smaller text
     fontWeight: 'bold',
   },
   categorySection: {
     width: '90%',
-    marginTop: 25,
+    marginTop: 0, // Reset margin Top as space is handled by welcomeBox margin
     marginBottom: 10,
   },
   categoryTitle: {
@@ -289,10 +328,47 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.primaryDark,
   },
-  quickPracticeButton: {
-    backgroundColor: colors.primary,  // Different color to distinguish
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'transparent', // Make background transparent to blend with welcomeBox
+    borderRadius: 0, // Remove border radius if inside box
+    paddingVertical: 10, // Adjust padding
+    paddingHorizontal: 0,
+    width: '100%', // Take full width within welcomeBox padding
+    marginBottom: 0, // Remove margin as it's inside the box now
   },
-  // Removed styles for topBar, topBarSpacer, appTitle, settingsButtonContainer, settingsIcon
+  statItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  statIcon: {
+    marginBottom: 5,
+  },
+  statValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primaryDark,
+  },
+  statValueSmall: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: colors.primaryDark,
+    textAlign: 'center',
+    minHeight: 30,
+  },
+  statLabel: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    marginTop: 2,
+  },
+  statSeparator: {
+    width: 1,
+    height: '60%',
+    backgroundColor: colors.borderLight,
+    marginHorizontal: 10,
+  },
 });
 
 export default HomeScreen; 

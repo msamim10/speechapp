@@ -8,21 +8,25 @@ import colors from './constants/colors'; // Import colors for styling
 import { Text, StyleSheet, View, ActivityIndicator } from 'react-native';
 import { Audio } from 'expo-av';
 import { categoryImageSources, defaultImages, preloadImages } from './constants/imageUtils';
+import { UserProvider } from './context/UserContext'; // Import the UserProvider
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 
 // Import Screens
+import WelcomeScreen from './WelcomeScreen'; // Import the new WelcomeScreen
 import HomeScreen from './HomeScreen'; // Home tab component
 import CategorySelectionScreen from './CategorySelectionScreen'; // Start of practice flow
 import PromptSelectionScreen from './PromptSelectionScreen';
 import TeleprompterScreen from './TeleprompterScreen';
 import ComingSoonScreen from './ComingSoonScreen'; // Import ComingSoonScreen
 import WarmUpScreen from './WarmUpScreen'; // Import the new screen
-import ProfileScreen from './ProfileScreen'; // Import the new ProfileScreen
+import UserProfileScreen from './UserProfileScreen'; // Import the new UserProfileScreen
 // Removed SavedPromptsScreen and SettingsScreen imports
 
 // Define Navigators
 const PracticeStackNav = createNativeStackNavigator(); // Renamed for clarity
 const Tab = createBottomTabNavigator();
 const RootStack = createNativeStackNavigator(); // New Root Stack
+const USERNAME_KEY = '@userProfile_username'; // Define key here too
 
 // Sound paths for preloading
 const commonSoundPaths = {
@@ -113,7 +117,7 @@ function MainTabs() {
       />
       <Tab.Screen 
         name="ProfileTab" 
-        component={ProfileScreen}
+        component={UserProfileScreen}
         options={{ 
           // title: 'Profile' // Title is now handled by tabBarLabel
         }}
@@ -125,10 +129,21 @@ function MainTabs() {
 // Main App Component using the Root Stack
 function App() {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [initialRoute, setInitialRoute] = useState(null); // State for initial route name
 
   useEffect(() => {
-    async function preloadAssets() {
+    async function prepareApp() {
+      console.log('Starting app preparation...'); // Log start
       try {
+        // Check if username exists in AsyncStorage
+        console.log('Checking AsyncStorage for key:', USERNAME_KEY); // Log key
+        const storedUsername = await AsyncStorage.getItem(USERNAME_KEY);
+        console.log('AsyncStorage returned:', storedUsername); // Log result
+
+        const startRoute = storedUsername ? 'MainTabs' : 'Welcome';
+        setInitialRoute(startRoute);
+        console.log('Initial route determined:', startRoute);
+
         // Configure Audio
         await Audio.setAudioModeAsync({
           allowsRecordingIOS: false,
@@ -145,62 +160,57 @@ function App() {
         ];
         await preloadImages(imagesToPreload);
 
-        // Add a small delay to ensure everything is loaded
-        setTimeout(() => {
-          setAssetsLoaded(true);
-        }, 300);
       } catch (error) {
-        console.error('Error preloading assets:', error);
-        // Continue anyway to not block the app
+        console.error('Error preparing app:', error);
+        // Default to Welcome screen on error during check
+        console.log('Error occurred, setting initial route to Welcome'); // Log error case
+        setInitialRoute('Welcome'); 
+      } finally {
+         // Assets are considered loaded after check/preload attempt
+        console.log('App preparation finished.'); // Log finish
         setAssetsLoaded(true);
       }
     }
 
-    preloadAssets();
+    prepareApp();
   }, []);
 
-  if (!assetsLoaded) {
+  // Show loading indicator until initial route is determined AND assets are loaded
+  if (!assetsLoaded || !initialRoute) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.accentTeal} />
-        <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.loadingText}>Preparing App...</Text>
       </View>
     );
   }
 
   return (
-    <NavigationContainer>
-      {/* Root Stack Navigator handles Tabs and Modal/Standalone screens */}
-      <RootStack.Navigator
-        screenOptions={{ headerShown: false }} // Hide header for RootStack screens by default
-      >
-        {/* Main Tab screen group */}
-        <RootStack.Screen 
-          name="MainTabs" 
-          component={MainTabs} 
-          // No header needed here as tabs handle their structure
-        />
-        {/* Standalone WarmUp Screen */}
-        <RootStack.Screen 
-          name="WarmUp" 
-          component={WarmUpScreen} 
-          // Options for WarmUpScreen (e.g., presentation style, header)
-          // options={{ presentation: 'modal' }} // Optional: Make it look like a modal
-        />
-        {/* Standalone Teleprompter for Quick Practice */}
-        <RootStack.Screen 
-          name="TeleprompterScreen" 
-          component={TeleprompterScreen} 
-        />
-      </RootStack.Navigator>
-    </NavigationContainer>
+    // UserProvider needs to wrap NavigationContainer
+    <UserProvider>
+      <NavigationContainer>
+        <RootStack.Navigator
+          initialRouteName={initialRoute} // Set initial route dynamically
+          screenOptions={{ headerShown: false }}
+        >
+          {/* Welcome screen (only shown first time) */}
+          <RootStack.Screen name="Welcome" component={WelcomeScreen} />
+          {/* Main Tab screen group */}
+          <RootStack.Screen name="MainTabs" component={MainTabs} />
+          {/* Standalone WarmUp Screen */}
+          <RootStack.Screen name="WarmUp" component={WarmUpScreen} />
+          {/* Standalone Teleprompter for Quick Practice */}
+          <RootStack.Screen name="TeleprompterScreen" component={TeleprompterScreen} />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 }
 
 // Helper function to determine tab bar visibility
 const getTabBarVisibility = (route) => {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'CategorySelection'; // Default if no route found
-  if (routeName === 'Teleprompter') {
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'CategorySelection';
+  if (routeName === 'Teleprompter' || routeName === 'Welcome') { // Hide tabs on Teleprompter and Welcome
     return 'none';
   }
   return 'flex';

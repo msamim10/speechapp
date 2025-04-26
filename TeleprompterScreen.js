@@ -14,6 +14,7 @@ import {
 import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import { defaultImages } from './constants/imageUtils';
+import { useUser } from './context/UserContext'; // Import useUser
 
 // Get screen height for calculations
 const { height: screenHeight } = Dimensions.get('window');
@@ -97,7 +98,7 @@ function TeleprompterScreen({ route, navigation }) {
   const [roomSound, setRoomSound] = useState(); // Room sound state
   const [speechSound, setSpeechSound] = useState(); // New state for speech sound
   const [interviewSound, setInterviewSound] = useState(); // Add state for interview sound
-  const [countdown, setCountdown] = useState(4); // Changed back to 4 seconds
+  const [countdown, setCountdown] = useState(4); // Increased countdown to allow for sound loading
   const [showCountdown, setShowCountdown] = useState(false); // Start hidden until sounds are loaded
   const [soundsNeeded, setSoundsNeeded] = useState({
     clapping: false,
@@ -107,6 +108,8 @@ function TeleprompterScreen({ route, navigation }) {
     interview: false
   });
   const [soundsLoaded, setSoundsLoaded] = useState(false); // Add state to track if sounds are loaded
+  const { recordPracticeSession } = useUser(); // Get the function from context
+  const practiceRecordedRef = useRef(false); // Ref to prevent multiple recordings per session
 
   // Determine which sounds to load based on prompt type
   useEffect(() => {
@@ -270,19 +273,53 @@ function TeleprompterScreen({ route, navigation }) {
     let countdownIntervalId = null;
     let clapSoundTimeoutId = null;
 
-    // --- Start Race Noise Immediately ---
+    // --- Start Race Noise Immediately with proper error handling ---
     if (countdown === 4 && raceSound) {
+      console.log('Attempting to play Race Noise (during countdown)');
+      
+      // Make sure the sound is properly loaded before playing
+      const playRaceSound = async () => {
         try {
-            console.log('Playing Race Noise (during countdown)');
-            raceSound.replayAsync().then(() => {
-              raceSoundTimeoutId = setTimeout(() => {
-                raceSound.stopAsync();
-                console.log('Race Noise stopped after 4 seconds (countdown end)');
-              }, 4000);
+          // Check if sound is loaded
+          const status = await raceSound.getStatusAsync();
+          console.log('Race sound status:', status);
+          
+          // Reset sound position to beginning to ensure it plays from start
+          await raceSound.setPositionAsync(0);
+          
+          // Play the sound
+          await raceSound.playAsync();
+          console.log('Race Noise playing successfully');
+          
+          // Set timeout to stop the sound
+          raceSoundTimeoutId = setTimeout(() => {
+            raceSound.stopAsync().catch(error => {
+              console.error('Error stopping race noise:', error);
             });
+            console.log('Race Noise stopped after 5 seconds (countdown end)');
+          }, 5000);
         } catch (error) {
-            console.error('Failed to play race noise at start', error);
+          console.error('Failed to play race noise:', error);
+          // Try to reload the sound if there was an error
+          try {
+            if (!soundCache.race) {
+              const { sound: newRaceSound } = await Audio.Sound.createAsync(
+                require('./assets/sounds/racenoise.mp3')
+              );
+              soundCache.race = newRaceSound;
+              setRaceSound(newRaceSound);
+              console.log('Race noise reloaded successfully');
+              
+              // Try playing again
+              await newRaceSound.playAsync();
+            }
+          } catch (reloadError) {
+            console.error('Failed to reload race noise:', reloadError);
+          }
         }
+      };
+      
+      playRaceSound();
     }
     // --- End Start Race Noise ---
 
@@ -469,6 +506,11 @@ function TeleprompterScreen({ route, navigation }) {
         if (finished) {
           console.log("Animation finished naturally.");
           setIsScrolling(false);
+          // Record practice session completion
+          if (!practiceRecordedRef.current) {
+            recordPracticeSession();
+            practiceRecordedRef.current = true; // Mark as recorded for this mount
+          }
         } else {
           console.log("Animation stopped/interrupted.");
         }
@@ -479,6 +521,10 @@ function TeleprompterScreen({ route, navigation }) {
       animationRef.current.stop();
     }
 
+    // Reset recorded flag when starting scroll (or maybe on mount?)
+    // Resetting here ensures it records if user scrolls to end multiple times without unmounting
+    practiceRecordedRef.current = false;
+
     return () => {
       if (animationRef.current) {
         console.log("Cleanup: Stopping animation.");
@@ -486,7 +532,7 @@ function TeleprompterScreen({ route, navigation }) {
         animationRef.current = null;
       }
     };
-  }, [isScrolling, scrollSpeed, contentHeight, containerHeight]);
+  }, [isScrolling, scrollSpeed, contentHeight, containerHeight, recordPracticeSession]); // Add recordPracticeSession dependency
 
   // --- ScrollView Position Update Listener ---
   /* DEBUG: Disable scroll listener */
