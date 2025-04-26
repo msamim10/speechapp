@@ -45,8 +45,17 @@ function CategorySelectionScreen() {
     }
   };
 
+  const handleGoBack = () => {
+    navigation.navigate('HomeTab');
+  };
+
   return (
     <View style={styles.safeAreaContainer}>
+      {/* Back Button */}
+      <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
+        <Ionicons name="arrow-back" size={28} color={colors.primary} />
+      </TouchableOpacity>
+    
       {/* Added Page Heading */}
       <Text style={styles.pageHeading}>Choose a Practice Category</Text>
       <ScrollView contentContainerStyle={styles.container}>
@@ -73,6 +82,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     paddingTop: 50, 
   },
+  backButton: {
+    position: 'absolute',
+    top: 55,
+    left: 15, 
+    zIndex: 10,
+    padding: 5,
+  },
   pageHeading: { // Style for the main heading
     fontSize: 24,
     fontWeight: 'bold',
@@ -80,6 +96,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20, // Align with content padding
     marginBottom: 20, // Space below heading
     marginTop: 10, // Space from top
+    textAlign: 'center', // Center the heading
   },
   container: { // Style for ScrollView content
     flexDirection: 'row', 
@@ -87,6 +104,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around', 
     paddingHorizontal: 15, // Adjusted padding
     paddingBottom: 20, // Padding at the bottom
+    paddingTop: 20, // Add padding at the top to give space for the back button
   },
   categoryCard: {
     backgroundColor: colors.cardBackground, 

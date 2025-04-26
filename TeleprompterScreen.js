@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
+import { defaultImages } from './constants/imageUtils';
 
 // Get screen height for calculations
 const { height: screenHeight } = Dimensions.get('window');
@@ -43,6 +44,9 @@ Final paragraph to fill things out. Focus on clarity, pace, and engagement durin
 // Define which prompts should have clapping
 const CLAPPING_PROMPT_IDS = ['prompt2', 'prompt4', 'prompt6', 'prompt7', 'prompt8'];
 
+// Cache for sound objects to avoid reloading
+const soundCache = {};
+
 function TeleprompterScreen({ route, navigation }) {
   // --- Get data passed from navigation ---
   // Check for directText first
@@ -60,7 +64,7 @@ function TeleprompterScreen({ route, navigation }) {
   }, [categoryPrompts, selectedPromptId, isWarmUpMode]);
 
   // --- Determine Image Source ---
-  const imageSource = isWarmUpMode ? null : (currentPromptData?.image || require('./assets/prompt-backgrounds/good.png'));
+  const imageSource = isWarmUpMode ? null : (currentPromptData?.image || defaultImages.promptBackground);
   
   // --- Determine Initial Text ---
   const initialPromptText = isWarmUpMode ? directText : (currentPromptData?.text || 'Prompt text not found.');
@@ -93,11 +97,45 @@ function TeleprompterScreen({ route, navigation }) {
   const [roomSound, setRoomSound] = useState(); // Room sound state
   const [speechSound, setSpeechSound] = useState(); // New state for speech sound
   const [interviewSound, setInterviewSound] = useState(); // Add state for interview sound
-  const [countdown, setCountdown] = useState(4); // Countdown duration
-  const [showCountdown, setShowCountdown] = useState(true); // Countdown visibility
+  const [countdown, setCountdown] = useState(4); // Changed back to 4 seconds
+  const [showCountdown, setShowCountdown] = useState(false); // Start hidden until sounds are loaded
+  const [soundsNeeded, setSoundsNeeded] = useState({
+    clapping: false,
+    race: true, // Always need race sound now
+    room: false,
+    speech: false,
+    interview: false
+  });
+  const [soundsLoaded, setSoundsLoaded] = useState(false); // Add state to track if sounds are loaded
+
+  // Determine which sounds to load based on prompt type
+  useEffect(() => {
+    if (isWarmUpMode) {
+      // For warm-up, we likely only need minimal sounds
+      setSoundsNeeded({
+        clapping: false,
+        race: true, // Enable race sound for warm-up too
+        room: true, // Basic ambient sound
+        speech: false,
+        interview: false
+      });
+    } else if (currentPromptData) {
+      // For regular prompts, determine based on category/id
+      const needsClapping = CLAPPING_PROMPT_IDS.includes(selectedPromptId);
+      const category = currentPromptData.category?.toLowerCase() || '';
+      
+      setSoundsNeeded({
+        clapping: needsClapping,
+        race: true, // Always enable race sound for all prompts
+        room: true, // Always load ambient sound
+        speech: category.includes('speech'),
+        interview: category.includes('interview')
+      });
+    }
+  }, [isWarmUpMode, currentPromptData, selectedPromptId]);
 
   // --- Helper function to stop all sounds ---
-  const stopAllSounds = async () => {
+  const stopAllSounds = useCallback(async () => {
     console.log("Stopping all sounds...");
     if (sound && (await sound.getStatusAsync()).isPlaying) {
       await sound.stopAsync();
@@ -119,7 +157,7 @@ function TeleprompterScreen({ route, navigation }) {
       await interviewSound.stopAsync();
       console.log("Stopped Interview Sound");
     }
-  };
+  }, [sound, raceSound, roomSound, speechSound, interviewSound]);
 
   // --- Load Sound Effect ---
   useEffect(() => {
@@ -136,74 +174,93 @@ function TeleprompterScreen({ route, navigation }) {
     // --- End Audio Session Configuration ---
 
     async function loadSounds() {
-      console.log('Loading Sounds');
+      console.log('Loading Sounds (optimized)');
       try {
-        // Load Clapping Sound
-        const { sound: loadedClapSound } = await Audio.Sound.createAsync(
-           require('./assets/sounds/clapping.mp3')
-        );
-        setSound(loadedClapSound);
-        console.log('Clapping sound loaded successfully');
+        // Only load sounds needed for this prompt type
+        if (soundsNeeded.clapping) {
+          if (!soundCache.clapping) {
+            const { sound: loadedClapSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/clapping.mp3')
+            );
+            soundCache.clapping = loadedClapSound;
+          }
+          setSound(soundCache.clapping);
+          console.log('Clapping sound loaded successfully');
+        }
 
-        // Load Race Noise Sound
-        const { sound: loadedRaceSound } = await Audio.Sound.createAsync(
-           require('./assets/sounds/racenoise.mp3')
-        );
-        setRaceSound(loadedRaceSound);
-        console.log('Race noise loaded successfully');
+        if (soundsNeeded.race) {
+          if (!soundCache.race) {
+            const { sound: loadedRaceSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/racenoise.mp3')
+            );
+            soundCache.race = loadedRaceSound;
+          }
+          setRaceSound(soundCache.race);
+          console.log('Race noise loaded successfully');
+        }
 
-        // Load Room Sound
-        const { sound: loadedRoomSound } = await Audio.Sound.createAsync(
-           require('./assets/sounds/room.mp3')
-        );
-        await loadedRoomSound.setIsLoopingAsync(true);
-        setRoomSound(loadedRoomSound);
-        console.log('Room sound loaded successfully and set to loop');
+        if (soundsNeeded.room) {
+          if (!soundCache.room) {
+            const { sound: loadedRoomSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/room.mp3')
+            );
+            await loadedRoomSound.setIsLoopingAsync(true);
+            soundCache.room = loadedRoomSound;
+          }
+          setRoomSound(soundCache.room);
+          console.log('Room sound loaded successfully and set to loop');
+        }
         
-        // Load Speech Sound
-        const { sound: loadedSpeechSound } = await Audio.Sound.createAsync(
-           require('./assets/sounds/soundforspeech.mp3')
-        );
-        setSpeechSound(loadedSpeechSound);
-        console.log('Speech sound loaded successfully');
+        if (soundsNeeded.speech) {
+          if (!soundCache.speech) {
+            const { sound: loadedSpeechSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforspeech.mp3')
+            );
+            soundCache.speech = loadedSpeechSound;
+          }
+          setSpeechSound(soundCache.speech);
+          console.log('Speech sound loaded successfully');
+        }
 
-        // Load Interview Sound
-        const { sound: loadedInterviewSound } = await Audio.Sound.createAsync(
-           require('./assets/sounds/soundforinterview.mp3')
-        );
-        setInterviewSound(loadedInterviewSound);
-        console.log('Interview sound loaded successfully');
+        if (soundsNeeded.interview) {
+          if (!soundCache.interview) {
+            const { sound: loadedInterviewSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforinterview.mp3')
+            );
+            soundCache.interview = loadedInterviewSound;
+          }
+          setInterviewSound(soundCache.interview);
+          console.log('Interview sound loaded successfully');
+        }
 
+        // Mark sounds as loaded and start countdown
+        setSoundsLoaded(true);
+        
       } catch (error) {
         console.error('Failed to load sound(s)', error);
+        // Even if there's an error, we should proceed with the countdown
+        setSoundsLoaded(true);
       }
     }
     loadSounds();
 
-    // Unload sounds on unmount
+    // No need to unload cached sounds - they're reused between screens
     return () => {
-      if (sound) {
-        console.log('Unloading Clapping Sound');
-        sound.unloadAsync();
-      }
-      if (raceSound) {
-        console.log('Unloading Race Sound');
-        raceSound.unloadAsync();
-      }
-      if (roomSound) {
-        console.log('Unloading Room Sound');
-        roomSound.unloadAsync();
-      }
-      if (speechSound) {
-        console.log('Unloading Speech Sound');
-        speechSound.unloadAsync();
-      }
-      if (interviewSound) {
-        console.log('Unloading Interview Sound');
-        interviewSound.unloadAsync();
-      }
+      // Just stop any actively playing sounds
+      stopAllSounds();
     };
-  }, []);
+  }, [soundsNeeded, stopAllSounds]);
+
+  // Start countdown after sounds are loaded
+  useEffect(() => {
+    if (soundsLoaded) {
+      console.log('Sounds loaded, starting countdown');
+      // Short delay to ensure sounds are fully ready
+      setTimeout(() => {
+        setShowCountdown(true);
+      }, 300);
+    }
+  }, [soundsLoaded]);
 
   // --- Countdown Timer and Sound Trigger Effect ---
   useEffect(() => {
@@ -501,9 +558,44 @@ function TeleprompterScreen({ route, navigation }) {
   // --- Go Back Handler ---
   const handleGoBack = async () => {
     await stopAllSounds(); // Stop sounds before navigating
-    navigation.goBack(); // Navigate to the previous screen in the stack
+    
+    // In warm-up mode or if no categoryPrompts, just go back
+    if (isWarmUpMode || !categoryPrompts || categoryPrompts.length < 2) {
+      navigation.goBack();
+      return;
+    }
+    
+    // Find the current prompt index in the category
+    const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
+    
+    // If this is the first prompt or index not found, go back to category selection
+    if (currentIndex <= 0) {
+      navigation.goBack();
+      return;
+    }
+    
+    // Otherwise, navigate to the previous prompt
+    const previousIndex = currentIndex - 1;
+    const previousPromptId = categoryPrompts[previousIndex].id;
+    
+    console.log(`Navigating to previous prompt: ${previousPromptId}`);
+    
+    // Use replace to swap the screen without adding to history
+    navigation.replace('Teleprompter', {
+      selectedPromptId: previousPromptId,
+      categoryPrompts: categoryPrompts,
+    });
   };
   // --- END Go Back Handler ---
+
+  // --- Add handler for navigating to Category Selection ---
+  const handleGoToCategories = async () => {
+    await stopAllSounds(); // Stop sounds before navigating
+    
+    // Navigate back to the CategorySelection screen
+    navigation.navigate('CategorySelection');
+  };
+  // --- END handler for navigating to Category Selection ---
 
   // --- Determine Text Overlay Style ---
   // Use default or dynamic style, but ensure background is appropriate for warm-up
@@ -562,6 +654,10 @@ function TeleprompterScreen({ route, navigation }) {
 
         <View style={controlsStyle}>
           <View style={styles.actionButtons}>
+            {/* Home button moved to the far left */}
+            <TouchableOpacity onPress={handleGoToCategories} style={styles.iconButton}>
+              <Ionicons name="home-outline" size={24} color="#FFFFFF" />
+            </TouchableOpacity>
             <TouchableOpacity onPress={handleGoBack} style={styles.iconButton}>
               <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
@@ -574,8 +670,6 @@ function TeleprompterScreen({ route, navigation }) {
                 <Ionicons name="arrow-forward" size={24} color="#FFFFFF" />
               </TouchableOpacity>
             )}
-            {/* Add placeholder if in warm-up mode and only two buttons shown */}
-            {isWarmUpMode && <View style={styles.iconButtonPlaceholder} />}
           </View>
         </View>
       </View>
