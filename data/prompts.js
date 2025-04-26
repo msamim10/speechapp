@@ -457,7 +457,7 @@ export const promptsData = [
     title: 'Google Networking Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic9300.png'),
-    text: `Welcome to your interview with TechInnovate Solutions. I'm Sarah, the hiring manager for the Software Engineer position.\n\nBefore we begin, I'd like to understand your background and experience. Could you walk me through your resume, focusing on your most recent role and key achievements?\n\nPay attention to:\n- Clear communication of your experience\n- Highlighting relevant technical skills\n- Demonstrating problem-solving abilities\n- Showing enthusiasm for the role\n\nRemember to maintain good eye contact and speak confidently about your experience.`, 
+    text: `[Question 1]\nTell me about yourself and your background.\n\n[Answer]\nI am a software engineer with 5 years of experience in full-stack development. I specialize in building scalable web applications using React and Node.js. In my current role at XYZ Company, I led a team that improved application performance by 40%.\n\n[Question 2]\nWhat interests you about this position?\n\n[Answer]\nI'm particularly excited about this opportunity because of Google's innovative approach to technology and its commitment to solving complex problems. The role's emphasis on cloud architecture and AI integration aligns perfectly with my career goals.\n\n[Question 3]\nHow do you handle working in a team environment?\n\n[Answer]\nI believe in collaborative development and open communication. In my previous role, I regularly conducted code reviews and mentored junior developers, which helped improve our team's overall code quality by 30%.`, 
     layout: { position: 'absolute', width: '60%', height: '30%', top: '64%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '8deg' }] }
   },
   {
@@ -465,59 +465,72 @@ export const promptsData = [
     title: 'TV Presenter Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic8025.png'),
-    text: `"Tell me about yourself" is often the first question in an interview. This is your chance to make a strong first impression.\n\nStructure your answer to include:\n- Brief professional background\n- Key skills and expertise\n- Relevant achievements\n- Why you're interested in this role\n\nExample structure:\n"I'm a software engineer with 5 years of experience in full-stack development. I specialize in building scalable web applications using React and Node.js. In my current role at XYZ Company, I led a team that improved application performance by 40%. I'm particularly excited about this opportunity because..."\n\nKeep it concise (2-3 minutes) and relevant to the position.`, 
+    text: `[Question 1]\nHow did you get started in broadcasting?\n\n[Answer]\nI began my career as a news reporter for a local station, where I developed my skills in live reporting and storytelling. My passion for connecting with audiences led me to pursue opportunities in television presenting.\n\n[Question 2]\nHow do you prepare for a live broadcast?\n\n[Answer]\nI follow a thorough preparation routine that includes researching the topic, practicing my delivery, and reviewing technical aspects. I also make sure to arrive early to check equipment and review the script with the production team.\n\n[Question 3]\nHow do you handle unexpected situations during live broadcasts?\n\n[Answer]\nI stay calm and maintain professionalism. For example, during a recent weather report, our teleprompter failed. I smoothly transitioned to ad-libbing while maintaining eye contact with the camera and delivering the information accurately.`, 
     layout: { position: 'absolute', width: '55%', height: '35%', top: '55%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '5deg' }] }
   },
   {
     id: 'interview3',
-    title: 'Interview Scene 3', 
-    category: 'Interviews',
-    image: require('../assets/interviewpics/pic7621.png'),
-    text: `"What are your greatest strengths?" is a common interview question that allows you to highlight your most relevant skills.\n\nWhen answering:\n- Choose 2-3 strengths relevant to the job\n- Provide specific examples\n- Show how these strengths benefit the company\n\nExample structure:\n"One of my key strengths is problem-solving. In my last role, I identified a bottleneck in our deployment process and implemented an automated solution that reduced deployment time by 50%. Another strength is my ability to collaborate effectively. I regularly work with cross-functional teams to ensure smooth project delivery..."\n\nBe honest but strategic in your response.`, 
-    textColor: 'white',
-    layout: { position: 'absolute', width: '70%', height: '30%', top: '20%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  },
-  {
-    id: 'interview4',
     title: 'Business Analyst Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic7800.png'),
-    text: `"What is your greatest weakness?" is a challenging question that tests your self-awareness and honesty.\n\nWhen answering:\n- Choose a real but not critical weakness\n- Show how you're working to improve it\n- Turn it into a positive\n\nExample structure:\n"One area I've been working on is public speaking. Early in my career, I found it challenging to present technical concepts to non-technical stakeholders. To improve this, I've taken public speaking courses and regularly volunteer to lead team presentations. This has helped me become more confident and effective in communicating complex ideas..."\n\nAvoid clichés like "I'm a perfectionist" or "I work too hard."`, 
-    layout: { position: 'absolute', width: '50%', height: '34%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10,
-      transform: [{ rotate: '2deg' }]
-     }
+    text: `[Question 1]\nHow do you gather and analyze business requirements?\n\n[Answer]\nI use a combination of stakeholder interviews, workshops, and data analysis. For example, in my last project, I conducted 20 stakeholder interviews and analyzed 6 months of business data to identify key requirements.\n\n[Question 2]\nHow do you handle conflicting requirements from different stakeholders?\n\n[Answer]\nI facilitate discussions to understand the underlying business needs and propose solutions that address the core requirements. I document all perspectives and work with stakeholders to prioritize based on business value.\n\n[Question 3]\nCan you describe a challenging project you've worked on?\n\n[Answer]\nIn my previous role, I led a complex system integration project with multiple stakeholders. Despite initial resistance, I successfully managed to align all parties and delivered the project 2 weeks ahead of schedule.`, 
+    layout: { position: 'absolute', width: '50%', height: '34%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
   {
-    id: 'interview5',
+    id: 'interview4',
     title: 'Marketing Manager Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/01234.png'),
-    text: `"Why do you want this job?" is your opportunity to show your enthusiasm and alignment with the company.\n\nStructure your answer to include:\n- What attracts you to the company\n- How your skills match the role\n- Your career goals\n\nExample structure:\n"I'm excited about this opportunity because TechInnovate's focus on AI-driven solutions aligns perfectly with my passion for machine learning. The role's emphasis on full-stack development matches my experience building scalable applications. I'm particularly drawn to your company culture of innovation and continuous learning, which matches my own values..."\n\nShow that you've researched the company and understand the role.`, 
+    text: `[Question 1]\nHow do you develop a marketing strategy?\n\n[Answer]\nI start with thorough market research and competitor analysis. Then I define clear objectives, target audience, and key messages. I create a multi-channel approach that aligns with business goals and includes measurable KPIs.\n\n[Question 2]\nHow do you measure the success of a marketing campaign?\n\n[Answer]\nI track both quantitative metrics like conversion rates, ROI, and customer acquisition costs, as well as qualitative metrics like brand awareness and customer satisfaction. I use analytics tools to monitor performance in real-time.\n\n[Question 3]\nHow do you stay updated with marketing trends?\n\n[Answer]\nI regularly attend industry conferences, participate in webinars, and follow leading marketing publications. I also experiment with new tools and techniques in small-scale campaigns before implementing them company-wide.`, 
     layout: { position: 'absolute', width: '55%', height: '34%', top: '60%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
-    id: 'interview6',
+    id: 'interview5',
     title: 'News Reporter Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic3921.png'),
-    text: `"Where do you see yourself in 5 years?" helps interviewers understand your career aspirations and commitment.\n\nWhen answering:\n- Show ambition but be realistic\n- Align with company growth\n- Demonstrate long-term interest\n\nExample structure:\n"In five years, I see myself as a senior software engineer leading complex projects and mentoring junior developers. I'm particularly interested in growing my expertise in cloud architecture and AI integration. I hope to contribute to TechInnovate's mission of transforming industries through technology while developing my leadership skills..."\n\nAvoid mentioning plans that might conflict with the role or company.`, 
+    text: `[Question 1]\nHow do you verify the accuracy of your sources?\n\n[Answer]\nI cross-reference information with multiple reliable sources, verify credentials, and maintain a network of trusted contacts. I also fact-check all information before publication and follow up with additional verification when needed.\n\n[Question 2]\nHow do you handle breaking news situations?\n\n[Answer]\nI remain calm under pressure and focus on gathering accurate information quickly. I prioritize getting the facts right over being first to report, while maintaining professional standards and ethical guidelines.\n\n[Question 3]\nHow do you build relationships with sources?\n\n[Answer]\nI maintain regular contact with key sources, respect their time and confidentiality, and always follow through on commitments. I've built a strong network of reliable sources through consistent, professional interactions.`, 
     layout: { position: 'absolute', width: '60%', height: '38%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
   },
   {
-    id: 'interview7',
+    id: 'interview6',
     title: 'Interview with a Panel', 
     category: 'Interviews',
     image: require('../assets/interviewpics/pic3401.png'),
-    text: `"Do you have any questions for us?" is your chance to show interest and gather important information.\n\nPrepare questions about:\n- Team dynamics and culture\n- Growth opportunities\n- Current projects\n- Performance expectations\n\nExample questions:\n"Could you tell me about the team I'll be working with and how projects are typically structured?"\n"What opportunities are there for professional development and learning new technologies?"\n"How does the company measure success in this role?"\n"What are the biggest challenges the team is currently facing?"\n\nAvoid questions about salary or benefits at this stage.`, 
+    text: `[Question 1]\nHow do you handle multiple stakeholders in a project?\n\n[Answer]\nI maintain clear communication channels and regular updates for all stakeholders. I use project management tools to track progress and ensure everyone is aligned with project goals and timelines.\n\n[Question 2]\nHow do you make decisions under pressure?\n\n[Answer]\nI gather relevant information quickly, consult with key team members, and make decisions based on data and experience. I remain calm and focused, considering both short-term and long-term implications.\n\n[Question 3]\nHow do you handle constructive criticism?\n\n[Answer]\nI view feedback as an opportunity for growth. I listen actively, ask clarifying questions, and implement suggested improvements. I've found this approach has helped me develop both professionally and personally.`, 
     layout: { position: 'absolute', width: '60%', height: '40%', top: '56%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
-    id: 'interview8',
+    id: 'interview7',
     title: 'One to One Interview', 
     category: 'Interviews',
     image: require('../assets/interviewpics/444.png'),
-    text: `Behavioral questions assess how you've handled situations in the past. They often start with "Tell me about a time when..."\n\nUse the STAR method to structure your answers:\nSituation: Describe the context\nTask: Explain what needed to be done\nAction: Detail what you did\nResult: Share the outcome\n\nExample question: "Tell me about a time you faced a difficult technical challenge."\n\nExample answer structure:\n"Situation: Our team was facing performance issues with our database queries...\nTask: We needed to improve response times by 50%...\nAction: I analyzed the queries, implemented indexing, and optimized the code...\nResult: We achieved a 60% improvement in performance..."\n\nPrepare multiple examples for different scenarios.`, 
+    text: `[Question 1]\nWhat are your greatest strengths?\n\n[Answer]\nMy key strengths include problem-solving, effective communication, and leadership. For example, I led a team that improved system performance by 40% through innovative solutions and clear communication.\n\n[Question 2]\nWhere do you see yourself in five years?\n\n[Answer]\nI see myself in a leadership role, mentoring junior team members and leading complex projects. I plan to continue developing my technical expertise while growing my management skills.\n\n[Question 3]\nHow do you handle work-life balance?\n\n[Answer]\nI maintain a structured schedule and prioritize tasks effectively. I make time for both professional development and personal well-being, which helps me stay productive and motivated.`, 
     layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview8',
+    title: 'Final Interview with CEO', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ceo.png'),
+    text: `[Question 1]\nWhat is your vision for this role?\n\n[Answer]\nI envision driving innovation and growth while maintaining operational excellence. I plan to leverage my experience to implement strategic initiatives that align with the company's long-term goals.\n\n[Question 2]\nHow do you handle company-wide challenges?\n\n[Answer]\nI take a holistic approach, considering all stakeholders and potential impacts. I develop comprehensive solutions that address both immediate concerns and long-term strategic objectives.\n\n[Question 3]\nWhat value can you bring to our executive team?\n\n[Answer]\nI bring a unique combination of technical expertise and strategic thinking. My experience in leading successful transformations and building high-performing teams would complement the existing executive team's strengths.`, 
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '55%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview9',
+    title: 'Doctor Interview', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/medical-officer.png'),
+    text: `[Question 1]\nHow do you handle difficult patient cases?\n\n[Answer]\nI approach each case methodically, gathering all relevant information and consulting with colleagues when needed. I maintain clear communication with patients and their families throughout the process.\n\n[Question 2]\nHow do you stay current with medical advancements?\n\n[Answer]\nI regularly attend medical conferences, participate in continuing education programs, and review current medical literature. I also collaborate with colleagues to share knowledge and best practices.\n\n[Question 3]\nHow do you handle ethical dilemmas in medicine?\n\n[Answer]\nI follow established ethical guidelines and consult with the hospital's ethics committee when needed. I prioritize patient well-being while considering all relevant factors in decision-making.`, 
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview10',
+    title: 'Live TV Interview', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/tv-news.png'),
+    text: `[Question 1]\nHow do you prepare for a live interview?\n\n[Answer]\nI research the topic thoroughly, prepare key talking points, and practice my delivery. I also familiarize myself with the interviewer's style and prepare for potential follow-up questions.\n\n[Question 2]\nHow do you handle unexpected questions?\n\n[Answer]\nI stay composed and redirect to my key messages when appropriate. If I don't know an answer, I'm honest about it and offer to follow up with the information later.\n\n[Question 3]\nHow do you engage with the audience during a live interview?\n\n[Answer]\nI maintain eye contact, use clear and concise language, and incorporate relevant examples. I also pay attention to the interviewer's cues and adjust my responses accordingly.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   // --- End Interview Prompts ---
 
