@@ -1,9 +1,13 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons'; // Import Ionicons
 import colors from './constants/colors'; // Import colors for styling
+import { Text, StyleSheet, View, ActivityIndicator } from 'react-native';
+import { Audio } from 'expo-av';
+import { categoryImageSources, defaultImages, preloadImages } from './constants/imageUtils';
 
 // Import Screens
 import HomeScreen from './HomeScreen'; // Home tab component
@@ -12,12 +16,19 @@ import PromptSelectionScreen from './PromptSelectionScreen';
 import TeleprompterScreen from './TeleprompterScreen';
 import ComingSoonScreen from './ComingSoonScreen'; // Import ComingSoonScreen
 import WarmUpScreen from './WarmUpScreen'; // Import the new screen
+import ProfileScreen from './ProfileScreen'; // Import the new ProfileScreen
 // Removed SavedPromptsScreen and SettingsScreen imports
 
 // Define Navigators
 const PracticeStackNav = createNativeStackNavigator(); // Renamed for clarity
 const Tab = createBottomTabNavigator();
 const RootStack = createNativeStackNavigator(); // New Root Stack
+
+// Sound paths for preloading
+const commonSoundPaths = {
+  clapping: require('./assets/sounds/clapping.mp3'),
+  room: require('./assets/sounds/room.mp3'),
+};
 
 // Define the Stack for the Practice Flow
 function PracticeStack() {
@@ -59,8 +70,8 @@ function MainTabs() {
       initialRouteName="HomeTab"
       screenOptions={({ route }) => ({ 
         headerShown: false, 
-        tabBarActiveTintColor: colors.primary, 
-        tabBarInactiveTintColor: colors.textSecondary, 
+        tabBarActiveTintColor: colors.accentTeal,
+        tabBarInactiveTintColor: colors.playfulIconInactive,
         tabBarStyle: { display: getTabBarVisibility(route) },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -68,21 +79,44 @@ function MainTabs() {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'PracticeTab') {
             iconName = focused ? 'mic' : 'mic-outline';
+          } else if (route.name === 'ProfileTab') {
+            iconName = focused ? 'person' : 'person-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarLabel: ({ focused, color }) => {
+          let label;
+          if (route.name === 'HomeTab') {
+            label = 'Home';
+          } else if (route.name === 'PracticeTab') {
+            label = 'Practice';
+          } else if (route.name === 'ProfileTab') {
+            label = 'Profile';
+          }
+          return <Text style={[styles.tabLabelStyle, { color: color }]}>{label}</Text>;
         },
       })}
     >
       <Tab.Screen 
         name="HomeTab" 
         component={HomeScreen} 
-        options={{ title: 'Home' }} // Title is now set here, icon in screenOptions 
+        options={{ 
+          // title: 'Home' // Title is now handled by tabBarLabel
+        }} 
       />
       <Tab.Screen 
         name="PracticeTab" 
         component={PracticeStack} 
-        options={{ title: 'Practice' }} // Title is now set here, icon in screenOptions
-        // Note: We removed the dynamic tabBarStyle from here, it's now in screenOptions
+        options={{ 
+          // title: 'Practice' // Title is now handled by tabBarLabel
+        }}
+      />
+      <Tab.Screen 
+        name="ProfileTab" 
+        component={ProfileScreen}
+        options={{ 
+          // title: 'Profile' // Title is now handled by tabBarLabel
+        }}
       />
     </Tab.Navigator>
   );
@@ -90,6 +124,50 @@ function MainTabs() {
 
 // Main App Component using the Root Stack
 function App() {
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function preloadAssets() {
+      try {
+        // Configure Audio
+        await Audio.setAudioModeAsync({
+          allowsRecordingIOS: false,
+          playsInSilentModeIOS: true,
+          staysActiveInBackground: false,
+          shouldDuckAndroid: true,
+          playThroughEarpieceAndroid: false,
+        });
+
+        // Preload essential images
+        const imagesToPreload = [
+          ...Object.values(categoryImageSources),
+          ...Object.values(defaultImages)
+        ];
+        await preloadImages(imagesToPreload);
+
+        // Add a small delay to ensure everything is loaded
+        setTimeout(() => {
+          setAssetsLoaded(true);
+        }, 300);
+      } catch (error) {
+        console.error('Error preloading assets:', error);
+        // Continue anyway to not block the app
+        setAssetsLoaded(true);
+      }
+    }
+
+    preloadAssets();
+  }, []);
+
+  if (!assetsLoaded) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={colors.accentTeal} />
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <NavigationContainer>
       {/* Root Stack Navigator handles Tabs and Modal/Standalone screens */}
@@ -109,6 +187,11 @@ function App() {
           // Options for WarmUpScreen (e.g., presentation style, header)
           // options={{ presentation: 'modal' }} // Optional: Make it look like a modal
         />
+        {/* Standalone Teleprompter for Quick Practice */}
+        <RootStack.Screen 
+          name="TeleprompterScreen" 
+          component={TeleprompterScreen} 
+        />
       </RootStack.Navigator>
     </NavigationContainer>
   );
@@ -122,5 +205,25 @@ const getTabBarVisibility = (route) => {
   }
   return 'flex';
 };
+
+// Add StyleSheet for the tab label if not already present or define inline
+const styles = StyleSheet.create({
+    tabLabelStyle: {
+        fontSize: 10,
+        // fontFamily: 'Inter-Regular', // Optional font
+        // Add other styling as needed
+    },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colors.backgroundLight,
+    },
+    loadingText: {
+      marginTop: 10,
+      fontSize: 16,
+      color: colors.primaryDark,
+    }
+});
 
 export default App;
