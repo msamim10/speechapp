@@ -2,6 +2,7 @@
   "expo": {
     "name": "PublicSpeakingApp",
     "slug": "PublicSpeakingApp",
+    "scheme": "com.googleusercontent.apps.1056919787212-hq11eh305niqp59930jhiugccb5uu0ck",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
@@ -35,6 +36,11 @@
     "jsEngine": "hermes",
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ca98d15a-0b0c-4ccb-bffb-06960a6be2f0"
+      }
     }
   }
 }

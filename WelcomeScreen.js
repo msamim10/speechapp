@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,35 +9,87 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  Button, 
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useUser } from './context/UserContext'; // Import useUser hook
-import colors from './constants/colors'; // Use theme colors
+import * as WebBrowser from 'expo-web-browser';
+import * as AuthSession from 'expo-auth-session'; 
+import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore'; 
+import { auth, db } from './firebase'; 
+import colors from './constants/colors'; 
 
-const USERNAME_KEY = '@userProfile_username'; // Use the same key as UserContext
+WebBrowser.maybeCompleteAuthSession();
 
-function WelcomeScreen({ navigation }) {
+function WelcomeScreen({ navigation }) { 
   const [name, setName] = useState('');
-  const { updateUsername } = useUser(); // Get update function from context
+  const [error, setError] = useState(null);
 
-  const handleContinue = async () => {
+  const discovery = AuthSession.useAutoDiscovery('https://accounts.google.com');
+
+  const [request, response, promptAsync] = AuthSession.useAuthRequest(
+    {
+      iosClientId: '1056919787212-hq11eh305niqp59930jhiugccb5uu0ck.apps.googleusercontent.com',
+      redirectUri: AuthSession.makeRedirectUri({ 
+        scheme: 'com.googleusercontent.apps.1056919787212-hq11eh305niqp59930jhiugccb5uu0ck' 
+      }),
+      scopes: ['openid', 'profile', 'email'],
+    },
+    discovery
+  );
+
+  useEffect(() => {
+    const handleSignInResult = async () => {
+      if (response?.type === 'success') {
+        const { authentication } = response;
+        if (!authentication || !authentication.idToken) {
+            Alert.alert('Sign In Failed', 'Could not get ID token from Google.');
+            setError('Authentication failed: Missing ID token.');
+            return;
+        }
+        const credential = GoogleAuthProvider.credential(authentication.idToken);
+        try {
+            console.log("Attempting Firebase sign-in...");
+            const userCredential = await signInWithCredential(auth, credential);
+            const user = userCredential.user;
+            console.log('Firebase Sign-In Success:', user.uid);
+
+            const userDocRef = doc(db, 'users', user.uid);
+            await setDoc(userDocRef, {
+              uid: user.uid,
+              email: user.email,
+              name: name.trim() || user.displayName?.split(' ')[0] || 'User', 
+              createdAt: new Date(),
+            }, { merge: true }); 
+
+            console.log('User data saved to Firestore for:', user.uid);
+        } catch (firebaseError) {
+            console.error('Firebase Sign-In Error:', firebaseError);
+            Alert.alert('Sign In Error', `Failed to sign in with Firebase: ${firebaseError.message}`);
+            setError(`Firebase error: ${firebaseError.message}`);
+        }
+      } else if (response?.type === 'error') {
+          console.error('Google Sign-In Error:', response.error);
+          Alert.alert('Sign In Error', `Google Sign-In failed: ${response.error?.message || 'Unknown error'}`);
+          setError(`Google error: ${response.error?.message}`);
+      } else if (response?.type === 'cancel') {
+          console.log('Google Sign-In Cancelled');
+      }
+    };
+
+    if (response) {
+        handleSignInResult();
+    }
+  }, [response]); 
+
+  const handleGoogleSignIn = () => {
     const trimmedName = name.trim();
     if (trimmedName === '') {
-      Alert.alert('Name Required', 'Please enter your name to continue.');
+      Alert.alert('Name Required', 'Please enter your name before signing in.');
       return;
     }
-
-    try {
-      // Save directly to AsyncStorage (context will pick it up on next load, but we update context state immediately too)
-      await AsyncStorage.setItem(USERNAME_KEY, trimmedName);
-      // Update the context state immediately for a smooth transition
-      await updateUsername(trimmedName); 
-      // Navigate to the main part of the app (assuming it's named 'MainTabs' in your RootStack)
-      navigation.replace('MainTabs'); // Use replace to prevent going back to WelcomeScreen
-    } catch (e) {
-      console.error('Failed to save name or navigate.', e);
-      Alert.alert('Error', 'Could not save your name. Please try again.');
-    }
+    setError(null); 
+    console.log('Prompting Google Sign-In...');
+    promptAsync();
   };
 
   return (
@@ -47,7 +99,7 @@ function WelcomeScreen({ navigation }) {
         style={styles.container}
       >
         <View style={styles.content}>
-          <Text style={styles.title}>Welcome to Public Speaking App!</Text>
+          <Text style={styles.title}>Welcome!</Text>
           <Text style={styles.subtitle}>What should we call you?</Text>
 
           <TextInput
@@ -58,12 +110,19 @@ function WelcomeScreen({ navigation }) {
             placeholderTextColor={colors.textSecondary}
             autoCapitalize="words"
             returnKeyType="done"
-            onSubmitEditing={handleContinue} // Allow pressing return key to continue
           />
 
-          <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
-            <Text style={styles.continueButtonText}>Continue</Text>
+          <TouchableOpacity 
+            style={[styles.continueButton, !name.trim() && styles.disabledButton]} 
+            onPress={handleGoogleSignIn} 
+            disabled={!name.trim()} 
+          >
+            <Text style={styles.continueButtonText}>Sign in with Google</Text>
           </TouchableOpacity>
+
+          {error && (
+            <Text style={styles.errorText}>Error: {error}</Text>
+          )}
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -90,44 +149,55 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     color: colors.primaryDark,
-    textAlign: 'center',
-    marginBottom: 15,
+    marginBottom: 8,
   },
   subtitle: {
     fontSize: 18,
     color: colors.textSecondary,
-    textAlign: 'center',
     marginBottom: 30,
   },
   input: {
     width: '100%',
+    height: 50,
     borderWidth: 1,
     borderColor: colors.borderLight,
-    backgroundColor: colors.backgroundLight,
+    borderRadius: 8,
     paddingHorizontal: 15,
-    paddingVertical: 12,
-    borderRadius: 12,
+    marginBottom: 20,
     fontSize: 16,
-    marginBottom: 30,
-    color: colors.primaryDark,
+    backgroundColor: colors.backgroundLight,
+    color: colors.textPrimary,
   },
   continueButton: {
-    width: '100%',
-    backgroundColor: colors.accentTeal,
+    backgroundColor: colors.primaryDark, 
     paddingVertical: 15,
-    borderRadius: 30,
+    paddingHorizontal: 20,
+    borderRadius: 25, 
     alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%', 
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  disabledButton: {
+    backgroundColor: colors.borderLight, 
+    elevation: 0,
+    shadowOpacity: 0,
   },
   continueButtonText: {
     color: colors.textLight,
     fontSize: 16,
     fontWeight: 'bold',
   },
+  errorText: {
+    marginTop: 15,
+    color: colors.error, 
+    fontSize: 14,
+    textAlign: 'center',
+  }
 });
 
-export default WelcomeScreen; 
+export default WelcomeScreen;
