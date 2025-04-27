@@ -83,10 +83,8 @@ function MainTabs() {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'PracticeTab') {
             iconName = focused ? 'mic' : 'mic-outline';
-          } else if (route.name === 'ProfileTab') {
-            iconName = focused ? 'person' : 'person-outline';
-          }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          } 
+          return iconName ? <Ionicons name={iconName} size={size} color={color} /> : null;
         },
         tabBarLabel: ({ focused, color }) => {
           let label;
@@ -94,10 +92,8 @@ function MainTabs() {
             label = 'Home';
           } else if (route.name === 'PracticeTab') {
             label = 'Practice';
-          } else if (route.name === 'ProfileTab') {
-            label = 'Profile';
           }
-          return <Text style={[styles.tabLabelStyle, { color: color }]}>{label}</Text>;
+          return label ? <Text style={[styles.tabLabelStyle, { color: color }]}>{label}</Text> : null;
         },
       })}
     >
@@ -113,13 +109,6 @@ function MainTabs() {
         component={PracticeStack} 
         options={{ 
           // title: 'Practice' // Title is now handled by tabBarLabel
-        }}
-      />
-      <Tab.Screen 
-        name="ProfileTab" 
-        component={UserProfileScreen}
-        options={{ 
-          // title: 'Profile' // Title is now handled by tabBarLabel
         }}
       />
     </Tab.Navigator>
@@ -201,6 +190,8 @@ function App() {
           <RootStack.Screen name="WarmUp" component={WarmUpScreen} />
           {/* Standalone Teleprompter for Quick Practice */}
           <RootStack.Screen name="TeleprompterScreen" component={TeleprompterScreen} />
+          {/* Add UserProfileScreen to Root Stack */}
+          <RootStack.Screen name="UserProfile" component={UserProfileScreen} />
         </RootStack.Navigator>
       </NavigationContainer>
     </UserProvider>

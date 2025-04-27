@@ -98,6 +98,7 @@ function TeleprompterScreen({ route, navigation }) {
   const [roomSound, setRoomSound] = useState(); // Room sound state
   const [speechSound, setSpeechSound] = useState(); // New state for speech sound
   const [interviewSound, setInterviewSound] = useState(); // Add state for interview sound
+  const [vcSound, setVcSound] = useState(); // Add state for VC sound
   const [countdown, setCountdown] = useState(4); // Increased countdown to allow for sound loading
   const [showCountdown, setShowCountdown] = useState(false); // Start hidden until sounds are loaded
   const [soundsNeeded, setSoundsNeeded] = useState({
@@ -105,7 +106,8 @@ function TeleprompterScreen({ route, navigation }) {
     race: true, // Always need race sound now
     room: false,
     speech: false,
-    interview: false
+    interview: false,
+    vc: false, // Add vc key
   });
   const [soundsLoaded, setSoundsLoaded] = useState(false); // Add state to track if sounds are loaded
   const { recordPracticeSession } = useUser(); // Get the function from context
@@ -120,19 +122,22 @@ function TeleprompterScreen({ route, navigation }) {
         race: true, // Enable race sound for warm-up too
         room: true, // Basic ambient sound
         speech: false,
-        interview: false
+        interview: false,
+        vc: false, // VC sound not needed for warm-up
       });
     } else if (currentPromptData) {
       // For regular prompts, determine based on category/id
       const needsClapping = CLAPPING_PROMPT_IDS.includes(selectedPromptId);
-      const category = currentPromptData.category?.toLowerCase() || '';
+      const category = currentPromptData.category || ''; // Get original category name
+      const categoryLower = category.toLowerCase(); // Use lowercase for broader checks if needed
       
       setSoundsNeeded({
         clapping: needsClapping,
-        race: true, // Always enable race sound for all prompts
-        room: true, // Always load ambient sound
-        speech: category.includes('speech'),
-        interview: category.includes('interview')
+        race: true, 
+        room: true, 
+        speech: categoryLower.includes('speech'), // Keep broader check for speech
+        interview: categoryLower.includes('interview'), // Keep broader check for interview
+        vc: category === 'Virtual Communication', // <<< Use exact case-sensitive check for VC
       });
     }
   }, [isWarmUpMode, currentPromptData, selectedPromptId]);
@@ -160,7 +165,11 @@ function TeleprompterScreen({ route, navigation }) {
       await interviewSound.stopAsync();
       console.log("Stopped Interview Sound");
     }
-  }, [sound, raceSound, roomSound, speechSound, interviewSound]);
+    if (vcSound && (await vcSound.getStatusAsync()).isPlaying) {
+      await vcSound.stopAsync();
+      console.log("Stopped VC Sound");
+    }
+  }, [sound, raceSound, roomSound, speechSound, interviewSound, vcSound]);
 
   // --- Load Sound Effect ---
   useEffect(() => {
@@ -234,6 +243,19 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setInterviewSound(soundCache.interview);
           console.log('Interview sound loaded successfully');
+        }
+
+        if (soundsNeeded.vc) {
+          if (!soundCache.vc) {
+            console.log('Attempting to load VC sound...');
+            const { sound: loadedVcSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforvc.mp3')
+            );
+            soundCache.vc = loadedVcSound;
+            console.log('Loaded VC sound into cache.');
+          }
+          setVcSound(soundCache.vc);
+          console.log('VC sound set successfully');
         }
 
         // Mark sounds as loaded and start countdown
@@ -362,8 +384,22 @@ function TeleprompterScreen({ route, navigation }) {
          // Log if not loaded
       }
 
-      // --- Play Room Sound (All Categories except Warm-up, Looping) ---
-      if (roomSound && !isWarmUpMode) { 
+      // --- Play VC Sound (Virtual Communication Category Only, Once, at Start) ---
+      if (vcSound && !isWarmUpMode && currentPromptData?.category === 'Virtual Communication') {
+        try {
+          console.log('Playing VC Sound (Once, at start) for Virtual Communication category');
+          vcSound.replayAsync(); // Play once
+        } catch (error) {
+          console.error('Failed to play VC sound', error);
+        }
+      } else if (vcSound) {
+         // Log if not played (wrong mode/category)
+      } else {
+         // Log if not loaded
+      }
+
+      // --- Play Room Sound (All Categories except Warm-up AND Virtual Communication, Looping) ---
+      if (roomSound && !isWarmUpMode && currentPromptData?.category !== 'Virtual Communication') {
         try {
           console.log(`Playing Room Sound (Looping) for category: ${currentPromptData?.category || 'Unknown'}`);
           roomSound.replayAsync(); // Plays and loops as looping is enabled
@@ -430,10 +466,19 @@ function TeleprompterScreen({ route, navigation }) {
             }
           }).catch(error => console.error("Error checking interview sound status on cleanup", error));
         }
+        // Add vcSound stop to cleanup
+        if (vcSound) {
+          vcSound.getStatusAsync().then(status => {
+            if (status.isPlaying) {
+              console.log('Stopping VC sound on cleanup');
+              vcSound.stopAsync();
+            }
+          }).catch(error => console.error("Error checking VC sound status on cleanup", error));
+        }
       }
     };
 
-  }, [countdown, showCountdown, sound, raceSound, roomSound, speechSound, interviewSound, selectedPromptId, isWarmUpMode, currentPromptData]); // Added interviewSound dependency
+  }, [countdown, showCountdown, sound, raceSound, roomSound, speechSound, interviewSound, vcSound, selectedPromptId, isWarmUpMode, currentPromptData]); // <<< Added vcSound dependency here too
 
   // --- Get fixed paddingBottom from styles --- (Helper)
   const getPaddingBottom = () => {
@@ -664,6 +709,20 @@ function TeleprompterScreen({ route, navigation }) {
       ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' } // Minimally visible white background
       : {} // Otherwise, use the default (semi-transparent black) from styles.controlsContainer
   ];
+
+  // --- Function to play sounds on completion ---
+  const playCompletionSounds = async () => {
+    // Play clapping sound if needed
+    if (soundsNeeded.clapping && sound) {
+      console.log('Playing clapping sound');
+      await sound.replayAsync();
+    }
+    // // Play VC sound if needed
+    // if (soundsNeeded.vc && vcSound) { 
+    //   console.log('Playing Virtual Communication sound');
+    //   await vcSound.replayAsync();
+    // }
+  };
 
   return (
     <View style={styles.container}>

@@ -17,6 +17,7 @@ import { useUser } from './context/UserContext'; // Import the custom hook
 import * as ImagePicker from 'expo-image-picker'; // Import ImagePicker
 import Ionicons from '@expo/vector-icons/Ionicons'; // Import Ionicons for save button
 import colors from './constants/colors'; // Import colors for styling
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 // Remove the key definition if using context's key
 // const USERNAME_KEY = '@userProfile_username';
@@ -51,7 +52,8 @@ import colors from './constants/colors'; // Import colors for styling
 // };
 // --- End Date Formatting ---
 
-function UserProfileScreen({ navigation }) {
+function UserProfileScreen() {
+  const navigation = useNavigation(); // Get navigation object
   // Get data and functions from context
   const {
     username: currentUsername,
@@ -119,6 +121,11 @@ function UserProfileScreen({ navigation }) {
     }
   };
 
+  // Add Back Handler
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   // Display loading indicator based on context loading state
   if (isContextLoading) {
     return (
@@ -133,6 +140,11 @@ function UserProfileScreen({ navigation }) {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
+      {/* Add Back Button */}
+      <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
+        <Ionicons name="arrow-back" size={28} color={colors.primaryDark} />
+      </TouchableOpacity>
+
       {/* Avatar Display and Selection */}
       <TouchableOpacity onPress={pickImage} style={styles.avatarTouchable}>
         <Image source={avatarSource} style={styles.avatar} />
@@ -182,7 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundLight,
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 40,
+    paddingTop: 80, // Increased paddingTop to make space for back button
   },
   avatarTouchable: {
     alignItems: 'center',
@@ -238,6 +250,13 @@ const styles = StyleSheet.create({
   saveButton: {
     paddingHorizontal: 15,
     paddingVertical: 10,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 55, // Adjust as needed for status bar height
+    left: 20,
+    zIndex: 10,
+    padding: 8,
   },
 });
 

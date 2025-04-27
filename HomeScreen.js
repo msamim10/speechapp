@@ -10,6 +10,7 @@ import {
   Dimensions,
   Image,
   Alert,
+  ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import colors from './constants/colors';
@@ -49,6 +50,18 @@ const categories = [
   { id: 'presentations', title: 'Presentations', image: categoryImageSources.presentations, category: 'Presentations' },
   { id: 'social', title: 'Social', image: categoryImageSources.social, category: 'Social & Casual' },
   { id: 'interview', title: 'Interview', image: categoryImageSources.interview, category: 'Interviews' },
+  { 
+    id: 'practice_fundamentals', 
+    title: 'Practice Fundamentals', 
+    image: categoryImageSources.speeches, // Placeholder image
+    category: 'Practice Fundamentals' 
+  },
+  { 
+    id: 'virtual_communication', 
+    title: 'Virtual Communication', 
+    image: categoryImageSources.presentations, // Placeholder image
+    category: 'Virtual Communication' 
+  },
 ];
 
 // Calculate card width
@@ -87,7 +100,8 @@ function HomeScreen() {
 
   // --- Handlers ---
   const handleStartPractice = () => {
-    navigation.navigate('PracticeTab');
+    // Navigate specifically to the CategorySelectionScreen within the PracticeTab stack
+    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
   };
 
   // Quick Practice handler 
@@ -117,6 +131,14 @@ function HomeScreen() {
       ...prev,
       [id]: { scale: 1, overlayOpacity: 0.3 }
     }));
+  };
+
+  // <<< Add Handler for Profile Navigation >>>
+  const handleGoToProfile = () => {
+    // Navigate to UserProfileScreen (assuming it's defined in a Stack or RootStack)
+    // We need to navigate outside the Tab Navigator now.
+    // Let's try navigating directly via the root navigator if possible.
+    navigation.navigate('UserProfile'); // Use the name defined in RootStack if any, otherwise adjust
   };
 
   const renderCategoryCard = (cat) => {
@@ -162,9 +184,21 @@ function HomeScreen() {
     );
   }
 
+  // Log the number of categories before rendering
+  console.log("Number of categories to render:", categories.length);
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+      {/* <<< Add Profile Button Here >>> */}
+      <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
+        <Ionicons name="settings-outline" size={28} color={colors.primaryDark} />
+      </TouchableOpacity>
+
+      <ScrollView 
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContentContainer} 
+        showsVerticalScrollIndicator={false} // Hide scrollbar
+      >
         {/* --- Large Welcome Box --- */}
         <View style={styles.welcomeBox}>
           <Text style={styles.welcomeHeader}>Welcome, {username}!</Text>
@@ -199,10 +233,10 @@ function HomeScreen() {
           </View>
         </View>
 
-        {/* Spacer view */}
-        <View style={{ flex: 1 }} />
+        {/* Spacer view - No longer needed with ScrollView? Might remove or adjust */}
+        {/* <View style={{ flex: 1 }} /> */}
 
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -213,9 +247,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.backgroundLight,
   },
-  container: {
+  scrollView: { // Style for the ScrollView itself
     flex: 1,
-    alignItems: 'center', // Center items like status badge horizontally
+  },
+  scrollContentContainer: { // Style for the content inside ScrollView
+    alignItems: 'center', // Center content horizontally
+    paddingBottom: 30, // Add some padding at the bottom
+  },
+  // <<< Update Style for Profile Button >>>
+  profileButton: {
+    position: 'absolute', // Position over content
+    top: 55, // Adjust as needed for status bar height
+    left: 20, // <<< Changed from right to left >>>
+    zIndex: 10, // Ensure it's above scroll content
+    padding: 8,
+    // Optional: Add background/border if needed for visibility
+    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    // borderRadius: 20,
   },
   // --- Loading Container ---
   loadingContainer: {

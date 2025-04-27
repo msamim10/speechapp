@@ -82,6 +82,7 @@ function PromptSelectionScreen({ route, navigation }) {
           keyExtractor={item => item.id}
           ListEmptyComponent={<Text>No prompts found for this category.</Text>}
           style={styles.listStyle}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     </View>

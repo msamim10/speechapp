@@ -1,18 +1,21 @@
 import React from 'react';
 // Import FlatList if planning for many categories, otherwise map is fine for few
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'; 
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ImageBackground } from 'react-native'; 
 import { useNavigation } from '@react-navigation/native';
 import colors from './constants/colors'; // Import colors
 import Ionicons from '@expo/vector-icons/Ionicons'; // Keep Ionicons
 
-// Define categories (including Random and placeholders)
+// Define categories with background images
+// IMPORTANT: Replace placeholder require() paths with actual image assets!
 const categories = [
-  { id: 'meetings', name: 'Social & Casual', icon: 'briefcase-outline' },
-  { id: 'speeches', name: 'Speeches', icon: 'megaphone-outline' },
-  { id: 'interviews', name: 'Interviews', icon: 'people-outline' },
-  { id: 'presentations', name: 'Presentations', icon: 'easel-outline' },
-  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline' },
-  { id: 'random', name: 'Random', icon: 'shuffle-outline' },
+  { id: 'meetings', name: 'Social & Casual', icon: 'briefcase-outline', bgImage: require('./assets/socialpics/pic2789.png') }, // Using social1 image
+  { id: 'speeches', name: 'Speeches', icon: 'megaphone-outline', bgImage: require('./assets/speechpics/pic8222.png') }, // Reused prompt image
+  { id: 'interviews', name: 'Interviews', icon: 'people-outline', bgImage: require('./assets/interviewpics/pic9300.png') }, // Reused prompt image
+  { id: 'presentations', name: 'Presentations', icon: 'easel-outline', bgImage: require('./assets/presentationpics/pic23.png') }, // Reused prompt image
+  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline', bgImage: require('./assets/specificpics/pic2215.png') }, // Reused prompt image
+  { id: 'fundamentals', name: 'Practice Fundamentals', icon: 'school-outline', bgImage: require('./assets/Practicefundamentalpics/mdk.png') }, // Reused prompt image
+  { id: 'virtual', name: 'Virtual Communication', icon: 'laptop-outline', bgImage: require('./assets/vcpics/ChatGPT Image Apr 26, 2025, 07_25_39 PM.png') }, // Reused prompt image
+  { id: 'random', name: 'Random', icon: 'shuffle-outline', bgImage: require('./assets/Practicefundamentalpics/mdk.png') }, // Using fundamentals1 image
   // Add more categories here
 ];
 
@@ -38,6 +41,10 @@ function CategorySelectionScreen() {
     } else if (category.id === 'meetings') {
       // Social & Casual navigates to PromptSelection with 'Social & Casual'
       navigation.navigate('PromptSelection', { category: 'Social & Casual' });
+    } else if (category.name === 'Practice Fundamentals') {
+      navigation.navigate('PromptSelection', { category: 'Practice Fundamentals' });
+    } else if (category.name === 'Virtual Communication') {
+      navigation.navigate('PromptSelection', { category: 'Virtual Communication' });
     } else {
       // Fallback for any other unexpected category
       console.warn(`Unhandled category navigation: ${category.name} (ID: ${category.id})`);
@@ -58,17 +65,27 @@ function CategorySelectionScreen() {
     
       {/* Added Page Heading */}
       <Text style={styles.pageHeading}>Choose a Practice Category</Text>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView 
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false} // Keep scrollbar hidden
+      >
         {categories.map((category) => (
           <TouchableOpacity 
             key={category.id} 
-            style={styles.categoryCard}
+            style={styles.categoryCardTouchable} // Use updated touchable style
             onPress={() => handleSelectCategory(category)}
-            activeOpacity={0.7}
+            activeOpacity={0.8} // Slightly higher opacity for image backgrounds
           >
-            {/* Use the icon name from the category object */}
-            <Ionicons name={category.icon} size={40} color={colors.primary} /> 
-            <Text style={styles.categoryTitle}>{category.name}</Text>
+            <ImageBackground 
+              source={category.bgImage} 
+              style={styles.categoryCardBackground}
+              imageStyle={styles.categoryBackgroundImageStyle} // Apply borderRadius to image itself
+              resizeMode="cover"
+            >
+              <View style={styles.cardOverlay}> 
+                <Text style={styles.categoryTitle}>{category.name}</Text>
+              </View>
+            </ImageBackground>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -88,6 +105,9 @@ const styles = StyleSheet.create({
     left: 15, 
     zIndex: 10,
     padding: 5,
+    // Optional: Add background for better visibility on images near the edge
+    // backgroundColor: 'rgba(255, 255, 255, 0.7)', 
+    // borderRadius: 15,
   },
   pageHeading: { // Style for the main heading
     fontSize: 24,
@@ -104,31 +124,42 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around', 
     paddingHorizontal: 15, // Adjusted padding
     paddingBottom: 20, // Padding at the bottom
-    paddingTop: 20, // Add padding at the top to give space for the back button
+    paddingTop: 30, // Increased padding at the top
   },
-  categoryCard: {
-    backgroundColor: colors.cardBackground, 
-    borderRadius: 12, // Slightly more rounded
-    padding: 15, // Adjusted padding
-    width: '48%', // Wider 
-    // aspectRatio: 1, // Removed to allow non-square cards
-    minHeight: 200, // Increased minimum height further
-    marginBottom: 25, // Reduced margin for better grouping
+  categoryCardTouchable: { // Style for the TouchableOpacity wrapper
+    width: '48%', 
+    minHeight: 160, // Keep height consistent
+    marginBottom: 25, 
+    borderRadius: 15, // Apply borderRadius here for clipping ImageBackground
+    overflow: 'hidden', // Ensure ImageBackground respects borderRadius
+    // Add shadow to the touchable wrapper
+    shadowColor: colors.shadowColor, 
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15, 
+    shadowRadius: 8, 
+    elevation: 5, 
+  },
+  categoryCardBackground: { // Style for ImageBackground
+    flex: 1, // Take full space of TouchableOpacity
+    justifyContent: 'flex-end', // Align overlay/text to the bottom
     alignItems: 'center', 
-    justifyContent: 'center', 
-    // Refined shadow
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3, // Slightly more elevation
   },
-  categoryTitle: {
-    color: colors.textPrimary, 
-    fontSize: 15, // Slightly smaller
-    fontWeight: '600', 
+  categoryBackgroundImageStyle: { // Style passed to imageStyle prop of ImageBackground
+     borderRadius: 15, // Ensures the image itself has rounded corners
+  },
+  cardOverlay: { // Semi-transparent overlay
+    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Dark overlay for text contrast
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    width: '100%', // Cover full width
+    alignItems: 'center',
+  },
+  categoryTitle: { // Updated text style
+    color: colors.textLight, // White text for contrast
+    fontSize: 16, 
+    fontWeight: 'bold', // Make bolder
     textAlign: 'center',
-    marginTop: 12, // Increased space for icon
+    // Removed marginTop as text is now at the bottom
   },
 });
 

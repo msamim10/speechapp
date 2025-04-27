@@ -226,6 +226,85 @@ export const promptsData = [
     }
   },
 
+  // --- Practice Fundamentals Prompts ---
+  {
+    id: 'fundamentals1',
+    title: 'Focusing on Clarity and Articulation',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/mdk.png'),
+    text: `Welcome to your practice space. Clarity is the cornerstone of effective communication. Think about how you pronounce each word. Are you articulating clearly, ensuring every syllable is distinct? Avoid mumbling or rushing; focus on crisp consonants and clear vowel sounds. Record yourself reading this aloud and listen back – identify any words or phrases that sound unclear.
+
+Practice enunciating challenging words or tongue twisters slowly at first, then gradually increase your speed while maintaining precision. Pay attention to the muscles in your mouth and jaw; conscious control improves articulation. Clear speech ensures your message is not just heard, but understood effortlessly by your audience.`,
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '60%',
+      height: '35%',
+      top: '50%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals2',
+    title: 'Mastering Vocal Variety',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/er3.png'),
+    text: `Think of your voice as an instrument. Vocal variety – changes in pitch, pace, volume, and tone – keeps your audience engaged and adds emotional depth to your words. A monotone delivery can make even the most interesting content sound dull. Experiment with delivering the same sentence in different ways: excited, serious, questioning, informative.
+
+Practice emphasizing key words to highlight important points. Vary your pace – speak more slowly for emphasis or complex ideas, and pick up the pace for excitement or transitions. Use volume changes strategically; a lower volume can draw listeners in, while a higher volume can convey passion. Consciously practicing these variations will make your delivery dynamic and compelling.`,
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '35%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals3',
+    title: 'Improving Body Language and Posture',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/4mf.png'),
+    text: `Your body speaks volumes even before you utter a word. Confident posture – standing tall, shoulders back, head held high – conveys authority and self-assurance. Avoid slouching or fidgeting, as these can signal nervousness or lack of interest. Practice standing in front of a mirror or recording yourself to observe your natural posture and identify areas for improvement.
+
+Use gestures purposefully to enhance your message, not distract from it. Let your hands move naturally to emphasize points, but avoid repetitive or meaningless movements. Maintain open body language; avoid crossing your arms, which can appear defensive. Consistent practice of positive body language will make it feel natural and significantly boost your perceived confidence.`,
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals4',
+    title: 'Perfecting Pace and Timing',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/34f.png'),
+    text: `The speed at which you speak dramatically affects how your audience receives your message. Speaking too quickly can make you hard to follow, while speaking too slowly might cause listeners to lose interest. Finding the right pace involves matching your delivery speed to the complexity of the content and the needs of your audience. Practice varying your pace intentionally.
+
+Timing also involves the effective use of pauses. Pauses can be used to emphasize a point, allow the audience to absorb information, create suspense, or signal a transition. Avoid filling pauses with filler words like "um" or "uh." Instead, embrace silence as a powerful communication tool. Practice delivering sentences with deliberate pauses to feel their impact.`,
+    layout: { // Adjust layout percentages based on image!
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  // --- End Practice Fundamentals Prompts ---
+
   // --- Presentation Prompts (Placeholders - Customize details below!) ---
   // Remember to:
   // 1. Ensure image files are in 'assets/presentationpics/'
@@ -627,6 +706,85 @@ export const promptsData = [
     layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
   },
   // --- End Social & Casual Prompts ---
+
+  // --- Virtual Communication Prompts ---
+  {
+    id: 'virtual1',
+    title: 'Quarterly Project Update & Next Steps', // Updated title
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_25_39 PM.png'), 
+    text: `Good morning, team. Let's dive into the Q3 progress for Project Phoenix. We successfully completed the alpha testing phase two days ahead of schedule, thanks to the diligent work from the engineering team. Key performance indicators show a 15% improvement in processing speed compared to the previous build, which is fantastic news.
+
+Looking ahead to Q4, our primary focus will be on beta testing and addressing the feedback received from alpha users. We need to finalize the user documentation by November 15th and prepare for the limited launch targeted for the first week of December. Marketing, please ensure the campaign materials are aligned with this timeline. Let's open the floor for any questions regarding resource allocation for the beta phase.`, // Updated text
+    layout: { // Default layout - ADJUST AS NEEDED!
+      position: 'absolute',
+      width: '60%',
+      height: '35%',
+      top: '58%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual2',
+    title: 'Client Pitch: Streamlining Operations', // Updated title
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_28_50 PM.png'), 
+    text: `Thank you for joining us today, Mr. Harrison. We understand that operational efficiency is a key priority for your company. Our proposed solution, 'FlowOptimize,' directly addresses the bottlenecks identified in your current workflow. By implementing our automated task management system, we project a reduction in manual processing time by up to 35% within the first six months.
+
+This system not only speeds up processes but also provides real-time analytics, giving you unprecedented visibility into your operations. Our case studies with similar clients show an average ROI of 250% within the first year. We're confident FlowOptimize will deliver significant value and provide a competitive edge. Are there any specific concerns or areas you'd like us to elaborate on further?`, // Updated text
+    layout: { // Default layout - ADJUST AS NEEDED!
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '50%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual3',
+    title: 'Team Brainstorm: New Marketing Initiative', // Updated title
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_32_13 PM.png'), 
+    text: `Alright team, let's kick off this brainstorming session for our new Q1 marketing initiative. The goal is to increase brand awareness among the 18-25 demographic by 20%. We need innovative ideas that resonate with this audience. Think outside the box – social media campaigns, influencer collaborations, experiential marketing, user-generated content challenges – nothing is off the table at this stage.
+
+Let's start by throwing out some initial concepts. Don't worry about feasibility just yet; focus on creativity. I'll capture everything on the virtual whiteboard. Remember the rules: build on each other's ideas, encourage wild thoughts, and defer judgment. Who wants to get us started? What's the first idea that comes to mind for reaching this demographic?`, // Updated text
+    layout: { // Default layout - ADJUST AS NEEDED!
+      position: 'absolute',
+      width: '60%',
+      height: '15%',
+      top: '70%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual4',
+    title: 'Performance Review Discussion', // Updated title
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_43_24 PM.png'), 
+    text: `Hi Jordan, thanks for joining me for your performance review. Overall, you've had a very productive year. Your contributions to the Atlas project were instrumental in its success, particularly your innovative approach to data analysis which saved the team significant time. You consistently exceeded expectations in meeting deadlines and collaborating effectively with cross-functional teams.
+
+Looking forward, let's discuss development goals for the upcoming year. Based on your interest in leadership, I recommend focusing on project management skills. We can explore opportunities for you to lead smaller initiatives or shadow senior project managers. Let's also set a specific goal around enhancing your presentation skills for client-facing meetings. What are your thoughts on these areas?`, // Updated text
+    layout: { // Default layout - ADJUST AS NEEDED!
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  // --- End Virtual Communication Prompts ---
 
   // Add more prompts here in the future
 ]; 
