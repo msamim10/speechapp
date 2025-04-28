@@ -12,7 +12,8 @@ import {
   Button, 
 } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
-import * as AuthSession from 'expo-auth-session'; 
+// import * as AuthSession from 'expo-auth-session'; 
+import * as Google from "expo-auth-session/providers/google";
 import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore'; 
 import { auth, db } from './firebase'; 
@@ -24,18 +25,14 @@ function WelcomeScreen({ navigation }) {
   const [name, setName] = useState('');
   const [error, setError] = useState(null);
 
-  const discovery = AuthSession.useAutoDiscovery('https://accounts.google.com');
-
-  const [request, response, promptAsync] = AuthSession.useAuthRequest(
-    {
-      iosClientId: '1056919787212-hq11eh305niqp59930jhiugccb5uu0ck.apps.googleusercontent.com',
-      redirectUri: AuthSession.makeRedirectUri({ 
-        scheme: 'com.googleusercontent.apps.1056919787212-hq11eh305niqp59930jhiugccb5uu0ck' 
-      }),
-      scopes: ['openid', 'profile', 'email'],
-    },
-    discovery
-  );
+  const WEB_CLIENT_ID = '481724800294-ddn93373khp84q3b8oi3v9v09182dl17.apps.googleusercontent.com';
+  const IOS_CLIENT_ID = '481724800294-qf8tpubdlkthcu1dskrmv1ju0lg8vo9r.apps.googleusercontent.com';
+  const config = {
+    iosClientId: IOS_CLIENT_ID,
+    webClientId: WEB_CLIENT_ID,
+    scopes: ['openid', 'profile', 'email'],
+  };
+  const [request, response, promptAsync] = Google.useAuthRequest(config);
 
   useEffect(() => {
     const handleSignInResult = async () => {
@@ -48,24 +45,24 @@ function WelcomeScreen({ navigation }) {
         }
         const credential = GoogleAuthProvider.credential(authentication.idToken);
         try {
-            console.log("Attempting Firebase sign-in...");
-            const userCredential = await signInWithCredential(auth, credential);
-            const user = userCredential.user;
-            console.log('Firebase Sign-In Success:', user.uid);
+          console.log("Attempting Firebase sign-in...");
+          const userCredential = await signInWithCredential(auth, credential);
+          const user = userCredential.user;
+          console.log('Firebase Sign-In Success:', user.uid);
 
-            const userDocRef = doc(db, 'users', user.uid);
-            await setDoc(userDocRef, {
-              uid: user.uid,
-              email: user.email,
-              name: name.trim() || user.displayName?.split(' ')[0] || 'User', 
-              createdAt: new Date(),
-            }, { merge: true }); 
+          const userDocRef = doc(db, 'users', user.uid);
+          await setDoc(userDocRef, {
+            uid: user.uid,
+            email: user.email,
+            name: name.trim() || user.displayName?.split(' ')[0] || 'User', 
+            createdAt: new Date(),
+          }, { merge: true }); 
 
-            console.log('User data saved to Firestore for:', user.uid);
+          console.log('User data saved to Firestore for:', user.uid);
         } catch (firebaseError) {
-            console.error('Firebase Sign-In Error:', firebaseError);
-            Alert.alert('Sign In Error', `Failed to sign in with Firebase: ${firebaseError.message}`);
-            setError(`Firebase error: ${firebaseError.message}`);
+          console.error('Firebase Sign-In Error:', firebaseError);
+          Alert.alert('Sign In Error', `Failed to sign in with Firebase: ${firebaseError.message}`);
+          setError(`Firebase error: ${firebaseError.message}`);
         }
       } else if (response?.type === 'error') {
           console.error('Google Sign-In Error:', response.error);
