@@ -7,13 +7,13 @@ import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 // Your web app's Firebase configuration
 // *** IMPORTANT: Make sure these are your ACTUAL credentials ***
 const firebaseConfig = {
-  apiKey: "AIzaSyAMsnO2MlWFoXlcp6aNbqLwpcXQaIrIbq0",
+  apiKey: "AlzaSyAMsnO2MlWFoXIcp6aNbqLwpcXQaIrbq0", // Use your actual API key
   authDomain: "publicspeakingapp-9f1d4.firebaseapp.com",
   projectId: "publicspeakingapp-9f1d4",
-  storageBucket: "publicspeakingapp-9f1d4.firebasestorage.app",
-  messagingSenderId: "481724800294",
-  appId: "1:481724800294:web:896b7d7b9311da0a4535e7",
-  measurementId: "G-TP2G7EPK8X"
+  storageBucket: "publicspeakingapp-9f1d4.appspot.com", // Default format, check your Firebase console
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // Add yours from Firebase console
+  appId: "YOUR_APP_ID", // Add yours from Firebase console
+  measurementId: "YOUR_MEASUREMENT_ID" // Optional: Add yours from Firebase console
 };
 
 // Initialize Firebase
