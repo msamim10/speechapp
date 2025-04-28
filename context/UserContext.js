@@ -1,6 +1,9 @@
 import React, { createContext, useState, useEffect, useCallback, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native'; // Import Platform
+import { Platform } from 'react-native';
+import { auth, db } from '../firebase';
+import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
+import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 // Storage Keys
 const USERNAME_KEY = '@userProfile_username';
@@ -29,81 +32,114 @@ const isYesterday = (d1, d2) => {
 
 // Create the context
 const UserContext = createContext({
+  user: null,
   username: DEFAULT_USERNAME,
-  avatarUri: null, // Initialize avatarUri state
-  avatarSource: DEFAULT_AVATAR, // Provide default source initially
-  currentStreak: 0, // Add streak
-  lastPracticedTimestamp: null, // Add timestamp
+  avatarUri: null,
+  avatarSource: DEFAULT_AVATAR,
+  currentStreak: 0,
+  lastPracticedTimestamp: null,
   isLoading: true,
-  updateUsername: async (newUsername) => {}, // Placeholder async function
-  updateAvatarUri: async (newUri) => {}, // Placeholder for avatar update
-  recordPracticeSession: async () => {}, // Add practice recording function
+  updateUsername: async (newUsername) => {
+    console.log("📝 UserContext: Default updateUsername called");
+  },
+  updateAvatarUri: async (newUri) => {},
+  recordPracticeSession: async () => {},
+  signOut: async () => {},
 });
 
 // Create the provider component
 export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [username, setUsername] = useState(DEFAULT_USERNAME);
-  const [avatarUri, setAvatarUri] = useState(null); // State for avatar URI
+  const [avatarUri, setAvatarUri] = useState(null);
   const [currentStreak, setCurrentStreak] = useState(0);
   const [lastPracticedTimestamp, setLastPracticedTimestamp] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load user data from storage on mount
+  // Listen for Firebase auth state changes
   useEffect(() => {
-    const loadUserData = async () => {
-      setIsLoading(true);
-      try {
-        const storedUsername = await AsyncStorage.getItem(USERNAME_KEY);
-        const storedAvatarUri = await AsyncStorage.getItem(AVATAR_URI_KEY);
-        const storedLastPracticed = await AsyncStorage.getItem(LAST_PRACTICED_KEY);
-        const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
-
-        setUsername(storedUsername !== null ? storedUsername : DEFAULT_USERNAME);
-        setAvatarUri(storedAvatarUri); // Can be null if not set
-
-        // Calculate initial streak based on stored data
-        const lastPracticedDate = storedLastPracticed ? new Date(parseInt(storedLastPracticed, 10)) : null;
-        const savedStreak = storedStreak ? parseInt(storedStreak, 10) : 0;
-        let initialStreak = 0;
-
-        if (lastPracticedDate) {
-            const now = new Date();
-            if (isSameDay(lastPracticedDate, now) || isYesterday(lastPracticedDate, now)) {
-                initialStreak = savedStreak;
-            } // else: streak broken, defaults to 0
-            setLastPracticedTimestamp(lastPracticedDate.getTime()); // Store timestamp number
-        }
-        setCurrentStreak(initialStreak);
-
-      } catch (e) {
-        console.error('Failed to load user data from storage.', e);
+    console.log("🔄 UserContext: Setting up auth state listener");
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("🔄 UserContext: Auth state changed, user:", user ? user.uid : "null");
+      setUser(user);
+      if (user) {
+        console.log("🔄 UserContext: User is signed in, loading data");
+        loadUserData();
+      } else {
+        console.log("🔄 UserContext: User is signed out, resetting to defaults");
         setUsername(DEFAULT_USERNAME);
         setAvatarUri(null);
         setCurrentStreak(0);
         setLastPracticedTimestamp(null);
-      } finally {
         setIsLoading(false);
       }
-    };
+    });
 
-    loadUserData();
+    return () => {
+      console.log("🔄 UserContext: Cleaning up auth state listener");
+      unsubscribe();
+    };
   }, []);
+
+  // Load user data from storage
+  const loadUserData = async () => {
+    console.log("📥 UserContext: Starting to load user data");
+    setIsLoading(true);
+    try {
+      const storedUsername = await AsyncStorage.getItem(USERNAME_KEY);
+      console.log("📥 UserContext: Loaded stored username:", storedUsername);
+      
+      const storedAvatarUri = await AsyncStorage.getItem(AVATAR_URI_KEY);
+      const storedLastPracticed = await AsyncStorage.getItem(LAST_PRACTICED_KEY);
+      const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+
+      setUsername(storedUsername !== null ? storedUsername : DEFAULT_USERNAME);
+      setAvatarUri(storedAvatarUri);
+
+      if (storedLastPracticed) {
+        const lastPracticedDate = new Date(parseInt(storedLastPracticed, 10));
+        const savedStreak = storedStreak ? parseInt(storedStreak, 10) : 0;
+        let initialStreak = 0;
+
+        const now = new Date();
+        if (isSameDay(lastPracticedDate, now) || isYesterday(lastPracticedDate, now)) {
+          initialStreak = savedStreak;
+        }
+        setLastPracticedTimestamp(lastPracticedDate.getTime());
+        setCurrentStreak(initialStreak);
+      }
+    } catch (e) {
+      console.error("❌ UserContext: Failed to load user data:", e);
+      setUsername(DEFAULT_USERNAME);
+      setAvatarUri(null);
+      setCurrentStreak(0);
+      setLastPracticedTimestamp(null);
+    } finally {
+      console.log("✅ UserContext: Finished loading user data");
+      setIsLoading(false);
+    }
+  };
 
   // Function to update username and save to storage
   const updateUsername = useCallback(async (newUsername) => {
+    console.log("📝 UserContext: Attempting to update username to:", newUsername);
     const trimmedUsername = newUsername.trim();
     if (trimmedUsername === '') {
-      console.warn('Attempted to save empty username.');
-      // Optionally, provide feedback to the user via Alert or state
-      return; // Prevent saving empty string
+      console.warn("⚠️ UserContext: Attempted to save empty username");
+      return;
     }
     try {
+      console.log("📝 UserContext: Saving username to AsyncStorage");
       await AsyncStorage.setItem(USERNAME_KEY, trimmedUsername);
-      setUsername(trimmedUsername); // Update state after successful save
-      console.log('Username saved successfully:', trimmedUsername);
+      console.log("📝 UserContext: Updating username state");
+      setUsername(trimmedUsername);
+      console.log("✅ UserContext: Username updated successfully:", trimmedUsername);
+      
+      // Force a re-render by updating the state
+      setUser(prevUser => ({ ...prevUser }));
     } catch (e) {
-      console.error('Failed to save username to storage.', e);
-      // Optionally, provide feedback to the user
+      console.error("❌ UserContext: Failed to save username:", e);
+      throw e;
     }
   }, []);
 
@@ -113,12 +149,9 @@ export const UserProvider = ({ children }) => {
       if (newUri) {
         await AsyncStorage.setItem(AVATAR_URI_KEY, newUri);
         setAvatarUri(newUri);
-        console.log('Avatar URI saved successfully:', newUri);
       } else {
-        // Handle case where user might want to remove avatar
         await AsyncStorage.removeItem(AVATAR_URI_KEY);
         setAvatarUri(null);
-        console.log('Avatar URI removed.');
       }
     } catch (e) {
       console.error('Failed to save avatar URI to storage.', e);
@@ -129,37 +162,53 @@ export const UserProvider = ({ children }) => {
   const recordPracticeSession = useCallback(async () => {
     const now = new Date();
     const nowTimestamp = now.getTime();
-    let newStreak = 1; // Default for first practice or broken streak
+    let newStreak = 1;
 
     if (lastPracticedTimestamp) {
       const lastPracticeDate = new Date(lastPracticedTimestamp);
       if (isSameDay(lastPracticeDate, now)) {
-        // Already practiced today, streak doesn't change
         newStreak = currentStreak;
-        console.log("Practice recorded today already, streak remains:", newStreak);
       } else if (isYesterday(lastPracticeDate, now)) {
-        // Practiced yesterday, increment streak
         newStreak = currentStreak + 1;
-        console.log("Practiced yesterday, incrementing streak to:", newStreak);
-      } // Else: Gap > 1 day, streak resets to 1 (default)
-      else {
-        console.log("Practice gap detected, resetting streak to 1.");
       }
     }
-     else {
-        console.log("First practice recorded, setting streak to 1.");
-     }
 
     try {
       await AsyncStorage.setItem(LAST_PRACTICED_KEY, nowTimestamp.toString());
       await AsyncStorage.setItem(STREAK_KEY, newStreak.toString());
       setLastPracticedTimestamp(nowTimestamp);
       setCurrentStreak(newStreak);
-      console.log('Practice session recorded. Timestamp:', nowTimestamp, 'New Streak:', newStreak);
     } catch (e) {
       console.error('Failed to save practice session data', e);
     }
   }, [lastPracticedTimestamp, currentStreak]);
+
+  // Function to sign out user
+  const signOut = useCallback(async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        // Update last logout time in Firestore
+        const userDocRef = doc(db, 'users', user.uid);
+        await updateDoc(userDocRef, {
+          lastLogoutAt: serverTimestamp(),
+          isActive: false
+        });
+      }
+      
+      await firebaseSignOut(auth);
+      // Clear local storage
+      await AsyncStorage.multiRemove([USERNAME_KEY, AVATAR_URI_KEY, LAST_PRACTICED_KEY, STREAK_KEY]);
+      // Reset state
+      setUsername(DEFAULT_USERNAME);
+      setAvatarUri(null);
+      setCurrentStreak(0);
+      setLastPracticedTimestamp(null);
+    } catch (e) {
+      console.error("❌ UserContext: Failed to sign out:", e);
+      throw e;
+    }
+  }, []);
 
   // Determine the source for the Image component
   // If avatarUri exists, use it, otherwise use the default placeholder
@@ -167,15 +216,17 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{
-        username,
-        avatarUri,
-        avatarSource,
-        currentStreak,
-        lastPracticedTimestamp,
-        isLoading,
-        updateUsername,
-        updateAvatarUri,
-        recordPracticeSession
+      user,
+      username,
+      avatarUri,
+      avatarSource,
+      currentStreak,
+      lastPracticedTimestamp,
+      isLoading,
+      updateUsername,
+      updateAvatarUri,
+      recordPracticeSession,
+      signOut
     }}>
       {children}
     </UserContext.Provider>
@@ -184,5 +235,9 @@ export const UserProvider = ({ children }) => {
 
 // Custom hook to use the UserContext
 export const useUser = () => {
-  return useContext(UserContext);
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+  return context;
 }; 

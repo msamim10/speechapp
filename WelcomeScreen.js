@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -9,58 +9,206 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore'; 
-import { auth, db } from './firebase'; 
-import colors from './constants/colors'; 
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { auth, db } from './firebase';
+import colors from './constants/colors';
+import { useUser } from './context/UserContext';
 
-function WelcomeScreen({ navigation }) { 
+function WelcomeScreen({ navigation }) {
   const [name, setName] = useState('');
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const { user: currentUser, loading: userLoading, updateUsername } = useUser();
+  const mountedRef = useRef(true);
 
+  console.log("🚀 WelcomeScreen: Component mounted");
+  console.log("👤 WelcomeScreen: Current user state:", currentUser ? currentUser.uid : "null");
+  console.log("⏳ WelcomeScreen: Loading state:", userLoading);
+
+  // Cleanup on unmount
   useEffect(() => {
-    GoogleSignin.configure({
-      iosClientId: '1056919787212-hq11eh305niqp59930jhiugccb5uu0ck.apps.googleusercontent.com',
-    });
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
 
+  // Initialize Google Sign-In
+  useEffect(() => {
+    console.log("🔄 WelcomeScreen: Initializing Google Sign-In");
+    const initialize = async () => {
+      if (!mountedRef.current) return;
+      
+      try {
+        await GoogleSignin.configure({
+          iosClientId: '1056919787212-hq11eh305niqp59930jhiugccb5uu0ck.apps.googleusercontent.com',
+          scopes: ['profile', 'email', 'openid']
+        });
+        if (mountedRef.current) {
+          console.log("✅ WelcomeScreen: Google Sign-In configured successfully");
+          setIsInitialized(true);
+        }
+      } catch (error) {
+        if (mountedRef.current) {
+          console.error("❌ WelcomeScreen: Google Sign-In configuration failed:", error);
+          setError("Failed to initialize Google Sign-In. Please try again later.");
+        }
+      }
+    };
+
+    initialize();
+  }, []);
+
+  // Redirect if user is already signed in
+  useEffect(() => {
+    if (!mountedRef.current) return;
+    
+    console.log("🔄 WelcomeScreen: Checking user state for redirection");
+    if (currentUser && !userLoading) {
+      console.log("🔄 WelcomeScreen: User is signed in, redirecting to Home");
+      navigation.replace('Home');
+    }
+  }, [currentUser, userLoading, navigation]);
+
   const handleGoogleSignIn = async () => {
+    if (!mountedRef.current) return;
+    
+    console.log("🔄 WelcomeScreen: Starting Google Sign-In process");
+    
+    if (!isInitialized) {
+      console.warn("⚠️ WelcomeScreen: Google Sign-In not initialized");
+      Alert.alert('Initialization Error', 'Google Sign-In is not ready yet. Please try again in a moment.');
+      return;
+    }
+
     const trimmedName = name.trim();
     if (trimmedName === '') {
+      console.warn("⚠️ WelcomeScreen: Empty name provided");
       Alert.alert('Name Required', 'Please enter your name before signing in.');
       return;
     }
+
     setError(null);
+    setIsLoading(true);
 
     try {
+      // First, try to update the username
+      console.log("📝 WelcomeScreen: Attempting to update username to:", trimmedName);
+      try {
+        await updateUsername(trimmedName);
+        if (mountedRef.current) {
+          console.log("✅ WelcomeScreen: Username updated successfully in context");
+        }
+      } catch (usernameError) {
+        console.error("❌ WelcomeScreen: Failed to update username:", usernameError);
+        throw new Error('Failed to save username. Please try again.');
+      }
+
+      // Wait a moment to ensure context updates are processed
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      console.log("🔄 WelcomeScreen: Starting Google Sign-In");
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      const response = await GoogleSignin.signIn();
+      console.log("✅ WelcomeScreen: Google Sign-In response received:", response);
       
-      if (!userInfo.idToken) {
+      const { idToken } = response?.data;
+      if (!idToken) {
+        console.error("❌ WelcomeScreen: No ID token in response");
         throw new Error('No ID token present');
       }
 
-      const credential = GoogleAuthProvider.credential(userInfo.idToken);
+      console.log("🔄 WelcomeScreen: Creating Firebase credential");
+      const credential = GoogleAuthProvider.credential(idToken);
       const userCredential = await signInWithCredential(auth, credential);
       const user = userCredential.user;
+      console.log("✅ WelcomeScreen: Firebase authentication successful:", user.uid);
 
-      const userDocRef = doc(db, 'users', user.uid);
-      await setDoc(userDocRef, {
-        uid: user.uid,
-        email: user.email,
-        name: name.trim() || user.displayName?.split(' ')[0] || 'User',
-        createdAt: new Date(),
-      }, { merge: true });
+      // Add retry logic for Firestore write
+      let retryCount = 0;
+      const maxRetries = 3;
+      
+      while (retryCount < maxRetries) {
+        try {
+          console.log(`🔄 WelcomeScreen: Attempting Firestore write (attempt ${retryCount + 1})`);
+          const userDocRef = doc(db, 'users', user.uid);
+          const now = new Date();
+          
+          const userDoc = await getDoc(userDocRef);
+          const existingData = userDoc.exists() ? userDoc.data() : {};
+          
+          const userData = {
+            uid: user.uid,
+            email: user.email,
+            name: trimmedName || user.displayName?.split(' ')[0] || 'User',
+            photoURL: user.photoURL || null,
+            createdAt: existingData.createdAt || now,
+            lastLoginAt: now,
+            loginCount: (existingData.loginCount || 0) + 1,
+            loginHistory: [
+              ...(existingData.loginHistory || []),
+              {
+                timestamp: now,
+                deviceInfo: {
+                  platform: Platform.OS,
+                  version: Platform.Version,
+                }
+              }
+            ].slice(-10),
+            updatedAt: now,
+            provider: 'google',
+            isActive: true
+          };
 
-      console.log('User signed in successfully:', user.uid);
+          await setDoc(userDocRef, userData, { merge: true });
+          console.log("✅ WelcomeScreen: User data saved to Firestore successfully");
+          break;
+        } catch (firestoreError) {
+          retryCount++;
+          console.warn(`⚠️ WelcomeScreen: Firestore write attempt ${retryCount} failed:`, firestoreError);
+          if (retryCount === maxRetries) {
+            throw new Error('Failed to save user data after multiple attempts');
+          }
+          await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 1000));
+        }
+      }
+
+      // Wait a moment to ensure context updates are processed
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      if (mountedRef.current) {
+        console.log("✅ WelcomeScreen: Sign-in process completed successfully");
+        // Navigate to Home screen
+        navigation.replace('Home');
+      }
     } catch (error) {
-      console.error('Google Sign-In Error:', error);
-      Alert.alert('Sign In Error', error.message);
-      setError(error.message);
+      if (mountedRef.current) {
+        console.error("❌ WelcomeScreen: Sign-in error:", error);
+        Alert.alert('Sign In Error', error.message);
+        setError(error.message);
+      }
+    } finally {
+      if (mountedRef.current) {
+        console.log("🏁 WelcomeScreen: Sign-in process finished");
+        setIsLoading(false);
+      }
     }
   };
+
+  if (!isInitialized || userLoading) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color={colors.primaryDark} />
+          <Text style={styles.loadingText}>Initializing...</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -82,12 +230,16 @@ function WelcomeScreen({ navigation }) {
             returnKeyType="done"
           />
 
-          <TouchableOpacity 
-            style={[styles.continueButton, !name.trim() && styles.disabledButton]} 
-            onPress={handleGoogleSignIn} 
-            disabled={!name.trim()} 
+          <TouchableOpacity
+            style={[styles.continueButton, (!name.trim() || isLoading) && styles.disabledButton]}
+            onPress={handleGoogleSignIn}
+            disabled={!name.trim() || isLoading}
           >
-            <Text style={styles.continueButtonText}>Sign in with Google</Text>
+            {isLoading ? (
+              <ActivityIndicator color={colors.textLight} />
+            ) : (
+              <Text style={styles.continueButtonText}>Sign in with Google</Text>
+            )}
           </TouchableOpacity>
 
           {error && (
@@ -139,13 +291,13 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
   },
   continueButton: {
-    backgroundColor: colors.primaryDark, 
+    backgroundColor: colors.primaryDark,
     paddingVertical: 15,
     paddingHorizontal: 20,
-    borderRadius: 25, 
+    borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%', 
+    width: '100%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -153,7 +305,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   disabledButton: {
-    backgroundColor: colors.borderLight, 
+    backgroundColor: colors.shadowColor,
     elevation: 0,
     shadowOpacity: 0,
   },
@@ -164,9 +316,14 @@ const styles = StyleSheet.create({
   },
   errorText: {
     marginTop: 15,
-    color: colors.error, 
+    color: colors.error,
     fontSize: 14,
     textAlign: 'center',
+  },
+  loadingText: {
+    marginTop: 10,
+    color: colors.textSecondary,
+    fontSize: 16,
   }
 });
 

@@ -9,6 +9,7 @@ import { Text, StyleSheet, View, ActivityIndicator } from 'react-native';
 import { categoryImageSources, defaultImages, preloadImages } from './constants/imageUtils';
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { UserProvider } from './context/UserContext';
 
 import WelcomeScreen from './WelcomeScreen'; 
 import HomeScreen from './HomeScreen'; 
@@ -132,9 +133,11 @@ function App() {
   }
 
   return (
-    <NavigationContainer>
-      {user ? <MainStack /> : <AuthStack />} 
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        {user ? <MainStack /> : <AuthStack />} 
+      </NavigationContainer>
+    </UserProvider>
   );
 }
 
