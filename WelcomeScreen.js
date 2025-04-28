@@ -9,84 +9,57 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
-  Button, 
 } from 'react-native';
-import * as WebBrowser from 'expo-web-browser';
-// import * as AuthSession from 'expo-auth-session'; 
-import * as Google from "expo-auth-session/providers/google";
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore'; 
+import { doc, setDoc } from 'firebase/firestore'; 
 import { auth, db } from './firebase'; 
 import colors from './constants/colors'; 
-
-WebBrowser.maybeCompleteAuthSession();
 
 function WelcomeScreen({ navigation }) { 
   const [name, setName] = useState('');
   const [error, setError] = useState(null);
 
-  const WEB_CLIENT_ID = '481724800294-ddn93373khp84q3b8oi3v9v09182dl17.apps.googleusercontent.com';
-  const IOS_CLIENT_ID = '481724800294-qf8tpubdlkthcu1dskrmv1ju0lg8vo9r.apps.googleusercontent.com';
-  const config = {
-    iosClientId: IOS_CLIENT_ID,
-    webClientId: WEB_CLIENT_ID,
-    scopes: ['openid', 'profile', 'email'],
-  };
-  const [request, response, promptAsync] = Google.useAuthRequest(config);
-
   useEffect(() => {
-    const handleSignInResult = async () => {
-      if (response?.type === 'success') {
-        const { authentication } = response;
-        if (!authentication || !authentication.idToken) {
-            Alert.alert('Sign In Failed', 'Could not get ID token from Google.');
-            setError('Authentication failed: Missing ID token.');
-            return;
-        }
-        const credential = GoogleAuthProvider.credential(authentication.idToken);
-        try {
-          console.log("Attempting Firebase sign-in...");
-          const userCredential = await signInWithCredential(auth, credential);
-          const user = userCredential.user;
-          console.log('Firebase Sign-In Success:', user.uid);
+    GoogleSignin.configure({
+      iosClientId: '1056919787212-hq11eh305niqp59930jhiugccb5uu0ck.apps.googleusercontent.com',
+    });
+  }, []);
 
-          const userDocRef = doc(db, 'users', user.uid);
-          await setDoc(userDocRef, {
-            uid: user.uid,
-            email: user.email,
-            name: name.trim() || user.displayName?.split(' ')[0] || 'User', 
-            createdAt: new Date(),
-          }, { merge: true }); 
-
-          console.log('User data saved to Firestore for:', user.uid);
-        } catch (firebaseError) {
-          console.error('Firebase Sign-In Error:', firebaseError);
-          Alert.alert('Sign In Error', `Failed to sign in with Firebase: ${firebaseError.message}`);
-          setError(`Firebase error: ${firebaseError.message}`);
-        }
-      } else if (response?.type === 'error') {
-          console.error('Google Sign-In Error:', response.error);
-          Alert.alert('Sign In Error', `Google Sign-In failed: ${response.error?.message || 'Unknown error'}`);
-          setError(`Google error: ${response.error?.message}`);
-      } else if (response?.type === 'cancel') {
-          console.log('Google Sign-In Cancelled');
-      }
-    };
-
-    if (response) {
-        handleSignInResult();
-    }
-  }, [response]); 
-
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     const trimmedName = name.trim();
     if (trimmedName === '') {
       Alert.alert('Name Required', 'Please enter your name before signing in.');
       return;
     }
-    setError(null); 
-    console.log('Prompting Google Sign-In...');
-    promptAsync();
+    setError(null);
+
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      
+      if (!userInfo.idToken) {
+        throw new Error('No ID token present');
+      }
+
+      const credential = GoogleAuthProvider.credential(userInfo.idToken);
+      const userCredential = await signInWithCredential(auth, credential);
+      const user = userCredential.user;
+
+      const userDocRef = doc(db, 'users', user.uid);
+      await setDoc(userDocRef, {
+        uid: user.uid,
+        email: user.email,
+        name: name.trim() || user.displayName?.split(' ')[0] || 'User',
+        createdAt: new Date(),
+      }, { merge: true });
+
+      console.log('User signed in successfully:', user.uid);
+    } catch (error) {
+      console.error('Google Sign-In Error:', error);
+      Alert.alert('Sign In Error', error.message);
+      setError(error.message);
+    }
   };
 
   return (
