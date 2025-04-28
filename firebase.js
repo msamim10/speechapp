@@ -17,7 +17,14 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+  console.log("Firebase app initialized successfully");
+} catch (error) {
+  console.error("Firebase initialization error:", error);
+  throw error;
+}
 
 // Initialize Firebase Auth with persistence
 let auth;
@@ -25,15 +32,23 @@ try {
   auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
   });
-  console.log("Firebase Auth initialized successfully.");
+  console.log("Firebase Auth initialized successfully");
 } catch (error) {
   console.error("Firebase Auth initialization error:", error);
-  // Fallback or handle error appropriately
-  auth = getAuth(app); // Basic initialization if persistence fails
+  auth = getAuth(app); // Fallback to basic initialization
 }
 
-// Initialize Firestore
-const db = getFirestore(app);
-console.log("Firestore initialized.");
+// Initialize Firestore with offline persistence
+let db;
+try {
+  db = getFirestore(app);
+  console.log("Firestore initialized successfully");
+  
+  // For React Native, persistence is enabled by default
+  // No need to call enablePersistence()
+} catch (error) {
+  console.error("Firestore initialization error:", error);
+  throw error;
+}
 
 export { auth, db };

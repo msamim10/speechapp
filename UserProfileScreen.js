@@ -11,105 +11,62 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
-// Remove direct AsyncStorage import if no longer needed directly here
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useUser } from './context/UserContext'; // Import the custom hook
-import * as ImagePicker from 'expo-image-picker'; // Import ImagePicker
-import Ionicons from '@expo/vector-icons/Ionicons'; // Import Ionicons for save button
-import colors from './constants/colors'; // Import colors for styling
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import { useUser } from './context/UserContext';
+import * as ImagePicker from 'expo-image-picker';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import colors from './constants/colors';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Remove the key definition if using context's key
-// const USERNAME_KEY = '@userProfile_username';
-
-// --- Date Formatting Helper ---
-// const formatTimestamp = (timestamp) => {
-//   if (!timestamp) return 'Never';
-//   const date = new Date(timestamp);
-//   const now = new Date();
-//
-//   // Simple relative dates
-//   if (isSameDay(date, now)) {
-//     return `Today at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
-//   }
-//   const yesterday = new Date(now);
-//   yesterday.setDate(now.getDate() - 1);
-//   if (isSameDay(date, yesterday)) {
-//     return `Yesterday at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
-//   }
-//
-//   // Default date format for older dates
-//   return date.toLocaleDateString([], {
-//     year: 'numeric', month: 'short', day: 'numeric'
-//   });
-// };
-//
-// // Re-add isSameDay here as it's used in formatTimestamp
-// const isSameDay = (d1, d2) => {
-//   return d1.getFullYear() === d2.getFullYear() &&
-//          d1.getMonth() === d2.getMonth() &&
-//          d1.getDate() === d2.getDate();
-// };
-// --- End Date Formatting ---
+const LOGOUT_TIME_KEY = '@userProfile_lastLogoutTime';
 
 function UserProfileScreen() {
-  const navigation = useNavigation(); // Get navigation object
-  // Get data and functions from context
+  const navigation = useNavigation();
   const {
     username: currentUsername,
-    avatarSource, // Get the resolved image source
-    // currentStreak,
-    // lastPracticedTimestamp,
+    avatarSource,
     isLoading: isContextLoading,
     updateUsername,
-    updateAvatarUri, // Get the update function
+    updateAvatarUri,
+    signOut,
   } = useUser();
 
-  // Local state for the input field only
   const [editingUsername, setEditingUsername] = useState('');
 
-  // Initialize local editing state when context data loads or changes
   useEffect(() => {
     if (!isContextLoading) {
       setEditingUsername(currentUsername);
     }
   }, [currentUsername, isContextLoading]);
 
-  // --- Image Picker Logic --- //
   const pickImage = async () => {
-    // Request permissions first
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
       Alert.alert('Permission Required', 'Sorry, we need camera roll permissions to make this work!');
       return;
     }
 
-    // Launch image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true, // Allow basic editing (crop/rotate)
-      aspect: [1, 1], // Force square aspect ratio
-      quality: 0.5, // Reduce quality slightly for storage/performance
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.5,
     });
 
     console.log(result);
 
     if (!result.canceled) {
-      // Update the avatar URI in the context
       await updateAvatarUri(result.assets[0].uri);
       Alert.alert('Success', 'Avatar updated!');
     }
   };
-  // --- End Image Picker Logic --- //
 
-  // Save username using the context's update function
   const handleSaveUsername = async () => {
     if (editingUsername.trim() === '') {
       Alert.alert('Invalid Input', 'Username cannot be empty.');
       return;
     }
     if (editingUsername.trim() === currentUsername) {
-      // Optional: Don't show success if username hasn't changed
       return;
     }
     try {
@@ -121,12 +78,20 @@ function UserProfileScreen() {
     }
   };
 
-  // Add Back Handler
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigation.navigate('Welcome');
+    } catch (e) {
+      console.error('Failed to logout:', e);
+      Alert.alert('Error', 'Failed to logout. Please try again.');
+    }
+  };
+
   const handleGoBack = () => {
     navigation.goBack();
   };
 
-  // Display loading indicator based on context loading state
   if (isContextLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -140,12 +105,10 @@ function UserProfileScreen() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      {/* Add Back Button */}
       <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
         <Ionicons name="arrow-back" size={28} color={colors.primaryDark} />
       </TouchableOpacity>
 
-      {/* Avatar Display and Selection */}
       <TouchableOpacity onPress={pickImage} style={styles.avatarTouchable}>
         <Image source={avatarSource} style={styles.avatar} />
         <View style={styles.editIconContainer}>
@@ -153,12 +116,10 @@ function UserProfileScreen() {
         </View>
       </TouchableOpacity>
 
-      {/* Username Display */}
       <View style={styles.usernameSection}>
           <Text style={styles.usernameDisplay}>{currentUsername}</Text>
       </View>
 
-      {/* Username Edit Section */}
       <View style={styles.fieldContainer}>
         <View style={styles.inputRow}>
             <TextInput
@@ -176,7 +137,14 @@ function UserProfileScreen() {
         </View>
       </View>
 
-      {/* Spacer to push content */}
+      <TouchableOpacity 
+        onPress={handleLogout} 
+        style={styles.logoutButton}
+      >
+        <Ionicons name="log-out-outline" size={24} color={colors.error} />
+        <Text style={styles.logoutText}>Logout</Text>
+      </TouchableOpacity>
+
       <View style={{ flex: 1 }} />
     </KeyboardAvoidingView>
   );
@@ -194,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundLight,
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 80, // Increased paddingTop to make space for back button
+    paddingTop: 80,
   },
   avatarTouchable: {
     alignItems: 'center',
@@ -210,16 +178,16 @@ const styles = StyleSheet.create({
   },
   editIconContainer: {
     position: 'absolute',
-    bottom: 0, // Adjusted position slightly
-    right: 0, // Adjusted position slightly
+    bottom: 0,
+    right: 0,
     backgroundColor: colors.primaryDark,
     borderRadius: 15,
     padding: 5,
-    borderWidth: 2, // Add border to make it pop
-    borderColor: colors.backgroundLight, // Match background
+    borderWidth: 2,
+    borderColor: colors.backgroundLight,
   },
   usernameSection: {
-      marginBottom: 15, // Reduced margin before stats
+      marginBottom: 15,
       alignItems: 'center',
   },
   usernameDisplay: {
@@ -253,10 +221,29 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 55, // Adjust as needed for status bar height
+    top: 55,
     left: 20,
     zIndex: 10,
     padding: 8,
+  },
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.backgroundLight,
+    borderWidth: 1,
+    borderColor: colors.error,
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    marginTop: 20,
+    width: '100%',
+  },
+  logoutText: {
+    color: colors.error,
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 8,
   },
 });
 
