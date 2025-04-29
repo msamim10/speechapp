@@ -103,23 +103,6 @@ export const promptsData = [
       borderRadius: 10,
     }
   },
-  // {
-  //   id: 'prompt6',
-  //   title: 'Military Speech',
-  //   category: 'Public Speech',
-  //   image: require('../assets/prompt-backgrounds/military.png'),
-  //   text: `Attention on deck!\n\nToday, we gather to honor the brave men and women who have served our nation with distinction. Each of you represents the finest traditions of military service: courage, honor, and commitment.\n\nYour training has prepared you for this moment. You've learned to work as a team, to think under pressure, and to put the mission first. These skills will serve you well in the challenges ahead.\n\nRemember that leadership is not about rank or position - it's about character and action. Lead by example, take care of your fellow service members, and never forget the values that brought you here.\n\nAs you move forward in your military careers, know that you are part of something greater than yourself. Your service matters. Your sacrifice matters. And your dedication to duty inspires those who will follow in your footsteps.\n\nDismissed!`,
-  //   layout: {
-  //     position: 'absolute',
-  //     width: '95%',
-  //     height: '35%',
-  //     top: '57%',
-  //     left: '2.5%',
-  //     backgroundColor: 'transparent',
-  //     overflow: 'hidden',
-  //     borderRadius: 10,
-  //   }
-  // },
   {
     id: 'prompt7',
     title: 'Wedding Speech',
@@ -191,89 +174,84 @@ export const promptsData = [
       borderRadius: 10,
     }
   },
-  {
-    id: 'prompt11',
-    title: 'Orchestra Conductor Speech',
-    category: 'Public Speech',
-    image: require('../assets/prompt-backgrounds/orchestra.png'),
-    text: `Good evening, ladies and gentlemen, and welcome to this evening's performance.\n\nTonight, we have the privilege of presenting a program that spans centuries of musical excellence. We begin with Beethoven's Symphony No. 5, a masterpiece that revolutionized classical music with its iconic four-note motif. Written during the Napoleonic Wars, this symphony captures the essence of struggle and triumph, with its dramatic interplay between the string and woodwind sections creating a powerful emotional journey.\n\nFollowing this, we'll present Tchaikovsky's "Swan Lake Suite," showcasing the full range of our orchestra's capabilities. From the delicate whispers of the strings in the "Dance of the Swans" to the powerful exclamations of the brass in the "Waltz," this piece demonstrates the orchestra's ability to paint vivid musical landscapes that tell a story without words.\n\nI'd like to take a moment to acknowledge the incredible dedication of our musicians. Their countless hours of rehearsal and unwavering commitment to excellence make these performances possible. Each member of this orchestra brings their unique voice to create something truly greater than the sum of its parts.\n\nAs we begin, I invite you to close your eyes, open your hearts, and let the music transport you. Let the familiar strains of Beethoven's Fifth Symphony remind you of music's power to transcend time and speak directly to the soul. Thank you for joining us on this musical journey.`,
-    layout: {
-      position: 'absolute',
-      width: '55%',
-      height: '32%',
-      top: '50%',
-      left: '16%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  {
-    id: 'prompt12',
-    title: 'Shark Tank Pitch',
-    category: 'Public Speech',
-    image: require('../assets/prompt-backgrounds/shark-tank.png'),
-    text: `Good evening Sharks, I'm here today seeking $500,000 for 10% equity in my company, SmartShelf.\n\nSmartShelf is an AI-powered smart storage system that automatically organizes and tracks your belongings. Using computer vision and RFID technology, it knows exactly what you have, where it is, and when you last used it.\n\nHere's why this is a game-changer: The average person spends 2.5 hours per week looking for lost items, costing businesses $2.7 billion annually in lost productivity. SmartShelf solves this problem with our patent-pending technology.\n\nOur current traction: We've secured $250,000 in pre-orders from 500 early adopters, and we have letters of intent from three major office supply chains. Our manufacturing costs are $199 per unit, and we'll retail at $499, giving us a 60% gross margin.\n\nThe investment will be used for: 40% manufacturing scale-up, 30% marketing, 20% R&D, and 10% operations. With your expertise and network, we project $5 million in revenue by year two.\n\nWhat makes us different? Unlike other smart storage solutions, SmartShelf requires no manual input - it learns and organizes automatically. Plus, our AI gets smarter over time, learning your usage patterns.\n\nSharks, this is your chance to get in on the ground floor of the next big thing in smart home and office organization. Who's ready to make a deal?`,
-    layout: {
-      position: 'absolute',
-      width: '70%',
-      height: '38%',
-      top: '50%',
-      left: '15%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
+  // --- End Public Speech Prompts ---
 
   // --- Practice Fundamentals Prompts ---
   {
     id: 'fundamentals1',
-    title: 'Focusing on Clarity and Articulation',
+    title: 'Placeholder Fundamental 1', 
     category: 'Practice Fundamentals',
-    image: require('../assets/Practicefundamentalpics/mdk.png'),
-    text: `Welcome to your practice space. Clarity is the cornerstone of effective communication. Think about how you pronounce each word. Are you articulating clearly, ensuring every syllable is distinct? Avoid mumbling or rushing; focus on crisp consonants and clear vowel sounds. Record yourself reading this aloud and listen back – identify any words or phrases that sound unclear.
-
-Practice enunciating challenging words or tongue twisters slowly at first, then gradually increase your speed while maintaining precision. Pay attention to the muscles in your mouth and jaw; conscious control improves articulation. Clear speech ensures your message is not just heard, but understood effortlessly by your audience.`,
-    layout: { // Adjust layout percentages based on image!
-      position: 'absolute',
-      width: '60%',
-      height: '35%',
-      top: '50%',
-      left: '20%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  {
-    id: 'fundamentals2',
-    title: 'Mastering Vocal Variety',
-    category: 'Practice Fundamentals',
-    image: require('../assets/Practicefundamentalpics/er3.png'),
-    text: `Think of your voice as an instrument. Vocal variety – changes in pitch, pace, volume, and tone – keeps your audience engaged and adds emotional depth to your words. A monotone delivery can make even the most interesting content sound dull. Experiment with delivering the same sentence in different ways: excited, serious, questioning, informative.
-
-Practice emphasizing key words to highlight important points. Vary your pace – speak more slowly for emphasis or complex ideas, and pick up the pace for excitement or transitions. Use volume changes strategically; a lower volume can draw listeners in, while a higher volume can convey passion. Consciously practicing these variations will make your delivery dynamic and compelling.`,
-    layout: { // Adjust layout percentages based on image!
+    image: require('../assets/Practicefundamentalpics/34f.png'),
+    text: `Placeholder text for fundamental 1.`, 
+    layout: { 
       position: 'absolute',
       width: '60%',
       height: '40%',
-      top: '35%',
+      top: '40%',
       left: '20%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
       borderRadius: 10,
-    }
+    } // Copied layout from fundamentals5
+  },
+  {
+    id: 'fundamentals2',
+    title: 'Placeholder Fundamental 2', 
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/4mf.png'),
+    text: `Placeholder text for fundamental 2.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    } 
   },
   {
     id: 'fundamentals3',
-    title: 'Improving Body Language and Posture',
+    title: 'Placeholder Fundamental 3', 
     category: 'Practice Fundamentals',
-    image: require('../assets/Practicefundamentalpics/4mf.png'),
-    text: `Your body speaks volumes even before you utter a word. Confident posture – standing tall, shoulders back, head held high – conveys authority and self-assurance. Avoid slouching or fidgeting, as these can signal nervousness or lack of interest. Practice standing in front of a mirror or recording yourself to observe your natural posture and identify areas for improvement.
-
-Use gestures purposefully to enhance your message, not distract from it. Let your hands move naturally to emphasize points, but avoid repetitive or meaningless movements. Maintain open body language; avoid crossing your arms, which can appear defensive. Consistent practice of positive body language will make it feel natural and significantly boost your perceived confidence.`,
-    layout: { // Adjust layout percentages based on image!
+    image: require('../assets/Practicefundamentalpics/er3.png'),
+    text: `Placeholder text for fundamental 3.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    } 
+  },
+  {
+    id: 'fundamentals4',
+    title: 'Placeholder Fundamental 4', 
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/mdk.png'),
+    text: `Placeholder text for fundamental 4.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    } 
+  },
+  {
+    id: 'fundamentals5',
+    title: 'Practicing Eye Contact',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 28, 2025, 11_49_54 PM.png'),
+    text: `Effective eye contact is crucial for connecting with your audience, conveying confidence, and building trust. It transforms a monologue into a conversation. Avoid common pitfalls like staring intensely at one person (making them uncomfortable), scanning the room too rapidly (appearing nervous or disengaged), or looking only at your notes or the back wall. Instead, practice making genuine, deliberate eye contact with different individuals or small sections of your imaginary audience. Aim to hold contact for about 3-5 seconds per person or section – long enough to establish a connection and acknowledge them, but not so long it becomes awkward. Think of it as having a series of brief, individual conversations across the room. While the teleprompter is a useful guide, make a conscious effort to look up frequently and engage directly with your audience. Record yourself: analyze where your eyes naturally go. Are you mostly looking down, or are you actively connecting with different parts of the room? Practice will make this feel more natural.`, 
+    layout: { 
       position: 'absolute',
       width: '60%',
       height: '40%',
@@ -285,14 +263,148 @@ Use gestures purposefully to enhance your message, not distract from it. Let you
     }
   },
   {
-    id: 'fundamentals4',
-    title: 'Perfecting Pace and Timing',
+    id: 'fundamentals6',
+    title: 'Using Gestures Effectively',
     category: 'Practice Fundamentals',
-    image: require('../assets/Practicefundamentalpics/34f.png'),
-    text: `The speed at which you speak dramatically affects how your audience receives your message. Speaking too quickly can make you hard to follow, while speaking too slowly might cause listeners to lose interest. Finding the right pace involves matching your delivery speed to the complexity of the content and the needs of your audience. Practice varying your pace intentionally.
-
-Timing also involves the effective use of pauses. Pauses can be used to emphasize a point, allow the audience to absorb information, create suspense, or signal a transition. Avoid filling pauses with filler words like "um" or "uh." Instead, embrace silence as a powerful communication tool. Practice delivering sentences with deliberate pauses to feel their impact.`,
-    layout: { // Adjust layout percentages based on image!
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 28, 2025, 11_54_41 PM.png'),
+    text: `Gestures should enhance and emphasize your message, adding visual interest and energy without becoming a distraction. The goal is natural, purposeful movement. Avoid common habits like keeping hands rigidly locked in pockets or behind your back, or nervous fidgeting (playing with pens, adjusting clothes). Practice incorporating a variety of gestures. Use open-palm gestures to appear welcoming and inclusive. Use hand movements to illustrate points – showing size, direction, steps in a process, or comparisons. Employ stronger, more definitive gestures to emphasize key takeaways. Record yourself to assess your natural tendencies. Do your gestures look authentic or rehearsed and stiff? Are they varied, or do you repeat the same motion? Effective gestures typically originate from the shoulders, involving the entire arm, rather than just small wrist movements. Ensure your gestures align with the energy and content of your message – bigger gestures for excitement, smaller ones for calmer points.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals7',
+    title: 'Managing Filler Words',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_01_19 AM.png'),
+    text: `Filler words – those unconscious sounds and phrases like "um," "uh," "like," "so," "actually," and "you know" – can significantly undermine your credibility and distract your listeners from your core message. The crucial first step is developing awareness. Record yourself speaking naturally or practicing this very text. Listen back specifically, perhaps even tallying each instance of a filler word. You might be surprised! Once aware, you can actively work to replace them. The most effective replacement is often a purposeful pause. When you feel the urge to use a filler while searching for the next word or thought, train yourself to simply pause briefly instead. A short silence is far more professional and powerful than an "um." Additionally, consciously slowing down your overall speaking pace slightly can help, giving your brain more time to formulate thoughts and reducing the perceived need for fillers. Consistent practice in low-stakes situations is key to breaking the habit and replacing fillers with confident pauses.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals8',
+    title: 'Practicing Vocal Projection',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_04_47 AM.png'),
+    text: `Effective vocal projection ensures that everyone in your audience, even those in the back row, can hear you clearly and comfortably without you needing to shout or strain your voice. It's about utilizing proper breath support and resonance, not simply increasing volume from the throat. Practice breathing deeply from your diaphragm – feel your stomach expand as you inhale. Stand tall with good posture, as this opens up your airways. As you exhale and speak, focus on sending your voice forward, aiming for a point beyond your audience. Imagine your voice filling the entire space. Experiment with speaking the same phrase at different projection levels – conversational, slightly elevated for a small group, and fully projected for a large room. Record yourself from a distance or have someone listen from the back to gauge clarity and volume. Ensure your voice maintains energy and doesn't trail off at the end of sentences. Strong projection conveys confidence and authority.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals9',
+    title: 'Improving Speech Structure',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_06_20 AM.png'),
+    text: `A logically structured speech acts like a roadmap for your audience, making your message easier to follow, understand, and remember. Practice consciously organizing your content. Every effective speech typically needs: 1) A compelling opening that grabs attention, introduces the topic, and previews the main points. 2) A well-organized body where each main point is presented clearly, supported by evidence, examples, or stories, and logically connected to the next. 3) A memorable closing that summarizes the key takeaways, reinforces the main message, and provides a clear call to action or concluding thought. Practice outlining your speeches beforehand. Pay attention to transitions – use signposting words and phrases (e.g., "First, let's consider...", "Another important aspect is...", "In conclusion...") to clearly signal shifts between sections and ideas. Read this text aloud – can you identify the distinct parts? Does the argument flow logically? Mastering structure provides clarity for both you and your audience.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals10',
+    title: 'Practicing Tone Modulation',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_08_41 AM.png'),
+    text: `Your tone of voice conveys your attitude, emotions, and level of conviction about the topic, often more powerfully than the words themselves. Is your intended tone engaging, informative, serious, enthusiastic, persuasive, or empathetic? Practice deliberate tone modulation. Read the same sentence or paragraph aloud multiple times, consciously adopting a different tone each time (e.g., excited, then concerned, then objective). Observe how the perceived meaning and impact change significantly. Critically, ensure your tone authentically matches your message content. Delivering exciting news in a flat, monotone voice, or discussing a sensitive topic with inappropriate levity, will confuse or alienate your audience. Record yourself speaking. Does your tone sound genuine and varied? Does it accurately reflect the nuances of your content? Does it help maintain listener interest? Mastering tone allows you to connect emotionally and intellectually with your listeners.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals11',
+    title: 'Working on Facial Expressions',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_11_38 AM.png'),
+    text: `Your face is a primary tool for nonverbal communication, conveying emotion and reinforcing your verbal message. Aim for facial expressions that are congruent with your words and tone. A genuine smile can convey warmth, build rapport, and signal positivity. A more serious or focused expression can emphasize importance or gravity. Be mindful of avoiding a completely blank, static expression (poker face) or expressions that signal nervousness (like excessive frowning or a tense jaw). Practice delivering key lines while looking in a mirror or, even better, recording yourself. Observe your natural expressions. Are you inadvertently sending unintended signals? Are your expressions authentic and varied? Ensure your face actively participates in telling your story, reflecting the appropriate emotion and intent behind your words. This congruence helps the audience connect with you and believe your message more deeply.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals12',
+    title: 'Practicing Pauses for Impact',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_14_24 AM.png'),
+    text: `Strategic silence, or the effective use of pauses, is one of the most potent yet underutilized tools in public speaking. Pauses serve multiple crucial functions: they give the audience essential time to process information, especially complex ideas; they create emphasis when placed just before or after a key point; they can build suspense or anticipation; and they clearly signal transitions between different sections or ideas. Don't fear brief moments of silence – they demonstrate control and thoughtfulness. Practice reading this text aloud, intentionally inserting brief pauses (1-2 seconds) at natural thought breaks, after important sentences, or before revealing a significant idea. Notice how these pauses change the rhythm, add weight to certain words, and improve overall clarity. Record yourself. Are your pauses deliberate and confident, or do they sound like hesitant searching for words? Are you rushing through sentences without allowing breathing room? Learn to wield silence strategically to make your speaking more dynamic, engaging, and impactful.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals13',
+    title: 'Enhancing Word Emphasis',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_18_14 AM.png'),
+    text: `In any sentence, certain words carry more weight and meaning than others. Learning to emphasize these key words effectively helps guide your audience's focus, clarifies your meaning, and makes your delivery more engaging and memorable. Practice identifying the core message in each sentence you speak. Which words are essential to conveying that message? Practice reading sentences aloud multiple times, consciously stressing different words each time, and observe how the meaning and implication shift dramatically. For example, contrast: "*We* need to finish this report today" versus "We need to finish *this* report today" versus "We need to finish this report *today*." Use subtle changes in pitch (higher or lower), volume (louder), or even slightly slowing down on the emphasized word. Avoid over-emphasizing every other word, which sounds unnatural, but ensure your truly key points and contrastive ideas stand out clearly through deliberate vocal stress.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '40%',
+      top: '40%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'fundamentals14',
+    title: 'Building Confidence Through Practice',
+    category: 'Practice Fundamentals',
+    image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_23_50 AM.png'),
+    text: `Genuine speaking confidence rarely appears magically; it's typically the result of thorough preparation and consistent, deliberate practice. The more familiar and comfortable you become with your material and your delivery mechanics, the more confident you will naturally feel and appear to your audience. Use tools like this app regularly to rehearse – don't just skim your notes silently. Practice speaking aloud, ideally simulating the conditions as much as possible (e.g., standing up). Focus your practice sessions; perhaps work on one specific fundamental skill (like reducing filler words or improving vocal variety) each time. Record yourself and review it constructively. Don't aim for unattainable perfection, but identify specific areas for improvement. Before important speaking engagements, visualize yourself delivering successfully. Recall past instances where you spoke well. Each dedicated practice session builds crucial muscle memory, reduces performance anxiety, and incrementally strengthens the foundation for a confident, controlled, and effective delivery.`, 
+    layout: { 
       position: 'absolute',
       width: '60%',
       height: '40%',
@@ -304,115 +416,6 @@ Timing also involves the effective use of pauses. Pauses can be used to emphasiz
     }
   },
   // --- End Practice Fundamentals Prompts ---
-
-  // --- Presentation Prompts (Placeholders - Customize details below!) ---
-  // Remember to:
-  // 1. Ensure image files are in 'assets/presentationpics/'
-  // 2. Update `require('../assets/presentationpics/...')` with actual filenames.
-  // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
-  {
-    id: 'presentation1',
-    title: 'Boardroom Update',
-    category: 'Presentations',
-    image: require('../assets/presentationpics/pic23.png'),
-    text: `Good morning, board members and distinguished guests.\n\nI'm pleased to present our quarterly performance update. Let's start with the key metrics: Revenue has grown by 15% year-over-year, with our new product line contributing 35% of total sales.\n\nOur market share in the Asia-Pacific region has increased to 22%, exceeding our target of 20%. However, we're seeing some challenges in the European market that we need to address.\n\nLooking at our operational efficiency, we've reduced production costs by 8% through our automation initiatives. Our customer satisfaction scores remain strong at 4.7 out of 5.\n\nFor the next quarter, we're focusing on three strategic priorities: expanding our digital transformation efforts, launching our sustainability initiative, and strengthening our supply chain resilience.\n\nI'll now open the floor for questions and discussion.`, 
-    layout: { // Adjust layout percentages based on image!
-      position: 'absolute',
-      width: '50%',
-      height: '42%',
-      top: '49%',
-      left: '25%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  {
-    id: 'presentation2',
-    title: 'Conference Keynote Intro',
-    category: 'Presentations',
-    image: require('../assets/presentationpics/pic45.png'),
-    text: `Welcome to TechForward 2024!\n\nIt's an honor to stand before such an impressive gathering of innovators, thought leaders, and change-makers. Over the next three days, we'll explore how technology is reshaping our world in ways we could barely imagine just a few years ago.\n\nThis year's theme, "The Future of Human-Machine Collaboration," couldn't be more timely. We're at a pivotal moment where AI, quantum computing, and biotechnology are converging to create unprecedented opportunities.\n\nOur agenda is packed with insights from industry pioneers, hands-on workshops, and thought-provoking panel discussions. You'll hear from leaders who are pushing the boundaries of what's possible in healthcare, education, and sustainable development.\n\nBut before we dive in, I want to share a story that perfectly illustrates why we're here today. It's about how technology, when guided by human values, can transform lives in ways we never expected.\n\nLet's begin this journey together.`, 
-    layout: { // Adjust layout percentages based on image!
-      position: 'absolute',
-      width: '70%',
-      height: '48%',
-      top: '30%',
-      left: '15%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  {
-    id: 'presentation3',
-    title: 'Product Demo',
-    category: 'Presentations',
-    image: require('../assets/presentationpics/pic9.png'),
-    text: `Good afternoon everyone, and thank you for joining us for this exciting product demonstration.\n\nToday, I'm thrilled to introduce you to our latest innovation: the SmartHome Pro system. This isn't just another smart home device - it's a complete ecosystem that learns and adapts to your lifestyle.\n\nLet me show you how it works. With a simple voice command, you can control your entire home. Watch as the lights adjust automatically based on the time of day, the temperature optimizes for comfort, and your security system activates.\n\nWhat sets SmartHome Pro apart is its AI-powered personalization. It learns your routines, anticipates your needs, and even suggests energy-saving opportunities. The system can reduce your energy consumption by up to 30% while maintaining perfect comfort.\n\nBut don't just take my word for it. Let's see it in action with a live demonstration of its key features.\n\nAny questions before we begin?`, 
-    layout: { // Adjust layout percentages based on image!
-      position: 'absolute',
-      width: '60%',
-      height: '40%',
-      top: '50%',
-      left: '20%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  {
-    id: 'presentation4',
-    title: 'Team Update',
-    category: 'Presentations',
-    image: require('../assets/presentationpics/pic34.png'),
-    text: `Team, thank you for gathering for our weekly update.\n\nLet's start with our progress on the Q2 initiatives. The new client onboarding system is now 80% complete, and we're on track to launch next week. Great work from the development team on meeting the tight deadline.\n\nOur customer support metrics show a 15% improvement in response times, but we're still seeing some challenges with the new ticketing system. The support team will be running additional training sessions this week.\n\nFor upcoming projects, we have three major deadlines to focus on: the product launch on the 15th, the quarterly review on the 22nd, and the team offsite on the 29th. Let's make sure we're all aligned on these dates.\n\nI want to highlight some outstanding work from Sarah's team, who completed their sprint two days early while maintaining excellent code quality.\n\nBefore we break, does anyone have updates or challenges they'd like to share?`, 
-    layout: { // Adjust layout percentages based on image!
-      position: 'absolute',
-      width: '55%',
-      height: '42%',
-      top: '48%',
-      left: '20%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  {
-    id: 'presentation5',
-    title: 'Informal Presentation',
-    category: 'Presentations',
-    image: require('../assets/presentationpics/pic2.png'),
-    text: `Hey everyone, thanks for coming to our casual catch-up today!\n\nI thought we'd do something a bit different this time - less formal, more interactive. We're all here because we share a passion for innovation and making a difference.\n\nLet me start by sharing a quick story about how our team's work is making an impact. Just last week, I got an email from a user who told us our product helped them start their own business. That's the kind of impact we're all working towards.\n\nI want this to be more of a conversation than a presentation. Feel free to jump in with questions or share your own experiences. We're all learning from each other here.\n\nBefore we dive into the details, who's had an interesting challenge or success they'd like to share?\n\nLet's make this session as valuable for you as possible.`, 
-    layout: { // Adjust layout percentages based on image!
-      position: 'absolute',
-      width: '60%',
-      height: '40%',
-      top: '54%',
-      left: '20%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  {
-    id: 'presentation6',
-    title: 'Workshop Facilitation',
-    category: 'Presentations',
-    image: require('../assets/presentationpics/pic1.png'),
-    text: `Welcome to our Design Thinking Workshop!\n\nToday, we're going to explore how to solve complex problems through creative collaboration. This is a hands-on session, so get ready to roll up your sleeves and dive in.\n\nWe'll be following a structured process: First, we'll empathize with our users. Then, we'll define the problem clearly. After that, we'll ideate solutions, create prototypes, and test our ideas.\n\nEach activity will take about 20 minutes, and we'll have short breaks in between. I encourage you to work with people you haven't collaborated with before - that's where the magic happens!\n\nRemember, there are no bad ideas in this phase. We're here to explore possibilities and build on each other's thoughts.\n\nLet's start with our first activity: the empathy mapping exercise.`, 
-    layout: { // Adjust layout percentages based on image!
-      position: 'absolute',
-      width: '48%',
-      height: '35%',
-      top: '52%',
-      left: '26%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10,
-    }
-  },
-  // --- End Presentation Prompts ---
 
   // --- Speech Prompts (Placeholders - Customize details below!) ---
   // Remember to:
@@ -524,13 +527,300 @@ Timing also involves the effective use of pauses. Pauses can be used to emphasiz
     text: `Good afternoon, and welcome to this historic announcement from NASA.\n\nToday, we stand on the brink of a new era in space exploration. After years of research and development, we are ready to announce our next major mission to Mars.\n\nThis mission represents a quantum leap in our understanding of the Red Planet. Our new rover, equipped with cutting-edge technology, will search for signs of ancient life and test technologies for future human exploration.\n\nWhat makes this mission unique is our partnership with international space agencies and private sector innovators. Together, we're pushing the boundaries of what's possible in space exploration.\n\nI want to take a moment to acknowledge the incredible team behind this mission. Their dedication and expertise have brought us to this moment.\n\nAs we prepare for launch next year, we invite the world to join us on this journey of discovery. This is not just NASA's mission - it's humanity's mission.`,
     layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
+  {
+    id: 'speech14',
+    title: 'Placeholder Speech 14', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_13_24 PM.png'),
+    text: `Placeholder text for speech 14. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech15',
+    title: 'Placeholder Speech 15', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_54_17 PM.png'),
+    text: `Placeholder text for speech 15. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech16',
+    title: 'Placeholder Speech 16', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_56_47 PM.png'),
+    text: `Placeholder text for speech 16. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech17',
+    title: 'Placeholder Speech 17', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_58_57 PM.png'),
+    text: `Placeholder text for speech 17. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech18',
+    title: 'Placeholder Speech 18', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_00_13 PM.png'),
+    text: `Placeholder text for speech 18. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech19',
+    title: 'Placeholder Speech 19', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_01_24 PM.png'),
+    text: `Placeholder text for speech 19. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech20',
+    title: 'Placeholder Speech 20', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_02_26 PM.png'),
+    text: `Placeholder text for speech 20. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech21',
+    title: 'Placeholder Speech 21', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_03_23 PM.png'),
+    text: `Placeholder text for speech 21. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech22',
+    title: 'Placeholder Speech 22', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_06_36 PM.png'),
+    text: `Placeholder text for speech 22. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech23',
+    title: 'Placeholder Speech 23', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_08_35 PM.png'),
+    text: `Placeholder text for speech 23. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech24',
+    title: 'Placeholder Speech 24', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_44_59 PM.png'),
+    text: `Placeholder text for speech 24. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech25',
+    title: 'Placeholder Speech 25', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_48_09 PM.png'),
+    text: `Placeholder text for speech 25. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech26',
+    title: 'Placeholder Speech 26', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_49_35 PM.png'),
+    text: `Placeholder text for speech 26. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech27',
+    title: 'Placeholder Speech 27', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_50_54 PM.png'),
+    text: `Placeholder text for speech 27. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'speech28',
+    title: 'Placeholder Speech 28', 
+    category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_54_57 PM.png'),
+    text: `Placeholder text for speech 28. This will be updated later with specific content related to a speech scenario.`, 
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
   // --- End Speech Prompts ---
 
+  // --- Presentation Prompts ---
+  {
+    id: 'presentation1',
+    title: 'Placeholder Presentation 1', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 08_15_15 PM.png'),
+    text: `Placeholder text for presentation 1.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } // Example layout
+  },
+  {
+    id: 'presentation2',
+    title: 'Placeholder Presentation 2', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_09_59 PM.png'),
+    text: `Placeholder text for presentation 2.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation3',
+    title: 'Placeholder Presentation 3', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_11_13 PM.png'),
+    text: `Placeholder text for presentation 3.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation4',
+    title: 'Placeholder Presentation 4', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_12_24 PM.png'),
+    text: `Placeholder text for presentation 4.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation5',
+    title: 'Placeholder Presentation 5', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_14_14 PM.png'),
+    text: `Placeholder text for presentation 5.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation6',
+    title: 'Placeholder Presentation 6', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_15_05 PM.png'),
+    text: `Placeholder text for presentation 6.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation7',
+    title: 'Placeholder Presentation 7', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_19_50 PM.png'),
+    text: `Placeholder text for presentation 7.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation8',
+    title: 'Placeholder Presentation 8', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_22_04 PM.png'),
+    text: `Placeholder text for presentation 8.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation9',
+    title: 'Placeholder Presentation 9', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_24_23 PM.png'),
+    text: `Placeholder text for presentation 9.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation10',
+    title: 'Placeholder Presentation 10', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 10_23_14 PM.png'),
+    text: `Placeholder text for presentation 10.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation11',
+    title: 'Placeholder Presentation 11', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_01_21 PM.png'),
+    text: `Placeholder text for presentation 11.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation12',
+    title: 'Placeholder Presentation 12', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_03_22 PM.png'),
+    text: `Placeholder text for presentation 12.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation13',
+    title: 'Placeholder Presentation 13', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_06_35 PM.png'),
+    text: `Placeholder text for presentation 13.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation14',
+    title: 'Placeholder Presentation 14', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_12_19 PM.png'),
+    text: `Placeholder text for presentation 14.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation15',
+    title: 'Placeholder Presentation 15', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_15_56 PM.png'),
+    text: `Placeholder text for presentation 15.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation16',
+    title: 'Placeholder Presentation 16', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic1.png'),
+    text: `Placeholder text for presentation 16.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation17',
+    title: 'Placeholder Presentation 17', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic2.png'),
+    text: `Placeholder text for presentation 17.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation18',
+    title: 'Placeholder Presentation 18', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic23.png'),
+    text: `Placeholder text for presentation 18.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation19',
+    title: 'Placeholder Presentation 19', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic34.png'),
+    text: `Placeholder text for presentation 19.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation20',
+    title: 'Placeholder Presentation 20', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic45.png'),
+    text: `Placeholder text for presentation 20.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  {
+    id: 'presentation21',
+    title: 'Placeholder Presentation 21', 
+    category: 'Presentations',
+    image: require('../assets/presentationpics/pic9.png'),
+    text: `Placeholder text for presentation 21.`, 
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, } 
+  },
+  // --- End Presentation Prompts ---
+
   // --- Interview Prompts (Placeholders - Customize details below!) ---
-  // Remember to:
-  // 1. Ensure image files are in 'assets/interviewpics/'
-  // 2. Update `require('../assets/interviewpics/...')` with actual filenames.
-  // 3. Customize placeholder `title`, `text`, and `layout` for each prompt.
   {
     id: 'interview1',
     title: 'Google Networking Interview', 
@@ -572,14 +862,6 @@ Timing also involves the effective use of pauses. Pauses can be used to emphasiz
     layout: { position: 'absolute', width: '60%', height: '38%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
   },
   {
-    id: 'interview6',
-    title: 'Interview with a Panel', 
-    category: 'Interviews',
-    image: require('../assets/interviewpics/pic3401.png'),
-    text: `[Question 1]\nHow do you handle multiple stakeholders in a project?\n\n[Answer]\nI maintain clear communication channels and regular updates for all stakeholders. I use project management tools to track progress and ensure everyone is aligned with project goals and timelines.\n\n[Question 2]\nHow do you make decisions under pressure?\n\n[Answer]\nI gather relevant information quickly, consult with key team members, and make decisions based on data and experience. I remain calm and focused, considering both short-term and long-term implications.\n\n[Question 3]\nHow do you handle constructive criticism?\n\n[Answer]\nI view feedback as an opportunity for growth. I listen actively, ask clarifying questions, and implement suggested improvements. I've found this approach has helped me develop both professionally and personally.`, 
-    layout: { position: 'absolute', width: '60%', height: '40%', top: '56%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  },
-  {
     id: 'interview7',
     title: 'One to One Interview', 
     category: 'Interviews',
@@ -609,6 +891,126 @@ Timing also involves the effective use of pauses. Pauses can be used to emphasiz
     category: 'Interviews',
     image: require('../assets/interviewpics/tv-news.png'),
     text: `[Question 1]\nHow do you prepare for a live interview?\n\n[Answer]\nI research the topic thoroughly, prepare key talking points, and practice my delivery. I also familiarize myself with the interviewer's style and prepare for potential follow-up questions.\n\n[Question 2]\nHow do you handle unexpected questions?\n\n[Answer]\nI stay composed and redirect to my key messages when appropriate. If I don't know an answer, I'm honest about it and offer to follow up with the information later.\n\n[Question 3]\nHow do you engage with the audience during a live interview?\n\n[Answer]\nI maintain eye contact, use clear and concise language, and incorporate relevant examples. I also pay attention to the interviewer's cues and adjust my responses accordingly.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview11',
+    title: 'Placeholder Interview 11', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_26_51 PM.png'),
+    text: `Placeholder text for interview 11.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview12',
+    title: 'Placeholder Interview 12', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_33_14 PM.png'),
+    text: `Placeholder text for interview 12.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview13',
+    title: 'Placeholder Interview 13', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_34_22 PM.png'),
+    text: `Placeholder text for interview 13.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview14',
+    title: 'Placeholder Interview 14', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_35_26 PM.png'),
+    text: `Placeholder text for interview 14.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview15',
+    title: 'Placeholder Interview 15', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_36_33 PM.png'),
+    text: `Placeholder text for interview 15.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview16',
+    title: 'Placeholder Interview 16', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_37_39 PM.png'),
+    text: `Placeholder text for interview 16.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview17',
+    title: 'Placeholder Interview 17', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_39_08 PM.png'),
+    text: `Placeholder text for interview 17.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview18',
+    title: 'Placeholder Interview 18', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_44_51 PM.png'),
+    text: `Placeholder text for interview 18.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview19',
+    title: 'Placeholder Interview 19', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_37_26 PM.png'),
+    text: `Placeholder text for interview 19.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview20',
+    title: 'Placeholder Interview 20', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_44_41 PM.png'),
+    text: `Placeholder text for interview 20.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview21',
+    title: 'Placeholder Interview 21', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_19_01 PM.png'),
+    text: `Placeholder text for interview 21.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview22',
+    title: 'Placeholder Interview 22', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_21_32 PM.png'),
+    text: `Placeholder text for interview 22.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview23',
+    title: 'Placeholder Interview 23', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_27_07 PM.png'),
+    text: `Placeholder text for interview 23.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview24',
+    title: 'Placeholder Interview 24', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_29_14 PM.png'),
+    text: `Placeholder text for interview 24.`, 
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview25',
+    title: 'Placeholder Interview 25', 
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_30_33 PM.png'),
+    text: `Placeholder text for interview 25.`, 
     layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   // --- End Interview Prompts ---
@@ -658,6 +1060,86 @@ Timing also involves the effective use of pauses. Pauses can be used to emphasiz
     text: `Welcome to our African Safari Park! Today, we'll be exploring the savanna habitat and its magnificent inhabitants.\n\nDuring our tour, you'll encounter:\n- Majestic lions in their pride\n- Graceful giraffes browsing the treetops\n- Playful zebras in their herds\n- Endangered white rhinos\n\nImportant guidelines:\n- Remain seated at all times\n- Keep windows closed\n- No feeding the animals\n- Listen for guide instructions\n\nLet's begin our journey into the wild!`, 
     layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
+  {
+    id: 'specific6',
+    title: 'Handling a Customer Complaint', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_46_10 PM.png'),
+    text: `Good morning. I understand you're unhappy with the product you received. Could you please tell me exactly what the issue is?\nOkay, I see. I sincerely apologize that the item didn't meet your expectations and for the frustration this has caused. Let me see how we can resolve this for you. Would you prefer a full refund, or would you like us to send a replacement immediately? We value your business and want to make this right.`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific7',
+    title: 'Giving Constructive Feedback to Peer', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_49_46 PM.png'),
+    text: `Hey Mark, do you have a few minutes to chat about the client presentation draft? Overall, the analysis section is really strong. One thing I noticed, however, is that the structure of the recommendations could perhaps be clearer. Maybe we could brainstorm ways to make the key takeaways stand out more? For example, we could use bullet points or a summary slide. What are your thoughts? I'm happy to help rework it if you like.`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific8',
+    title: 'Mediating a Disagreement Between Team Members', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_56_57 PM.png'),
+    text: `Okay, Sarah, Tom, I understand there's some disagreement about the best approach for the next phase of the project. Let's take a step back. Sarah, could you first explain your perspective and concerns? \n(Listen) \nOkay, thank you. Tom, now could you share your viewpoint and the reasoning behind your proposed method? \n(Listen) \nAlright, it sounds like both approaches have merits. Let's focus on the core objective here. How can we combine the strengths of both ideas or find a compromise that addresses both the timeline concerns and the scalability requirements?`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific9',
+    title: 'Explaining a Technical Issue to Non-Technical Manager', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_58_40 PM.png'),
+    text: `Hi Boss. Regarding the website slowdown yesterday, the root cause was an unexpected surge in traffic overwhelming one of our database servers. Think of it like too many cars trying to get onto a small highway entrance ramp at once – things got backed up. We've temporarily increased the server capacity, like opening more lanes on the ramp, which has resolved the immediate issue. We're now working on a long-term fix to better distribute traffic automatically to prevent this bottleneck in the future.`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific10',
+    title: 'Asking for a Raise or Promotion', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 10_01_12 PM.png'),
+    text: `Hi Sarah, thank you for taking the time to meet with me today. I wanted to discuss my career development here at the company. Over the past year, I feel I've consistently exceeded the expectations for my current role as Analyst. I've successfully taken on increased responsibilities, most notably leading the website redesign initiative start-to-finish. As you know, that project resulted in a 15% measured increase in user engagement and positive feedback from key stakeholders. Considering this track record and my contributions, alongside some research I've done on comparable roles in our industry, I believe my performance and responsibilities now strongly align with the Senior Analyst level. I'm very committed to my future here and eager to continue contributing at a higher level. Therefore, I would like to formally request consideration for a promotion to Senior Analyst and a corresponding salary adjustment that reflects the scope and impact of this level of work. I've prepared a document outlining my key achievements over the past year for your review.`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific11',
+    title: 'Declining an Unreasonable Request Politely', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 10_10_32 PM.png'),
+    text: `Hi Dave, thanks for reaching out and thinking of me for assistance with the urgent market analysis report – I appreciate you considering my expertise in that area. I've looked at the request and my current workload. Unfortunately, given my existing hard commitments to the Q3 financial reporting, which has a firm deadline this Friday, and the significant preparation required for the board presentation scheduled for next Tuesday, I realistically won't have the necessary bandwidth to dedicate to this new report and give it the thorough attention it deserves right now without significantly jeopardizing those critical existing priorities. It might be worth checking if Emily, who has related experience, might have more immediate availability? Alternatively, perhaps we could revisit this request after the board meeting concludes next week when my schedule clears up considerably?`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific12',
+    title: 'Delivering Bad News to a Client', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 10_12_11 PM.png'),
+    text: `Hi Mr. Harrison, thanks for taking my call. I'm calling to provide an important update regarding the progress on Project Alpha. While the team has been working diligently, we've encountered an unforeseen technical challenge specifically related to the complex integration with the third-party payment gateway system. We've been troubleshooting this extensively, but it's proving more complex than anticipated. As a result, we are now projecting a potential delay of approximately one week from the original go-live date we had discussed. I want to sincerely apologize for this unexpected development and any disruption this may cause to your plans. We've already allocated two additional senior engineers to focus exclusively on resolving this integration issue, and I want to assure you we're doing absolutely everything possible to minimize this delay and get back on track. I'd like to walk you through the specific technical details of the challenge and our detailed mitigation plan now, if you have a few minutes to discuss?`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific13',
+    title: 'Persuading Stakeholders to Adopt New Process', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 11_02_07 PM.png'),
+    text: `Thank you all for making the time to join this meeting today. The purpose of this session is to propose and discuss the adoption of a new automated testing process for our core software releases, specifically utilizing the Selenium framework integrated with our CI/CD pipeline. I understand that introducing new processes requires effort and adjustment, and I want to address potential concerns head-on. Based on extensive analysis and a successful pilot program run over the last sprint, implementing this automation could significantly reduce our manual regression testing time – estimates suggest by up to 30% per release cycle. More importantly, it allows us to catch critical integration bugs much earlier in the development process, ultimately leading to improved product quality, fewer post-release hotfixes, and faster delivery cycles. I've prepared a brief demonstration showcasing the framework in action, along with data from the pilot, a projected ROI calculation, a phased implementation plan, and details on training resources to address the initial learning curve. I strongly believe this strategic shift towards automation will substantially benefit our team's efficiency, reduce repetitive manual effort, and enhance the overall stability and reliability of our product in the long run. I'm keen to hear your feedback and answer any questions you may have.`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific14',
+    title: 'Apologizing for a Mistake', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 11_09_00 PM.png'),
+    text: `Hi Michael, I wanted to speak with you privately as soon as possible regarding the sales forecast report I submitted yesterday afternoon. I need to sincerely apologize – I discovered an error in one of the key calculations after I had sent it. Specifically, I inadvertently overlooked applying the regional adjustment factor during the final consolidation step. I take full responsibility for this oversight. I understand the importance of accuracy in these reports and deeply regret any confusion, incorrect assumptions, or inconvenience this may have caused before I could issue a correction. I have already fixed the report, meticulously triple-checked all figures and formulas this time, and the corrected version is now in your inbox with the specific change highlighted. To prevent this from happening again, I've already updated my standard reporting checklist to include an explicit peer-review step for all final forecast calculations before submission. Again, my sincere apologies for the error.`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific15',
+    title: 'Running a Quick Stand-up Meeting', 
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 11_11_46 PM.png'),
+    text: `Alright team, good morning everyone, thanks for joining! Let's kick off our daily stand-up for Tuesday, November 12th. As usual, we'll do a quick round-robin update from each person. Please stick to answering the three core questions clearly and concisely: Firstly, what did you accomplish yesterday that moved us closer to our sprint goal? Secondly, what is your primary focus or plan for today? And thirdly, and most importantly, are there any blockers, impediments, or dependencies hindering your progress that the team needs to be aware of or can help resolve? Remember, the goal is quick synchronization, so let's keep our updates brief – aiming for the whole meeting under 15 minutes. John, why don't you start us off today?`, 
+    layout: { position: 'absolute', width: '60%', height: '40%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
   // --- End Situational/Specific Prompts ---
 
   // --- Social & Casual Prompts (Placeholders - Customize details below!) ---
@@ -703,6 +1185,86 @@ Timing also involves the effective use of pauses. Pauses can be used to emphasiz
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic8203.png'),
     text: `What a beautiful day for a picnic in the park! I brought some sandwiches, fruit, and drinks for everyone.\n\nThere's a great spot over by the big oak tree with plenty of shade. We can set up our blankets there and enjoy the afternoon.\n\nAfter we eat, we could play some frisbee or maybe take a walk around the lake. I heard they just added some new walking trails that are really nice.\n\nDon't forget to bring your sunscreen - it's quite sunny today!`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social6',
+    title: 'Networking Event Small Talk', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 10_15_55 PM.png'),
+    text: `Hi there, this is quite an event, isn't it? The energy here is great. I'm Alex, working in marketing at Tech Solutions. What brings you to this particular event today? \n\nOh, that's interesting! I know a bit about Apex Innovations. It sounds like challenging but rewarding work. What kind of specific projects or initiatives are keeping you busy currently? \n\nThat sounds fascinating. It relates a bit to some market analysis I've been doing. Before I arrived, I was hoping to learn more about AI integration in customer service. Have you attended any sessions or talks that you found particularly insightful or useful so far?`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social7',
+    title: 'Catching Up With a Friend', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_14_10 PM.png'),
+    text: `Hey Sarah! It seriously feels like ages since we last properly caught up. How have things really been with you? Beyond the usual updates, what's new and genuinely exciting in your world these days? \n\nI saw on Instagram that you took that amazing trip to Italy last month. It looked absolutely incredible! You have to tell me more about it – what was the best part? The food looked divine. \n\nLife's been pretty busy with the new project at work for me. By the way, got any fun or relaxing plans lined up for the weekend, or just hoping to recharge?`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social8',
+    title: 'Meeting a Neighbor', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_20_29 PM.png'),
+    text: `Hi there! Sorry to bother you while you're gardening, but I realized we haven't officially met yet. I'm Ben, living just over at number 24. \n\nIt's nice to finally put a face to the name! How long have you been living in the neighborhood? We moved in about six months ago. It seems like a really friendly area, doesn't it? \n\nBy the way, have you had a chance to try that new bakery that opened up down on Maple Street? I keep meaning to check it out, heard their croissants are amazing.`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social9',
+    title: 'Casual Coffee Break Chat (Work)', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_25_30 PM.png'),
+    text: `Morning Lisa! Mind if I join you for this coffee break? Definitely need the caffeine boost before the day gets truly hectic. How's your week shaping up so far – surviving okay? \n\nAre you working on anything particularly interesting or challenging at the moment? I heard some buzz about the Project Phoenix deployment you're involved in – sounds like quite the undertaking with that tight deadline. \n\nOn a totally different note, did you happen to catch the basketball game last night? That final quarter was pretty wild, wasn't it?`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social10',
+    title: 'Joining a Group Conversation', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_29_49 PM.png'),
+    text: `Excuse me, hope you don't mind if I jump in for a moment? I couldn't help but overhear you discussing remote work policies, and it sounded really interesting. I'm David, by the way. \n\nIt actually reminds me of a similar situation I encountered at my previous company when we transitioned to a hybrid model. It makes me wonder... \n\nWhat are your general thoughts on maintaining team culture with remote teams? I'd be curious to hear your perspectives.`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social11',
+    title: 'Making Plans with Acquaintance', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_35_11 PM.png'),
+    text: `Hey Chloe, great seeing you again! It was really fun chatting with you back at the marketing conference last month. \n\nI know we briefly mentioned grabbing coffee sometime to talk more about content strategy. I was wondering if you might actually be free sometime next week to do that? Perhaps Tuesday or Thursday afternoon works? Or I'm flexible if another day is better. \n\nAlternatively, I saw that the local farmers market is happening on Saturday morning. If coffee doesn't work, maybe that would be of interest? No pressure either way, just thought I'd ask! Let me know what you think.`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social12',
+    title: 'Discussing Hobbies/Interests', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_37_48 PM.png'),
+    text: `So, shifting gears from project deadlines for a second, what kind of things do you enjoy doing when you actually have some free time? Any particular hobbies or interests you're passionate about? \n\nOh, really? You play the guitar? That's awesome! How did you first get into that? Is it something you've been doing for a long time? \n\nThat sounds great. For me, I'm really into hiking on the weekends. It's a great way to unwind and get outdoors. Have you ever tried any of the trails around here? Some are surprisingly challenging.`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social13',
+    title: 'Giving a Casual Compliment', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_40_32 PM.png'),
+    text: `Hey, excuse me, I just wanted to quickly say, I really admire your presentation style in that meeting earlier. You explained those complex ideas so clearly! \n\nYou make that look so effortless, any tips on how you developed that skill? \n\nSeriously though, I was genuinely impressed. Just wanted to mention it!`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social14',
+    title: 'Ending a Conversation Politely', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_47_47 PM.png'),
+    text: `Well, listen, it has been genuinely great chatting with you about the future of remote work and hearing your perspective, but I unfortunately need to grab another drink before the next session starts. \n\nThank you so much for the interesting conversation! It was a pleasure meeting you. Hopefully, our paths will cross again soon at another event perhaps. \n\nTake care and enjoy the rest of the conference!`, 
+    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
+  },
+  {
+    id: 'social15',
+    title: 'Reacting to Shared News (Good/Bad)', 
+    category: 'Social & Casual',
+    image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_52_54 PM.png'),
+    text: `(Reacting to good news): Wow, no way! That is absolutely fantastic news, Mark! Seriously, congratulations on the promotion, you must be absolutely thrilled! How did that all come about? You have to give me the details! \n\n(Reacting to bad news): Oh, Jane, I am so incredibly sorry to hear about your dog being sick. That sounds really rough and worrying. Thank you for sharing that with me. Please know I'm thinking of you both. Is there honestly anything at all I can do to help, even just listening or grabbing groceries? Please don't hesitate to reach out if you need anything or just want to talk more.`, 
     layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
   },
   // --- End Social & Casual Prompts ---
@@ -774,6 +1336,176 @@ Let's start by throwing out some initial concepts. Don't worry about feasibility
 
 Looking forward, let's discuss development goals for the upcoming year. Based on your interest in leadership, I recommend focusing on project management skills. We can explore opportunities for you to lead smaller initiatives or shadow senior project managers. Let's also set a specific goal around enhancing your presentation skills for client-facing meetings. What are your thoughts on these areas?`, // Updated text
     layout: { // Default layout - ADJUST AS NEEDED!
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual5',
+    title: 'Placeholder VC 5', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_19_40 AM.png'), 
+    text: `Placeholder text for virtual communication 5.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual6',
+    title: 'Placeholder VC 6', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_25_15 AM.png'), 
+    text: `Placeholder text for virtual communication 6.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual7',
+    title: 'Placeholder VC 7', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_28_35 AM.png'), 
+    text: `Placeholder text for virtual communication 7.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual8',
+    title: 'Placeholder VC 8', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_39_04 AM.png'), 
+    text: `Placeholder text for virtual communication 8.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual9',
+    title: 'Placeholder VC 9', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_42_17 AM.png'), 
+    text: `Placeholder text for virtual communication 9.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual10',
+    title: 'Placeholder VC 10', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_43_27 AM.png'), 
+    text: `Placeholder text for virtual communication 10.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual11',
+    title: 'Placeholder VC 11', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_50_06 AM.png'), 
+    text: `Placeholder text for virtual communication 11.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual12',
+    title: 'Placeholder VC 12', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_51_28 AM.png'), 
+    text: `Placeholder text for virtual communication 12.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+  {
+    id: 'virtual13',
+    title: 'Placeholder VC 13', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_59_30 AM.png'), 
+    text: `Placeholder text for virtual communication 13.`, 
+    layout: { 
+      position: 'absolute',
+      width: '60%',
+      height: '28%',
+      top: '60%',
+      left: '20%',
+      backgroundColor: 'transparent',
+      overflow: 'hidden',
+      borderRadius: 10,
+    }
+  },
+    {
+    id: 'virtual14',
+    title: 'Placeholder VC 14', 
+    category: 'Virtual Communication',
+    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 01_00_52 AM.png'), 
+    text: `Placeholder text for virtual communication 14.`, 
+    layout: { 
       position: 'absolute',
       width: '60%',
       height: '28%',
