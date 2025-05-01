@@ -1746,279 +1746,279 @@ export const promptsData = [
   // --- End Presentation Prompts ---
 
   // --- Interview Prompts (Placeholders - Customize details below!) ---
-  // {
-  //   id: 'interview1',
-  //   title: 'Google Networking Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/pic9300.png'),
-  //   text: `[Question 1]\nTell me about yourself and your background.\n\n[Answer]\nI am a software engineer with 5 years of experience in full-stack development. I specialize in building scalable web applications using React and Node.js. In my current role at XYZ Company, I led a team that improved application performance by 40%.\n\n[Question 2]\nWhat interests you about this position?\n\n[Answer]\nI'm particularly excited about this opportunity because of Google's innovative approach to technology and its commitment to solving complex problems. The role's emphasis on cloud architecture and AI integration aligns perfectly with my career goals.\n\n[Question 3]\nHow do you handle working in a team environment?\n\n[Answer]\nI believe in collaborative development and open communication. In my previous role, I regularly conducted code reviews and mentored junior developers, which helped improve our team's overall code quality by 30%.`,
-  //   layout: { position: 'absolute', width: '60%', height: '30%', top: '64%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '8deg' }] }
-  // },
-  // {
-  //   id: 'interview2',
-  //   title: 'TV Presenter Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/pic8025.png'),
-  //   text: `[Question 1]\nHow did you get started in broadcasting?\n\n[Answer]\nI began my career as a news reporter for a local station, where I developed my skills in live reporting and storytelling. My passion for connecting with audiences led me to pursue opportunities in television presenting.\n\n[Question 2]\nHow do you prepare for a live broadcast?\n\n[Answer]\nI follow a thorough preparation routine that includes researching the topic, practicing my delivery, and reviewing technical aspects. I also make sure to arrive early to check equipment and review the script with the production team.\n\n[Question 3]\nHow do you handle unexpected situations during live broadcasts?\n\n[Answer]\nI stay calm and maintain professionalism. For example, during a recent weather report, our teleprompter failed. I smoothly transitioned to ad-libbing while maintaining eye contact with the camera and delivering the information accurately.`,
-  //   layout: { position: 'absolute', width: '55%', height: '35%', top: '55%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '5deg' }] }
-  // },
-  // {
-  //   id: 'interview3',
-  //   title: 'Business Analyst Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/pic7800.png'),
-  //   text: `[Question 1]\nHow do you gather and analyze business requirements?\n\n[Answer]\nI use a combination of stakeholder interviews, workshops, and data analysis. For example, in my last project, I conducted 20 stakeholder interviews and analyzed 6 months of business data to identify key requirements.\n\n[Question 2]\nHow do you handle conflicting requirements from different stakeholders?\n\n[Answer]\nI facilitate discussions to understand the underlying business needs and propose solutions that address the core requirements. I document all perspectives and work with stakeholders to prioritize based on business value.\n\n[Question 3]\nCan you describe a challenging project you've worked on?\n\n[Answer]\nIn my previous role, I led a complex system integration project with multiple stakeholders. Despite initial resistance, I successfully managed to align all parties and delivered the project 2 weeks ahead of schedule.`,
-  //   layout: { position: 'absolute', width: '50%', height: '34%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
-  // },
-  // {
-  //   id: 'interview4',
-  //   title: 'Marketing Manager Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/01234.png'),
-  //   text: `[Question 1]\nHow do you develop a marketing strategy?\n\n[Answer]\nI start with thorough market research and competitor analysis. Then I define clear objectives, target audience, and key messages. I create a multi-channel approach that aligns with business goals and includes measurable KPIs.\n\n[Question 2]\nHow do you measure the success of a marketing campaign?\n\n[Answer]\nI track both quantitative metrics like conversion rates, ROI, and customer acquisition costs, as well as qualitative metrics like brand awareness and customer satisfaction. I use analytics tools to monitor performance in real-time.\n\n[Question 3]\nHow do you stay updated with marketing trends?\n\n[Answer]\nI regularly attend industry conferences, participate in webinars, and follow leading marketing publications. I also experiment with new tools and techniques in small-scale campaigns before implementing them company-wide.`,
-  //   layout: { position: 'absolute', width: '55%', height: '34%', top: '60%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  // },
-  // {
-  //   id: 'interview5',
-  //   title: 'News Reporter Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/pic3921.png'),
-  //   text: `[Question 1]\nHow do you verify the accuracy of your sources?\n\n[Answer]\nI cross-reference information with multiple reliable sources, verify credentials, and maintain a network of trusted contacts. I also fact-check all information before publication and follow up with additional verification when needed.\n\n[Question 2]\nHow do you handle breaking news situations?\n\n[Answer]\nI remain calm under pressure and focus on gathering accurate information quickly. I prioritize getting the facts right over being first to report, while maintaining professional standards and ethical guidelines.\n\n[Question 3]\nHow do you build relationships with sources?\n\n[Answer]\nI maintain regular contact with key sources, respect their time and confidentiality, and always follow through on commitments. I've built a strong network of reliable sources through consistent, professional interactions.`,
-  //   layout: { position: 'absolute', width: '60%', height: '38%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
-  // },
-  // {
-  //   id: 'interview7',
-  //   title: 'One to One Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/444.png'),
-  //   text: `[Question 1]\nWhat are your greatest strengths?\n\n[Answer]\nMy key strengths include problem-solving, effective communication, and leadership. For example, I led a team that improved system performance by 40% through innovative solutions and clear communication.\n\n[Question 2]\nWhere do you see yourself in five years?\n\n[Answer]\nI see myself in a leadership role, mentoring junior team members and leading complex projects. I plan to continue developing my technical expertise while growing my management skills.\n\n[Question 3]\nHow do you handle work-life balance?\n\n[Answer]\nI maintain a structured schedule and prioritize tasks effectively. I make time for both professional development and personal well-being, which helps me stay productive and motivated.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  // },
-  // {
-  //   id: 'interview8',
-  //   title: 'Final Interview with CEO',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ceo.png'),
-  //   text: `[Question 1]\nWhat is your vision for this role?\n\n[Answer]\nI envision driving innovation and growth while maintaining operational excellence. I plan to leverage my experience to implement strategic initiatives that align with the company's long-term goals.\n\n[Question 2]\nHow do you handle company-wide challenges?\n\n[Answer]\nI take a holistic approach, considering all stakeholders and potential impacts. I develop comprehensive solutions that address both immediate concerns and long-term strategic objectives.\n\n[Question 3]\nWhat value can you bring to our executive team?\n\n[Answer]\nI bring a unique combination of technical expertise and strategic thinking. My experience in leading successful transformations and building high-performing teams would complement the existing executive team's strengths.`,
-  //   layout: { position: 'absolute', width: '70%', height: '40%', top: '55%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  // },
-  // {
-  //   id: 'interview9',
-  //   title: 'Doctor Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/medical-officer.png'),
-  //   text: `[Question 1]\nHow do you handle difficult patient cases?\n\n[Answer]\nI approach each case methodically, gathering all relevant information and consulting with colleagues when needed. I maintain clear communication with patients and their families throughout the process.\n\n[Question 2]\nHow do you stay current with medical advancements?\n\n[Answer]\nI regularly attend medical conferences, participate in continuing education programs, and review current medical literature. I also collaborate with colleagues to share knowledge and best practices.\n\n[Question 3]\nHow do you handle ethical dilemmas in medicine?\n\n[Answer]\nI follow established ethical guidelines and consult with the hospital's ethics committee when needed. I prioritize patient well-being while considering all relevant factors in decision-making.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  // },
-  // {
-  //   id: 'interview10',
-  //   title: 'Live TV Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/tv-news.png'),
-  //   text: `[Question 1]\nHow do you prepare for a live interview?\n\n[Answer]\nI research the topic thoroughly, prepare key talking points, and practice my delivery. I also familiarize myself with the interviewer's style and prepare for potential follow-up questions.\n\n[Question 2]\nHow do you handle unexpected questions?\n\n[Answer]\nI stay composed and redirect to my key messages when appropriate. If I don't know an answer, I'm honest about it and offer to follow up with the information later.\n\n[Question 3]\nHow do you engage with the audience during a live interview?\n\n[Answer]\nI maintain eye contact, use clear and concise language, and incorporate relevant examples. I also pay attention to the interviewer's cues and adjust my responses accordingly.`,
-  //   layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  // },
-  // {
-  //   id: 'interview11',
-  //   title: 'Technical Panel Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_26_51 PM.png'),
-  //   text: `[Question 1]\nHow do you approach debugging a critical production issue?\n\n[Answer]\nI start by identifying the symptoms, isolating variables, and analyzing logs. Then I replicate the issue in a safe environment and apply fixes step-by-step while communicating progress with stakeholders.\n\n[Question 2]\nWhat’s your experience with system design interviews?\n\n[Answer]\nI’ve led and participated in many. I focus on clarity, scalability, and trade-offs, often using diagrams to visualize data flow and structure.\n\n[Question 3]\nHow do you give technical feedback?\n\n[Answer]\nI focus on clarity and intent, provide examples, and ensure my tone is constructive. I also encourage open dialogue to make it a two-way learning moment.`,
-  //   layout: { position: 'absolute', width: '60%', height: '15%', top: '80%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
-  // },
-  // {
-  //   id: 'interview12',
-  //   title: 'Hiring Committee Review',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_33_14 PM.png'),
-  //   text: `[Question 1]\nDescribe a time you had to disagree with a team decision.\n\n[Answer]\nI voiced my perspective respectfully, backed it with data, and remained open to feedback. Eventually, a compromise was reached, improving the outcome while maintaining harmony.\n\n[Question 2]\nHow do you measure the success of your projects?\n\n[Answer]\nI use KPIs aligned to business goals, such as user adoption, latency reduction, and delivery timelines. I also gather user feedback to evaluate qualitative impact.\n\n[Question 3]\nHow do you handle stakeholder misalignment?\n\n[Answer]\nI set up clear communication channels, clarify expectations early, and realign objectives through mutual understanding and data-driven discussions.`,
-  //   layout: { position: 'absolute', width: '70%', height: '40%', top: '56%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview13',
-  //   title: 'Coffee Chat Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_34_22 PM.png'),
-  //   text: `[Question 1]\nWhat kind of team environment helps you do your best work?\n\n[Answer]\nI thrive in a transparent, supportive, and feedback-driven environment where ideas are respected and teammates help each other grow.\n\n[Question 2]\nHow do you handle disagreements in informal settings?\n\n[Answer]\nI listen first, then respectfully offer my view. I avoid escalating tensions and look for common ground.\n\n[Question 3]\nWhat’s something fun or unexpected about you?\n\n[Answer]\nI used to run a travel blog and still love planning spontaneous weekend trips.`,
-  //   layout: { position: 'absolute', width: '65%', height: '38%', top: '48%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview14',
-  //   title: 'Whiteboard Coding Challenge',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_35_26 PM.png'),
-  //   text: `[Question 1]\nWalk us through your solution to this problem.\n\n[Answer]\nSure. I start by confirming requirements, outlining constraints, and sketching pseudocode. Then I break the logic into functions and walk through edge cases with test inputs.\n\n[Question 2]\nWhat do you prioritize during a technical assessment?\n\n[Answer]\nClarity, structure, and efficiency. I write clean code and explain trade-offs as I go, while being receptive to hints or feedback.\n\n[Question 3]\nHow do you manage your time during live challenges?\n\n[Answer]\nI allocate time upfront for planning and then track my progress against each part. If I get stuck, I quickly pivot or explain alternatives.`,
-  //   layout: { position: 'absolute', width: '70%', height: '40%', top: '45%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview15',
-  //   title: 'Behavioral Screening Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_36_33 PM.png'),
-  //   text: `[Question 1]\nTell me about a time you overcame a big challenge.\n\n[Answer]\nIn my previous role, a legacy system outage required urgent fixes. I led a task force, reverse-engineered undocumented modules, and restored operations in under 12 hours.\n\n[Question 2]\nHow do you stay motivated during repetitive tasks?\n\n[Answer]\nI set mini-goals, automate where possible, and reward small wins. I also reflect on the broader purpose behind the task.\n\n[Question 3]\nHow do you handle constructive criticism?\n\n[Answer]\nI treat it as a growth opportunity. I ask clarifying questions, apply feedback to future work, and thank the person for helping me improve.`,
-  //   layout: { position: 'absolute', width: '68%', height: '35%', top: '55%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview16',
-  //   title: 'HR Screening Round',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_37_39 PM.png'),
-  //   text: `[Question 1]\nWhy are you interested in this position?\n\n[Answer]\nThis role aligns with both my experience and long-term goals. I’m excited about the team’s vision and confident I can bring strong contributions from day one.\n\n[Question 2]\nWhat are your salary expectations?\n\n[Answer]\nI'm looking for a role that reflects my skills and market standards. I'm open to a fair discussion based on responsibilities and benefits.\n\n[Question 3]\nAre you interviewing elsewhere?\n\n[Answer]\nYes, I'm exploring a few opportunities, but this role is a top contender due to its mission and team culture.`,
-  //   layout: { position: 'absolute', width: '75%', height: '20%', top: '75%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
-  // },
-  // {
-  //   id: 'interview17',
-  //   title: 'Virtual Interview Setup',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_39_08 PM.png'),
-  //   text: `[Question 1]\nHow do you prepare for virtual interviews?\n\n[Answer]\nI test all tech ahead of time, ensure good lighting, and minimize distractions. I also keep backup devices nearby and notes visible but off-camera.\n\n[Question 2]\nWhat’s your experience working remotely?\n\n[Answer]\nI've led distributed teams across time zones, using tools like Slack and Zoom effectively. I prioritize async updates and make time for virtual rapport-building.\n\n[Question 3]\nAny tips for video interview etiquette?\n\n[Answer]\nYes — dress professionally, look at the camera to mimic eye contact, and smile. Use a neutral background and avoid interrupting; let your voice finish strong.`,
-  //   layout: { position: 'absolute', width: '70%', height: '40%', top: '52%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview18',
-  //   title: 'Recruiter Discussion at Career Fair',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_44_51 PM.png'),
-  //   text: `[Question 1]\nWhat brings you to this career fair?\n\n[Answer]\nI'm actively seeking a role that aligns with my experience and growth goals. Your company stood out to me because of its innovation and culture.\n\n[Question 2]\nWhat are you most proud of in your resume?\n\n[Answer]\nLeading a cloud migration that reduced hosting costs by 35% while improving system reliability. It was a cross-functional effort that I coordinated.\n\n[Question 3]\nHow soon are you available to start?\n\n[Answer]\nI’m available to start with a two-week notice. I'm committed to a smooth transition from my current responsibilities.`,
-  //   layout: { position: 'absolute', width: '70%', height: '32%', top: '62%', left: '13%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview19',
-  //   title: 'Product Manager Chat at Google Lounge',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_37_26 PM.png'),
-  //   text: `[Question 1]\nWhat’s your approach to product strategy?\n\n[Answer]\nI start with user insights and business objectives. I map needs to features, validate through feedback, and iterate quickly with measurable milestones.\n\n[Question 2]\nHow do you handle conflicting stakeholder priorities?\n\n[Answer]\nI align priorities to core goals, facilitate data-backed decisions, and ensure transparency through regular check-ins and roadmap visibility.\n\n[Question 3]\nHow do you ensure product quality?\n\n[Answer]\nI collaborate with QA and engineering early, define acceptance criteria, and use continuous feedback from real users to drive improvements.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '58%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '1deg' }] }
-  // },
-  // {
-  //   id: 'interview20',
-  //   title: 'Live TV Interview Set',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_44_41 PM.png'),
-  //   text: `[Question 1]\nHow do you stay composed on live TV?\n\n[Answer]\nPreparation is key. I rehearse thoroughly, focus on my breathing, and keep my core message front and center.\n\n[Question 2]\nWhat’s the biggest risk you’ve taken professionally?\n\n[Answer]\nLeaving a secure job to join a fast-moving startup. It paid off — I learned rapidly, wore many hats, and contributed to doubling our user base.\n\n[Question 3]\nHow do you prepare for tricky or controversial questions?\n\n[Answer]\nI study past interviews, understand the context, and script responses that stay true to my values without sounding rehearsed.`,
-  //   layout: { position: 'absolute', width: '70%', height: '40%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview21',
-  //   title: 'White House Policy Discussion',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_19_01 PM.png'),
-  //   text: `[Question 1]\nWhat measures do you propose to improve national security?\n\n[Answer]\nI propose strengthening intelligence sharing, modernizing infrastructure, and enhancing cybersecurity through public-private partnerships.\n\n[Question 2]\nHow will your policy support economic growth?\n\n[Answer]\nThrough targeted investments in innovation, infrastructure, and workforce training to stimulate job creation and competitiveness globally.\n\n[Question 3]\nWhat’s your strategy on international cooperation?\n\n[Answer]\nBuilding strong alliances, engaging in multilateral institutions, and leading by example on global challenges such as climate and trade.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview22',
-  //   title: 'Volunteer Program Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_27_07 PM.png'),
-  //   text: `[Question 1]\nWhy do you want to volunteer here?\n\n[Answer]\nI admire your organization's mission and believe my skills can meaningfully contribute to the community outreach and support programs.\n\n[Question 2]\nHave you volunteered before?\n\n[Answer]\nYes, extensively in local shelters and fundraising events, where I coordinated teams and organized activities.\n\n[Question 3]\nHow would you handle challenging situations during volunteering?\n\n[Answer]\nI remain calm, empathetic, and resourceful, focusing on effective communication and collaboration to resolve issues.`,
-  //   layout: { position: 'absolute', width: '68%', height: '38%', top: '57%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview23',
-  //   title: 'Academic Panel Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_21_32 PM.png'),
-  //   text: `[Question 1]\nHow do you manage classroom diversity?\n\n[Answer]\nBy fostering an inclusive environment, differentiating instruction, and respecting each student's unique perspectives and backgrounds.\n\n[Question 2]\nWhat innovative teaching methods do you use?\n\n[Answer]\nI integrate technology, collaborative projects, and real-world problem-solving to enhance student engagement and understanding.\n\n[Question 3]\nHow do you assess student progress?\n\n[Answer]\nThrough continuous formative assessments, feedback loops, and holistic evaluations including both academic performance and participation.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '56%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview24',
-  //   title: 'Factory Floor Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_29_14 PM.png'),
-  //   text: `[Question 1]\nWhat steps do you take to ensure production efficiency?\n\n[Answer]\nI follow standard operating procedures, conduct regular equipment checks, and proactively identify potential delays.\n\n[Question 2]\nDescribe your experience with machinery maintenance?\n\n[Answer]\nI routinely perform preventive maintenance, document all actions, and quickly address mechanical issues to minimize downtime.\n\n[Question 3]\nHow do you approach teamwork on the factory floor?\n\n[Answer]\nClear communication, shared goals, and mutual support ensure smooth operations and quick problem-solving.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '50%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
-  // },
-  // {
-  //   id: 'interview25',
-  //   title: 'Cafe Business Meeting',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_30_33 PM.png'),
-  //   text: `[Question 1]\nWhat are your key business priorities for this year?\n\n[Answer]\nExpanding market reach, enhancing customer experience, and optimizing operational efficiency through technology.\n\n[Question 2]\nHow do you maintain client relationships?\n\n[Answer]\nRegular communication, personalized service, and prompt issue resolution help foster strong, lasting partnerships.\n\n[Question 3]\nCan you give an example of overcoming a significant business challenge?\n\n[Answer]\nI navigated a critical supply chain disruption by swiftly sourcing alternative suppliers and transparent communication with stakeholders.`,
-  //   layout: { position: 'absolute', width: '70%', height: '40%', top: '48%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
-  // },
-  // {
-  //   id: 'interview26',
-  //   title: 'Enterprise Strategy Meeting at IBM HQ',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_24_42 PM.png'),
-  //   text: `[Question 1]\nWhat are IBM’s key innovation priorities?\n\n[Answer]\nFocusing on AI-driven solutions, hybrid cloud expansion, and quantum computing research to stay ahead in enterprise technology.\n\n[Question 2]\nHow do you approach digital transformation for clients?\n\n[Answer]\nBy conducting readiness assessments, co-creating roadmaps, and deploying agile teams for rapid, measurable value delivery.\n\n[Question 3]\nHow do you mitigate risks associated with legacy systems?\n\n[Answer]\nImplementing phased modernization, robust integration layers, and continuous cybersecurity monitoring.`,
-  //   layout: { position: 'absolute', width: '70%', height: '32%', top: '68%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview27',
-  //   title: 'Content Creator Pitch at YouTube Studio',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_26_20 PM.png'),
-  //   text: `[Question 1]\nHow do you grow your channel audience?\n\n[Answer]\nConsistent, high-quality content, SEO-optimized titles and thumbnails, and active engagement with viewers.\n\n[Question 2]\nWhat’s your strategy for sustainable monetization?\n\n[Answer]\nDiversifying revenue streams through ads, sponsorships, merchandise, and membership programs.\n\n[Question 3]\nHow do you handle negative feedback or controversy?\n\n[Answer]\nListening objectively, responding professionally, and using criticism constructively to improve content.`,
-  //   layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
-  // },
-  // {
-  //   id: 'interview28',
-  //   title: 'Recruiter Screening Interview',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_28_42 PM.png'),
-  //   text: `[Question 1]\nWhat key traits do you prioritize in candidates?\n\n[Answer]\nAdaptability, cultural fit, problem-solving skills, and a growth mindset.\n\n[Question 2]\nHow do you ensure impartiality in screening?\n\n[Answer]\nUsing structured evaluation rubrics, blind assessments, and consistent criteria across all applicants.\n\n[Question 3]\nHow do you handle high-volume recruitment effectively?\n\n[Answer]\nLeveraging ATS tools, batch interviews, and clear communication to streamline the process.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '65%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
-  // },
-  // {
-  //   id: 'interview29',
-  //   title: 'Disney Imagineering Technical Review',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_30_26 PM.png'),
-  //   text: `[Question 1]\nHow do you balance storytelling with engineering constraints?\n\n[Answer]\nIterative prototyping, cross-disciplinary teams, and user testing ensure both imaginative design and technical feasibility.\n\n[Question 2]\nDescribe a themed experience you’ve successfully delivered.\n\n[Answer]\nI led a ride concept incorporating AR effects, synchronized show lighting, and dynamic audio for immersive guest engagement.\n\n[Question 3]\nHow do you validate guest interaction flows?\n\n[Answer]\nThrough small-scale simulations, sensor-based tracking, and real-time feedback to refine user experience.`,
-  //   layout: { position: 'absolute', width: '50%', height: '27%', top: '55%', left: '5%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
-  // },
-  // {
-  //   id: 'interview30',
-  //   title: 'Talent Assessment at Corporate Office',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_34_18 PM.png'),
-  //   text: `[Question 1]\nHow do you design fair assessment exercises?\n\n[Answer]\nBy aligning tasks to role competencies, standardizing evaluation, and incorporating diverse challenge types.\n\n[Question 2]\nHow do you measure candidate performance objectively?\n\n[Answer]\nUsing clear scoring metrics, calibration sessions, and multiple assessors to reduce bias.\n\n[Question 3]\nHow do you provide feedback to unsuccessful candidates?\n\n[Answer]\nOffering constructive, actionable insights and resources for their career development.`,
-  //   layout: { position: 'absolute', width: '70%', height: '35%', top: '67%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-5deg' }] }
-  // },
+  {
+    id: 'interview1',
+    title: 'Google Networking Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic9300.png'),
+    text: `[Question 1]\nTell me about yourself and your background.\n\n[Answer]\nI am a software engineer with 5 years of experience in full-stack development. I specialize in building scalable web applications using React and Node.js. In my current role at XYZ Company, I led a team that improved application performance by 40%.\n\n[Question 2]\nWhat interests you about this position?\n\n[Answer]\nI'm particularly excited about this opportunity because of Google's innovative approach to technology and its commitment to solving complex problems. The role's emphasis on cloud architecture and AI integration aligns perfectly with my career goals.\n\n[Question 3]\nHow do you handle working in a team environment?\n\n[Answer]\nI believe in collaborative development and open communication. In my previous role, I regularly conducted code reviews and mentored junior developers, which helped improve our team's overall code quality by 30%.`,
+    layout: { position: 'absolute', width: '60%', height: '30%', top: '64%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '8deg' }] }
+  },
+  {
+    id: 'interview2',
+    title: 'TV Presenter Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic8025.png'),
+    text: `[Question 1]\nHow did you get started in broadcasting?\n\n[Answer]\nI began my career as a news reporter for a local station, where I developed my skills in live reporting and storytelling. My passion for connecting with audiences led me to pursue opportunities in television presenting.\n\n[Question 2]\nHow do you prepare for a live broadcast?\n\n[Answer]\nI follow a thorough preparation routine that includes researching the topic, practicing my delivery, and reviewing technical aspects. I also make sure to arrive early to check equipment and review the script with the production team.\n\n[Question 3]\nHow do you handle unexpected situations during live broadcasts?\n\n[Answer]\nI stay calm and maintain professionalism. For example, during a recent weather report, our teleprompter failed. I smoothly transitioned to ad-libbing while maintaining eye contact with the camera and delivering the information accurately.`,
+    layout: { position: 'absolute', width: '55%', height: '35%', top: '55%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '5deg' }] }
+  },
+  {
+    id: 'interview3',
+    title: 'Business Analyst Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic7800.png'),
+    text: `[Question 1]\nHow do you gather and analyze business requirements?\n\n[Answer]\nI use a combination of stakeholder interviews, workshops, and data analysis. For example, in my last project, I conducted 20 stakeholder interviews and analyzed 6 months of business data to identify key requirements.\n\n[Question 2]\nHow do you handle conflicting requirements from different stakeholders?\n\n[Answer]\nI facilitate discussions to understand the underlying business needs and propose solutions that address the core requirements. I document all perspectives and work with stakeholders to prioritize based on business value.\n\n[Question 3]\nCan you describe a challenging project you've worked on?\n\n[Answer]\nIn my previous role, I led a complex system integration project with multiple stakeholders. Despite initial resistance, I successfully managed to align all parties and delivered the project 2 weeks ahead of schedule.`,
+    layout: { position: 'absolute', width: '50%', height: '34%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
+  },
+  {
+    id: 'interview4',
+    title: 'Marketing Manager Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/01234.png'),
+    text: `[Question 1]\nHow do you develop a marketing strategy?\n\n[Answer]\nI start with thorough market research and competitor analysis. Then I define clear objectives, target audience, and key messages. I create a multi-channel approach that aligns with business goals and includes measurable KPIs.\n\n[Question 2]\nHow do you measure the success of a marketing campaign?\n\n[Answer]\nI track both quantitative metrics like conversion rates, ROI, and customer acquisition costs, as well as qualitative metrics like brand awareness and customer satisfaction. I use analytics tools to monitor performance in real-time.\n\n[Question 3]\nHow do you stay updated with marketing trends?\n\n[Answer]\nI regularly attend industry conferences, participate in webinars, and follow leading marketing publications. I also experiment with new tools and techniques in small-scale campaigns before implementing them company-wide.`,
+    layout: { position: 'absolute', width: '55%', height: '34%', top: '60%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview5',
+    title: 'News Reporter Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/pic3921.png'),
+    text: `[Question 1]\nHow do you verify the accuracy of your sources?\n\n[Answer]\nI cross-reference information with multiple reliable sources, verify credentials, and maintain a network of trusted contacts. I also fact-check all information before publication and follow up with additional verification when needed.\n\n[Question 2]\nHow do you handle breaking news situations?\n\n[Answer]\nI remain calm under pressure and focus on gathering accurate information quickly. I prioritize getting the facts right over being first to report, while maintaining professional standards and ethical guidelines.\n\n[Question 3]\nHow do you build relationships with sources?\n\n[Answer]\nI maintain regular contact with key sources, respect their time and confidentiality, and always follow through on commitments. I've built a strong network of reliable sources through consistent, professional interactions.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '57%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
+  },
+  {
+    id: 'interview7',
+    title: 'One to One Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/444.png'),
+    text: `[Question 1]\nWhat are your greatest strengths?\n\n[Answer]\nMy key strengths include problem-solving, effective communication, and leadership. For example, I led a team that improved system performance by 40% through innovative solutions and clear communication.\n\n[Question 2]\nWhere do you see yourself in five years?\n\n[Answer]\nI see myself in a leadership role, mentoring junior team members and leading complex projects. I plan to continue developing my technical expertise while growing my management skills.\n\n[Question 3]\nHow do you handle work-life balance?\n\n[Answer]\nI maintain a structured schedule and prioritize tasks effectively. I make time for both professional development and personal well-being, which helps me stay productive and motivated.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview8',
+    title: 'Final Interview with CEO',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ceo.png'),
+    text: `[Question 1]\nWhat is your vision for this role?\n\n[Answer]\nI envision driving innovation and growth while maintaining operational excellence. I plan to leverage my experience to implement strategic initiatives that align with the company's long-term goals.\n\n[Question 2]\nHow do you handle company-wide challenges?\n\n[Answer]\nI take a holistic approach, considering all stakeholders and potential impacts. I develop comprehensive solutions that address both immediate concerns and long-term strategic objectives.\n\n[Question 3]\nWhat value can you bring to our executive team?\n\n[Answer]\nI bring a unique combination of technical expertise and strategic thinking. My experience in leading successful transformations and building high-performing teams would complement the existing executive team's strengths.`,
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '55%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview9',
+    title: 'Doctor Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/medical-officer.png'),
+    text: `[Question 1]\nHow do you handle difficult patient cases?\n\n[Answer]\nI approach each case methodically, gathering all relevant information and consulting with colleagues when needed. I maintain clear communication with patients and their families throughout the process.\n\n[Question 2]\nHow do you stay current with medical advancements?\n\n[Answer]\nI regularly attend medical conferences, participate in continuing education programs, and review current medical literature. I also collaborate with colleagues to share knowledge and best practices.\n\n[Question 3]\nHow do you handle ethical dilemmas in medicine?\n\n[Answer]\nI follow established ethical guidelines and consult with the hospital's ethics committee when needed. I prioritize patient well-being while considering all relevant factors in decision-making.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview10',
+    title: 'Live TV Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/tv-news.png'),
+    text: `[Question 1]\nHow do you prepare for a live interview?\n\n[Answer]\nI research the topic thoroughly, prepare key talking points, and practice my delivery. I also familiarize myself with the interviewer's style and prepare for potential follow-up questions.\n\n[Question 2]\nHow do you handle unexpected questions?\n\n[Answer]\nI stay composed and redirect to my key messages when appropriate. If I don't know an answer, I'm honest about it and offer to follow up with the information later.\n\n[Question 3]\nHow do you engage with the audience during a live interview?\n\n[Answer]\nI maintain eye contact, use clear and concise language, and incorporate relevant examples. I also pay attention to the interviewer's cues and adjust my responses accordingly.`,
+    layout: { position: 'absolute', width: '70%', height: '19%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'interview11',
+    title: 'Technical Panel Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_26_51 PM.png'),
+    text: `[Question 1]\nHow do you approach debugging a critical production issue?\n\n[Answer]\nI start by identifying the symptoms, isolating variables, and analyzing logs. Then I replicate the issue in a safe environment and apply fixes step-by-step while communicating progress with stakeholders.\n\n[Question 2]\nWhat’s your experience with system design interviews?\n\n[Answer]\nI’ve led and participated in many. I focus on clarity, scalability, and trade-offs, often using diagrams to visualize data flow and structure.\n\n[Question 3]\nHow do you give technical feedback?\n\n[Answer]\nI focus on clarity and intent, provide examples, and ensure my tone is constructive. I also encourage open dialogue to make it a two-way learning moment.`,
+    layout: { position: 'absolute', width: '60%', height: '15%', top: '80%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
+  },
+  {
+    id: 'interview12',
+    title: 'Hiring Committee Review',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_33_14 PM.png'),
+    text: `[Question 1]\nDescribe a time you had to disagree with a team decision.\n\n[Answer]\nI voiced my perspective respectfully, backed it with data, and remained open to feedback. Eventually, a compromise was reached, improving the outcome while maintaining harmony.\n\n[Question 2]\nHow do you measure the success of your projects?\n\n[Answer]\nI use KPIs aligned to business goals, such as user adoption, latency reduction, and delivery timelines. I also gather user feedback to evaluate qualitative impact.\n\n[Question 3]\nHow do you handle stakeholder misalignment?\n\n[Answer]\nI set up clear communication channels, clarify expectations early, and realign objectives through mutual understanding and data-driven discussions.`,
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '56%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview13',
+    title: 'Coffee Chat Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_34_22 PM.png'),
+    text: `[Question 1]\nWhat kind of team environment helps you do your best work?\n\n[Answer]\nI thrive in a transparent, supportive, and feedback-driven environment where ideas are respected and teammates help each other grow.\n\n[Question 2]\nHow do you handle disagreements in informal settings?\n\n[Answer]\nI listen first, then respectfully offer my view. I avoid escalating tensions and look for common ground.\n\n[Question 3]\nWhat’s something fun or unexpected about you?\n\n[Answer]\nI used to run a travel blog and still love planning spontaneous weekend trips.`,
+    layout: { position: 'absolute', width: '65%', height: '38%', top: '48%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview14',
+    title: 'Whiteboard Coding Challenge',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_35_26 PM.png'),
+    text: `[Question 1]\nWalk us through your solution to this problem.\n\n[Answer]\nSure. I start by confirming requirements, outlining constraints, and sketching pseudocode. Then I break the logic into functions and walk through edge cases with test inputs.\n\n[Question 2]\nWhat do you prioritize during a technical assessment?\n\n[Answer]\nClarity, structure, and efficiency. I write clean code and explain trade-offs as I go, while being receptive to hints or feedback.\n\n[Question 3]\nHow do you manage your time during live challenges?\n\n[Answer]\nI allocate time upfront for planning and then track my progress against each part. If I get stuck, I quickly pivot or explain alternatives.`,
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '45%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview15',
+    title: 'Behavioral Screening Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_36_33 PM.png'),
+    text: `[Question 1]\nTell me about a time you overcame a big challenge.\n\n[Answer]\nIn my previous role, a legacy system outage required urgent fixes. I led a task force, reverse-engineered undocumented modules, and restored operations in under 12 hours.\n\n[Question 2]\nHow do you stay motivated during repetitive tasks?\n\n[Answer]\nI set mini-goals, automate where possible, and reward small wins. I also reflect on the broader purpose behind the task.\n\n[Question 3]\nHow do you handle constructive criticism?\n\n[Answer]\nI treat it as a growth opportunity. I ask clarifying questions, apply feedback to future work, and thank the person for helping me improve.`,
+    layout: { position: 'absolute', width: '68%', height: '35%', top: '55%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview16',
+    title: 'HR Screening Round',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_37_39 PM.png'),
+    text: `[Question 1]\nWhy are you interested in this position?\n\n[Answer]\nThis role aligns with both my experience and long-term goals. I’m excited about the team’s vision and confident I can bring strong contributions from day one.\n\n[Question 2]\nWhat are your salary expectations?\n\n[Answer]\nI'm looking for a role that reflects my skills and market standards. I'm open to a fair discussion based on responsibilities and benefits.\n\n[Question 3]\nAre you interviewing elsewhere?\n\n[Answer]\nYes, I'm exploring a few opportunities, but this role is a top contender due to its mission and team culture.`,
+    layout: { position: 'absolute', width: '75%', height: '20%', top: '75%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
+  },
+  {
+    id: 'interview17',
+    title: 'Virtual Interview Setup',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_39_08 PM.png'),
+    text: `[Question 1]\nHow do you prepare for virtual interviews?\n\n[Answer]\nI test all tech ahead of time, ensure good lighting, and minimize distractions. I also keep backup devices nearby and notes visible but off-camera.\n\n[Question 2]\nWhat’s your experience working remotely?\n\n[Answer]\nI've led distributed teams across time zones, using tools like Slack and Zoom effectively. I prioritize async updates and make time for virtual rapport-building.\n\n[Question 3]\nAny tips for video interview etiquette?\n\n[Answer]\nYes — dress professionally, look at the camera to mimic eye contact, and smile. Use a neutral background and avoid interrupting; let your voice finish strong.`,
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '52%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview18',
+    title: 'Recruiter Discussion at Career Fair',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_44_51 PM.png'),
+    text: `[Question 1]\nWhat brings you to this career fair?\n\n[Answer]\nI'm actively seeking a role that aligns with my experience and growth goals. Your company stood out to me because of its innovation and culture.\n\n[Question 2]\nWhat are you most proud of in your resume?\n\n[Answer]\nLeading a cloud migration that reduced hosting costs by 35% while improving system reliability. It was a cross-functional effort that I coordinated.\n\n[Question 3]\nHow soon are you available to start?\n\n[Answer]\nI’m available to start with a two-week notice. I'm committed to a smooth transition from my current responsibilities.`,
+    layout: { position: 'absolute', width: '70%', height: '32%', top: '62%', left: '13%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview19',
+    title: 'Product Manager Chat at Google Lounge',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_37_26 PM.png'),
+    text: `[Question 1]\nWhat’s your approach to product strategy?\n\n[Answer]\nI start with user insights and business objectives. I map needs to features, validate through feedback, and iterate quickly with measurable milestones.\n\n[Question 2]\nHow do you handle conflicting stakeholder priorities?\n\n[Answer]\nI align priorities to core goals, facilitate data-backed decisions, and ensure transparency through regular check-ins and roadmap visibility.\n\n[Question 3]\nHow do you ensure product quality?\n\n[Answer]\nI collaborate with QA and engineering early, define acceptance criteria, and use continuous feedback from real users to drive improvements.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '58%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '1deg' }] }
+  },
+  {
+    id: 'interview20',
+    title: 'Live TV Interview Set',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_44_41 PM.png'),
+    text: `[Question 1]\nHow do you stay composed on live TV?\n\n[Answer]\nPreparation is key. I rehearse thoroughly, focus on my breathing, and keep my core message front and center.\n\n[Question 2]\nWhat’s the biggest risk you’ve taken professionally?\n\n[Answer]\nLeaving a secure job to join a fast-moving startup. It paid off — I learned rapidly, wore many hats, and contributed to doubling our user base.\n\n[Question 3]\nHow do you prepare for tricky or controversial questions?\n\n[Answer]\nI study past interviews, understand the context, and script responses that stay true to my values without sounding rehearsed.`,
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview21',
+    title: 'White House Policy Discussion',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_19_01 PM.png'),
+    text: `[Question 1]\nWhat measures do you propose to improve national security?\n\n[Answer]\nI propose strengthening intelligence sharing, modernizing infrastructure, and enhancing cybersecurity through public-private partnerships.\n\n[Question 2]\nHow will your policy support economic growth?\n\n[Answer]\nThrough targeted investments in innovation, infrastructure, and workforce training to stimulate job creation and competitiveness globally.\n\n[Question 3]\nWhat’s your strategy on international cooperation?\n\n[Answer]\nBuilding strong alliances, engaging in multilateral institutions, and leading by example on global challenges such as climate and trade.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview22',
+    title: 'Volunteer Program Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_27_07 PM.png'),
+    text: `[Question 1]\nWhy do you want to volunteer here?\n\n[Answer]\nI admire your organization's mission and believe my skills can meaningfully contribute to the community outreach and support programs.\n\n[Question 2]\nHave you volunteered before?\n\n[Answer]\nYes, extensively in local shelters and fundraising events, where I coordinated teams and organized activities.\n\n[Question 3]\nHow would you handle challenging situations during volunteering?\n\n[Answer]\nI remain calm, empathetic, and resourceful, focusing on effective communication and collaboration to resolve issues.`,
+    layout: { position: 'absolute', width: '68%', height: '38%', top: '57%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview23',
+    title: 'Academic Panel Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_21_32 PM.png'),
+    text: `[Question 1]\nHow do you manage classroom diversity?\n\n[Answer]\nBy fostering an inclusive environment, differentiating instruction, and respecting each student's unique perspectives and backgrounds.\n\n[Question 2]\nWhat innovative teaching methods do you use?\n\n[Answer]\nI integrate technology, collaborative projects, and real-world problem-solving to enhance student engagement and understanding.\n\n[Question 3]\nHow do you assess student progress?\n\n[Answer]\nThrough continuous formative assessments, feedback loops, and holistic evaluations including both academic performance and participation.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '56%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview24',
+    title: 'Factory Floor Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_29_14 PM.png'),
+    text: `[Question 1]\nWhat steps do you take to ensure production efficiency?\n\n[Answer]\nI follow standard operating procedures, conduct regular equipment checks, and proactively identify potential delays.\n\n[Question 2]\nDescribe your experience with machinery maintenance?\n\n[Answer]\nI routinely perform preventive maintenance, document all actions, and quickly address mechanical issues to minimize downtime.\n\n[Question 3]\nHow do you approach teamwork on the factory floor?\n\n[Answer]\nClear communication, shared goals, and mutual support ensure smooth operations and quick problem-solving.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '50%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
+  },
+  {
+    id: 'interview25',
+    title: 'Cafe Business Meeting',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_30_33 PM.png'),
+    text: `[Question 1]\nWhat are your key business priorities for this year?\n\n[Answer]\nExpanding market reach, enhancing customer experience, and optimizing operational efficiency through technology.\n\n[Question 2]\nHow do you maintain client relationships?\n\n[Answer]\nRegular communication, personalized service, and prompt issue resolution help foster strong, lasting partnerships.\n\n[Question 3]\nCan you give an example of overcoming a significant business challenge?\n\n[Answer]\nI navigated a critical supply chain disruption by swiftly sourcing alternative suppliers and transparent communication with stakeholders.`,
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '48%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
+  },
+  {
+    id: 'interview26',
+    title: 'Enterprise Strategy Meeting at IBM HQ',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_24_42 PM.png'),
+    text: `[Question 1]\nWhat are IBM’s key innovation priorities?\n\n[Answer]\nFocusing on AI-driven solutions, hybrid cloud expansion, and quantum computing research to stay ahead in enterprise technology.\n\n[Question 2]\nHow do you approach digital transformation for clients?\n\n[Answer]\nBy conducting readiness assessments, co-creating roadmaps, and deploying agile teams for rapid, measurable value delivery.\n\n[Question 3]\nHow do you mitigate risks associated with legacy systems?\n\n[Answer]\nImplementing phased modernization, robust integration layers, and continuous cybersecurity monitoring.`,
+    layout: { position: 'absolute', width: '70%', height: '32%', top: '68%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview27',
+    title: 'Content Creator Pitch at YouTube Studio',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_26_20 PM.png'),
+    text: `[Question 1]\nHow do you grow your channel audience?\n\n[Answer]\nConsistent, high-quality content, SEO-optimized titles and thumbnails, and active engagement with viewers.\n\n[Question 2]\nWhat’s your strategy for sustainable monetization?\n\n[Answer]\nDiversifying revenue streams through ads, sponsorships, merchandise, and membership programs.\n\n[Question 3]\nHow do you handle negative feedback or controversy?\n\n[Answer]\nListening objectively, responding professionally, and using criticism constructively to improve content.`,
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
+  },
+  {
+    id: 'interview28',
+    title: 'Recruiter Screening Interview',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_28_42 PM.png'),
+    text: `[Question 1]\nWhat key traits do you prioritize in candidates?\n\n[Answer]\nAdaptability, cultural fit, problem-solving skills, and a growth mindset.\n\n[Question 2]\nHow do you ensure impartiality in screening?\n\n[Answer]\nUsing structured evaluation rubrics, blind assessments, and consistent criteria across all applicants.\n\n[Question 3]\nHow do you handle high-volume recruitment effectively?\n\n[Answer]\nLeveraging ATS tools, batch interviews, and clear communication to streamline the process.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '65%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
+  },
+  {
+    id: 'interview29',
+    title: 'Disney Imagineering Technical Review',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_30_26 PM.png'),
+    text: `[Question 1]\nHow do you balance storytelling with engineering constraints?\n\n[Answer]\nIterative prototyping, cross-disciplinary teams, and user testing ensure both imaginative design and technical feasibility.\n\n[Question 2]\nDescribe a themed experience you’ve successfully delivered.\n\n[Answer]\nI led a ride concept incorporating AR effects, synchronized show lighting, and dynamic audio for immersive guest engagement.\n\n[Question 3]\nHow do you validate guest interaction flows?\n\n[Answer]\nThrough small-scale simulations, sensor-based tracking, and real-time feedback to refine user experience.`,
+    layout: { position: 'absolute', width: '50%', height: '27%', top: '55%', left: '5%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
+  },
+  {
+    id: 'interview30',
+    title: 'Talent Assessment at Corporate Office',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_34_18 PM.png'),
+    text: `[Question 1]\nHow do you design fair assessment exercises?\n\n[Answer]\nBy aligning tasks to role competencies, standardizing evaluation, and incorporating diverse challenge types.\n\n[Question 2]\nHow do you measure candidate performance objectively?\n\n[Answer]\nUsing clear scoring metrics, calibration sessions, and multiple assessors to reduce bias.\n\n[Question 3]\nHow do you provide feedback to unsuccessful candidates?\n\n[Answer]\nOffering constructive, actionable insights and resources for their career development.`,
+    layout: { position: 'absolute', width: '70%', height: '35%', top: '67%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-5deg' }] }
+  },
 
-  // {
-  //   id: 'interview31',
-  //   title: 'Executive Panel Discussion in Chicago',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_36_51 PM.png'),
-  //   text: `[Question 1]\nWhat drives an effective metropolitan corporate strategy?\n\n[Answer]\nIntegrating local partnerships, leveraging city infrastructure, and aligning offerings with urban consumer insights.\n\n[Question 2]\nHow do you navigate regional regulatory challenges?\n\n[Answer]\nBy maintaining proactive compliance programs, engaging stakeholders early, and adapting swiftly to local policies.\n\n[Question 3]\nHow do you leverage city resources for growth?\n\n[Answer]\nThrough public–private collaborations, infrastructure grants, and targeted community outreach for market penetration.`,
-  //   layout: { position: 'absolute', width: '70%', height: '37%', top: '55%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
-  // },
-  // {
-  //   id: 'interview32',
-  //   title: 'Regulatory Hearing at Federal Agency',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_20_47 PM.png'),
-  //   text: `[Question 1]\nHow do you ensure policy compliance across departments?\n\n[Answer]\nBy issuing clear guidelines, conducting routine audits, and offering targeted training programs.\n\n[Question 2]\nHow do you balance security interests with individual privacy?\n\n[Answer]\nThrough comprehensive risk assessments, data minimization, and transparent oversight processes.\n\n[Question 3]\nHow do you maintain public accountability?\n\n[Answer]\nBy publishing regular reports, facilitating stakeholder consultations, and leveraging open data platforms.`,
-  //   layout: { position: 'absolute', width: '70%', height: '36%', top: '50%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview33',
-  //   title: 'Regional Operations Interview at Home Depot Atlanta HQ',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_39_56 PM.png'),
-  //   text: `[Question 1]\nHow do you optimize supply chain efficiency regionally?\n\n[Answer]\nBy leveraging local distribution centers, real-time inventory tracking, and data-driven demand forecasting.\n\n[Question 2]\nHow do you manage seasonal demand fluctuations?\n\n[Answer]\nThrough predictive analytics, flexible staffing models, and scalable vendor partnerships.\n\n[Question 3]\nHow do you ensure brand consistency across stores?\n\n[Answer]\nWith standardized training, regular audits, and community-focused store initiatives.`,
-  //   layout: { position: 'absolute', width: '70%', height: '40%', top: '58%', left: '18%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
-  // },
-  // {
-  //   id: 'interview34',
-  //   title: 'Cloud Solutions Architect Interview at Microsoft',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_48_25 PM.png'),
-  //   text: `[Question 1]\nHow do you design scalable cloud architectures?\n\n[Answer]\nBy leveraging microservices, container orchestration, and auto-scaling policies.\n\n[Question 2]\nHow do you ensure data security in the cloud?\n\n[Answer]\nWith end-to-end encryption, identity management, and continuous security monitoring.\n\n[Question 3]\nHow do you optimize cloud costs for enterprise clients?\n\n[Answer]\nThrough resource rightsizing, reserved capacity planning, and cost analytics.`,
-  //   layout: { position: 'absolute', width: '60%', height: '34%', top: '57%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1deg' }] }
-  // },
-  // {
-  //   id: 'interview35',
-  //   title: 'Financial Analyst Interview at Bloomberg',
-  //   category: 'Interviews',
-  //   image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_19_13 PM.png'),
-  //   text: `[Question 1]\nHow do you analyze market trends effectively?\n\n[Answer]\nBy employing quantitative models, real-time data feeds, and cross-market correlation analysis.\n\n[Question 2]\nHow do you communicate complex insights to stakeholders?\n\n[Answer]\nWith interactive dashboards, concise executive summaries, and data visualization techniques.\n\n[Question 3]\nHow do you ensure data accuracy under tight deadlines?\n\n[Answer]\nThrough automated data validation, redundancy checks, and rapid peer reviews.`,
-  //   layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-2deg' }]  }
-  // },
+  {
+    id: 'interview31',
+    title: 'Executive Panel Discussion in Chicago',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_36_51 PM.png'),
+    text: `[Question 1]\nWhat drives an effective metropolitan corporate strategy?\n\n[Answer]\nIntegrating local partnerships, leveraging city infrastructure, and aligning offerings with urban consumer insights.\n\n[Question 2]\nHow do you navigate regional regulatory challenges?\n\n[Answer]\nBy maintaining proactive compliance programs, engaging stakeholders early, and adapting swiftly to local policies.\n\n[Question 3]\nHow do you leverage city resources for growth?\n\n[Answer]\nThrough public–private collaborations, infrastructure grants, and targeted community outreach for market penetration.`,
+    layout: { position: 'absolute', width: '70%', height: '37%', top: '55%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
+  },
+  {
+    id: 'interview32',
+    title: 'Regulatory Hearing at Federal Agency',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_20_47 PM.png'),
+    text: `[Question 1]\nHow do you ensure policy compliance across departments?\n\n[Answer]\nBy issuing clear guidelines, conducting routine audits, and offering targeted training programs.\n\n[Question 2]\nHow do you balance security interests with individual privacy?\n\n[Answer]\nThrough comprehensive risk assessments, data minimization, and transparent oversight processes.\n\n[Question 3]\nHow do you maintain public accountability?\n\n[Answer]\nBy publishing regular reports, facilitating stakeholder consultations, and leveraging open data platforms.`,
+    layout: { position: 'absolute', width: '70%', height: '36%', top: '50%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview33',
+    title: 'Regional Operations Interview at Home Depot Atlanta HQ',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_39_56 PM.png'),
+    text: `[Question 1]\nHow do you optimize supply chain efficiency regionally?\n\n[Answer]\nBy leveraging local distribution centers, real-time inventory tracking, and data-driven demand forecasting.\n\n[Question 2]\nHow do you manage seasonal demand fluctuations?\n\n[Answer]\nThrough predictive analytics, flexible staffing models, and scalable vendor partnerships.\n\n[Question 3]\nHow do you ensure brand consistency across stores?\n\n[Answer]\nWith standardized training, regular audits, and community-focused store initiatives.`,
+    layout: { position: 'absolute', width: '70%', height: '40%', top: '58%', left: '18%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
+  },
+  {
+    id: 'interview34',
+    title: 'Cloud Solutions Architect Interview at Microsoft',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_48_25 PM.png'),
+    text: `[Question 1]\nHow do you design scalable cloud architectures?\n\n[Answer]\nBy leveraging microservices, container orchestration, and auto-scaling policies.\n\n[Question 2]\nHow do you ensure data security in the cloud?\n\n[Answer]\nWith end-to-end encryption, identity management, and continuous security monitoring.\n\n[Question 3]\nHow do you optimize cloud costs for enterprise clients?\n\n[Answer]\nThrough resource rightsizing, reserved capacity planning, and cost analytics.`,
+    layout: { position: 'absolute', width: '60%', height: '34%', top: '57%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1deg' }] }
+  },
+  {
+    id: 'interview35',
+    title: 'Financial Analyst Interview at Bloomberg',
+    category: 'Interviews',
+    image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_19_13 PM.png'),
+    text: `[Question 1]\nHow do you analyze market trends effectively?\n\n[Answer]\nBy employing quantitative models, real-time data feeds, and cross-market correlation analysis.\n\n[Question 2]\nHow do you communicate complex insights to stakeholders?\n\n[Answer]\nWith interactive dashboards, concise executive summaries, and data visualization techniques.\n\n[Question 3]\nHow do you ensure data accuracy under tight deadlines?\n\n[Answer]\nThrough automated data validation, redundancy checks, and rapid peer reviews.`,
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-2deg' }]  }
+  },
   {
     id: 'interview36',
     title: 'Environmental Policy Advisor Interview',
