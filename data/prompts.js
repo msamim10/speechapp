@@ -1600,7 +1600,7 @@ export const promptsData = [
     title: 'CDC Public Health Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_09_20 PM.png'),
-    text: `Good afternoon, and thank you for attending this CDC public health update.\n\nToday’s briefing focuses on the rising flu activity across several states. We are seeing early spikes in hospitalization rates, especially among the elderly and young children.\n\nOur guidance is simple: Get vaccinated, wash your hands regularly, and stay home when feeling sick. We'll also provide updated guidance on mask recommendations and travel advisories.\n\nWe’re working closely with state and local health departments to expand vaccination sites and ensure timely communication.\n\nI’ll now open the floor for questions and invite our team leads in virology and epidemiology to join the panel.`,
+    text: `Good afternoon, and thank you for attending this CDC public health update.\n\nToday's briefing focuses on the rising flu activity across several states. We are seeing early spikes in hospitalization rates, especially among the elderly and young children.\n\nOur guidance is simple: Get vaccinated, wash your hands regularly, and stay home when feeling sick. We'll also provide updated guidance on mask recommendations and travel advisories.\n\nWe're working closely with state and local health departments to expand vaccination sites and ensure timely communication.\n\nI'll now open the floor for questions and invite our team leads in virology and epidemiology to join the panel.`,
     layout: {
       position: 'absolute',
       width: '65%',
@@ -1617,7 +1617,7 @@ export const promptsData = [
     title: 'Slack Feature Rollout Review',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_11_25 PM.png'),
-    text: `Welcome everyone to our internal Slack product review session.\n\nWe’ve just wrapped the beta testing of our latest features: a redesigned thread view, improved sidebar search, and new user tagging analytics.\n\nEarly user feedback is promising—90% of testers reported faster navigation and more efficient team communication. The new performance engine also reduced load times by 40%.\n\nOur next steps involve finalizing localization and launching across 10 key markets. Let’s walk through each feature set, usage metrics, and known issues before we prep for global rollout next Friday.`,
+    text: `Welcome everyone to our internal Slack product review session.\n\nWe've just wrapped the beta testing of our latest features: a redesigned thread view, improved sidebar search, and new user tagging analytics.\n\nEarly user feedback is promising—90% of testers reported faster navigation and more efficient team communication. The new performance engine also reduced load times by 40%.\n\nOur next steps involve finalizing localization and launching across 10 key markets. Let's walk through each feature set, usage metrics, and known issues before we prep for global rollout next Friday.`,
     layout: {
       position: 'absolute',
       width: '58%',
@@ -1634,7 +1634,7 @@ export const promptsData = [
     title: 'NOAA Climate Policy Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_12_59 PM.png'),
-    text: `Thank you for joining us at NOAA’s quarterly policy briefing.\n\nToday, we’re reviewing new climate data trends and their implications for federal coastal planning.\n\nOur updated satellite measurements confirm a 6.8 mm rise in global sea levels over the last year. Areas of concern include the Gulf Coast and Southeast Atlantic regions.\n\nWe’ll walk through our updated impact models and the proposal to expand NOAA’s community resilience grant program. We’ll also present our digital tool for forecasting localized flooding risk.\n\nLet’s begin with a recap of last quarter’s regional impact assessments.`,
+    text: `Thank you for joining us at NOAA's quarterly policy briefing.\n\nToday, we're reviewing new climate data trends and their implications for federal coastal planning.\n\nOur updated satellite measurements confirm a 6.8 mm rise in global sea levels over the last year. Areas of concern include the Gulf Coast and Southeast Atlantic regions.\n\nWe'll walk through our updated impact models and the proposal to expand NOAA's community resilience grant program. We'll also present our digital tool for forecasting localized flooding risk.\n\nLet's begin with a recap of last quarter's regional impact assessments.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1651,7 +1651,7 @@ export const promptsData = [
     title: 'Silicon Valley Boardroom Strategy Pitch',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_14_30 PM.png'),
-    text: `Thank you for making time for this early Q2 boardroom strategy session.\n\nOur revised customer LTV projection is $942 per cohort—up 17% from our last quarter model. We attribute this to higher retention from our AI-powered onboarding and renewed enterprise interest.\n\nOur ask: greenlight the $1.8M budget to expand our data ops and launch the product-led growth funnel across 3 new enterprise verticals.\n\nWe’ll walk through risk controls, rollout sequencing, and the hiring roadmap next.\n\nOpen to thoughts or questions before we proceed?`,
+    text: `Thank you for making time for this early Q2 boardroom strategy session.\n\nOur revised customer LTV projection is $942 per cohort—up 17% from our last quarter model. We attribute this to higher retention from our AI-powered onboarding and renewed enterprise interest.\n\nOur ask: greenlight the $1.8M budget to expand our data ops and launch the product-led growth funnel across 3 new enterprise verticals.\n\nWe'll walk through risk controls, rollout sequencing, and the hiring roadmap next.\n\nOpen to thoughts or questions before we proceed?`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1668,7 +1668,7 @@ export const promptsData = [
     title: 'Department of Homeland Security Cyber Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_23_40 PM.png'),
-    text: `Welcome to today’s cybersecurity update from the Department of Homeland Security.\n\nWe’ve identified a critical vulnerability impacting federal agencies’ cloud infrastructure, linked to a zero-day exploit in third-party APIs.\n\nMitigation steps have been issued and will be discussed in detail shortly. Our priority is containment, data integrity verification, and patch deployment across all endpoints.\n\nFollowing the update, our technical teams will hold breakout Q&As on threat attribution, system audits, and proactive defense mechanisms.\n\nLet’s begin with a recap of the intrusion detection timeline and access log anomalies.`,
+    text: `Welcome to today's cybersecurity update from the Department of Homeland Security.\n\nWe've identified a critical vulnerability impacting federal agencies' cloud infrastructure, linked to a zero-day exploit in third-party APIs.\n\nMitigation steps have been issued and will be discussed in detail shortly. Our priority is containment, data integrity verification, and patch deployment across all endpoints.\n\nFollowing the update, our technical teams will hold breakout Q&As on threat attribution, system audits, and proactive defense mechanisms.\n\nLet's begin with a recap of the intrusion detection timeline and access log anomalies.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -1686,7 +1686,7 @@ export const promptsData = [
     title: "Meta Policy Review Briefing",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_06_29 PM.png'),
-    text: "Good afternoon, and thank you for joining this session.\n\nAt Meta, our mission is to build responsible, privacy-first technologies that empower billions. Today, we’ll walk through recent policy shifts and their implications for product development, data governance, and regulatory compliance.\n\nAs you can see in the latest audit results, we’ve reduced third-party data dependencies by 28% and rolled out a global transparency dashboard for users.\n\nWe're here to gather your insights on improving internal alignment between our legal, engineering, and product teams. Let's begin with a high-level overview of our policy compliance roadmap and then open the floor for your questions and recommendations.",
+    text: "Good afternoon, and thank you for joining this session.\n\nAt Meta, our mission is to build responsible, privacy-first technologies that empower billions. Today, we'll walk through recent policy shifts and their implications for product development, data governance, and regulatory compliance.\n\nAs you can see in the latest audit results, we've reduced third-party data dependencies by 28% and rolled out a global transparency dashboard for users.\n\nWe're here to gather your insights on improving internal alignment between our legal, engineering, and product teams. Let's begin with a high-level overview of our policy compliance roadmap and then open the floor for your questions and recommendations.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1703,7 +1703,7 @@ export const promptsData = [
     title: "BuzzFeed Editorial Pitch Workshop",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_08_54 PM.png'),
-    text: "Hey everyone, excited to have you here!\n\nThis session is all about refining your story ideas into viral-ready features. We’ll look at what’s trending, how to pitch for cross-platform appeal, and brainstorm collaborations that could supercharge visibility.\n\nLet’s start with your strongest headline. Then we’ll stress-test it against our engagement models and see if it’s quiz-worthy, listicle-friendly, or podcast material.\n\nRemember: authenticity, humor, and community impact are our north stars.",
+    text: "Hey everyone, excited to have you here!\n\nThis session is all about refining your story ideas into viral-ready features. We'll look at what's trending, how to pitch for cross-platform appeal, and brainstorm collaborations that could supercharge visibility.\n\nLet's start with your strongest headline. Then we'll stress-test it against our engagement models and see if it's quiz-worthy, listicle-friendly, or podcast material.\n\nRemember: authenticity, humor, and community impact are our north stars.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1720,7 +1720,7 @@ export const promptsData = [
     title: "Salesforce Innovation Roadmap Briefing",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_10_42 PM.png'),
-    text: "Welcome to the Salesforce Tower Innovation Center.\n\nToday we’ll be diving into our 2025 product roadmap and outlining how our platform innovations are driving deeper client relationships.\n\nLet’s begin with Einstein AI and how it’s transforming CRM workflows. We’ve seen a 31% uplift in lead qualification accuracy across our pilot teams.\n\nI’ll walk you through the updated Salesforce Platform features, and then we’ll workshop your ideas on how to elevate customer success in your regions.",
+    text: "Welcome to the Salesforce Tower Innovation Center.\n\nToday we'll be diving into our 2025 product roadmap and outlining how our platform innovations are driving deeper client relationships.\n\nLet's begin with Einstein AI and how it's transforming CRM workflows. We've seen a 31% uplift in lead qualification accuracy across our pilot teams.\n\nI'll walk you through the updated Salesforce Platform features, and then we'll workshop your ideas on how to elevate customer success in your regions.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1738,7 +1738,7 @@ export const promptsData = [
     title: "Amazon Robotics All-Hands",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_11_35 PM.png'),
-    text: "Team, thank you all for gathering today.\n\nThis year at Amazon Robotics, we’ve achieved major milestones: reduced pick times by 22%, improved autonomous pathfinding, and launched our first AI-augmented safety system.\n\nThese results reflect your dedication and passion for operational excellence. In this session, we’ll review key KPIs, share spotlight achievements, and open a Q&A to hear your ideas for scaling innovation across sites.\n\nLet’s keep raising the bar, together.",
+    text: "Team, thank you all for gathering today.\n\nThis year at Amazon Robotics, we've achieved major milestones: reduced pick times by 22%, improved autonomous pathfinding, and launched our first AI-augmented safety system.\n\nThese results reflect your dedication and passion for operational excellence. In this session, we'll review key KPIs, share spotlight achievements, and open a Q&A to hear your ideas for scaling innovation across sites.\n\nLet's keep raising the bar, together.",
     layout: {
       position: "absolute",
       width: "65%",
@@ -1755,7 +1755,7 @@ export const promptsData = [
     title: "Dropbox Product Strategy Sync",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_13_21 PM.png'),
-    text: "Hi everyone — welcome to today’s strategy sync.\n\nDropbox has always stood for simplicity and reliability. As we expand into AI-powered document workflows and team collaboration features, our focus must remain razor-sharp on user experience.\n\nLet’s start with a review of customer feedback from our beta cohort. Then we’ll discuss roadmap tradeoffs and align on the top three product priorities for Q3.\n\nYour input today shapes our next chapter.",
+    text: "Hi everyone — welcome to today's strategy sync.\n\nDropbox has always stood for simplicity and reliability. As we expand into AI-powered document workflows and team collaboration features, our focus must remain razor-sharp on user experience.\n\nLet's start with a review of customer feedback from our beta cohort. Then we'll discuss roadmap tradeoffs and align on the top three product priorities for Q3.\n\nYour input today shapes our next chapter.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1848,7 +1848,7 @@ export const promptsData = [
     title: 'Technical Panel Interview',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_26_51 PM.png'),
-    text: `[Question 1]\nHow do you approach debugging a critical production issue?\n\n[Answer]\nI start by identifying the symptoms, isolating variables, and analyzing logs. Then I replicate the issue in a safe environment and apply fixes step-by-step while communicating progress with stakeholders.\n\n[Question 2]\nWhat’s your experience with system design interviews?\n\n[Answer]\nI’ve led and participated in many. I focus on clarity, scalability, and trade-offs, often using diagrams to visualize data flow and structure.\n\n[Question 3]\nHow do you give technical feedback?\n\n[Answer]\nI focus on clarity and intent, provide examples, and ensure my tone is constructive. I also encourage open dialogue to make it a two-way learning moment.`,
+    text: `[Question 1]\nHow do you approach debugging a critical production issue?\n\n[Answer]\nI start by identifying the symptoms, isolating variables, and analyzing logs. Then I replicate the issue in a safe environment and apply fixes step-by-step while communicating progress with stakeholders.\n\n[Question 2]\nWhat's your experience with system design interviews?\n\n[Answer]\nI've led and participated in many. I focus on clarity, scalability, and trade-offs, often using diagrams to visualize data flow and structure.\n\n[Question 3]\nHow do you give technical feedback?\n\n[Answer]\nI focus on clarity and intent, provide examples, and ensure my tone is constructive. I also encourage open dialogue to make it a two-way learning moment.`,
     layout: { position: 'absolute', width: '60%', height: '15%', top: '80%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
   },
   {
@@ -1864,7 +1864,7 @@ export const promptsData = [
     title: 'Coffee Chat Interview',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_34_22 PM.png'),
-    text: `[Question 1]\nWhat kind of team environment helps you do your best work?\n\n[Answer]\nI thrive in a transparent, supportive, and feedback-driven environment where ideas are respected and teammates help each other grow.\n\n[Question 2]\nHow do you handle disagreements in informal settings?\n\n[Answer]\nI listen first, then respectfully offer my view. I avoid escalating tensions and look for common ground.\n\n[Question 3]\nWhat’s something fun or unexpected about you?\n\n[Answer]\nI used to run a travel blog and still love planning spontaneous weekend trips.`,
+    text: `[Question 1]\nWhat kind of team environment helps you do your best work?\n\n[Answer]\nI thrive in a transparent, supportive, and feedback-driven environment where ideas are respected and teammates help each other grow.\n\n[Question 2]\nHow do you handle disagreements in informal settings?\n\n[Answer]\nI listen first, then respectfully offer my view. I avoid escalating tensions and look for common ground.\n\n[Question 3]\nWhat's something fun or unexpected about you?\n\n[Answer]\nI used to run a travel blog and still love planning spontaneous weekend trips.`,
     layout: { position: 'absolute', width: '65%', height: '38%', top: '48%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1888,7 +1888,7 @@ export const promptsData = [
     title: 'HR Screening Round',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_37_39 PM.png'),
-    text: `[Question 1]\nWhy are you interested in this position?\n\n[Answer]\nThis role aligns with both my experience and long-term goals. I’m excited about the team’s vision and confident I can bring strong contributions from day one.\n\n[Question 2]\nWhat are your salary expectations?\n\n[Answer]\nI'm looking for a role that reflects my skills and market standards. I'm open to a fair discussion based on responsibilities and benefits.\n\n[Question 3]\nAre you interviewing elsewhere?\n\n[Answer]\nYes, I'm exploring a few opportunities, but this role is a top contender due to its mission and team culture.`,
+    text: `[Question 1]\nWhy are you interested in this position?\n\n[Answer]\nThis role aligns with both my experience and long-term goals. I'm excited about the team's vision and confident I can bring strong contributions from day one.\n\n[Question 2]\nWhat are your salary expectations?\n\n[Answer]\nI'm looking for a role that reflects my skills and market standards. I'm open to a fair discussion based on responsibilities and benefits.\n\n[Question 3]\nAre you interviewing elsewhere?\n\n[Answer]\nYes, I'm exploring a few opportunities, but this role is a top contender due to its mission and team culture.`,
     layout: { position: 'absolute', width: '75%', height: '20%', top: '75%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
   },
   {
@@ -1896,7 +1896,7 @@ export const promptsData = [
     title: 'Virtual Interview Setup',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_39_08 PM.png'),
-    text: `[Question 1]\nHow do you prepare for virtual interviews?\n\n[Answer]\nI test all tech ahead of time, ensure good lighting, and minimize distractions. I also keep backup devices nearby and notes visible but off-camera.\n\n[Question 2]\nWhat’s your experience working remotely?\n\n[Answer]\nI've led distributed teams across time zones, using tools like Slack and Zoom effectively. I prioritize async updates and make time for virtual rapport-building.\n\n[Question 3]\nAny tips for video interview etiquette?\n\n[Answer]\nYes — dress professionally, look at the camera to mimic eye contact, and smile. Use a neutral background and avoid interrupting; let your voice finish strong.`,
+    text: `[Question 1]\nHow do you prepare for virtual interviews?\n\n[Answer]\nI test all tech ahead of time, ensure good lighting, and minimize distractions. I also keep backup devices nearby and notes visible but off-camera.\n\n[Question 2]\nWhat's your experience working remotely?\n\n[Answer]\nI've led distributed teams across time zones, using tools like Slack and Zoom effectively. I prioritize async updates and make time for virtual rapport-building.\n\n[Question 3]\nAny tips for video interview etiquette?\n\n[Answer]\nYes — dress professionally, look at the camera to mimic eye contact, and smile. Use a neutral background and avoid interrupting; let your voice finish strong.`,
     layout: { position: 'absolute', width: '70%', height: '40%', top: '52%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1904,7 +1904,7 @@ export const promptsData = [
     title: 'Recruiter Discussion at Career Fair',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_44_51 PM.png'),
-    text: `[Question 1]\nWhat brings you to this career fair?\n\n[Answer]\nI'm actively seeking a role that aligns with my experience and growth goals. Your company stood out to me because of its innovation and culture.\n\n[Question 2]\nWhat are you most proud of in your resume?\n\n[Answer]\nLeading a cloud migration that reduced hosting costs by 35% while improving system reliability. It was a cross-functional effort that I coordinated.\n\n[Question 3]\nHow soon are you available to start?\n\n[Answer]\nI’m available to start with a two-week notice. I'm committed to a smooth transition from my current responsibilities.`,
+    text: `[Question 1]\nWhat brings you to this career fair?\n\n[Answer]\nI'm actively seeking a role that aligns with my experience and growth goals. Your company stood out to me because of its innovation and culture.\n\n[Question 2]\nWhat are you most proud of in your resume?\n\n[Answer]\nLeading a cloud migration that reduced hosting costs by 35% while improving system reliability. It was a cross-functional effort that I coordinated.\n\n[Question 3]\nHow soon are you available to start?\n\n[Answer]\nI'm available to start with a two-week notice. I'm committed to a smooth transition from my current responsibilities.`,
     layout: { position: 'absolute', width: '70%', height: '32%', top: '62%', left: '13%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1912,7 +1912,7 @@ export const promptsData = [
     title: 'Product Manager Chat at Google Lounge',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_37_26 PM.png'),
-    text: `[Question 1]\nWhat’s your approach to product strategy?\n\n[Answer]\nI start with user insights and business objectives. I map needs to features, validate through feedback, and iterate quickly with measurable milestones.\n\n[Question 2]\nHow do you handle conflicting stakeholder priorities?\n\n[Answer]\nI align priorities to core goals, facilitate data-backed decisions, and ensure transparency through regular check-ins and roadmap visibility.\n\n[Question 3]\nHow do you ensure product quality?\n\n[Answer]\nI collaborate with QA and engineering early, define acceptance criteria, and use continuous feedback from real users to drive improvements.`,
+    text: `[Question 1]\nWhat's your approach to product strategy?\n\n[Answer]\nI start with user insights and business objectives. I map needs to features, validate through feedback, and iterate quickly with measurable milestones.\n\n[Question 2]\nHow do you handle conflicting stakeholder priorities?\n\n[Answer]\nI align priorities to core goals, facilitate data-backed decisions, and ensure transparency through regular check-ins and roadmap visibility.\n\n[Question 3]\nHow do you ensure product quality?\n\n[Answer]\nI collaborate with QA and engineering early, define acceptance criteria, and use continuous feedback from real users to drive improvements.`,
     layout: { position: 'absolute', width: '70%', height: '35%', top: '58%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '1deg' }] }
   },
   {
@@ -1920,7 +1920,7 @@ export const promptsData = [
     title: 'Live TV Interview Set',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_44_41 PM.png'),
-    text: `[Question 1]\nHow do you stay composed on live TV?\n\n[Answer]\nPreparation is key. I rehearse thoroughly, focus on my breathing, and keep my core message front and center.\n\n[Question 2]\nWhat’s the biggest risk you’ve taken professionally?\n\n[Answer]\nLeaving a secure job to join a fast-moving startup. It paid off — I learned rapidly, wore many hats, and contributed to doubling our user base.\n\n[Question 3]\nHow do you prepare for tricky or controversial questions?\n\n[Answer]\nI study past interviews, understand the context, and script responses that stay true to my values without sounding rehearsed.`,
+    text: `[Question 1]\nHow do you stay composed on live TV?\n\n[Answer]\nPreparation is key. I rehearse thoroughly, focus on my breathing, and keep my core message front and center.\n\n[Question 2]\nWhat's the biggest risk you've taken professionally?\n\n[Answer]\nLeaving a secure job to join a fast-moving startup. It paid off — I learned rapidly, wore many hats, and contributed to doubling our user base.\n\n[Question 3]\nHow do you prepare for tricky or controversial questions?\n\n[Answer]\nI study past interviews, understand the context, and script responses that stay true to my values without sounding rehearsed.`,
     layout: { position: 'absolute', width: '70%', height: '40%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1928,7 +1928,7 @@ export const promptsData = [
     title: 'White House Policy Discussion',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_19_01 PM.png'),
-    text: `[Question 1]\nWhat measures do you propose to improve national security?\n\n[Answer]\nI propose strengthening intelligence sharing, modernizing infrastructure, and enhancing cybersecurity through public-private partnerships.\n\n[Question 2]\nHow will your policy support economic growth?\n\n[Answer]\nThrough targeted investments in innovation, infrastructure, and workforce training to stimulate job creation and competitiveness globally.\n\n[Question 3]\nWhat’s your strategy on international cooperation?\n\n[Answer]\nBuilding strong alliances, engaging in multilateral institutions, and leading by example on global challenges such as climate and trade.`,
+    text: `[Question 1]\nWhat measures do you propose to improve national security?\n\n[Answer]\nI propose strengthening intelligence sharing, modernizing infrastructure, and enhancing cybersecurity through public-private partnerships.\n\n[Question 2]\nHow will your policy support economic growth?\n\n[Answer]\nThrough targeted investments in innovation, infrastructure, and workforce training to stimulate job creation and competitiveness globally.\n\n[Question 3]\nWhat's your strategy on international cooperation?\n\n[Answer]\nBuilding strong alliances, engaging in multilateral institutions, and leading by example on global challenges such as climate and trade.`,
     layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1968,7 +1968,7 @@ export const promptsData = [
     title: 'Enterprise Strategy Meeting at IBM HQ',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_24_42 PM.png'),
-    text: `[Question 1]\nWhat are IBM’s key innovation priorities?\n\n[Answer]\nFocusing on AI-driven solutions, hybrid cloud expansion, and quantum computing research to stay ahead in enterprise technology.\n\n[Question 2]\nHow do you approach digital transformation for clients?\n\n[Answer]\nBy conducting readiness assessments, co-creating roadmaps, and deploying agile teams for rapid, measurable value delivery.\n\n[Question 3]\nHow do you mitigate risks associated with legacy systems?\n\n[Answer]\nImplementing phased modernization, robust integration layers, and continuous cybersecurity monitoring.`,
+    text: `[Question 1]\nWhat are IBM's key innovation priorities?\n\n[Answer]\nFocusing on AI-driven solutions, hybrid cloud expansion, and quantum computing research to stay ahead in enterprise technology.\n\n[Question 2]\nHow do you approach digital transformation for clients?\n\n[Answer]\nBy conducting readiness assessments, co-creating roadmaps, and deploying agile teams for rapid, measurable value delivery.\n\n[Question 3]\nHow do you mitigate risks associated with legacy systems?\n\n[Answer]\nImplementing phased modernization, robust integration layers, and continuous cybersecurity monitoring.`,
     layout: { position: 'absolute', width: '70%', height: '32%', top: '68%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1976,7 +1976,7 @@ export const promptsData = [
     title: 'Content Creator Pitch at YouTube Studio',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_26_20 PM.png'),
-    text: `[Question 1]\nHow do you grow your channel audience?\n\n[Answer]\nConsistent, high-quality content, SEO-optimized titles and thumbnails, and active engagement with viewers.\n\n[Question 2]\nWhat’s your strategy for sustainable monetization?\n\n[Answer]\nDiversifying revenue streams through ads, sponsorships, merchandise, and membership programs.\n\n[Question 3]\nHow do you handle negative feedback or controversy?\n\n[Answer]\nListening objectively, responding professionally, and using criticism constructively to improve content.`,
+    text: `[Question 1]\nHow do you grow your channel audience?\n\n[Answer]\nConsistent, high-quality content, SEO-optimized titles and thumbnails, and active engagement with viewers.\n\n[Question 2]\nWhat's your strategy for sustainable monetization?\n\n[Answer]\nDiversifying revenue streams through ads, sponsorships, merchandise, and membership programs.\n\n[Question 3]\nHow do you handle negative feedback or controversy?\n\n[Answer]\nListening objectively, responding professionally, and using criticism constructively to improve content.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
   {
@@ -1992,7 +1992,7 @@ export const promptsData = [
     title: 'Disney Imagineering Technical Review',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_30_26 PM.png'),
-    text: `[Question 1]\nHow do you balance storytelling with engineering constraints?\n\n[Answer]\nIterative prototyping, cross-disciplinary teams, and user testing ensure both imaginative design and technical feasibility.\n\n[Question 2]\nDescribe a themed experience you’ve successfully delivered.\n\n[Answer]\nI led a ride concept incorporating AR effects, synchronized show lighting, and dynamic audio for immersive guest engagement.\n\n[Question 3]\nHow do you validate guest interaction flows?\n\n[Answer]\nThrough small-scale simulations, sensor-based tracking, and real-time feedback to refine user experience.`,
+    text: `[Question 1]\nHow do you balance storytelling with engineering constraints?\n\n[Answer]\nIterative prototyping, cross-disciplinary teams, and user testing ensure both imaginative design and technical feasibility.\n\n[Question 2]\nDescribe a themed experience you've successfully delivered.\n\n[Answer]\nI led a ride concept incorporating AR effects, synchronized show lighting, and dynamic audio for immersive guest engagement.\n\n[Question 3]\nHow do you validate guest interaction flows?\n\n[Answer]\nThrough small-scale simulations, sensor-based tracking, and real-time feedback to refine user experience.`,
     layout: { position: 'absolute', width: '50%', height: '27%', top: '55%', left: '5%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
   {
@@ -2065,7 +2065,7 @@ export const promptsData = [
     title: 'Brand Strategy Discussion at Starbucks HQ',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_18_12 PM.png'),
-    text: `[Question 1]\nHow do you maintain brand loyalty globally?\n\n[Answer]\nBy delivering consistent customer experiences, authentic storytelling, and localized offerings.\n\n[Question 2]\nWhat’s your approach to digital engagement?\n\n[Answer]\nIntegrating app-based rewards, personalized recommendations, and social media activations.\n\n[Question 3]\nHow do you ensure responsible expansion?\n\n[Answer]\nThrough market research, community partnerships, and sustainable sourcing.`,
+    text: `[Question 1]\nHow do you maintain brand loyalty globally?\n\n[Answer]\nBy delivering consistent customer experiences, authentic storytelling, and localized offerings.\n\n[Question 2]\nWhat's your approach to digital engagement?\n\n[Answer]\nIntegrating app-based rewards, personalized recommendations, and social media activations.\n\n[Question 3]\nHow do you ensure responsible expansion?\n\n[Answer]\nThrough market research, community partnerships, and sustainable sourcing.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
   },
   {
@@ -2073,7 +2073,7 @@ export const promptsData = [
     title: 'Social Media Strategist Interview at Snap Inc.',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_22_25 PM.png'),
-    text: `[Question 1]\nHow do you drive user engagement on social platforms?\n\n[Answer]\nBy creating interactive features, leveraging AR filters, and fostering community trends.\n\n[Question 2]\nWhat’s your strategy for monetizing content?\n\n[Answer]\nThrough targeted advertising, sponsored lenses, and premium subscription offerings.\n\n[Question 3]\nHow do you protect user data privacy?\n\n[Answer]\nImplementing privacy-by-design, user consent flows, and rigorous data governance.`,
+    text: `[Question 1]\nHow do you drive user engagement on social platforms?\n\n[Answer]\nBy creating interactive features, leveraging AR filters, and fostering community trends.\n\n[Question 2]\nWhat's your strategy for monetizing content?\n\n[Answer]\nThrough targeted advertising, sponsored lenses, and premium subscription offerings.\n\n[Question 3]\nHow do you protect user data privacy?\n\n[Answer]\nImplementing privacy-by-design, user consent flows, and rigorous data governance.`,
     layout: { position: 'absolute', width: '65%', height: '33%', top: '66%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -2148,14 +2148,6 @@ export const promptsData = [
     layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
-    id: 'specific8',
-    title: 'Mediating a Disagreement Between Team Members',
-    category: 'Situational/Specific',
-    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_56_57 PM.png'),
-    text: `Okay, Sarah, Tom, I understand there's some disagreement about the best approach for the next phase of the project. Let's take a step back. Sarah, could you first explain your perspective and concerns? \n(Listen) \nOkay, thank you. Tom, now could you share your viewpoint and the reasoning behind your proposed method? \n(Listen) \nAlright, it sounds like both approaches have merits. Let's focus on the core objective here. How can we combine the strengths of both ideas or find a compromise that addresses both the timeline concerns and the scalability requirements?`,
-    layout: { position: 'absolute', width: '60%', height: '40%', top: '53%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-3deg' }] }
-  },
-  {
     id: 'specific9',
     title: 'Explaining a Technical Issue to Non-Technical Manager',
     category: 'Situational/Specific',
@@ -2216,7 +2208,7 @@ export const promptsData = [
     title: 'Storm Update Press Briefing',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 03_50_44 PM.png'),
-    text: `Good afternoon and welcome to today’s FEMA Storm Update Press Briefing. We will cover the latest forecast models, projected impact zones, and evacuation orders for residents in the storm’s path.\n\nMeteorological experts will present detailed data on wind speeds and precipitation levels, followed by logistics coordinators explaining resource deployment strategies and shelter locations.\n\nOur objective is to ensure that all media partners have accurate, actionable information to share with the public. Please hold questions until the end of the presentation and submit them via the chat or by raising your hand. Thank you for your cooperation.`,
+    text: `Good afternoon and welcome to today's FEMA Storm Update Press Briefing. We will cover the latest forecast models, projected impact zones, and evacuation orders for residents in the storm's path.\n\nMeteorological experts will present detailed data on wind speeds and precipitation levels, followed by logistics coordinators explaining resource deployment strategies and shelter locations.\n\nOur objective is to ensure that all media partners have accurate, actionable information to share with the public. Please hold questions until the end of the presentation and submit them via the chat or by raising your hand. Thank you for your cooperation.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '50%', height: '45%', top: '30%', left: '-1%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
   },
@@ -2234,7 +2226,7 @@ export const promptsData = [
     title: 'Rocket Launch Site Crew Coordination',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_03_51 PM.png'),
-    text: `Good morning, team. Today’s coordination meeting at the rocket launch site will focus on countdown procedures, safety checks, and inter-team communication protocols.\n\nWe will review the final systems integration tests, including propulsion activation, fuel line pressurization, and telemetry link verification. Ground support will confirm clearance zones and emergency egress routes, while the weather team provides real-time updates on wind and cloud cover.\n\nOur primary goal is to ensure every subsystem meets launch criteria and that all personnel understand their roles during T-minus countdown. We will conclude with a rehearsal of rapid response actions should any anomaly arise.`,
+    text: `Good morning, team. Today's coordination meeting at the rocket launch site will focus on countdown procedures, safety checks, and inter-team communication protocols.\n\nWe will review the final systems integration tests, including propulsion activation, fuel line pressurization, and telemetry link verification. Ground support will confirm clearance zones and emergency egress routes, while the weather team provides real-time updates on wind and cloud cover.\n\nOur primary goal is to ensure every subsystem meets launch criteria and that all personnel understand their roles during T-minus countdown. We will conclude with a rehearsal of rapid response actions should any anomaly arise.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '42%', height: '34%', top: '54%', left: '18%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
@@ -2243,7 +2235,7 @@ export const promptsData = [
     title: 'Team Locker Room Pre-game Huddle',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_07_48 PM.png'),
-    text: `Alright squad, gather up. This is our pre-game huddle to align on strategy and boost team morale before we hit the field.\n\nWe’ll start by reviewing our defensive assignments, emphasizing communication on coverage switches and maintaining gap integrity. Then, we’ll go over our offensive tempo plan, including tempo snaps and play-action sequences to keep the opponent off balance.\n\nRemember to stay hydrated, focus on the fundamentals, and trust your training. We execute exactly as practiced and finish every play with maximum effort. Let’s lock in and bring the heat from kick-off.`,
+    text: `Alright squad, gather up. This is our pre-game huddle to align on strategy and boost team morale before we hit the field.\n\nWe'll start by reviewing our defensive assignments, emphasizing communication on coverage switches and maintaining gap integrity. Then, we'll go over our offensive tempo plan, including tempo snaps and play-action sequences to keep the opponent off balance.\n\nRemember to stay hydrated, focus on the fundamentals, and trust your training. We execute exactly as practiced and finish every play with maximum effort. Let's lock in and bring the heat from kick-off.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '32%', top: '40%', left: '28%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
@@ -2252,7 +2244,7 @@ export const promptsData = [
     title: 'Disaster Relief Coordination Meeting',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 03_54_55 PM.png'),
-    text: `Welcome to today’s disaster relief coordination meeting for the recent flood response. Our objective is to synchronize efforts across multiple agencies, including Red Cross, local emergency services, and volunteer networks.\n\nWe will review current damage assessments, population displacement figures, and priority zones for mobile clinic deployment. Logistics leads will present supply chain updates for food, water, and medical shipments, while shelter managers confirm capacity and staffing levels.\n\nIt is critical that we maintain clear communication channels, minimize duplication of efforts, and ensure rapid resource allocation to the most affected areas. Let’s collaborate on action items and timelines for the next 24 hours.`,
+    text: `Welcome to today's disaster relief coordination meeting for the recent flood response. Our objective is to synchronize efforts across multiple agencies, including Red Cross, local emergency services, and volunteer networks.\n\nWe will review current damage assessments, population displacement figures, and priority zones for mobile clinic deployment. Logistics leads will present supply chain updates for food, water, and medical shipments, while shelter managers confirm capacity and staffing levels.\n\nIt is critical that we maintain clear communication channels, minimize duplication of efforts, and ensure rapid resource allocation to the most affected areas. Let's collaborate on action items and timelines for the next 24 hours.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '30%', top: '51%', left: '28%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1.5deg' }] }
   },
@@ -2261,7 +2253,7 @@ export const promptsData = [
     title: 'Pandemic Drill Emergency Response',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_09_46 PM.png'),
-    text: `Good morning, and thank you for participating in today’s pandemic drill in the Emergency Command Center. This exercise will simulate a high-volume patient influx requiring rapid triage, quarantine protocols, and supply allocation.\n\nWe will walk through patient tracking systems, PPE distribution workflows, and inter-departmental communication methods. Observers from health agencies will evaluate adherence to infection control guidelines and the speed of resource mobilization.\n\nOur goal is to identify any bottlenecks or gaps in the response plan so we can refine standard operating procedures before a real event occurs. Please treat this as a live exercise and follow instructions precisely.`,
+    text: `Good morning, and thank you for participating in today's pandemic drill in the Emergency Command Center. This exercise will simulate a high-volume patient influx requiring rapid triage, quarantine protocols, and supply allocation.\n\nWe will walk through patient tracking systems, PPE distribution workflows, and inter-departmental communication methods. Observers from health agencies will evaluate adherence to infection control guidelines and the speed of resource mobilization.\n\nOur goal is to identify any bottlenecks or gaps in the response plan so we can refine standard operating procedures before a real event occurs. Please treat this as a live exercise and follow instructions precisely.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '50%', height: '43%', top: '40%', left: '24%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1.5deg' }] }
   },
@@ -2270,7 +2262,7 @@ export const promptsData = [
     title: 'Warehouse Operations Coordination',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_10_50 PM.png'),
-    text: `Welcome to the daily warehouse operations coordination meeting. Today we’ll review inbound and outbound shipment schedules, inventory levels, and forklift deployment plans.\n\nWe will start with a report on current stock counts, highlighting any items that have fallen below reorder thresholds. Next, the shipping team will outline prioritized orders and expected departure windows. Finally, maintenance will brief us on equipment status and safety checks.\n\nIt’s essential that we optimize aisle traffic, minimize picking errors, and ensure timely delivery to our distribution network. Please share any challenges you’re facing and your proposed solutions.`,
+    text: `Welcome to the daily warehouse operations coordination meeting. Today we'll review inbound and outbound shipment schedules, inventory levels, and forklift deployment plans.\n\nWe will start with a report on current stock counts, highlighting any items that have fallen below reorder thresholds. Next, the shipping team will outline prioritized orders and expected departure windows. Finally, maintenance will brief us on equipment status and safety checks.\n\nIt's essential that we optimize aisle traffic, minimize picking errors, and ensure timely delivery to our distribution network. Please share any challenges you're facing and your proposed solutions.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '50%', height: '40%', top: '41%', left: '24%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
   },
@@ -2288,7 +2280,7 @@ export const promptsData = [
     title: 'National Park Ranger Briefing',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_12_41 PM.png'),
-    text: `Welcome to today’s briefing at Yellowstone National Park. Rangers will receive updates on visitor safety alerts, wildlife movements, and trail conditions.\n\nThe wildlife biologist will report on recent elk migration patterns, while the fire management team outlines current controlled burn zones and air quality considerations. Trail maintenance will cover closures and hazard assessments from recent storms.\n\nPlease ensure all patrols carry bear spray and emergency radio check-ins occur at 30-minute intervals. Let’s work together to keep both visitors and wildlife safe during peak season.`,
+    text: `Welcome to today's briefing at Yellowstone National Park. Rangers will receive updates on visitor safety alerts, wildlife movements, and trail conditions.\n\nThe wildlife biologist will report on recent elk migration patterns, while the fire management team outlines current controlled burn zones and air quality considerations. Trail maintenance will cover closures and hazard assessments from recent storms.\n\nPlease ensure all patrols carry bear spray and emergency radio check-ins occur at 30-minute intervals. Let's work together to keep both visitors and wildlife safe during peak season.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '33%', top: '45%', left: '29%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1deg' }] }
   },
@@ -2297,7 +2289,7 @@ export const promptsData = [
     title: 'Airport Ground Operations Coordination',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_15_03 PM.png'),
-    text: `Good morning and welcome to the airport ground operations coordination session. Today’s focus will be on runway scheduling, aircraft turnaround procedures, and ground staff assignments.\n\nWe will begin with a status update on current flight arrivals and departures, followed by gate allocation changes due to maintenance delays. Baggage handling will brief on conveyor belt repairs and staffing levels.\n\nSafety officers will reiterate vehicle traffic patterns on tarmac and pedestrian clearances. It’s crucial we maintain efficient aircraft flow and uphold regulatory compliance to ensure on-time performance for all carriers.`,
+    text: `Good morning and welcome to the airport ground operations coordination session. Today's focus will be on runway scheduling, aircraft turnaround procedures, and ground staff assignments.\n\nWe will begin with a status update on current flight arrivals and departures, followed by gate allocation changes due to maintenance delays. Baggage handling will brief on conveyor belt repairs and staffing levels.\n\nSafety officers will reiterate vehicle traffic patterns on tarmac and pedestrian clearances. It's crucial we maintain efficient aircraft flow and uphold regulatory compliance to ensure on-time performance for all carriers.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '32%', top: '46%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
   },
@@ -2339,14 +2331,6 @@ export const promptsData = [
     image: require('../assets/socialpics/pic5021.png'),
     text: `Shh... I know we're in the library, but I just had to tell you about this amazing book I found in the new arrivals section.\n\nIt's a historical fiction novel set in ancient Rome, and the writing is absolutely captivating. I think you'd really enjoy it too.\n\nWould you like to join our book club meeting next week? We're discussing this month's pick, and I know you'd have some great insights to share.\n\nWe meet in the community room every Thursday at 6 PM.`,
     layout: { position: 'absolute', width: '55%', height: '40%', top: '53%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '7deg' }] }
-  },
-  {
-    id: 'social5',
-    title: 'Park Social Scene',
-    category: 'Social & Casual',
-    image: require('../assets/socialpics/pic8203.png'),
-    text: `What a beautiful day for a picnic in the park! I brought some sandwiches, fruit, and drinks for everyone.\n\nThere's a great spot over by the big oak tree with plenty of shade. We can set up our blankets there and enjoy the afternoon.\n\nAfter we eat, we could play some frisbee or maybe take a walk around the lake. I heard they just added some new walking trails that are really nice.\n\nDon't forget to bring your sunscreen - it's quite sunny today!`,
-    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
   },
   {
     id: 'social6',
@@ -2433,7 +2417,7 @@ export const promptsData = [
     title: 'Campfire Story Night',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_20_52 PM.png'),
-    text: `Alright everyone, gather close — I’ve got one last story before we turn in.\n\nThis one’s from my first solo hike through Yosemite, back when I barely knew how to read a compass. I ended up lost for hours, no signal, just me, the trees, and a very persistent raccoon.\n\nI wandered aimlessly until I found a stream and decided to wait it out. That night, under the stars, I felt both fear and awe. Nature has a way of humbling you, teaching lessons in silence.\n\nEventually, I made it back thanks to a ranger’s whistle echoing through the trees. That experience taught me more than any guidebook ever could.`,
+    text: `Alright everyone, gather close — I've got one last story before we turn in.\n\nThis one's from my first solo hike through Yosemite, back when I barely knew how to read a compass. I ended up lost for hours, no signal, just me, the trees, and a very persistent raccoon.\n\nI wandered aimlessly until I found a stream and decided to wait it out. That night, under the stars, I felt both fear and awe. Nature has a way of humbling you, teaching lessons in silence.\n\nEventually, I made it back thanks to a ranger's whistle echoing through the trees. That experience taught me more than any guidebook ever could.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -2451,7 +2435,7 @@ export const promptsData = [
     title: 'Thanksgiving Toast',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_22_36 PM.png'),
-    text: `Before we dig in, I just want to say how thankful I am to have each of you here tonight.\n\nThis year had its highs and lows, but through it all, this family — chosen and born — kept me grounded. The laughs, the support, the surprise check-ins, and the loud debates over board games — I don't take any of it for granted.\n\nSo here’s to the people at this table and the ones we hold in our hearts. Here’s to resilience, unconditional love, shared meals, and perfectly golden turkey. May this warmth carry us into the new year.`,
+    text: `Before we dig in, I just want to say how thankful I am to have each of you here tonight.\n\nThis year had its highs and lows, but through it all, this family — chosen and born — kept me grounded. The laughs, the support, the surprise check-ins, and the loud debates over board games — I don't take any of it for granted.\n\nSo here's to the people at this table and the ones we hold in our hearts. Here's to resilience, unconditional love, shared meals, and perfectly golden turkey. May this warmth carry us into the new year.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2469,7 +2453,7 @@ export const promptsData = [
     title: 'Outdoor Movie Night Welcome',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_26_02 PM.png'),
-    text: `Welcome, movie lovers! We’re so excited to have you here under the stars for our first backyard cinema night.\n\nFeel free to grab popcorn, pull up a blanket, and get cozy. Tonight’s feature is a throwback classic — one guaranteed to bring laughs and maybe a tear or two.\n\nIf you need snacks, bug spray, or extra pillows, we’ve got a table at the back. And yes, there’s a trivia quiz during intermission — prizes included!\n\nLet’s make this a night to remember. So without further ado... lights, camera, action!`,
+    text: `Welcome, movie lovers! We're so excited to have you here under the stars for our first backyard cinema night.\n\nFeel free to grab popcorn, pull up a blanket, and get cozy. Tonight's feature is a throwback classic — one guaranteed to bring laughs and maybe a tear or two.\n\nIf you need snacks, bug spray, or extra pillows, we've got a table at the back. And yes, there's a trivia quiz during intermission — prizes included!\n\nLet's make this a night to remember. So without further ado... lights, camera, action!`,
     layout: {
       position: 'absolute',
       width: '65%',
@@ -2487,7 +2471,7 @@ export const promptsData = [
     title: 'Cabin Game Night Kickoff',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_18_47 PM.png'),
-    text: `Alright folks, the fire's crackling, the snacks are ready — it’s time to settle the age-old debate: who’s the most competitive in the cabin?\n\nWe’re starting with charades, then splitting into teams for board games that will test wit, alliances, and bluffing skills. No phones, no distractions — just laughter, playful arguments, and new inside jokes.\n\nBy the end of tonight, someone will be crowned game night legend. Are you ready to play, scheme, and laugh until it hurts? Game on!`,
+    text: `Alright folks, the fire's crackling, the snacks are ready — it's time to settle the age-old debate: who's the most competitive in the cabin?\n\nWe're starting with charades, then splitting into teams for board games that will test wit, alliances, and bluffing skills. No phones, no distractions — just laughter, playful arguments, and new inside jokes.\n\nBy the end of tonight, someone will be crowned game night legend. Are you ready to play, scheme, and laugh until it hurts? Game on!`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2505,7 +2489,7 @@ export const promptsData = [
     title: 'Brewery Brainstorm Session',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_27_46 PM.png'),
-    text: `Alright, I know we said no work talk over beers… but I had an idea I couldn’t keep in.\n\nWhat if we took that seasonal batch and paired it with an experience — like live art or acoustic nights? We could brand it “Craft & Culture.”\n\nImagine curated pairings, small batch releases, and a rotating lineup of creators. Crazy? Maybe. But that’s our thing — bold, unfiltered, and a little experimental.\n\nLet it simmer while we order another round. Could be something worth brewing up this quarter.`,
+    text: `Alright, I know we said no work talk over beers… but I had an idea I couldn't keep in.\n\nWhat if we took that seasonal batch and paired it with an experience — like live art or acoustic nights? We could brand it "Craft & Culture."\n\nImagine curated pairings, small batch releases, and a rotating lineup of creators. Crazy? Maybe. But that's our thing — bold, unfiltered, and a little experimental.\n\nLet it simmer while we order another round. Could be something worth brewing up this quarter.`,
     layout: {
       position: 'absolute',
       width: '54%',
@@ -2523,7 +2507,7 @@ export const promptsData = [
     title: 'Festival Meet-Up Greeting',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_32_17 PM.png'),
-    text: `Hey! I can’t believe we finally found each other in this crowd — and just in time for the next set!\n\nYou all look amazing, by the way. That flower crown? Iconic. And those glitter shades? Next level.\n\nLet’s grab some drinks after this, maybe catch some merch, and then try to edge closer to the stage.\n\nI don’t know about you, but I plan to dance like nobody’s watching and lose my voice before the night’s over. Let’s make this a festival night to remember!`,
+    text: `Hey! I can't believe we finally found each other in this crowd — and just in time for the next set!\n\nYou all look amazing, by the way. That flower crown? Iconic. And those glitter shades? Next level.\n\nLet's grab some drinks after this, maybe catch some merch, and then try to edge closer to the stage.\n\nI don't know about you, but I plan to dance like nobody's watching and lose my voice before the night's over. Let's make this a festival night to remember!`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2541,7 +2525,7 @@ export const promptsData = [
     title: 'Dorm Game Night Starter',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_30_03 PM.png'),
-    text: `Alright everyone, rules are simple: no phones, no mercy, and absolutely no cheating.\n\nEach color card has a different challenge — trivia, charades, mini dares, or team tasks. It’s unpredictable and guaranteed to lead to outrageous stories.\n\nWinner gets dorm bragging rights until finals. Loser? Well, they might end up with a ridiculous dare posted on the fridge.\n\nLet’s laugh loud, play harder, and create the kind of memories we’ll talk about for years. Let the games begin!`,
+    text: `Alright everyone, rules are simple: no phones, no mercy, and absolutely no cheating.\n\nEach color card has a different challenge — trivia, charades, mini dares, or team tasks. It's unpredictable and guaranteed to lead to outrageous stories.\n\nWinner gets dorm bragging rights until finals. Loser? Well, they might end up with a ridiculous dare posted on the fridge.\n\nLet's laugh loud, play harder, and create the kind of memories we'll talk about for years. Let the games begin!`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2559,7 +2543,7 @@ export const promptsData = [
     title: 'Porch Group Catch-Up',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_39_35 PM.png'),
-    text: `This porch is giving me life right now. Cool breeze, warm drink, and no calendar reminders popping up.\n\nI’ve missed just *sitting* and catching up like this. No rushed schedules, no background noise — just us.\n\nSo tell me everything — how’s life, how’s work, how’s the dog? Any weird neighbor stories? Did you finally build that patio furniture you ordered months ago?\n\nTonight, we’re just here. And honestly, that’s more than enough.`,
+    text: `This porch is giving me life right now. Cool breeze, warm drink, and no calendar reminders popping up.\n\nI've missed just *sitting* and catching up like this. No rushed schedules, no background noise — just us.\n\nSo tell me everything — how's life, how's work, how's the dog? Any weird neighbor stories? Did you finally build that patio furniture you ordered months ago?\n\nTonight, we're just here. And honestly, that's more than enough.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -2577,7 +2561,7 @@ export const promptsData = [
     title: 'Fairground Food Talk',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_44_47 PM.png'),
-    text: `Okay, serious question: who’s brave enough to try the deep-fried butter?\n\nThis fair is like a neon dream — funnel cakes, rainbow slushies, and every food you can imagine dipped in batter. I’ve already demolished two corndogs and I regret nothing.\n\nBut the night isn’t over until someone wins a giant plush bear and we ride the Ferris wheel just as the lights start to flicker on.\n\nLet’s make this chaotic, sugar-fueled adventure count. Who’s in?`,
+    text: `Okay, serious question: who's brave enough to try the deep-fried butter?\n\nThis fair is like a neon dream — funnel cakes, rainbow slushies, and every food you can imagine dipped in batter. I've already demolished two corndogs and I regret nothing.\n\nBut the night isn't over until someone wins a giant plush bear and we ride the Ferris wheel just as the lights start to flicker on.\n\nLet's make this chaotic, sugar-fueled adventure count. Who's in?`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2595,7 +2579,7 @@ export const promptsData = [
     title: 'Rooftop Wine Conversation',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_41_42 PM.png'),
-    text: `You know what I love about rooftop nights like this? The way the city noise becomes a hum and real conversations just unfold naturally.\n\nSo tell me, what’s something new you’ve been learning about yourself lately? Big or small, I want to hear it. No pressure, just genuine curiosity.\n\nAlso, this wine? Way too good. Whoever brought it is now officially the sommelier for the group. Let’s keep the bottles flowing and the stories coming.`,
+    text: `You know what I love about rooftop nights like this? The way the city noise becomes a hum and real conversations just unfold naturally.\n\nSo tell me, what's something new you've been learning about yourself lately? Big or small, I want to hear it. No pressure, just genuine curiosity.\n\nAlso, this wine? Way too good. Whoever brought it is now officially the sommelier for the group. Let's keep the bottles flowing and the stories coming.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2616,9 +2600,7 @@ export const promptsData = [
     title: 'Quarterly Project Update & Next Steps', // Updated title
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_25_39 PM.png'),
-    text: `Good morning, team. Let's dive into the Q3 progress for Project Phoenix. We successfully completed the alpha testing phase two days ahead of schedule, thanks to the diligent work from the engineering team. Key performance indicators show a 15% improvement in processing speed compared to the previous build, which is fantastic news.
-
-Looking ahead to Q4, our primary focus will be on beta testing and addressing the feedback received from alpha users. We need to finalize the user documentation by November 15th and prepare for the limited launch targeted for the first week of December. Marketing, please ensure the campaign materials are aligned with this timeline. Let's open the floor for any questions regarding resource allocation for the beta phase.`, // Updated text
+    text: `Good morning, team. Let's dive into the Q3 progress for Project Phoenix. We successfully completed the alpha testing phase two days ahead of schedule, thanks to the diligent work from the engineering team. Key performance indicators show a 15% improvement in processing speed compared to the previous build, which is fantastic news.\n\nLooking ahead to Q4, our primary focus will be on beta testing and addressing the feedback received from alpha users. We need to finalize the user documentation by November 15th and prepare for the limited launch targeted for the first week of December. Marketing, please ensure the campaign materials are aligned with this timeline. Let's open the floor for any questions regarding resource allocation for the beta phase.`, // Updated text
     layout: { // Default layout - ADJUST AS NEEDED!
       position: 'absolute',
       width: '60%',
@@ -2692,9 +2674,9 @@ Looking forward, let's discuss development goals for the upcoming year. Based on
     title: 'Large Group Webinar: Polling Session',
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_19_40 AM.png'),
-    text: `Welcome everyone to today’s webinar. Before we begin the main presentation, we’ll start with a quick interactive poll to better understand our audience demographics. Please take a moment to answer the three questions displayed on your screen.
+    text: `Welcome everyone to today's webinar. Before we begin the main presentation, we'll start with a quick interactive poll to better understand our audience demographics. Please take a moment to answer the three questions displayed on your screen.
 
-Your responses will help tailor the rest of the session to your needs and interests. Once everyone has responded, we’ll display the aggregated results and proceed accordingly. Let’s get started with Question 1.`,
+Your responses will help tailor the rest of the session to your needs and interests. Once everyone has responded, we'll display the aggregated results and proceed accordingly. Let's get started with Question 1.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -2711,9 +2693,9 @@ Your responses will help tailor the rest of the session to your needs and intere
     title: 'Video Status Update for Internal Team',
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_25_15 AM.png'),
-    text: `Hey team, here’s the latest status update on the Gird Project. We’ve just completed milestone three, which involved finalizing backend APIs and running security validations.
+    text: `Hey team, here's the latest status update on the Gird Project. We've just completed milestone three, which involved finalizing backend APIs and running security validations.
 
-Next up is the front‑end integration and QA testing phase. If you have any blockers or need support, please drop a note in the project thread. I’ll be reviewing all pending pull requests by end of day. Thanks again for staying on track — keep up the great work!`,
+Next up is the front-end integration and QA testing phase. If you have any blockers or need support, please drop a note in the project thread. I'll be reviewing all pending pull requests by end of day. Thanks again for staying on track — keep up the great work!`,
     layout: {
       position: 'absolute',
       width: '70%',
@@ -2727,47 +2709,42 @@ Next up is the front‑end integration and QA testing phase. If you have any blo
   },
   {
     id: 'virtual7',
-    title: 'Hotel‑Based Remote Check‑In Meeting',
+    title: 'Hotel-Based Remote Check-In Meeting',
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_28_35 AM.png'),
-    text: `Good evening! Just wanted to check in quickly before tomorrow’s investor meeting. Everything is prepared and the presentation deck has been shared via email. I’ll be joining from my hotel room, but fully available to walk through any last‑minute changes you may need.
-
-Thanks again for the support and hard work from the entire team — this pitch is going to be a game changer. Let me know if there’s anything I should adjust tonight.`,
-    layout: {
-      position: 'absolute',
-      width: '65%',
-      height: '38%',
-      top: '63%',
-      left: '18.5%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10
-    }
-  },
-  {
-    id: 'virtual8',
-    title: 'Remote Team Planning Huddle',
-    category: 'Virtual Communication',
-    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_39_04 AM.png'),
-    text: `
-    
-    Morning, everyone.
-
-Let’s use this time to align on our Q2 priorities and ensure we’re all moving in the same direction. We’ve got several moving parts across teams, so we’ll start with brief status updates from each function and then open the floor to coordinate any dependencies, address blockers, and clarify next steps.
-
-Today’s discussion will focus on identifying key deliverables for the week, aligning on ownership, and ensuring we’re all clear on expectations. By the end of this session, the goal is to have a shared understanding of what needs to be completed by week’s end, with defined responsibilities and agreed timelines across Product, Engineering, Design, and Marketing.
-
-Let’s begin with an update from Product, followed by Engineering, then Design, and finally Marketing. Looking forward to a focused and productive conversation.`,
+    text: `Good evening! Just wanted to check in quickly before tomorrow's investor meeting. Everything is prepared and the presentation deck has been shared via email. I'll be joining from my hotel room, but fully available to walk through any last-minute changes you may need.`,
     layout: {
       position: 'absolute',
       width: '70%',
-      height: '45%',
-      top: '54%',
+      height: '36%',
+      top: '57%',
       left: '15%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
       borderRadius: 10
     }
+  }
+  // --- End Virtual Communication Prompts ---
+
+  // --- Situational/Specific Prompts ---
+  {
+    id: 'specific1',
+    title: 'Client Meeting Follow-Up',
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_47_11 PM.png'),
+    text: `Hey team, I wanted to quickly follow up on our client meeting yesterday.\n\nI've drafted a summary email that includes key action items and next steps. Please review and provide any feedback by end of day.\n\nI'll send out the final version tomorrow morning.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific2',
+    title: 'Team Lunch Discussion',
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_47_58 PM.png'),
+    text: `Alright team, let's gather around for a quick lunch discussion.\n\nWe've received some feedback about the current project timeline. It seems there might be a delay in the delivery of a key component, which could potentially impact our launch date.\n\nI've invited the relevant stakeholders to join this call. Let's discuss potential solutions and mitigation strategies.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific3',
   },
   {
     id: "virtual9",
