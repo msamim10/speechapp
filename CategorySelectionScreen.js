@@ -82,7 +82,15 @@ function CategorySelectionScreen() {
               imageStyle={styles.categoryBackgroundImageStyle} // Apply borderRadius to image itself
               resizeMode="cover"
             >
-              <View style={styles.cardOverlay}> 
+              {/* Placeholder for lock icon - requires data */}
+              {/* {category.isLocked && (
+                <View style={styles.lockIconContainer}>
+                  <Ionicons name="lock-closed" size={20} color={colors.textLight} />
+                </View>
+              )} */}
+              <View style={styles.cardOverlay}>
+                {/* Added Level Text */}
+                {/* <Text style={styles.levelText}>Level 1</Text> */}
                 <Text style={styles.categoryTitle}>{category.name}</Text>
               </View>
             </ImageBackground>
@@ -114,22 +122,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.textPrimary,
     paddingHorizontal: 20, // Align with content padding
-    marginBottom: 20, // Space below heading
+    marginBottom: 15, // Reduced space below heading
     marginTop: 10, // Space from top
     textAlign: 'center', // Center the heading
   },
   container: { // Style for ScrollView content
-    flexDirection: 'row', 
-    flexWrap: 'wrap', 
-    justifyContent: 'space-around', 
-    paddingHorizontal: 15, // Adjusted padding
+    alignItems: 'center', // Center cards horizontally
+    paddingHorizontal: 10, // Adjusted horizontal padding for full-width cards
     paddingBottom: 20, // Padding at the bottom
-    paddingTop: 30, // Increased padding at the top
+    paddingTop: 10, // Reduced padding at the top
   },
   categoryCardTouchable: { // Style for the TouchableOpacity wrapper
-    width: '48%', 
-    minHeight: 160, // Keep height consistent
-    marginBottom: 25, 
+    width: '100%', // Make cards full-width relative to container padding
+    minHeight: 180, // Keep increased card height
+    marginBottom: 20, // Keep margin between cards
     borderRadius: 15, // Apply borderRadius here for clipping ImageBackground
     overflow: 'hidden', // Ensure ImageBackground respects borderRadius
     // Add shadow to the touchable wrapper
@@ -142,25 +148,40 @@ const styles = StyleSheet.create({
   categoryCardBackground: { // Style for ImageBackground
     flex: 1, // Take full space of TouchableOpacity
     justifyContent: 'flex-end', // Align overlay/text to the bottom
-    alignItems: 'center', 
+    // Removed alignItems: 'center' - overlay handles text alignment
   },
   categoryBackgroundImageStyle: { // Style passed to imageStyle prop of ImageBackground
      borderRadius: 15, // Ensures the image itself has rounded corners
   },
-  cardOverlay: { // Semi-transparent overlay
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Dark overlay for text contrast
-    paddingVertical: 10,
-    paddingHorizontal: 5,
+  cardOverlay: { // Semi-transparent overlay at the bottom
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Slightly darker overlay
+    paddingVertical: 12, // Adjusted vertical padding
+    paddingHorizontal: 12, // Added horizontal padding
     width: '100%', // Cover full width
-    alignItems: 'center',
+    // Removed alignItems: 'center' - text components handle their own alignment
   },
-  categoryTitle: { // Updated text style
+  levelText: { // Style for the "Level X" text
+    color: colors.textLight,
+    fontSize: 12,
+    fontWeight: '600',
+    marginBottom: 2, // Space between level and title
+    opacity: 0.8, // Slightly less prominent
+  },
+  categoryTitle: { // Updated category title style
     color: colors.textLight, // White text for contrast
-    fontSize: 16, 
+    fontSize: 18, // Increased font size
     fontWeight: 'bold', // Make bolder
-    textAlign: 'center',
-    // Removed marginTop as text is now at the bottom
+    // Removed textAlign and marginTop
   },
+  // Placeholder style for lock icon container
+  // lockIconContainer: {
+  //   position: 'absolute',
+  //   top: 10,
+  //   right: 10,
+  //   backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  //   padding: 4,
+  //   borderRadius: 10,
+  // },
 });
 
 export default CategorySelectionScreen; 

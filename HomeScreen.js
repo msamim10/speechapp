@@ -11,21 +11,46 @@ import {
   Image,
   Alert,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import colors from './constants/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { categoryImageSources, preloadImages } from './constants/imageUtils';
-import { useUser } from './context/UserContext'; // Import the useUser hook
+import { categoryImageSources, preloadImages, defaultImages } from './constants/imageUtils';
+import { useUser } from './context/UserContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { promptsData } from './data/prompts';
 
-// --- Date Formatting Helper (Copied from UserProfileScreen) ---
+// Helper function to format seconds
+const formatSeconds = (totalSeconds) => {
+    if (totalSeconds == null || isNaN(totalSeconds) || totalSeconds <= 0) { // Handle 0 seconds explicitly
+        return '0s';
+    }
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+
+    let formatted = '';
+    if (hours > 0) {
+        formatted += `${hours}h `;
+    }
+    if (minutes > 0 || hours > 0) {
+        formatted += `${minutes}m `;
+    }
+    // Always show seconds if total time > 0 or if it's the only unit
+     if (seconds > 0 || formatted === '') {
+         formatted += `${seconds}s`;
+     }
+    return formatted.trim();
+};
+
+// Date Formatting Helper
 const isSameDay = (d1, d2) => {
   if (!d1 || !d2) return false;
   return d1.getFullYear() === d2.getFullYear() &&
          d1.getMonth() === d2.getMonth() &&
          d1.getDate() === d2.getDate();
 };
-
 const formatTimestamp = (timestamp) => {
   if (!timestamp) return 'Never';
   const date = new Date(timestamp);
@@ -42,230 +67,325 @@ const formatTimestamp = (timestamp) => {
     year: 'numeric', month: 'short', day: 'numeric'
   });
 };
-// --- End Date Formatting ---
 
-// Categories with preloaded images
-const categories = [
-  { id: 'speeches', title: 'Speeches', image: categoryImageSources.speeches, category: 'Speeches' },
-  { id: 'presentations', title: 'Presentations', image: categoryImageSources.presentations, category: 'Presentations' },
-  { id: 'social', title: 'Social', image: categoryImageSources.social, category: 'Social & Casual' },
-  { id: 'interview', title: 'Interview', image: categoryImageSources.interview, category: 'Interviews' },
-  { 
-    id: 'practice_fundamentals', 
-    title: 'Practice Fundamentals', 
-    image: categoryImageSources.speeches, // Placeholder image
-    category: 'Practice Fundamentals' 
-  },
-  { 
-    id: 'virtual_communication', 
-    title: 'Virtual Communication', 
-    image: categoryImageSources.presentations, // Placeholder image
-    category: 'Virtual Communication' 
-  },
-];
-
-// Calculate card width
+// Calculate card widths based on screen dimensions
 const screenWidth = Dimensions.get('window').width;
-const gridGap = 16;
-const containerPadding = (screenWidth * 0.1) / 2; // matches welcomeBox width: 90%
-const cardWidth = (screenWidth - containerPadding * 2 - gridGap) / 2;
-const cardHeight = 160;
+const horizontalPadding = 20; // Consistent padding for sections
+const featuredCardWidth = screenWidth - horizontalPadding * 2;
+const recentCardWidth = screenWidth * 0.4; // Smaller width for recent cards
 
 function HomeScreen() {
   const navigation = useNavigation();
-  // Get user data from context, including stats
   const { username, currentStreak, lastPracticedTimestamp, isLoading: isUserLoading } = useUser();
-  // State for press effects
-  const [cardStates, setCardStates] = useState({});
   const [imagesReady, setImagesReady] = useState(false);
+  const [lastPromptId, setLastPromptId] = useState(null);
+  const [lastPromptTitle, setLastPromptTitle] = useState('');
+  const [recentPrompts, setRecentPrompts] = useState([]);
+  const [featuredPrompt, setFeaturedPrompt] = useState(null);
+  const [totalPracticeTime, setTotalPracticeTime] = useState(0);
 
-  // Preload images when component mounts
   useEffect(() => {
-    console.log("--- HomeScreen Rendering --- Username:", username); // Log HomeScreen render start
-    const loadImages = async () => {
+    console.log("--- HomeScreen Rendering --- Username:", username);
+    let isMounted = true;
+
+    const loadData = async () => {
       try {
-        // Preload all category images
-        const imageArray = Object.values(categoryImageSources);
-        await preloadImages(imageArray);
-        setImagesReady(true);
+        // Preload images (optional, could be moved elsewhere if startup is slow)
+        // const imageArray = Object.values(categoryImageSources);
+        // await preloadImages(imageArray);
+        // if (isMounted) setImagesReady(true);
+        // --- Temp: Set imagesReady immediately for faster testing ---
+        if (isMounted) setImagesReady(true);
+
+
+        // --- Load Last Prompt ---
+        const storedId = await AsyncStorage.getItem('@lastPromptId');
+        if (isMounted && storedId !== null) {
+          setLastPromptId(storedId);
+          const prompt = promptsData.flat().find(p => p.id === storedId);
+          if (prompt) {
+            setLastPromptTitle(prompt.title);
+          } else {
+             setLastPromptTitle('Last Practice');
+             // Consider clearing invalid ID
+             // await AsyncStorage.removeItem('@lastPromptId'); setLastPromptId(null);
+          }
+        }
+
+        // --- Load Recent Prompts ---
+        const recentJson = await AsyncStorage.getItem('@recentPromptIds');
+        if (isMounted && recentJson) {
+          const recentIds = JSON.parse(recentJson);
+          const fullRecentPrompts = recentIds.map(id => promptsData.flat().find(p => p.id === id)).filter(Boolean);
+          setRecentPrompts(fullRecentPrompts);
+        }
+
+        // --- Select Featured Prompt ---
+        if (isMounted && promptsData && promptsData.flat().length > 0) {
+            const allPrompts = promptsData.flat();
+            const randomIndex = Math.floor(Math.random() * allPrompts.length);
+            setFeaturedPrompt(allPrompts[randomIndex]);
+        }
+
+        // --- Load Total Practice Time ---
+        const timeStr = await AsyncStorage.getItem('@totalPracticeTimeSeconds');
+        if (isMounted && timeStr !== null) {
+             const timeSec = parseInt(timeStr, 10);
+             setTotalPracticeTime(isNaN(timeSec) ? 0 : timeSec);
+        } else if (isMounted) {
+            setTotalPracticeTime(0);
+        }
+
       } catch (error) {
-        console.error('Error preloading images:', error);
-        // Even if there's an error, we'll set imagesReady to true to not block the UI
-        setImagesReady(true);
+        console.error('Error loading home screen data:', error);
+         if (isMounted) {
+             setImagesReady(true); // Still allow UI to render
+             setTotalPracticeTime(0); // Default time on error
+         }
       }
     };
-    
-    loadImages();
-  }, [username]); // Add username dependency to log changes
+
+    loadData();
+    return () => { isMounted = false; };
+  }, [username]); // Rerun on user change
 
   // --- Handlers ---
-  const handleStartPractice = () => {
-    // Navigate specifically to the CategorySelectionScreen within the PracticeTab stack
-    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
-  };
+  const handleStartPractice = () => navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
 
-  // Quick Practice handler 
+  // <<< Implement Quick Practice Navigation >>>
   const handleQuickPractice = () => {
-    // Sample practice text - brief enough for a quick practice
-    const quickText = 
+    // Define the standard warm-up text
+    const quickText =
       "Welcome to quick practice mode. This short exercise helps you warm up your voice and delivery skills. " +
       "Speak clearly and confidently, maintaining good pace and projection. " +
       "Public speaking is a skill that improves with consistent practice. " +
       "Focus on your breathing, posture, and articulation as you read these sentences.";
-      
-    // Navigate to the simple WarmUp screen with the practice text
+    
+    // Navigate to WarmUp screen (assuming it exists and takes warmUpText param)
+    // If WarmUpScreen doesn't exist, this navigation will fail.
     navigation.navigate('WarmUp', { 
-      warmUpText: quickText 
+      warmUpText: quickText
     });
   };
 
-  // Handlers for card press in/out
-  const onPressInCard = (id) => {
-    setCardStates((prev) => ({
-      ...prev,
-      [id]: { scale: 1.05, overlayOpacity: 0.5 }
-    }));
-  };
-  const onPressOutCard = (id) => {
-    setCardStates((prev) => ({
-      ...prev,
-      [id]: { scale: 1, overlayOpacity: 0.3 }
-    }));
+  // <<< Implement Resume Practice Navigation (if you want to add the button back later) >>>
+  const handleResumePractice = () => {
+    if (!lastPromptId) return;
+    const prompt = promptsData.flat().find(p => p.id === lastPromptId);
+    if (!prompt) {
+      console.error('Could not find prompt data for ID:', lastPromptId);
+      Alert.alert("Error", "Could not load the last practiced prompt. It might have been removed.");
+      AsyncStorage.removeItem('@lastPromptId').then(() => {
+        setLastPromptId(null);
+        setLastPromptTitle('');
+      });
+      return;
+    }
+    const promptsInCategory = promptsData.flat().filter(p => p.category === prompt.category);
+    if (!promptsInCategory || promptsInCategory.length === 0) {
+        console.error('Could not find category prompts for prompt:', lastPromptId, 'category:', prompt.category);
+        Alert.alert("Error", "Could not find the category for the last practiced prompt.");
+        return;
+    }
+    navigation.navigate('PracticeTab', {
+      screen: 'Teleprompter',
+      params: {
+        selectedPromptId: lastPromptId,
+        categoryPrompts: promptsInCategory
+      }
+    });
   };
 
-  // <<< Add Handler for Profile Navigation >>>
-  const handleGoToProfile = () => {
-    // Navigate to UserProfileScreen (assuming it's defined in a Stack or RootStack)
-    // We need to navigate outside the Tab Navigator now.
-    // Let's try navigating directly via the root navigator if possible.
-    navigation.navigate('UserProfile'); // Use the name defined in RootStack if any, otherwise adjust
-  };
+  const handleGoToProfile = () => navigation.navigate('UserProfile');
 
-  const renderCategoryCard = (cat) => {
-    const state = cardStates[cat.id] || { scale: 1, overlayOpacity: 0.3 };
-    return (
-      <TouchableOpacity
-        key={cat.id}
-        style={[styles.categoryCard, { transform: [{ scale: state.scale }] }]}
-        onPress={() => navigation.navigate('PracticeTab', { 
-          screen: 'PromptSelection',
-          params: { category: cat.category } 
-        })}
-        onPressIn={() => onPressInCard(cat.id)}
-        onPressOut={() => onPressOutCard(cat.id)}
-        activeOpacity={0.9}
-      >
-        <ImageBackground 
-          source={cat.image} 
-          style={styles.categoryImage}
+  // <<< Implement Select Recent/Featured Prompt Navigation >>>
+  const handleSelectRecentPrompt = (prompt) => {
+    if (!prompt || !prompt.id || !prompt.category) {
+        console.error('Invalid prompt data for navigation:', prompt);
+        Alert.alert("Error", "Could not load this prompt. Please try again.");
+        return;
+    }
+    
+    // Find all prompts in that category to pass to TeleprompterScreen
+    const promptsInCategory = promptsData.flat().filter(p => p.category === prompt.category);
+    if (!promptsInCategory || promptsInCategory.length === 0) {
+        console.error('Could not find category prompts for selected prompt:', prompt.id, 'category:', prompt.category);
+        // Attempt to find *any* prompts if category match fails, as a fallback?
+        // For now, show an error.
+        Alert.alert("Error", "Could not find related prompts in this category.");
+        return;
+    }
+
+    console.log(`Navigating to prompt: ${prompt.id} (${prompt.title}) in category: ${prompt.category}`);
+    navigation.navigate('PracticeTab', {
+        screen: 'Teleprompter',
+        params: {
+            selectedPromptId: prompt.id,
+            categoryPrompts: promptsInCategory
+        }
+    });
+  };
+  
+  // Featured prompt uses the same logic as selecting a recent one
+  const handleSelectFeaturedPrompt = () => { 
+      if (featuredPrompt) {
+        handleSelectRecentPrompt(featuredPrompt);
+      } else {
+          Alert.alert("Error", "No featured prompt loaded.");
+      }
+  }; 
+
+  // --- Render Functions ---
+
+  // <<< Component to render each recent prompt card >>>
+  const renderRecentPromptCard = ({ item }) => (
+    <TouchableOpacity
+      style={styles.recentCard}
+      onPress={() => handleSelectRecentPrompt(item)}
+      activeOpacity={0.8}
+    >
+      <ImageBackground
+          source={item.image || defaultImages.promptBackground}
+          style={styles.recentCardBackground}
+          imageStyle={styles.recentCardImageStyle}
           resizeMode="cover"
-          fadeDuration={0} // Remove fade animation for faster display
-        >
-          <View style={[styles.categoryOverlay, { opacity: state.overlayOpacity }]} />
-          <View style={styles.categoryTitleContainer}>
-            <Text style={styles.cardLabel}>{cat.title}</Text>
-          </View>
-        </ImageBackground>
-      </TouchableOpacity>
-    );
-  };
+       >
+        <View style={styles.recentCardOverlay} />
+        <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
+      </ImageBackground>
+    </TouchableOpacity>
+  );
 
-  // Format the date for display
-  const formattedLastPracticed = formatTimestamp(lastPracticedTimestamp);
-
-  // Use a loading state while images are being cached OR user is loading
-  if (!imagesReady || isUserLoading) { // Check both loading states
+  // --- Loading State ---
+  if (!imagesReady || isUserLoading) {
     return (
       <SafeAreaView style={styles.safeArea}>
-        <View style={styles.loadingContainer}>
-          <Text style={styles.loadingText}>Loading...</Text>
-        </View>
+        <View style={styles.loadingContainer}><Text style={styles.loadingText}>Loading...</Text></View>
       </SafeAreaView>
     );
   }
 
-  // Log the number of categories before rendering
-  console.log("Number of categories to render:", categories.length);
+  // --- Formatted Values ---
+  const formattedLastPracticed = formatTimestamp(lastPracticedTimestamp);
+  const formattedTotalTime = formatSeconds(totalPracticeTime);
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/* <<< Add Profile Button Here >>> */}
+       {/* Profile/Settings Button - Top Left */}
       <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
-        <Ionicons name="settings-outline" size={28} color={colors.primaryDark} />
+        <Ionicons name="settings-outline" size={28} color={colors.textPrimary} />
       </TouchableOpacity>
 
-      <ScrollView 
+      <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={styles.scrollContentContainer} 
-        showsVerticalScrollIndicator={false} // Hide scrollbar
+        contentContainerStyle={styles.scrollContentContainer}
+        showsVerticalScrollIndicator={false}
       >
-        {/* --- Large Welcome Box --- */}
-        <View style={styles.welcomeBox}>
-          <Text style={styles.welcomeHeader}>Welcome, {username}!</Text>
-          {/* Start Practice Button Container */}
-          <View style={styles.ctaButtonContainer}>
-            <TouchableOpacity style={styles.ctaButton} onPress={handleStartPractice}>
-              <Text style={styles.ctaButtonText}>Start Practice</Text>
-            </TouchableOpacity>
-          </View>
+        {/* Welcome Header */}
+        <Text style={styles.welcomeHeader}>Welcome, {username || 'User'}!</Text>
 
-          {/* --- Practice Stats Section (Moved Inside Welcome Box) --- */}
-          <View style={styles.statsContainer}>
-              <View style={styles.statItem}>
-                  <Ionicons name="flame" size={24} color={colors.accentOrange} style={styles.statIcon} />
-                  <Text style={styles.statValue}>{currentStreak}</Text>
-                  <Text style={styles.statLabel}>Day Streak</Text>
-              </View>
-              <View style={styles.statSeparator} />
-              <View style={styles.statItem}>
-                  <Ionicons name="calendar" size={24} color={colors.accentPurple} style={styles.statIcon} />
-                  <Text style={styles.statValueSmall}>{formattedLastPracticed}</Text>
-                  <Text style={styles.statLabel}>Last Practiced</Text>
-              </View>
-          </View>
+        {/* CTA Buttons */}
+        <View style={styles.ctaButtonContainer}>
+          <TouchableOpacity style={[styles.ctaButton, styles.primaryButton]} onPress={handleStartPractice}>
+            <Text style={[styles.ctaButtonText, styles.primaryButtonText]}>Start Practice</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.ctaButton, styles.secondaryButton]} onPress={handleQuickPractice}>
+            <Ionicons name="pulse-outline" size={20} color={colors.primary} style={styles.secondaryButtonIcon} />
+            <Text style={[styles.ctaButtonText, styles.secondaryButtonText]}>Quick Warm-Up</Text>
+          </TouchableOpacity>
         </View>
 
-        {/* Category Section with Title */}
-        <View style={styles.categorySection}>
-          <Text style={styles.categoryTitle}>Select a Category</Text>
-          <View style={styles.categoryGrid}>
-            {categories.map(renderCategoryCard)}
-          </View>
+        {/* Stats Section */}
+        <View style={styles.statsContainer}>
+            <View style={styles.statItem}>
+                <Ionicons name="flame-outline" size={26} color={colors.textSecondary} style={styles.statIcon} />
+                <Text style={styles.statValue}>{currentStreak}</Text>
+                <Text style={styles.statLabel}>Day Streak</Text>
+            </View>
+            <View style={styles.statItem}>
+                <Ionicons name="time-outline" size={26} color={colors.textSecondary} style={styles.statIcon} />
+                <Text style={styles.statValue}>{formattedTotalTime}</Text>
+                <Text style={styles.statLabel}>Total Time</Text>
+            </View>
+            <View style={styles.statItem}>
+                <Ionicons name="calendar-outline" size={26} color={colors.textSecondary} style={styles.statIcon} />
+                {/* Adjusted layout for last practiced */}
+                <Text style={[styles.statValue, styles.statValueSmall]}>{formattedLastPracticed.split(' at ')[0]}</Text>
+                {formattedLastPracticed !== 'Never' && <Text style={styles.statLabelSmall}>{formattedLastPracticed.split(' at ')[1]}</Text>}
+                <Text style={styles.statLabel}>Last Practiced</Text>
+            </View>
         </View>
 
-        {/* Spacer view - No longer needed with ScrollView? Might remove or adjust */}
-        {/* <View style={{ flex: 1 }} /> */}
+        {/* Featured Prompt Section */}
+        {featuredPrompt && (
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionTitle}>Featured Practice</Text>
+                <TouchableOpacity
+                  style={styles.featuredCard}
+                  onPress={handleSelectFeaturedPrompt}
+                  activeOpacity={0.8}
+                >
+                  <ImageBackground
+                      source={featuredPrompt.image || defaultImages.promptBackground}
+                      style={styles.featuredCardBackground}
+                      imageStyle={styles.featuredCardImageStyle}
+                      resizeMode="cover"
+                  >
+                    <View style={styles.featuredCardOverlay} />
+                     <View style={styles.featuredTextContainer}>
+                        <Text style={styles.featuredCardTitle} numberOfLines={2}>{featuredPrompt.title}</Text>
+                        <Text style={styles.featuredCardCategory} numberOfLines={1}>{featuredPrompt.category}</Text>
+                     </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+            </View>
+        )}
+
+        {/* Recently Practiced Section */}
+        {recentPrompts.length > 0 && (
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionTitle}>Recently Practiced</Text>
+                <FlatList
+                    data={recentPrompts}
+                    renderItem={renderRecentPromptCard}
+                    keyExtractor={(item) => item.id}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.recentListContainer}
+                />
+            </View>
+        )}
+
+        {/* --- Category Section Removed --- */}
+        {/* --- Tip Section Styles Removed --- */}
+        {/* --- Resume Section Styles Removed (Can be added back if needed) --- */}
 
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-// --- Stylesheet ---
+// --- Stylesheet (Refactored) ---
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundLight, // Use a light background
   },
-  scrollView: { // Style for the ScrollView itself
+  scrollView: {
     flex: 1,
   },
-  scrollContentContainer: { // Style for the content inside ScrollView
-    alignItems: 'center', // Center content horizontally
-    paddingBottom: 30, // Add some padding at the bottom
+  scrollContentContainer: {
+    paddingHorizontal: horizontalPadding,
+    paddingTop: 80, // Increased padding for header/settings button space
+    paddingBottom: 40, // Padding at the bottom
   },
-  // <<< Update Style for Profile Button >>>
   profileButton: {
-    position: 'absolute', // Position over content
-    top: 55, // Adjust as needed for status bar height
-    left: 20, // <<< Changed from right to left >>>
-    zIndex: 10, // Ensure it's above scroll content
-    padding: 8,
-    // Optional: Add background/border if needed for visibility
-    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    // borderRadius: 20,
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 55 : 45, // Adjust for status bar
+    left: horizontalPadding,
+    zIndex: 10,
+    padding: 5, // Make tappable area larger
   },
-  // --- Loading Container ---
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -275,148 +395,193 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.primaryDark,
   },
-  // --- Welcome Box ---
-  welcomeBox: {
-    width: '90%', // Make the box wide
-    backgroundColor: colors.cardBackground, // Example background
-    borderRadius: 16,
-    paddingVertical: 25, // Keep vertical padding
-    paddingHorizontal: 20, // Adjust horizontal padding slightly if needed
-    marginTop: 30, // Space from top
-    marginBottom: 25, // Increased margin below welcome box to compensate for removed stats margin
-    alignItems: 'center', // Center content inside the box
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
-  },
   welcomeHeader: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: colors.primaryDark,
-    marginBottom: 25, // Adjust spacing
+    color: colors.textPrimary,
+    marginBottom: 25,
+    textAlign: 'center', // Center the welcome text
   },
-  // --- CTA Button (Styles adjusted for context) ---
   ctaButtonContainer: {
-    width: '100%', // Make button container full width of box padding
-    alignItems: 'center', // Center the button(s) within the container
-    marginBottom: 25, // Add space between button and stats
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Space buttons apart
+    marginBottom: 35,
+    width: '100%', // Ensure container spans width for spacing
   },
   ctaButton: {
-    width: '90%', // Make button slightly less wide than container
-    backgroundColor: colors.accentTeal,
-    paddingVertical: 15, // Slightly smaller button
-    paddingHorizontal: 20,
+    paddingVertical: 14,
     borderRadius: 30,
     alignItems: 'center',
-    shadowColor: '#000',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flex: 1, // Make buttons share space
+    marginHorizontal: 5, // Add slight gap between buttons
+    shadowColor: colors.shadowColor,
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.15,
     shadowRadius: 5,
-    elevation: 6,
-    // Removed marginBottom as only one button now
+    elevation: 4,
+  },
+  primaryButton: {
+      backgroundColor: colors.primary, // Blue color from screenshot
+  },
+  secondaryButton: {
+      backgroundColor: colors.white, // White background
+      borderWidth: 1.5,
+      borderColor: colors.borderLight, // Light border
   },
   ctaButtonText: {
-    color: colors.textLight,
-    fontSize: 16, // Slightly smaller text
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontWeight: '600', // Semi-bold
   },
-  categorySection: {
-    width: '90%',
-    marginTop: 0, // Reset margin Top as space is handled by welcomeBox margin
-    marginBottom: 10,
+  primaryButtonText: {
+    color: colors.white,
   },
-  categoryTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: colors.primaryDark,
-    marginBottom: 15,
-    paddingHorizontal: 5,
+  secondaryButtonText: {
+    color: colors.primary, // Blue text
   },
-  categoryGrid: {
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  categoryCard: {
-    width: cardWidth,
-    height: cardHeight,
-    marginBottom: gridGap,
-    borderRadius: 16,
-    overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  categoryImage: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  categoryOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#000',
-  },
-  categoryTitleContainer: {
-    position: 'absolute',
-    bottom: 10,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-  },
-  cardLabel: {
-    backgroundColor: 'rgba(255,255,255,0.8)',
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.primaryDark,
+  secondaryButtonIcon: {
+    marginRight: 6,
   },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: 'transparent', // Make background transparent to blend with welcomeBox
-    borderRadius: 0, // Remove border radius if inside box
-    paddingVertical: 10, // Adjust padding
-    paddingHorizontal: 0,
-    width: '100%', // Take full width within welcomeBox padding
-    marginBottom: 0, // Remove margin as it's inside the box now
+    marginBottom: 40,
+    width: '100%',
+    paddingVertical: 15, // Add padding inside stats area
+    backgroundColor: colors.white, // White background for stats box effect
+    borderRadius: 12,
+    shadowColor: colors.shadowColor,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
   },
   statItem: {
     alignItems: 'center',
-    flex: 1,
+    flex: 1, // Distribute space evenly
   },
   statIcon: {
-    marginBottom: 5,
+    marginBottom: 8,
+    color: colors.textSecondary, // Muted icon color
   },
   statValue: {
-    fontSize: 20,
+    fontSize: 22, // Larger value text
     fontWeight: 'bold',
-    color: colors.primaryDark,
+    color: colors.textPrimary,
+    marginBottom: 2,
   },
-  statValueSmall: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: colors.primaryDark,
-    textAlign: 'center',
-    minHeight: 30,
+  statValueSmall: { // For multi-line stats like 'Last Practiced'
+      fontSize: 14,
+      fontWeight: '600',
+      color: colors.textPrimary,
+      textAlign: 'center',
   },
   statLabel: {
-    fontSize: 12,
+    fontSize: 13,
     color: colors.textSecondary,
     marginTop: 2,
   },
-  statSeparator: {
-    width: 1,
-    height: '60%',
-    backgroundColor: colors.borderLight,
-    marginHorizontal: 10,
+  statLabelSmall: { // Smaller label for time part of 'Last Practiced'
+      fontSize: 11,
+      color: colors.textSecondary,
   },
+  // Removed statSeparator - using spacing instead
+
+  sectionContainer: {
+    marginBottom: 30, // Space between sections
+    width: '100%',
+  },
+  sectionTitle: {
+    fontSize: 20, // Larger section titles
+    fontWeight: 'bold',
+    color: colors.textPrimary,
+    marginBottom: 15,
+  },
+
+  // --- Featured Styles (Refined) ---
+  featuredCard: {
+      width: featuredCardWidth,
+      height: featuredCardWidth * 0.55, // Aspect ratio for featured card
+      borderRadius: 15,
+      overflow: 'hidden',
+      backgroundColor: colors.secondaryBackground, // Fallback color
+      shadowColor: colors.shadowColor,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 8,
+      elevation: 5,
+  },
+  featuredCardBackground: {
+      flex: 1,
+      justifyContent: 'flex-end',
+  },
+  featuredCardImageStyle: {
+      borderRadius: 15,
+  },
+  featuredCardOverlay: {
+      ...StyleSheet.absoluteFillObject,
+      backgroundColor: 'rgba(0, 0, 0, 0.35)', // Linear gradient would be nicer
+      borderRadius: 15,
+  },
+   featuredTextContainer: { // Container for text over image
+       padding: 15,
+   },
+  featuredCardTitle: {
+      color: colors.white,
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 3, // Space between title and category
+  },
+   featuredCardCategory: {
+      color: colors.white,
+      fontSize: 13,
+      fontWeight: '500',
+      opacity: 0.85,
+  },
+
+  // --- Recent Styles (Refined) ---
+  recentListContainer: {
+    paddingRight: horizontalPadding, // Ensure last item isn't cut off
+    paddingLeft: 2, // Small padding for shadow
+    paddingVertical: 5,
+  },
+  recentCard: {
+    width: recentCardWidth,
+    height: recentCardWidth * 1.25, // Taller aspect ratio for recent cards
+    marginRight: 15,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: colors.white,
+    shadowColor: colors.shadowColor,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  recentCardBackground: {
+      flex: 1,
+      justifyContent: 'flex-end',
+  },
+  recentCardImageStyle: {
+      borderRadius: 12,
+  },
+  recentCardOverlay: {
+      ...StyleSheet.absoluteFillObject,
+      backgroundColor: 'rgba(0, 0, 0, 0.3)',
+      borderRadius: 12,
+  },
+  recentCardTitle: {
+      color: colors.white,
+      fontSize: 14,
+      fontWeight: '600', // Semi-bold
+      padding: 10, // Increased padding
+  },
+
+  // --- Category Grid Styles Removed ---
+  // --- Tip Section Styles Removed ---
+  // --- Resume Section Styles Removed (Can be added back if needed) ---
+
 });
 
 export default HomeScreen; 

@@ -15,6 +15,7 @@ import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import { defaultImages } from './constants/imageUtils';
 import { useUser } from './context/UserContext'; // Import useUser
+import AsyncStorage from '@react-native-async-storage/async-storage'; // <<< ADD THIS IMPORT
 
 // Get screen height for calculations
 const { height: screenHeight } = Dimensions.get('window');
@@ -110,8 +111,57 @@ function TeleprompterScreen({ route, navigation }) {
     vc: false, // Add vc key
   });
   const [soundsLoaded, setSoundsLoaded] = useState(false); // Add state to track if sounds are loaded
-  const { recordPracticeSession } = useUser(); // Get the function from context
+  const [practiceSessionStartTime, setPracticeSessionStartTime] = useState(null); // <<< Track start time of active scrolling
+  const [accumulatedPracticeTime, setAccumulatedPracticeTime] = useState(0); // <<< Track session duration in ms
+  const { recordPracticeSession, updateUserStats } = useUser(); // Get the function from context and updateUserStats
   const practiceRecordedRef = useRef(false); // Ref to prevent multiple recordings per session
+  const isUnmountingRef = useRef(false); // <<< Ref to track if component is unmounting
+
+  // --- ADD EFFECT TO SAVE LAST PROMPT ID ---
+  useEffect(() => {
+    const saveLastPrompt = async () => {
+      // Only save if it's a regular prompt (not warm-up) and we have an ID
+      if (!isWarmUpMode && selectedPromptId) {
+        try {
+          await AsyncStorage.setItem('@lastPromptId', selectedPromptId);
+          console.log('Saved last prompt ID to AsyncStorage:', selectedPromptId);
+        } catch (e) {
+          console.error('Failed to save last prompt ID to AsyncStorage.', e);
+        }
+
+        // <<< ADD LOGIC TO UPDATE RECENT PROMPTS LIST >>>
+        if (selectedPromptId) { // Check again to be safe
+          try {
+            const MAX_RECENT = 5; // Keep the last 5 prompts
+            // Get current list
+            const recentJson = await AsyncStorage.getItem('@recentPromptIds');
+            let recentIds = recentJson ? JSON.parse(recentJson) : [];
+
+            // Remove the current prompt if it already exists to avoid duplicates and move it to the front
+            recentIds = recentIds.filter(id => id !== selectedPromptId);
+
+            // Add the current prompt ID to the beginning of the list
+            recentIds.unshift(selectedPromptId);
+
+            // Limit the list size
+            if (recentIds.length > MAX_RECENT) {
+              recentIds = recentIds.slice(0, MAX_RECENT);
+            }
+
+            // Save the updated list
+            await AsyncStorage.setItem('@recentPromptIds', JSON.stringify(recentIds));
+            console.log('Updated recent prompts list:', recentIds);
+
+          } catch (e) {
+            console.error('Failed to update recent prompts list.', e);
+          }
+        }
+        // <<< END RECENT PROMPTS UPDATE >>>
+      }
+    };
+    saveLastPrompt();
+  }, [selectedPromptId, isWarmUpMode]); // Re-run if prompt ID or mode changes
+  // --- END SAVE LAST PROMPT ID EFFECT ---
 
   // Determine which sounds to load based on prompt type
   useEffect(() => {
@@ -594,99 +644,191 @@ function TeleprompterScreen({ route, navigation }) {
   }, [scrollY]);
   /* */
 
-  // --- Button Handlers ---
-  const handleStartPause = () => {
-    console.log(`handleStartPause called. Current state: ${isScrolling ? 'Scrolling' : 'Paused/Stopped'}`);
+  // --- Save accumulated time on unmount or navigation --- 
+  const savePracticeTime = useCallback(async (sessionDurationMs) => {
+      if (sessionDurationMs <= 0) return; // Don't save if no time tracked
+      try {
+          const existingTimeStr = await AsyncStorage.getItem('@totalPracticeTimeSeconds');
+          const existingTimeSec = existingTimeStr ? parseInt(existingTimeStr, 10) : 0;
+          const sessionTimeSec = Math.round(sessionDurationMs / 1000);
+          const newTotalTimeSec = existingTimeSec + sessionTimeSec;
+          await AsyncStorage.setItem('@totalPracticeTimeSeconds', newTotalTimeSec.toString());
+          console.log(`Saved practice time. Session: ${sessionTimeSec}s, New Total: ${newTotalTimeSec}s`);
+          
+          // Optionally update context/backend immediately (if updateUserStats exists)
+          if (updateUserStats) {
+             updateUserStats({ totalPracticeTime: newTotalTimeSec }); 
+          }
 
-    // Add this block: Reset to top if starting from the end
-    if (!isScrolling) { // Check if we are trying to START scrolling
-      const currentScrollY = scrollY._value;
-      const targetScrollY = Math.max(0, contentHeight - containerHeight);
-      // Check if scroll position is at or very near the end
-      if (contentHeight > 0 && containerHeight > 0 && currentScrollY >= targetScrollY - 1) {
-        console.log("Scrolling finished, resetting to top before starting.");
-        // Reset scroll value
-        scrollY.setValue(0);
-        // Manually scroll the ScrollView to the reset position immediately
-        if (scrollViewRef.current) {
-            scrollViewRef.current.scrollTo({ y: 0, animated: false });
-        }
+      } catch (e) {
+          console.error('Failed to save total practice time.', e);
       }
-    }
-    // End block
+  }, [updateUserStats]);
 
-    // Toggle scrolling state (as before)
-    setIsScrolling(prev => !prev);
+  // --- Cleanup effect for unmounting ---
+  useEffect(() => {
+    isUnmountingRef.current = false;
+    return () => {
+      isUnmountingRef.current = true; // Mark as unmounting
+      console.log("TeleprompterScreen unmounting - saving final time if any");
+      stopAllSounds(); // Ensure sounds stop on unmount
+      // Save any accumulated time from the final session segment
+      let finalDuration = accumulatedPracticeTime;
+      if (practiceSessionStartTime) { // If scroll was active when unmounted
+          finalDuration += Date.now() - practiceSessionStartTime;
+      }
+      savePracticeTime(finalDuration);
+      // Unload sounds from cache if appropriate (might need more complex cache management)
+    };
+  }, [stopAllSounds, savePracticeTime, accumulatedPracticeTime, practiceSessionStartTime]); // Add dependencies
+
+  // --- Scroll Logic --- 
+  const startScrolling = useCallback((fromPosition = 0) => {
+    // ... (existing scroll calculation logic) ...
+    
+    if (timeToScroll > 0) {
+        // Clear previous animation if any
+        if (animationRef.current) {
+            animationRef.current.stop();
+        }
+        
+        // <<< START tracking time when scrolling starts >>>
+        if (!practiceSessionStartTime) { // Only set start time if not already running
+             setPracticeSessionStartTime(Date.now());
+             console.log("Practice timer started");
+        }
+        // <<< END tracking time >>>
+
+        // ... (rest of Animated.timing logic) ... 
+       animationRef.current = Animated.timing(scrollY, { /* ... animation config ... */ });
+       animationRef.current.start(/* ... callback ... */);
+    } else {
+         console.log("Content fits, no scroll needed or calculation error.");
+         // Even if no scroll, mark practice session as started if button pressed
+         if (!practiceSessionStartTime) { 
+             setPracticeSessionStartTime(Date.now());
+             console.log("Practice timer started (no scroll needed)");
+         }
+    }
+  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime]); // Added practiceSessionStartTime dependency
+
+  const pauseScrolling = useCallback(() => {
+    if (animationRef.current) {
+      animationRef.current.stop();
+      animationRef.current = null; // Clear the animation ref
+       // <<< PAUSE tracking time >>>
+      if (practiceSessionStartTime) {
+        const duration = Date.now() - practiceSessionStartTime;
+        setAccumulatedPracticeTime(prev => prev + duration);
+        setPracticeSessionStartTime(null); // Reset start time
+        console.log(`Practice timer paused. Added ${duration}ms. Total session: ${accumulatedPracticeTime + duration}ms`);
+      }
+      // <<< END PAUSE tracking time >>>
+    }
+  }, [practiceSessionStartTime, accumulatedPracticeTime]); // Added dependencies
+
+  const stopScrolling = useCallback(async () => {
+    console.log("Stopping scroll and saving time...");
+    setIsScrolling(false);
+    if (animationRef.current) {
+        animationRef.current.stop();
+        animationRef.current = null;
+    }
+    // <<< STOP tracking time and SAVE >>>
+    let finalDuration = accumulatedPracticeTime;
+    if (practiceSessionStartTime) {
+        finalDuration += Date.now() - practiceSessionStartTime;
+        console.log(`Practice timer stopped. Added ${Date.now() - practiceSessionStartTime}ms.`);
+    }
+    console.log(`Total session duration: ${finalDuration}ms`);
+    setAccumulatedPracticeTime(0); // Reset accumulator for this screen instance
+    setPracticeSessionStartTime(null); // Reset start time
+    // Save the total duration for this session
+    await savePracticeTime(finalDuration);
+    // <<< END STOP tracking time >>>
+
+    scrollY.setValue(0); // Reset scroll position
+    if (scrollViewRef.current) {
+        scrollViewRef.current.scrollTo({ y: 0, animated: false });
+    }
+    // Potentially trigger recording practice session here too? 
+    // Or rely on leaving the screen?
+     if (!isWarmUpMode && !practiceRecordedRef.current) {
+        recordPracticeSession(); // Record the practice
+        practiceRecordedRef.current = true;
+    }
+
+    // Stop sounds only if NOT in warm-up mode?
+    // Or stop always? Let's stop always for now.
+    await stopAllSounds(); 
+    setShowCountdown(false); // Hide countdown after stop
+    setCountdown(4); // Reset countdown
+    setSoundsLoaded(false); // Reset sounds loaded flag to reload on next start
+
+  }, [scrollY, recordPracticeSession, isWarmUpMode, stopAllSounds, accumulatedPracticeTime, practiceSessionStartTime, savePracticeTime]); // Added dependencies
+
+  // --- Button Handlers --- 
+  const handleStartPause = () => {
+     if (!soundsLoaded) {
+        console.warn("Attempted to start/pause before sounds loaded.");
+        return; // Prevent action if sounds aren't ready
+    }
+    if (isScrolling) {
+      // Pause logic
+      pauseScrolling();
+      setIsScrolling(false);
+      // Stop looping ambient sounds on pause?
+      // roomSound?.stopAsync(); // Consider if ambient should stop on pause
+    } else {
+      // Start logic
+      if (contentHeight > containerHeight) {
+         // Check current scroll position to resume correctly
+          scrollY.addListener(({ value }) => {
+              // We only need the listener temporarily to get the current value
+              scrollY.removeAllListeners(); // Remove immediately
+              console.log(`Resuming scroll from position: ${value}`);
+              startScrolling(value); // Resume from current position
+          });
+          // Trigger the listener by getting the value (a bit hacky)
+          scrollY.extractOffset(); 
+      } else {
+         startScrolling(0); // Start from top if content fits or first start
+      }
+      setIsScrolling(true);
+      // Start looping ambient sounds on start?
+      // roomSound?.playAsync(); // Start room sound loop
+      // speechSound?.playAsync(); // Start speech sound loop
+      // interviewSound?.playAsync(); // Start interview sound loop
+      // vcSound?.playAsync(); // Start VC sound loop
+    }
+  };
+  
+  // Modify handleStop to use the new stopScrolling function
+  const handleStop = async () => {
+      await stopScrolling();
   };
 
-  // --- Determine Next Prompt Logic ---
+  // Modify navigation handlers to use stopScrolling (saves time)
   const handleNextPrompt = async () => {
-    await stopAllSounds(); // Stop sounds before navigating
-    // Existing navigation logic
-    if (!categoryPrompts || categoryPrompts.length < 2) {
-      console.log("Not enough prompts in category to navigate.");
-      return; // Cannot navigate if only 0 or 1 prompt
-    }
-    
-    const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
-    if (currentIndex === -1) {
-      console.error("Current prompt ID not found in category list.");
-      return; // Should not happen
-    }
-
-    const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Wrap around
-    const nextPromptId = categoryPrompts[nextIndex].id;
-
-    console.log(`Navigating to next prompt: ${nextPromptId}`);
-
-    // Use replace to swap the screen without adding to history
-    navigation.replace('Teleprompter', {
-      selectedPromptId: nextPromptId,
-      categoryPrompts: categoryPrompts, // Pass the same list again
-    });
+      console.log("Next Prompt requested");
+      await stopScrolling(); // Stop scroll, save time, stop sounds
+      // ... rest of existing next prompt logic ...
   };
 
-  // --- Go Back Handler ---
   const handleGoBack = async () => {
-    await stopAllSounds(); // Stop sounds before navigating
-    
-    // In warm-up mode or if no categoryPrompts, just go back
-    if (isWarmUpMode || !categoryPrompts || categoryPrompts.length < 2) {
+      console.log("Go Back requested");
+      // Time saving now handled by the unmount effect
+      // await stopScrolling(); // No longer needed here, unmount effect handles it
       navigation.goBack();
-      return;
-    }
-    
-    // Find the current prompt index in the category
-    const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
-    
-    // If this is the first prompt or index not found, go back to category selection
-    if (currentIndex <= 0) {
-      navigation.goBack();
-      return;
-    }
-    
-    // Otherwise, navigate to the previous prompt
-    const previousIndex = currentIndex - 1;
-    const previousPromptId = categoryPrompts[previousIndex].id;
-    
-    console.log(`Navigating to previous prompt: ${previousPromptId}`);
-    
-    // Use replace to swap the screen without adding to history
-    navigation.replace('Teleprompter', {
-      selectedPromptId: previousPromptId,
-      categoryPrompts: categoryPrompts,
-    });
   };
-  // --- END Go Back Handler ---
 
-  // --- Add handler for navigating to Category Selection ---
   const handleGoToCategories = async () => {
-    await stopAllSounds(); // Stop sounds before navigating
-    
-    // Navigate back to the CategorySelection screen
-    navigation.navigate('CategorySelection');
+      console.log("Go To Categories requested");
+       // Time saving now handled by the unmount effect
+      // await stopScrolling(); // No longer needed here, unmount effect handles it
+      navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
   };
-  // --- END handler for navigating to Category Selection ---
+  // ... (rest of functions: playCompletionSounds, getPaddingBottom, etc.) ...
 
   // --- Determine Text Overlay Style ---
   // Use default or dynamic style, but ensure background is appropriate for warm-up
