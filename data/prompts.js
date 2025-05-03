@@ -405,7 +405,7 @@ export const promptsData = [
     title: 'Music Concert Thank You Speech Practice',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_28_13 PM.png'),
-    text: `Wow, Los Angeles! You've been absolutely incredible tonight! This energy, this passion - it's what makes live music so magical. I need to take a moment to thank some amazing people: our incredible sound team, the lighting crew, and especially you - our fans. Without you, none of this would be possible. To my band - Tom on drums, Lisa with those killer guitar solos, Marcus on bass - you guys are family. This tour has been unforgettable, and tonight, you've made it even more special. This last song is dedicated to everyone who's ever believed in a dream.`,
+    text: `Wow, Los Angeles! You've been absolutely incredible tonight! This energy, this passion - it's what makes live music so magical. I need to take a moment to thank some amazing people: our incredible sound team who've worked tirelessly to make every note perfect, the lighting crew who've created this spectacular visual experience, and especially you - our fans who've been with us through every album, every tour, every high and low. Without your unwavering support, none of this would be possible. To my band - Tom on drums with his thunderous beats, Lisa with those killer guitar solos that leave us all in awe, Marcus on bass keeping us grounded - you guys are more than just bandmates, you're family. This tour has been an unforgettable journey, filled with challenges and triumphs, and tonight, you've made it even more special. This last song is dedicated to everyone who's ever believed in a dream, who's ever stayed up late practicing their craft, who's ever faced rejection but kept going. Because that's what music is about - it's about the journey, the passion, and the connection we share right here, right now.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -422,7 +422,7 @@ export const promptsData = [
     title: 'Podcast',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_29_53 PM.png'),
-    text: `Hey everyone, welcome back to 'Future Forward.' I'm your host Sarah Chen, and today we're diving into something fascinating - the intersection of artificial intelligence and creative arts. Our guest is Dr. James Morrison, whose groundbreaking work in AI-generated music is challenging everything we thought we knew about creativity and technology. Before we jump in, here's a mind-blowing fact: last month, an AI-composed symphony was performed at Carnegie Hall, and most audience members couldn't tell it wasn't written by a human. Dr. Morrison, welcome to the show.`,
+    text: `Hey everyone, welcome back to 'Future Forward.' I'm your host Sarah Chen, and today we're diving into something truly fascinating - the intersection of artificial intelligence and creative arts. Our guest is Dr. James Morrison, whose groundbreaking work in AI-generated music is challenging everything we thought we knew about creativity and technology. Before we jump in, here's a mind-blowing fact: last month, an AI-composed symphony was performed at Carnegie Hall, and most audience members couldn't tell it wasn't written by a human. This raises profound questions about the nature of creativity and the role of technology in artistic expression. Dr. Morrison's research explores how AI can enhance human creativity rather than replace it, creating new possibilities for artistic collaboration. His team's latest project involves training AI systems to understand emotional context in music, allowing them to compose pieces that resonate deeply with human listeners. Dr. Morrison, welcome to the show, and thank you for joining us to discuss these fascinating developments.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -439,7 +439,7 @@ export const promptsData = [
     title: 'Public Speaking Bootcamp',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_32_10 PM.png'),
-    text: `Good morning, future leaders! Today, we're going to transform the way you think about public speaking. Forget everything you've been told about imagining the audience in their underwear - that's outdated advice that doesn't work. Instead, I'm going to share three powerful techniques that helped me overcome my own fear of public speaking and go on to deliver keynotes to audiences of thousands. These aren't just theories - they're battle-tested strategies that have helped executives, politicians, and thought leaders captivate their audiences.`,
+    text: `Good morning, future leaders! Today, we're going to transform the way you think about public speaking. Forget everything you've been told about imagining the audience in their underwear - that's outdated advice that doesn't work. Instead, I'm going to share three powerful techniques that helped me overcome my own fear of public speaking and go on to deliver keynotes to audiences of thousands. These aren't just theories - they're battle-tested strategies that have helped executives, politicians, and thought leaders captivate their audiences. The first technique involves mastering your breathing and body language to project confidence even when you're nervous. The second focuses on structuring your content in a way that naturally engages your audience and keeps them hooked. And the third, perhaps most importantly, teaches you how to connect authentically with your listeners, making your message resonate on a deeper level. Together, these techniques will transform you from a nervous speaker into a confident communicator who can inspire and influence others.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -456,7 +456,7 @@ export const promptsData = [
     title: 'NBA Season Ending Team Meeting',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_33_14 PM.png'),
-    text: `Looking around this locker room, I see more than just teammates - I see warriors, brothers, and champions at heart. This season tested us in ways we never expected. We faced injuries, tough losses, and moments that would have broken lesser teams. But what defines us isn't our record - it's how we responded to adversity. Marcus, your leadership during that seven-game road stretch was incredible. Jake, coming back from that injury ahead of schedule showed everyone what dedication means. Next season starts now. Our goal remains the same: championship or nothing.`,
+    text: `Looking around this locker room, I see more than just teammates - I see warriors, brothers, and champions at heart. This season tested us in ways we never expected. We faced injuries that would have ended lesser teams' seasons, tough losses that could have broken our spirit, and moments that demanded everything we had. But what defines us isn't our record - it's how we responded to adversity, how we lifted each other up when the going got tough. Marcus, your leadership during that seven-game road stretch was nothing short of legendary. You kept us focused, motivated, and believing in ourselves even when the odds were against us. Jake, coming back from that injury ahead of schedule showed everyone what true dedication means - your work ethic inspired the entire team. And to every player in this room, your commitment to excellence, your willingness to put the team first, and your relentless pursuit of greatness have made this season unforgettable. Next season starts now. Our goal remains the same: championship or nothing. But more than that, we're building a legacy of excellence, teamwork, and resilience that will inspire future generations of players.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -473,7 +473,7 @@ export const promptsData = [
     title: 'Talking with AI Mirror',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_36_33 PM.png'),
-    text: `The future of human-AI interaction isn't about replacement - it's about enhancement. When we look at the latest developments in neural networks and machine learning, we're not just seeing improvements in processing power; we're witnessing the emergence of systems that can understand context, emotion, and nuance. This raises fascinating questions about consciousness, creativity, and the very nature of intelligence. As we develop these technologies, we must ensure they align with human values and enhance rather than diminish human potential.`,
+    text: `The future of human-AI interaction isn't about replacement - it's about enhancement. When we look at the latest developments in neural networks and machine learning, we're not just seeing improvements in processing power; we're witnessing the emergence of systems that can understand context, emotion, and nuance. This raises fascinating questions about consciousness, creativity, and the very nature of intelligence. As we develop these technologies, we must ensure they align with human values and enhance rather than diminish human potential. The key lies in creating AI systems that complement human abilities rather than compete with them. We're seeing this in fields like healthcare, where AI assists doctors in diagnosis while preserving the crucial human element of patient care. In education, AI tutors provide personalized learning experiences while teachers focus on mentorship and emotional support. The challenge ahead is to design AI systems that understand and respect human values, that can collaborate with us in ways that amplify our strengths and compensate for our limitations. This requires not just technical expertise, but deep philosophical consideration of what it means to be human in an age of artificial intelligence.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -490,7 +490,7 @@ export const promptsData = [
     title: 'Presentation',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_38_20 PM.png'),
-    text: `Thank you all for being here today. Our Q3 results tell an exciting story of growth and innovation. Looking at this graph, you can see our market share has increased by 27% year-over-year, driven primarily by our new digital initiatives. But numbers only tell part of the story. Behind these figures are real people - our dedicated team members who've embraced change, our loyal customers who've evolved with us, and our partners who've supported our vision. Let me walk you through how we achieved this transformation and, more importantly, where we're headed next.`,
+    text: `Thank you all for being here today. Our Q3 results tell an exciting story of growth and innovation. Looking at this graph, you can see our market share has increased by 27% year-over-year, driven primarily by our new digital initiatives. But numbers only tell part of the story. Behind these figures are real people - our dedicated team members who've embraced change, our loyal customers who've evolved with us, and our partners who've supported our vision. Let me walk you through how we achieved this transformation and, more importantly, where we're headed next. Our success stems from three key strategic initiatives: first, our investment in cutting-edge technology that has revolutionized our production processes; second, our commitment to sustainability that has not only reduced our environmental impact but also created new market opportunities; and third, our focus on customer experience that has transformed how we engage with our clients. These initiatives have positioned us as industry leaders, but we're not stopping here. The next phase of our journey will focus on expanding into emerging markets, developing new product lines, and continuing to push the boundaries of innovation.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -507,7 +507,7 @@ export const promptsData = [
     title: 'Virtual Meeting',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_40_02 PM.png'),
-    text: `Good morning everyone, and thank you for joining from across our global offices. I see we have team members from Singapore, London, New York, and São Paulo - welcome all. Today's agenda focuses on our digital transformation initiative and its impact on our Q4 targets. Before we dive in, I want to acknowledge the outstanding work from our Asia-Pacific team, who've exceeded their implementation goals by 40%. Let's start with a quick overview of where we stand, and then we'll open the floor for questions and insights from each region.`,
+    text: `Good morning everyone, and thank you for joining from across our global offices. I see we have team members from Singapore, London, New York, and São Paulo - welcome all. Today's agenda focuses on our digital transformation initiative and its impact on our Q4 targets. Before we dive in, I want to acknowledge the outstanding work from our Asia-Pacific team, who've exceeded their implementation goals by 40%. Let's start with a quick overview of where we stand, and then we'll open the floor for questions and insights from each region. Our digital transformation journey has been remarkable, with significant improvements in operational efficiency, customer satisfaction, and employee engagement. The Asia-Pacific team's success demonstrates what's possible when we combine innovative technology with strong leadership and team collaboration. As we move forward, we'll be implementing similar strategies across all regions, tailored to local market conditions and business needs. This meeting is an opportunity to share best practices, address challenges, and align our global strategy for the coming quarter.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -524,7 +524,7 @@ export const promptsData = [
     title: 'Opera Thank You Speech',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_40_58 PM.png'),
-    text: `Ladies and gentlemen, tonight's performance of 'La Traviata' represents the culmination of countless hours of dedication and passion. From our magnificent orchestra under Maestro Ricci's direction to our stellar cast led by Maria Soprano's breathtaking Violetta, every person has contributed to this magical evening. I must especially thank our technical crew, costume department, and volunteers - the unsung heroes who make such performances possible. Your continued support of the arts, your presence here tonight, ensures that these timeless stories will continue to move and inspire future generations.`,
+    text: `Ladies and gentlemen, tonight's performance of 'La Traviata' represents the culmination of countless hours of dedication and passion. From our magnificent orchestra under Maestro Ricci's direction to our stellar cast led by Maria Soprano's breathtaking Violetta, every person has contributed to this magical evening. I must especially thank our technical crew, costume department, and volunteers - the unsung heroes who make such performances possible. Your continued support of the arts, your presence here tonight, ensures that these timeless stories will continue to move and inspire future generations. This production has been particularly special, as we've incorporated innovative staging techniques while staying true to Verdi's original vision. The collaboration between our creative team, musicians, and performers has resulted in a performance that honors tradition while embracing innovation. We're also proud to announce that tonight's performance will help fund our youth outreach program, bringing the magic of opera to the next generation of artists and audiences.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -542,7 +542,7 @@ export const promptsData = [
     title: 'Practice with Nature',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_42_34 PM.png'),
-    text: `Standing here among these ancient redwoods, we're reminded of nature's timeless wisdom. These trees have stood witness to centuries of change, yet remain unshaken. Their resilience teaches us about adaptation and perseverance. As environmental stewards, we face unprecedented challenges - climate change, habitat loss, and species extinction. But like these mighty trees, we must stand firm in our commitment to preservation. Each of us has the power to make a difference, to ensure these natural wonders survive for future generations. Let the strength of these ancient giants inspire us to act with courage and conviction.`,
+    text: `Standing here among these ancient redwoods, we're reminded of nature's timeless wisdom. These trees have stood witness to centuries of change, yet remain unshaken. Their resilience teaches us about adaptation and perseverance. As environmental stewards, we face unprecedented challenges - climate change, habitat loss, and species extinction. But like these mighty trees, we must stand firm in our commitment to preservation. Each of us has the power to make a difference, to ensure these natural wonders survive for future generations. Let the strength of these ancient giants inspire us to act with courage and conviction. The redwoods' ability to thrive for millennia demonstrates nature's remarkable capacity for resilience and renewal. Their towering presence reminds us of our responsibility to protect and preserve our planet's biodiversity. Through sustainable practices, conservation efforts, and environmental education, we can ensure that these magnificent forests continue to thrive. The lessons we learn from these ancient trees - about cooperation, adaptation, and long-term thinking - are more relevant than ever as we face the environmental challenges of our time.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -560,7 +560,7 @@ export const promptsData = [
     title: 'Oval Office Discussion Practice',
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_26_22 PM.png'),
-    text: `My fellow Americans, as we gather in this historic office, I want to address the critical infrastructure bill before Congress. This legislation represents more than just roads and bridges - it's about American jobs, our economic future, and our position as a global leader. The challenges we face require bipartisan solutions. I've met with leaders from both parties, and while we may differ on methods, we share common goals: strengthening our economy, creating sustainable jobs, and securing America's future. Let's discuss how we can move forward together, putting the American people first.`,
+    text: `My fellow Americans, as we gather in this historic office, I want to address the critical infrastructure bill before Congress. This legislation represents more than just roads and bridges - it's about American jobs, our economic future, and our position as a global leader. The challenges we face require bipartisan solutions. I've met with leaders from both parties, and while we may differ on methods, we share common goals: strengthening our economy, creating sustainable jobs, and securing America's future. Let's discuss how we can move forward together, putting the American people first. This infrastructure plan will create millions of good-paying jobs while modernizing our transportation systems, expanding broadband access to rural communities, and investing in clean energy technologies. It's not just about building physical infrastructure - it's about building the foundation for America's next century of prosperity. We have an opportunity to demonstrate that democracy can deliver results, that we can come together to solve big problems, and that America's best days are still ahead of us.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -689,7 +689,7 @@ export const promptsData = [
     title: 'Monument Sunrise Address',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_54_17 PM.png'),
-    text: `As the sun rises behind us, casting its first light on this hallowed ground, I am reminded of the generations who stood here before, calling for justice, unity, and progress.\n\nToday, we gather not just to remember — but to reignite our shared commitment to a better future.\n\nLet this place inspire us to speak truth with courage, to lead with integrity, and to walk forward — together — no matter the odds.`,
+    text: `As the sun rises behind us, casting its first light on this hallowed ground, I am reminded of the generations who stood here before, calling for justice, unity, and progress.\n\nToday, we gather not just to remember — but to reignite our shared commitment to a better future.\n\nLet this place inspire us to speak truth with courage, to lead with integrity, and to walk forward — together — no matter the odds.\n\nIn this moment of national reflection, we must acknowledge both how far we've come and the journey that still lies ahead. The path to progress has never been straight or easy. It winds through valleys of struggle and climbs mountains of resistance.\n\nYet here we stand, testament to the resilience of the human spirit and the power of collective action. Each of us carries the responsibility to continue the work began by those who came before us — to expand freedom, to deepen democracy, and to ensure that dignity is afforded to every person.\n\nAs we leave this place today, let us carry with us not just memories of this gathering, but a renewed determination to be agents of positive change in our communities, our nation, and our world. The future is not predetermined — it is shaped by our choices, our courage, and our commitment to one another.`,
     layout: {
       position: 'absolute',
       width: '62%',
@@ -706,7 +706,7 @@ export const promptsData = [
     title: 'Rally for Change',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_13_24 PM.png'),
-    text: `Look around you — this is what democracy looks like!\n\nToday, we raise our voices not in anger, but with purpose. We are here because we believe in the power of people over politics, of justice over silence.\n\nThis is our moment to push for what matters: fair wages, climate action, voting rights, and dignity for every single person.\n\nLet the world hear us: we are here, we are ready, and we are not backing down.`,
+    text: `Look around you — this is what democracy looks like!\n\nToday, we raise our voices not in anger, but with purpose. We are here because we believe in the power of people over politics, of justice over silence.\n\nThis is our moment to push for what matters: fair wages, climate action, voting rights, and dignity for every single person.\n\nLet the world hear us: we are here, we are ready, and we are not backing down.\n\nFor too long, the concerns of everyday people have been drowned out by powerful interests and political gridlock. But history shows us that real, lasting change has always begun with ordinary citizens who refuse to accept the status quo.\n\nEvery major social advancement in our nation's history — from civil rights to labor protections, from women's suffrage to environmental safeguards — began with people just like us, gathering just like this, insisting that our country live up to its highest ideals.\n\nToday we add our voices to that proud tradition. We stand united across differences of background, belief, and experience, brought together by our shared humanity and common cause. This movement is not about left versus right — it's about right versus wrong, about creating a future where everyone has the opportunity to thrive.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -723,7 +723,7 @@ export const promptsData = [
     title: 'UN General Assembly Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_56_47 PM.png'),
-    text: `Mr. President, esteemed delegates,\n\nWe gather today at a time of urgent global challenge — and also of unparalleled opportunity.\n\nFrom climate change to digital equity, we are called to act not as isolated nations but as a united global community. Cooperation is no longer optional — it is essential.\n\nLet us forge partnerships that transcend borders and elevate voices that have too long been unheard. The future demands bold action, and history will judge us by what we choose to do next.`,
+    text: `Mr. President, esteemed delegates,\n\nWe gather today at a time of urgent global challenge — and also of unparalleled opportunity.\n\nFrom climate change to digital equity, we are called to act not as isolated nations but as a united global community. Cooperation is no longer optional — it is essential.\n\nLet us forge partnerships that transcend borders and elevate voices that have too long been unheard. The future demands bold action, and history will judge us by what we choose to do next.\n\nOver the past year, we've witnessed both extraordinary resilience and profound vulnerability across our interconnected world. As temperatures rise and extreme weather events increase in frequency and intensity, our most vulnerable populations continue to bear the heaviest burden.\n\nMeanwhile, technological advancement accelerates, creating both potential solutions and new forms of inequality. We must ensure that the benefits of innovation reach all corners of the globe, leaving no one behind in our digital future.\n\nMy country pledges to increase its climate financing by 30% over the next five years and to open our technological innovations to developing nations without burdensome conditions. We will also welcome 50,000 additional refugees, recognizing our humanitarian responsibility in a world of increasing displacement.\n\nI call on every nation represented here today to match ambition with action, rhetoric with resources. Our words in this chamber must translate to meaningful change in the lives of those we serve.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -740,7 +740,7 @@ export const promptsData = [
     title: 'Awards Ceremony Acceptance',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_58_57 PM.png'),
-    text: `Wow... thank you. Standing here tonight is a dream I never thought would become reality.\n\nThis honor belongs not just to me, but to every mentor who lifted me up, every collaborator who challenged me, and every moment of failure that taught me to keep going.\n\nTo those watching who feel unseen — know this: your voice matters, your work matters, and your time will come.\n\nThank you, from the bottom of my heart.`,
+    text: `Wow... thank you. Standing here tonight is a dream I never thought would become reality.\n\nThis honor belongs not just to me, but to every mentor who lifted me up, every collaborator who challenged me, and every moment of failure that taught me to keep going.\n\nTo those watching who feel unseen — know this: your voice matters, your work matters, and your time will come.\n\nThank you, from the bottom of my heart.\n\nWhen I started this journey fifteen years ago, working out of my garage with nothing but determination and a vision, there were countless moments when giving up seemed like the only sensible option. I remember one particularly difficult period when I had maxed out my credit cards, my family was questioning my sanity, and the industry experts had written off my approach as impractical and naive.\n\nWhat kept me going were the small acts of kindness and belief from unexpected places — a former professor who connected me with a key advisor, a stranger who became our first customer, and my partner who somehow always found a way to keep food on the table while I chased this dream.\n\nThis award represents all those invisible moments of perseverance that happen behind the scenes of any worthwhile endeavor. The late nights, the rejected proposals, the prototypes that failed spectacularly — they were all necessary steps on the path that led here.`,
     layout: {
       position: 'absolute',
       width: '62%',
@@ -757,7 +757,7 @@ export const promptsData = [
     title: 'Courtroom Closing Statement',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_00_13 PM.png'),
-    text: `Your Honor, members of the jury,\n\nYou’ve heard the evidence. You’ve seen the facts. And now, it comes down to a simple question: What is justice?\n\nThis isn’t just about one person’s actions. It’s about accountability. About the truth finally being recognized in a room that has long ignored it.\n\nI ask you to remember not just what was said — but what was proven.\n\nLet justice be more than a word. Let it be the verdict you deliver today.`,
+    text: `Your Honor, members of the jury,\n\nYou've heard the evidence. You've seen the facts. And now, it comes down to a simple question: What is justice?\n\nThis isn't just about one person's actions. It's about accountability. About the truth finally being recognized in a room that has long ignored it.\n\nI ask you to remember not just what was said — but what was proven.\n\nLet justice be more than a word. Let it be the verdict you deliver today.\n\nThroughout this trial, we've presented witness testimony, expert analysis, and documented evidence that all point to the same conclusion. The prosecution has attempted to create a narrative based on circumstantial connections and emotional appeals. But a just verdict must be based on facts, not feelings.\n\nConsider the timeline we've established through multiple witnesses. Consider the forensic evidence that contradicts the prosecution's theory. Consider the inconsistencies in testimony from the state's key witness.\n\nMy client has maintained their innocence from the beginning. They have cooperated fully with this investigation, provided alibi witnesses, and submitted to all requests from law enforcement. These are not the actions of someone with guilt to hide.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -773,8 +773,9 @@ export const promptsData = [
     id: 'speech19',
     title: 'TED Talk Introduction',
     category: 'Speeches',
+    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_01_29 PM.png'),
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_03_23 PM.png'),
-    text: `What if I told you that the future you're afraid of — is actually the opportunity you've been waiting for?\n\nGood afternoon, TED community. Today, I want to challenge the assumptions we've made about failure, fear, and forward momentum.\n\nThis talk is not about being perfect. It’s about being courageous enough to show up, even when you don’t have all the answers.\n\nLet’s dive in together and explore how small ideas, repeated with heart, can change everything.`,
+    text: `What if I told you that the future you're afraid of — is actually the opportunity you've been waiting for?\n\nGood afternoon, TED community. Today, I want to challenge the assumptions we've made about failure, fear, and forward momentum.\n\nThis talk is not about being perfect. It's about being courageous enough to show up, even when you don't have all the answers.\n\nLet's dive in together and explore how small ideas, repeated with heart, can change everything.\n\nFive years ago, I lost everything — my company, my savings, my confidence. I was that classic cautionary tale of an entrepreneur who reached too far. The spectacular failure was covered in business magazines and analyzed by industry experts. Everyone had an opinion about what went wrong.\n\nBut what I discovered in that darkest moment wasn't just the depth of loss — it was the beginning of a profound transformation. When you have nothing left to lose, you suddenly have everything to gain. The fear that once paralyzed me became irrelevant.\n\nDuring the next 18 months, I interviewed over 200 people who had experienced similar catastrophic failures. What emerged was a pattern, a roadmap of sorts, for turning moments of greatest defeat into catalysts for unprecedented growth. These conversations revealed a counterintuitive truth: our biggest breakthroughs often lie on the other side of our most painful breakdowns.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -791,7 +792,7 @@ export const promptsData = [
     title: 'Memorial Church Eulogy',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_06_36 PM.png'),
-    text: `We gather here in this sacred space to honor a life well-lived, and to grieve a loss deeply felt.\n\n[Name] was a beacon of quiet strength — someone whose kindness left an imprint on everyone they met.\n\nThough today is filled with sorrow, it is also filled with gratitude. Gratitude for the memories, the laughter, and the legacy of compassion left behind.\n\nLet us remember not just how [Name] died, but how they lived. And may we carry forward the light they shared with us.`,
+    text: `We gather here in this sacred space to honor a life well-lived, and to grieve a loss deeply felt.\n\n[Name] was a beacon of quiet strength — someone whose kindness left an imprint on everyone they met.\n\nThough today is filled with sorrow, it is also filled with gratitude. Gratitude for the memories, the laughter, and the legacy of compassion left behind.\n\nLet us remember not just how [Name] died, but how they lived. And may we carry forward the light they shared with us.\n\nI remember the first time I met [Name], thirty years ago. It was during that terrible storm that flooded the downtown area. While most people were focused on protecting their own homes, [Name] organized an impromptu volunteer effort to help elderly residents evacuate. That was the essence of who they were — seeing beyond themselves to the needs of others, taking action without hesitation or expectation of recognition.\n\nMany of you have your own stories — moments when [Name]'s generosity, wisdom, or simple presence made all the difference in your lives. These stories matter. They remind us that a life is measured not in years but in impact, not in possessions but in connections.\n\n[Name] faced their final illness with the same grace and courage that characterized their entire life. Even in those difficult last days, their concern was for the comfort of their family and friends rather than themselves.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -808,7 +809,7 @@ export const promptsData = [
     title: 'Democratic Rally Keynote',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_02_26 PM.png'),
-    text: `Friends, we are here tonight not just to celebrate a campaign — but to launch a movement.\n\nA movement rooted in equity, inclusion, and economic justice. One that says healthcare is a right, not a privilege. That climate action is not optional, it's essential.\n\nIf you believe in lifting each other up, in listening before speaking, and in fighting like hell for the next generation — then you're in the right place.\n\nLet’s go out there and win this — together.`,
+    text: `Friends, we are here tonight not just to celebrate a campaign — but to launch a movement.\n\nA movement rooted in equity, inclusion, and economic justice. One that says healthcare is a right, not a privilege. That climate action is not optional, it's essential.\n\nIf you believe in lifting each other up, in listening before speaking, and in fighting like hell for the next generation — then you're in the right place.\n\nLet's go out there and win this — together.\n\nI've spent the past six months traveling across this district, listening to your stories. I've heard from factory workers worried about automation, from parents struggling to afford childcare, from students drowning in debt, and from seniors choosing between medicine and food.\n\nThese aren't just policy issues — they're human issues that affect real people every single day. And they won't be solved by the same old approach that got us here.\n\nOur campaign isn't funded by corporate PACs or special interests. It's powered by people like you who believe we deserve better. Every five-dollar donation, every volunteer hour, every conversation with a neighbor — that's what will transform our community.\n\nWhen they say we're asking for too much, we say: we're just getting started. When they say change isn't possible, we say: watch us make it happen. This is our moment to stand up, to speak out, and to reshape what's possible in politics.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -825,7 +826,7 @@ export const promptsData = [
     title: 'Historic Civil Rights Tribute',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_08_35 PM.png'),
-    text: `Standing here, in the footsteps of giants, we remember those who marched, who sacrificed, and who dared to dream.\n\nThis monument is not made of stone — it is built from courage, from conviction, from the unwavering belief that freedom belongs to all.\n\nLet us not treat this history as distant. Let it stir us to action.\n\nBecause the arc of the moral universe does not bend on its own — it bends when we pull it with every ounce of our being.`,
+    text: `Standing here, in the footsteps of giants, we remember those who marched, who sacrificed, and who dared to dream.\n\nThis monument is not made of stone — it is built from courage, from conviction, from the unwavering belief that freedom belongs to all.\n\nLet us not treat this history as distant. Let it stir us to action.\n\nBecause the arc of the moral universe does not bend on its own — it bends when we pull it with every ounce of our being.\n\nSixty years ago, on these very streets, ordinary citizens faced fire hoses, police dogs, and brutal violence — all for demanding the basic rights promised to them as Americans. They were teachers and preachers, students and workers. They were mothers and fathers who wanted a better world for their children.\n\nTheir moral courage changed the course of history. Their nonviolent resistance transformed not just laws but hearts and minds. The victories they won — at lunch counters, in courtrooms, on buses, and at ballot boxes — were hard-fought and costly.\n\nYet today, we face new challenges to justice and equality. Voter suppression. Economic inequality. Systemic racism that persists in housing, education, healthcare, and criminal justice. These injustices may take different forms than they did six decades ago, but they stem from the same root causes and demand the same moral clarity from us.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -842,7 +843,7 @@ export const promptsData = [
     title: 'University Commencement Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_01_24 PM.png'),
-    text: `To the graduating class: You did it.\n\nNot just the coursework — but the late nights, the doubts, the breakthroughs, the friendships, and the growth you never expected.\n\nToday isn’t the end of your story. It’s the moment the world hands you the pen and says, “Now you write it.”\n\nSo go forward boldly. Make mistakes, make change, and make it count.\n\nWe can’t wait to see what you build next.`,
+    text: `To the graduating class: You did it.\n\nNot just the coursework — but the late nights, the doubts, the breakthroughs, the friendships, and the growth you never expected.\n\nToday isn't the end of your story. It's the moment the world hands you the pen and says, "Now you write it."\n\nSo go forward boldly. Make mistakes, make change, and make it count.\n\nWe can't wait to see what you build next.\n\nYour education has given you more than knowledge — it has given you perspective. In a world that's increasingly complex and polarized, you've learned to analyze deeply, question thoughtfully, and communicate effectively. These skills matter now more than ever.\n\nYou're graduating at a pivotal moment in history. Technologies like AI are transforming our economy. Climate change is reshaping our planet. Political and social movements are redefining our institutions. Some might see these challenges as burdens — I see them as opportunities for your generation to lead us toward more innovative, sustainable, and equitable solutions.\n\nRemember that success isn't linear. Many of you will change careers multiple times. You'll explore paths that don't even exist yet. The most successful people I know aren't those who followed a straight line, but those who remained curious, adaptable, and resilient in the face of uncertainty.\n\nAnd as you pursue your individual dreams, don't forget the collective responsibility we share to each other. Your education was made possible not just by your own efforts, but by the communities, family members, and institutions that supported you along the way.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -860,7 +861,7 @@ export const promptsData = [
     title: 'Unity Through Faith Address',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_49_35 PM.png'),
-    text: `Brothers and sisters, let us take a breath together — and remember who we are, and what binds us.\n\nNot our divisions, but our shared spirit. Not our fears, but our hope. Faith, not as dogma, but as the invitation to love boldly and serve humbly.\n\nIn times of turmoil, may our faith anchor us. In moments of doubt, may it carry us.\n\nLet us leave this place renewed — to be light in darkness and peace in unrest.`,
+    text: `Brothers and sisters, let us take a breath together — and remember who we are, and what binds us.\n\nNot our divisions, but our shared spirit. Not our fears, but our hope. Faith, not as dogma, but as the invitation to love boldly and serve humbly.\n\nIn times of turmoil, may our faith anchor us. In moments of doubt, may it carry us.\n\nLet us leave this place renewed — to be light in darkness and peace in unrest.\n\nFor centuries, people of faith have gathered in spaces like this — not to escape the world, but to be strengthened for it. Our sacred texts and traditions remind us that true spirituality is measured not just by what we believe, but by how we treat one another, especially those on the margins of society.\n\nOur community is blessed with diversity — different backgrounds, different life experiences, different interpretations of our shared faith. These differences need not divide us. Indeed, they enrich our understanding and expand our hearts.\n\nI'm reminded of the ancient parable of the wounded traveler, ignored by the religious authorities but helped by the unexpected stranger. This story challenges us to ask: Who is my neighbor? And how am I called to care for them? In a world that so often teaches us to fear the other, our faith calls us to a radical welcome and an expansive love.\n\nAs we face the challenges of our time — polarization, environmental crisis, economic inequality — let us draw strength from both our individual convictions and our collective wisdom.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -877,7 +878,7 @@ export const promptsData = [
     title: 'Community Empowerment Rally',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_48_09 PM.png'),
-    text: `Friends,\n\nLook around — this is what unity looks like. Today, we stand together for a brighter future, built on empowerment, inclusion, and action.\n\nWe’re not here to just cheer; we’re here to commit. To listen. To support one another. And to make real change — in our schools, our neighborhoods, and our leadership.\n\nLet’s raise our voices and our hopes. Let’s say yes to opportunity, yes to justice, and yes to every voice being heard. This movement belongs to all of us — and we’re just getting started.`,
+    text: `Friends,\n\nLook around — this is what unity looks like. Today, we stand together for a brighter future, built on empowerment, inclusion, and action.\n\nWe're not here to just cheer; we're here to commit. To listen. To support one another. And to make real change — in our schools, our neighborhoods, and our leadership.\n\nLet's raise our voices and our hopes. Let's say yes to opportunity, yes to justice, and yes to every voice being heard. This movement belongs to all of us — and we're just getting started.\n\nFor too long, our community has been defined by what others say about us, rather than by what we know to be true. They look at our challenges and see only problems. We look at our community and see tremendous potential waiting to be unleashed.\n\nEvery person here has a story of resilience, a story of overcoming, a story of hope that refuses to die. Those stories, woven together, create the fabric of a community that's stronger than any challenge we face.\n\nSo what are we going to do? First, we're launching our neighborhood council initiative with representatives from every block working together to identify priorities and solutions. Second, we're starting a youth mentorship program connecting our elders with our teenagers to share wisdom and create opportunities. Third, we're establishing a community-owned cooperative to bring fresh food, jobs, and economic power right here to our neighborhood.\n\nThis isn't a quick fix or an overnight solution. Real change takes time, commitment, and consistent effort. But when we stand together, when we pool our resources, our talents, and our determination, there is absolutely nothing we cannot accomplish.`,
     layout: { position: 'absolute', width: '60%', height: '38%', top: '48%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -885,7 +886,7 @@ export const promptsData = [
     title: 'Gallery Hall Press Briefing',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_44_59 PM.png'),
-    text: `Members of the press, colleagues,\n\nAs we gather here in this grand hall, I’m reminded that leadership is not about titles — it’s about responsibility. Today, we address not just headlines, but the principles we stand for.\n\nOur mission is clear: transparency, accountability, and unity in the face of complex challenges. Every decision we make echoes through this institution and into the lives of those we serve.\n\nLet this briefing be more than updates — let it reflect our unwavering dedication to public trust.`,
+    text: `Members of the press, colleagues,\n\nAs we gather here in this grand hall, I'm reminded that leadership is not about titles — it's about responsibility. Today, we address not just headlines, but the principles we stand for.\n\nOur mission is clear: transparency, accountability, and unity in the face of complex challenges. Every decision we make echoes through this institution and into the lives of those we serve.\n\nLet this briefing be more than updates — let it reflect our unwavering dedication to public trust.\n\nThe announcements we're making today come after months of careful deliberation, countless hours of expert consultation, and genuine engagement with communities across the nation. We did not arrive at these policy positions lightly or with partisan calculation. We arrived here by following the evidence, listening to diverse perspectives, and remaining focused on long-term outcomes rather than short-term political convenience.\n\nI understand there will be critiques from across the political spectrum. That's not just expected — it's essential in a healthy democracy. But I ask that we all elevate the discourse beyond soundbites and engage with the substance of these proposals. The challenges we face — from economic inequality to climate resilience to healthcare access — are too important for anything less.\n\nIn the detailed briefing materials we've provided, you'll find not just our policy framework but the data, research, and community input that informed our approach. You'll also find metrics for accountability — specific, measurable outcomes that will allow the public to judge our progress objectively.\n\nI'm now ready to address your questions with the same transparency and directness that we hope will characterize this administration's relationship with both the press and the public.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '62%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-8deg' }] }
   },
   {
@@ -893,7 +894,7 @@ export const promptsData = [
     title: 'Military Formation Address',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_50_54 PM.png'),
-    text: `Soldiers,\n\nAs you stand in formation today, remember what this uniform represents — loyalty, courage, and an unwavering duty to protect. Every drill, every command, every step you've taken has brought you to this moment.\n\nYou carry the pride of a nation and the strength of generations before you. In times of uncertainty, your discipline becomes the backbone of our defense.\n\nLead with honor. Train with intensity. Serve with heart. We are proud of you — now go make your mark.`,
+    text: `Soldiers,\n\nAs you stand in formation today, remember what this uniform represents — loyalty, courage, and an unwavering duty to protect. Every drill, every command, every step you've taken has brought you to this moment.\n\nYou carry the pride of a nation and the strength of generations before you. In times of uncertainty, your discipline becomes the backbone of our defense.\n\nLead with honor. Train with intensity. Serve with heart. We are proud of you — now go make your mark.\n\nThe training you've completed has tested you physically and mentally. You've endured early mornings, long marches, and challenges designed to push you beyond what you thought possible. But the true test lies ahead, when you'll be called upon to make decisions under pressure, to lead when the path isn't clear, and to stand firm when others falter.\n\nLook to your left and right. These are not just your colleagues or fellow soldiers — they are your brothers and sisters in arms. The bonds you've formed during training will sustain you through whatever challenges lie ahead. Trust in each other, communicate clearly, and remember that your strength as a unit far exceeds your individual capabilities.\n\nAs you prepare for your deployments and assignments, remember also those who await your return. Your families, your communities, your country. They sleep peacefully at night because you have chosen to serve. That is a sacred trust and a profound responsibility.\n\nI have watched your progress through this training cycle, and I can say with confidence that you represent the very best of our military tradition. You have demonstrated not just technical proficiency, but the character and resilience that define true service.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -901,7 +902,7 @@ export const promptsData = [
     title: 'Intimate Club Talk',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_54_57 PM.png'),
-    text: `Hey everyone,\n\nThanks for being here tonight. This isn’t a big auditorium or some corporate setting — it’s a space for honesty, laughter, and real connection.\n\nI want to talk about resilience. Not the kind you post about — the kind that keeps you standing when no one’s clapping. The kind that turns failure into fire.\n\nWhatever you’re carrying tonight, know this: you’re not alone, and your story matters. Let’s lift each other up — and maybe laugh a little while we’re at it.`,
+    text: `Hey everyone,\n\nThanks for being here tonight. This isn't a big auditorium or some corporate setting — it's a space for honesty, laughter, and real connection.\n\nI want to talk about resilience. Not the kind you post about — the kind that keeps you standing when no one's clapping. The kind that turns failure into fire.\n\nWhatever you're carrying tonight, know this: you're not alone, and your story matters. Let's lift each other up — and maybe laugh a little while we're at it.\n\nFive years ago, I had what looked like success from the outside. The career, the relationship, the apartment with a view. Then in the span of three months, I lost my job, my partner left, and I couldn't make rent. I found myself sleeping on a friend's couch, wondering how my life had unraveled so quickly.\n\nThat moment taught me something powerful about resilience. It's not about avoiding failure or hardship — it's about how you respond when everything falls apart. It's about finding that tiny spark of hope when all you can see is darkness.\n\nWhat saved me wasn't some dramatic comeback story. It was small, daily acts of persistence. It was sending out one more application when I'd already received twenty rejections. It was forcing myself to take a walk when depression made it hard to get out of bed. It was accepting help when pride made me want to handle everything alone.\n\nI started rebuilding by focusing not on getting back what I'd lost, but on rediscovering what truly mattered to me. I found purpose in volunteer work, community in unexpected places, and eventually, a new path forward that feels more authentic than the one I was on before.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '57%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -909,7 +910,7 @@ export const promptsData = [
     title: 'Policy Brief at National Press Club',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 01_57_27 PM.png'),
-    text: `Good afternoon,\n\nWe meet today at a critical juncture for our country. The conversations we hold in rooms like this shape policy that impacts every American.\n\nAs we tackle pressing issues — from economic equity to global stability — I urge each of you to engage with purpose. These aren’t just policy points; they are real people’s lives.\n\nLet’s keep the dialogue honest, data-informed, and focused on solutions that unite instead of divide.`,
+    text: `Good afternoon,\n\nWe meet today at a critical juncture for our country. The conversations we hold in rooms like this shape policy that impacts every American.\n\nAs we tackle pressing issues — from economic equity to global stability — I urge each of you to engage with purpose. These aren't just policy points; they are real people's lives.\n\nLet's keep the dialogue honest, data-informed, and focused on solutions that unite instead of divide.\n\nThe policy framework we're introducing today represents a significant departure from the status quo. For too long, we've approached these challenges through the lens of short-term political calculation rather than long-term national interest. We've allowed ideological rigidity to prevent us from finding common ground on issues where most Americans actually agree.\n\nOur research indicates that 78% of citizens across political affiliations support investment in clean energy infrastructure that creates jobs while addressing climate change. Similarly, 82% believe we need comprehensive healthcare reform that ensures affordability and access without bankrupting families facing serious illness.\n\nThe five-point plan outlined in your briefing materials tackles these priorities through a pragmatic approach that incorporates ideas from across the political spectrum. It refuses the false choice between economic growth and environmental protection. It rejects the notion that we must choose between strong borders and humane immigration policies.\n\nI welcome rigorous debate on the specifics, but I ask that we begin from a shared commitment to finding workable solutions. The American people deserve nothing less than our best efforts to move beyond partisan gridlock and chart a course toward a more prosperous, secure, and just future for all.`,
     layout: { position: 'absolute', width: '62%', height: '42%', top: '52%', left: '19%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-8deg' }] }
   },
   {
@@ -917,7 +918,7 @@ export const promptsData = [
     title: 'White House Correspondents Gala',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 01_46_37 PM.png'),
-    text: `Ladies and gentlemen,\n\nWelcome to the most elegant roast in Washington! Tonight, we celebrate not just freedom of the press — but also freedom to make fun of everyone equally.\n\nYou all dig for truth in dark places and somehow still make it to dinner in black-tie attire.\n\nThank you for keeping us honest — and reminding us that democracy is stronger when journalism is brave, bold, and unrelenting. And yes — funny too.`,
+    text: `Ladies and gentlemen,\n\nWelcome to the most elegant roast in Washington! Tonight, we celebrate not just freedom of the press — but also freedom to make fun of everyone equally.\n\nYou all dig for truth in dark places and somehow still make it to dinner in black-tie attire.\n\nThank you for keeping us honest — and reminding us that democracy is stronger when journalism is brave, bold, and unrelenting. And yes — funny too.\n\nIt's quite remarkable to look around this room and see the faces that Americans wake up to every morning and go to bed with every night. Though I should clarify — I'm referring to your news broadcasts, not suggesting anything inappropriate about your sleeping arrangements.\n\nThese past few years haven't been easy for any of us. My administration has faced its share of challenges, and you've been there to document every triumph and stumble, often with a level of detail that makes my communications team reach for the antacids.\n\nBut that tension between government and press is not just normal — it's essential. When Thomas Jefferson said he'd prefer newspapers without government to government without newspapers, he probably hadn't just read an unflattering profile of himself. But he understood something fundamental about democracy: that accountability matters more than comfort.\n\nIn an era where authoritarianism is on the rise globally, where journalists face imprisonment and worse for doing their jobs, we should never take for granted the freedom represented in this room. The freedom to ask tough questions, to challenge power, and occasionally, to make the President squirm through five minutes of stand-up comedy.`,
     layout: { position: 'absolute', width: '62%', height: '33%', top: '62%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -925,7 +926,7 @@ export const promptsData = [
     title: 'NAACP Image Awards Keynote',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_00_55 PM.png'),
-    text: `Good evening,\n\nWhat an honor to stand before creators, changemakers, and champions of equity. The stories honored tonight break barriers and build bridges.\n\nFrom sound stages to classrooms, the work you do reshapes culture and inspires generations.\n\nTonight, we don’t just hand out awards — we reaffirm a legacy of excellence, truth, and representation that continues to rise.\n\nKeep shining, keep creating — we see you.`,
+    text: `Good evening,\n\nWhat an honor to stand before creators, changemakers, and champions of equity. The stories honored tonight break barriers and build bridges.\n\nFrom sound stages to classrooms, the work you do reshapes culture and inspires generations.\n\nTonight, we don't just hand out awards — we reaffirm a legacy of excellence, truth, and representation that continues to rise.\n\nKeep shining, keep creating — we see you.\n\nWhen I look across this room, I see more than talent. I see courage. I see persistence. I see the faces of those who refused to accept the limitations that society tried to place on them. In an industry that has historically marginalized our voices, you've not only claimed your seat at the table — you've transformed the entire conversation.\n\nThink back to where we were just a few decades ago, when roles for Black actors were limited and stereotypical, when our stories were told through someone else's lens, when directors and producers of color were barely represented. Compare that to tonight, where we celebrate groundbreaking films, television shows, music, and literature that center our diverse experiences with authenticity and nuance.\n\nThis progress didn't happen by accident. It happened because people in this room and those who came before you demanded change. You created your own production companies when doors were closed. You mentored young talent. You took creative and financial risks to bring untold stories to light.\n\nBut our work is far from finished. True representation isn't just about who appears on screen — it's about who makes decisions behind the scenes, who has access to funding, and whose stories are deemed worthy of being told. It's about ensuring that the full spectrum of Black experiences is reflected in our culture, not just those that fit comfortable narratives.`,
     layout: { position: 'absolute', width: '50%', height: '32%', top: '63%', left: '38%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-8deg' }] }
   },
   {
@@ -933,7 +934,7 @@ export const promptsData = [
     title: 'Late Night Guest Segment',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 01_56_05 PM.png'),
-    text: `Wow — what a crowd!\n\nBefore I walked out, they said, “Keep it short and funny.” I’m aiming for at least one of those.\n\nBut seriously, I came here tonight not just to entertain, but to connect. Humor brings us together in ways politics never can.\n\nSo let’s laugh, let’s think, and let’s be reminded that behind every joke, there’s truth — and behind every person, there’s a story worth hearing.`,
+    text: `Wow — what a crowd!\n\nBefore I walked out, they said, "Keep it short and funny." I'm aiming for at least one of those.\n\nBut seriously, I came here tonight not just to entertain, but to connect. Humor brings us together in ways politics never can.\n\nSo let's laugh, let's think, and let's be reminded that behind every joke, there's truth — and behind every person, there's a story worth hearing.\n\nYou know, I've spent the last few years traveling across the country talking to people from all walks of life for my new book. What's fascinating is that despite all the division we hear about, most people are united by the same basic desires: they want opportunities for their kids, they want their communities to be safe, and they want a good laugh after a long day.\n\nI remember sitting in a diner in a small Midwestern town, talking to this older gentleman who had views completely opposite to mine on almost everything political. But we spent three hours sharing stories and by the end, we were laughing so hard the waitress had to ask us to quiet down. We never changed each other's minds on policy, but we recognized each other's humanity.\n\nThat's what I hope we can do more of as a country — find those moments of connection through humor and genuine curiosity about each other's stories. It's harder to demonize someone when you've shared a laugh with them.\n\nSo while we might debate the serious issues facing our nation — and there are many — let's not forget that sometimes the most revolutionary act is simply to see each other clearly and to find joy in our shared experience as humans on this complicated journey together.`,
     layout: { position: 'absolute', width: '50%', height: '33%', top: '48%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -941,7 +942,7 @@ export const promptsData = [
     title: 'Iowa Debate Opening Statement',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_02_25 PM.png'),
-    text: `Thank you, Iowa,\n\nI’m here tonight not with slogans, but with substance. This election isn’t about one person — it’s about all of us.\n\nIt’s about ensuring healthcare, climate action, and justice aren’t privileges — they’re promises. Promises we keep.\n\nLet’s speak plainly, act boldly, and fight tirelessly for every American who’s ever felt left behind. Because real leadership shows up when it matters most.`,
+    text: `Thank you, Iowa,\n\nI'm here tonight not with slogans, but with substance. This election isn't about one person — it's about all of us.\n\nIt's about ensuring healthcare, climate action, and justice aren't privileges — they're promises. Promises we keep.\n\nLet's speak plainly, act boldly, and fight tirelessly for every American who's ever felt left behind. Because real leadership shows up when it matters most.\n\nI grew up in a working-class family just two hours south of here. My father was a factory worker for 35 years, my mother a school cafeteria worker. They taught me the value of hard work, community, and doing what's right even when it's difficult. Those values are at the core of my campaign and will guide every decision I make as president.\n\nOver the past year, I've visited all 99 counties in Iowa. I've sat at kitchen tables with farmers worried about climate change disrupting growing seasons. I've talked with parents working three jobs to afford childcare. I've listened to seniors choosing between groceries and prescriptions.\n\nThese aren't abstract policy debates – these are real challenges facing real people. And they deserve real solutions, not empty rhetoric or false promises.\n\nMy plan for rural economic revitalization includes expanded broadband access, significant investment in renewable energy jobs, and a healthcare system that ensures no rural hospital closes its doors. My climate proposal protects farmers while transitioning to sustainable practices and creating new revenue streams on agricultural land. My tax reform ensures the wealthiest individuals and corporations finally pay their fair share.`,
     layout: { position: 'absolute', width: '62%', height: '47%', top: '45%', left: '19%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -949,7 +950,7 @@ export const promptsData = [
     title: 'Pearl Harbor Remembrance Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 04_56_56 PM.png'),
-    text: `Ladies and gentlemen,\n\nToday we gather at Pearl Harbor to honor the memory of those who gave their lives in service and sacrifice. This sacred site reminds us of the cost of freedom.\n\nTheir legacy lives not just in history books, but in our commitment to peace, vigilance, and unity.\n\nMay we never forget. And may we always live in a way that honors their courage.`,
+    text: `Ladies and gentlemen,\n\nToday we gather at Pearl Harbor to honor the memory of those who gave their lives in service and sacrifice. This sacred site reminds us of the cost of freedom.\n\nTheir legacy lives not just in history books, but in our commitment to peace, vigilance, and unity.\n\nMay we never forget. And may we always live in a way that honors their courage.\n\nEighty-four years ago, on a quiet Sunday morning, the waters before us erupted in fire and chaos. More than 2,400 Americans lost their lives in a matter of hours. They were sailors and soldiers, marines and civilians. They were fathers and sons, husbands and brothers. They were Americans who had breakfast that morning with no idea that it would be their last.\n\nI'm humbled to stand here with the few remaining survivors of that fateful day – living witnesses to one of history's pivotal moments. Their firsthand accounts remind us that history isn't just dates and facts. It's human beings making choices of extraordinary courage amid unimaginable circumstances.\n\nWe remember the crew of the USS Oklahoma, who continued to tap messages to rescuers as water filled their compartments. We remember the nurses who treated the wounded under enemy fire. We remember the civilians who rushed to donate blood and provide aid.\n\nThe generation that endured Pearl Harbor and went on to win World War II has been rightly called the Greatest Generation. They didn't seek glory or recognition. They simply answered the call of duty, defended freedom when it was threatened, and then returned home to build the America we inherit today.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '57%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -957,15 +958,15 @@ export const promptsData = [
     title: 'Gateway Arch Unity Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 04_58_20 PM.png'),
-    text: `Standing under this great arch, we are reminded of the journey — from past struggles to future promise. This monument is more than metal — it’s a symbol of progress.\n\nWe are many voices, but one people. One mission — to build bridges, not walls.\n\nLet today be a call for inclusion, innovation, and inspiration that reaches as high as the arch above us.`,
+    text: `Standing under this great arch, we are reminded of the journey — from past struggles to future promise. This monument is more than metal — it's a symbol of progress.\n\nWe are many voices, but one people. One mission — to build bridges, not walls.\n\nLet today be a call for inclusion, innovation, and inspiration that reaches as high as the arch above us.\n\nThis Gateway Arch, rising 630 feet above us, was built by diverse hands — Irish and Italian immigrants, African Americans, and many others who may have spoken different languages but shared a common vision. They worked together, despite differences, to create something extraordinary that would outlast all of them.\n\nSt. Louis itself sits at the confluence of great rivers, a meeting place of cultures and ideas throughout our nation's history. It was from this very spot that Lewis and Clark embarked on their journey westward, opening a new chapter in American exploration. It was in this city that Dred Scott filed his lawsuit for freedom, challenging the very definition of citizenship and human rights in America.\n\nToday, we face our own defining challenges — division that threatens to tear at the fabric of our communities, economic uncertainties that leave too many families struggling, and rapid technological change that both connects and divides us. But like those who came before us, we have the opportunity to build something remarkable together.\n\nThe arch teaches us an important lesson about unity. Each section depends on all the others. Remove one piece, and the entire structure would fail. So too with our society — we rise or fall together. Our diversity isn't a weakness to overcome but our greatest source of strength and innovation.`,
     layout: { position: 'absolute', width: '60%', height: '33%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
     id: 'speech37',
-    title: 'University Convocation Speech',
+    title: 'University Commencement Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 05_05_00 PM.png'),
-    text: `Welcome scholars,\n\nThis campus is more than classrooms and textbooks — it's a training ground for thought, for growth, and for global citizenship.\n\nToday you begin a chapter of discovery. Seek knowledge. Challenge assumptions. And above all, use what you learn to lead with compassion.\n\nThe world awaits what you will build.`,
+    text: `Welcome scholars,\n\nThis campus is more than classrooms and textbooks — it's a training ground for thought, for growth, and for global citizenship.\n\nToday you begin a chapter of discovery. Seek knowledge. Challenge assumptions. And above all, use what you learn to lead with compassion.\n\nThe world awaits what you will build.\n\nLook around you. These halls have been home to Nobel laureates, pioneering researchers, transformative artists, and leaders who have shaped our world. But they all started exactly where you are sitting today: curious, perhaps a bit nervous, and filled with possibilities.\n\nYou arrive at a pivotal moment in history. We face unprecedented global challenges: climate change, technological disruption, social inequality, and political polarization. These problems are complex and interconnected, requiring innovative thinking across traditional boundaries of discipline and culture.\n\nThis is why our university has redesigned its curriculum to emphasize interdisciplinary collaboration. We want you to become not just experts in your field, but translators between fields, able to connect insights from seemingly unrelated domains. The computer scientist who understands ethics. The economist who appreciates ecology. The engineer who values anthropology.\n\nDuring your time here, I encourage you to embrace intellectual discomfort. Seek out viewpoints that challenge your own. Take courses outside your comfort zone. Engage respectfully with those whose life experiences differ dramatically from yours. True learning happens not when we confirm what we already believe, but when we grapple with ideas that push us to think more deeply.`,
     layout: { position: 'absolute', width: '62%', height: '32%', top: '40%', left: '19%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-4deg' }] }
   },
   {
@@ -973,7 +974,7 @@ export const promptsData = [
     title: 'BET Awards Tribute',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 05_03_35 PM.png'),
-    text: `Good evening,\n\nTonight we honor Black excellence — not just in music and media, but in culture, courage, and community.\n\nThe stories shared on this stage uplift and ignite. They tell us that our voices matter, that our art shapes generations.\n\nSo shine bright, speak loud, and never stop pushing the world forward.`,
+    text: `Good evening,\n\nTonight we honor Black excellence — not just in music and media, but in culture, courage, and community.\n\nThe stories shared on this stage uplift and ignite. They tell us that our voices matter, that our art shapes generations.\n\nSo shine bright, speak loud, and never stop pushing the world forward.\n\nThis moment calls for celebration, but also for reflection. When BET was founded over 45 years ago, the landscape of media representation looked vastly different. Doors were closed. Voices were silenced. Stories went untold. But through perseverance, creativity, and unwavering conviction, those barriers began to fall.\n\nI look around this room and see pioneers who refused to take no for an answer. Artists who created their own lanes when the existing ones excluded them. Visionaries who built platforms and opened doors for others to follow. Through your work, millions of young people see themselves represented, their experiences validated, their dreams affirmed.\n\nThis year's nominees have not just entertained us; they've moved us, challenged us, and inspired us. They've used their art to address systemic inequality, to preserve our rich cultural heritage, and to imagine new possibilities for our future. Their music, films, television, and digital content carry forward a legacy of storytelling that has sustained our communities through centuries of struggle and triumph.\n\nAs we celebrate tonight, let us remember that our creativity has always been both expression and resistance. From spirituals sung in fields to jazz clubs in Harlem, from community theaters to global streaming platforms, Black artistry has consistently transformed American culture while fighting for justice and human dignity.`,
     layout: { position: 'absolute', width: '55%', height: '35%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 100, transform: [{ rotate: '-1deg' }] }
   },
   {
@@ -981,15 +982,15 @@ export const promptsData = [
     title: 'Atlanta Civil Rights Dedication',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 05_01_50 PM.png'),
-    text: `Today, at the Civil Rights Museum, we remember those who marched, who stood, and who refused to be silent.\n\nTheir struggle paved the way for justice — and it calls each of us to keep marching, keep standing, keep speaking.\n\nThis is not just history. This is a movement that lives in us.\n\nLet’s carry the torch with dignity and determination.`,
+    text: `Today, at the Civil Rights Museum, we remember those who marched, who stood, and who refused to be silent.\n\nTheir struggle paved the way for justice — and it calls each of us to keep marching, keep standing, keep speaking.\n\nThis is not just history. This is a movement that lives in us.\n\nLet's carry the torch with dignity and determination.\n\nAtlanta stands at the heart of America's civil rights story. It was here that a young preacher named Martin Luther King Jr. developed his philosophy of nonviolent resistance. It was here that the Student Nonviolent Coordinating Committee organized campaigns that would transform the nation. It was here that ordinary citizens risked everything for the extraordinary promise of equality.\n\nAs we dedicate this new wing of the museum, we honor both famous leaders and unsung heroes. We remember the strategists who planned boycotts and the volunteers who prepared meals. We honor those who faced fire hoses and police dogs, and those who offered their homes as safe havens. We recognize that the movement was built not just on dramatic moments captured by news cameras, but on countless daily acts of courage that often went unrecorded.\n\nThis museum isn't just about preserving the past—it's about illuminating the present and inspiring the future. The exhibits you'll see remind us that progress is never guaranteed. Each generation must recommit to the work of justice, must find new ways to address persistent inequalities, must confront new manifestations of old prejudices.\n\nThe civil rights leaders we honor today understood that America's founding promise of equality required constant vigilance and ongoing work. They knew that democracy isn't a static achievement but a continuous process of becoming more inclusive, more just, more true to our highest ideals.`,
     layout: { position: 'absolute', width: '65%', height: '42%', top: '50%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
   {
     id: 'speech40',
-    title: 'Macy’s Parade Welcome',
+    title: 'Macys Parade Welcome',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_26_26 PM.png'),
-    text: `Hello New York!\n\nWhat a day to celebrate joy, creativity, and the incredible energy of our city. As the floats roll in and the music fills the air, let’s remember what brings us together — imagination, tradition, and community.\n\nTo every performer, every family watching from home, and everyone lining these streets — thank you. Let’s make this year’s parade unforgettable!`,
+    text: `Hello New York!\n\nWhat a day to celebrate joy, creativity, and the incredible energy of our city. As the floats roll in and the music fills the air, let's remember what brings us together — imagination, tradition, and community.\n\nTo every performer, every family watching from home, and everyone lining these streets — thank you. Let's make this year's parade unforgettable!\n\nFor nearly a century, this parade has been a beloved tradition that marks the beginning of the holiday season. It started as a small celebration and has grown into this magnificent spectacle that captivates millions around the world. What makes this event so special is that it brings out the child in all of us — that sense of wonder and excitement that sometimes gets lost in our busy lives.\n\nToday we have over 8,000 participants — from marching bands that have practiced for months, to dance troupes showcasing incredible talent, to our balloon handlers managing those iconic characters floating above us. Behind every performer and every float is a story of dedication and hard work.\n\nAs we watch the parade unfold, I hope you feel the magic that happens when a city comes together to celebrate. This isn't just about entertainment — it's about creating memories that will last a lifetime for the children watching, just as many of us remember watching when we were young.\n\nNow, let the 99th Annual Macy's Thanksgiving Day Parade begin!`,
     layout: { position: 'absolute', width: '55%', height: '30%', top: '53%', left: '5%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-9deg' }] }
   },
   {
@@ -997,7 +998,7 @@ export const promptsData = [
     title: 'Hollywood Walk of Fame Tribute',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_28_12 PM.png'),
-    text: `Thank you all for being here today,\n\nStanding on this iconic stretch of sidewalk, we honor a journey paved with talent, perseverance, and passion. This star is more than a name — it’s a legacy.\n\nTo the fans, colleagues, and dreamers: keep reaching. Because this industry runs on the stories we dare to tell and the dreams we dare to chase.`,
+    text: `Thank you all for being here today,\n\nStanding on this iconic stretch of sidewalk, we honor a journey paved with talent, perseverance, and passion. This star is more than a name — it's a legacy.\n\nTo the fans, colleagues, and dreamers: keep reaching. Because this industry runs on the stories we dare to tell and the dreams we dare to chase.\n\nThirty years ago, a young performer stepped off a bus with nothing but talent and determination. There were countless auditions, numerous rejections, and those small early roles that barely paid the rent. But with each setback came growth, with each challenge came opportunity.\n\nWhat makes this moment so special isn't just the accomplishments we celebrate today — the award-winning performances, the box office successes, the critical acclaim. It's the character behind the characters. It's the countless hours of preparation that the audience never sees. It's the mentorship provided to young artists, the philanthropic work that happens away from the cameras, and the courage to use this platform to advocate for important causes.\n\nHollywood Boulevard tells the story of our entertainment history through these stars. From the pioneers of the silent film era to the digital innovators of today, each star represents someone who dared to transform imagination into reality.\n\nToday, we add another name to this illustrious walkway — a name that future generations will see and be inspired by, just as you were inspired by those who came before.`,
     layout: { position: 'absolute', width: '60%', height: '38%', top: '45%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1005,7 +1006,7 @@ export const promptsData = [
     title: 'Military Funeral Reflection',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_29_13 PM.png'),
-    text: `Today, we honor a life of service and sacrifice.\n\nIn the quiet rows of these stones lies the heartbeat of a nation — brave souls who stood for something greater than themselves. Our fallen hero joins their ranks.\n\nMay we carry forward their memory not in silence, but in the way we live, lead, and love this country.\n\nRest in peace, soldier. Your duty is done.`,
+    text: `Today, we honor a life of service and sacrifice.\n\nIn the quiet rows of these stones lies the heartbeat of a nation — brave souls who stood for something greater than themselves. Our fallen hero joins their ranks.\n\nMay we carry forward their memory not in silence, but in the way we live, lead, and love this country.\n\nRest in peace, soldier. Your duty is done.\n\nWhen we speak of courage, we often think of dramatic moments on the battlefield. But for those who serve, courage is also found in the quiet commitment made on the day they first put on the uniform. It's found in the daily sacrifices — missing birthdays and anniversaries, moving families across the country, and facing dangers that most civilians will never understand.\n\nOur fallen comrade embodied this courage in both dramatic and ordinary ways. Those who served alongside speak of their calm under pressure, their unwavering integrity, and their dedication to the mission and to their fellow service members. They speak too of their humor, their kindness, and the countless small acts of generosity that defined their character.\n\nTo the family gathered here today: We cannot fully understand your grief, but please know that your loved one's sacrifice has meaning. They stood for the highest ideals of our nation — duty, honor, and the protection of the freedoms we hold dear.\n\nAs we lay them to rest among heroes, we make this solemn promise: We will remember. Not just today, but in the years to come. Their name, their service, their sacrifice will never be forgotten.`,
     layout: { position: 'absolute', width: '62%', height: '45%', top: '48%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
   {
@@ -1013,7 +1014,7 @@ export const promptsData = [
     title: 'Civil Rights Memorial Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_32_37 PM.png'),
-    text: `We gather here before greatness carved in stone — a reminder that the arc of justice is long, but it bends because of those who push.\n\nDr. King once stood with conviction. Now we stand here, not to simply remember, but to continue.\n\nLet’s carry forward his dream — with courage, with community, and with relentless belief in the power of peaceful change.`,
+    text: `We gather here before greatness carved in stone — a reminder that the arc of justice is long, but it bends because of those who push.\n\nDr. King once stood with conviction. Now we stand here, not to simply remember, but to continue.\n\nLet's carry forward his dream — with courage, with community, and with relentless belief in the power of peaceful change.\n\nFifty-eight years ago, Dr. King spoke of a dream. It wasn't just his dream — it was a vision of America at its best, a nation that truly lives up to its founding promise that all people are created equal. Today, as we stand in the shadow of this monument, we must ask ourselves: How far have we come toward realizing that dream? And what work remains undone?\n\nWe've seen progress that would have seemed impossible in Dr. King's time. Legal segregation has been abolished. The Voting Rights Act opened the ballot box to millions. We've witnessed leadership at every level of government that reflects the full diversity of our nation.\n\nBut we would dishonor Dr. King's legacy if we claimed the work was complete. When poverty still follows the fault lines of race and ethnicity, when voting rights face new restrictions, when our criminal justice system continues to impact communities of color disproportionately — we must acknowledge that the dream remains unfulfilled.\n\nHowever, acknowledging this reality is not cause for despair but for renewed commitment. Dr. King showed us that change is possible when ordinary people join together with extraordinary resolve.`,
     layout: { position: 'absolute', width: '62%', height: '38%', top: '60%', left: '19%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1021,7 +1022,7 @@ export const promptsData = [
     title: 'State Capitol Press Briefing',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_37_53 PM.png'),
-    text: `Good morning,\n\nWe stand here in the heart of governance — where policy meets the people. Today’s briefing is not about spin, it’s about facts.\n\nFrom education funding to public safety, we’re here to outline our next steps and invite accountability.\n\nLet’s commit to a government that listens, learns, and leads — with clarity and compassion.`,
+    text: `Good morning,\n\nWe stand here in the heart of governance — where policy meets the people. Today's briefing is not about spin, it's about facts.\n\nFrom education funding to public safety, we're here to outline our next steps and invite accountability.\n\nLet's commit to a government that listens, learns, and leads — with clarity and compassion.\n\nI want to begin by addressing the infrastructure bill that passed last week. This represents the largest investment in our state's roads, bridges, and public transit in over two decades. Starting next month, you'll see crews breaking ground on key projects in every county, creating over 5,000 jobs for our residents.\n\nOn education, we've increased the per-pupil funding by 8% and secured additional support for special education services. Our teacher retention initiative has already shown promising results, with a 15% reduction in turnover compared to this time last year.\n\nRegarding public safety, the new community policing program is now operating in 12 municipalities, with plans to expand to 10 more by year-end. Early data shows a 20% improvement in response times and stronger community relationships.\n\nLet me be clear: these are not partisan issues. They're about creating a state where every resident has the opportunity to thrive, where our children receive a world-class education, and where our communities are safe and vibrant.`,
     layout: { position: 'absolute', width: '62%', height: '35%', top: '55%', left: '19%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   // --- End Speech Prompts ---
@@ -1194,7 +1195,7 @@ export const promptsData = [
     title: 'Google Strategy Session',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 08_15_15 PM.png'),
-    text: `Good afternoon everyone, and thank you for joining today’s strategic alignment session at Google.\n\nAs we look ahead to the next quarter, we’re doubling down on responsible AI development, sustainability efforts, and global product accessibility.\n\nOur Pixel rollout exceeded projections in North America, and we saw exciting growth in Google Cloud among enterprise clients. However, we have to rethink our outreach strategy in underserved markets.\n\nWe’ll spend today refining our go-to-market approach for Gemini integrations and our AI research publication pipeline.\n\nPlease turn to page 6 in the deck — I’ll walk you through the updated OKRs and leadership priorities.`,
+    text: `Good afternoon everyone, and thank you for joining today's strategic alignment session at Google.\n\nAs we look ahead to the next quarter, we're doubling down on responsible AI development, sustainability efforts, and global product accessibility.\n\nOur Pixel rollout exceeded projections in North America, and we saw exciting growth in Google Cloud among enterprise clients. However, we have to rethink our outreach strategy in underserved markets.\n\nWe'll spend today refining our go-to-market approach for Gemini integrations and our AI research publication pipeline.\n\nPlease turn to page 6 in the deck — I'll walk you through the updated OKRs and leadership priorities.\n\nThe data shows that our investment in AI safety protocols has yielded significant results, with our models demonstrating a 40% reduction in harmful outputs compared to industry benchmarks. This positions us well with enterprise customers who prioritize responsible deployment. Our cross-functional teams have created new evaluation frameworks that are becoming standard practice across the industry.\n\nRegarding sustainability, our data centers are now operating at 85% carbon-free energy, putting us ahead of schedule toward our 2030 goals. The engineering innovations from these efforts are creating additional revenue opportunities through Google Cloud sustainability solutions for customers in energy-intensive industries.\n\nLooking at our product accessibility initiatives, we've increased our reach to users with disabilities by 28% year-over-year. The accessibility features originally designed for specific needs are now driving broader user engagement across all demographics, confirming our hypothesis that inclusive design benefits everyone.`,
     layout: {
       position: 'absolute',
       width: '52%',
@@ -1211,7 +1212,7 @@ export const promptsData = [
     title: 'Amazon Executive Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_09_59 PM.png'),
-    text: `Good morning everyone,\n\nLet’s kick off this executive briefing with a quick look at our Prime subscriber growth: We’re up 18% year-over-year, driven largely by improved logistics performance and aggressive pricing strategies in Latin America.\n\nWe’ve completed pilot tests for our drone delivery expansion, and customer satisfaction scores in those regions are 9.1 out of 10. Amazon Web Services continues to lead in cloud growth, but Azure is catching up — we’ll review our enterprise acquisition pipeline later in the agenda.\n\nI’ve included three bold bets in today’s proposal: a sustainability-centric supply chain revamp, AI-driven personalization across retail, and a Web3 fulfillment model pilot.\n\nLet’s dive in and pressure-test these ideas together.`,
+    text: `Good morning everyone,\n\nLet's kick off this executive briefing with a quick look at our Prime subscriber growth: We're up 18% year-over-year, driven largely by improved logistics performance and aggressive pricing strategies in Latin America.\n\nWe've completed pilot tests for our drone delivery expansion, and customer satisfaction scores in those regions are 9.1 out of 10. Amazon Web Services continues to lead in cloud growth, but Azure is catching up — we'll review our enterprise acquisition pipeline later in the agenda.\n\nI've included three bold bets in today's proposal: a sustainability-centric supply chain revamp, AI-driven personalization across retail, and a Web3 fulfillment model pilot.\n\nLet's dive in and pressure-test these ideas together.\n\nFirst, our sustainability initiative goes beyond conventional green practices. We're proposing a complete redesign of our packaging systems, with biodegradable materials that reduce waste by 65%. The initial investment is substantial at $340 million, but our projections show both cost savings and brand equity improvements within 24 months. The pilot in Seattle demonstrated that customers actively prefer these options and are sharing their unboxing experiences across social media at 3x the rate of standard packaging.\n\nSecond, our AI personalization framework leverages our vast data ecosystem to create truly individualized shopping experiences. The early results from the beta test with 100,000 customers show a 28% increase in average order value and significant improvements in discovery metrics. This system doesn't just recommend products—it anticipates needs based on life events, seasonal patterns, and product lifecycle data.\n\nFinally, our Web3 fulfillment model represents our most experimental initiative. By tokenizing inventory and creating a decentralized warehousing network, we can potentially reduce last-mile delivery costs by 40% while dramatically increasing delivery speed. The technology is complex but could revolutionize our entire logistics framework if successful.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -1228,7 +1229,7 @@ export const promptsData = [
     title: 'Venture Capital Pitch',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_11_13 PM.png'),
-    text: `Thank you for having me here today.\n\nWe’re building a platform that radically redefines how local businesses digitize their logistics, starting with underserved regions in Southeast Asia. In the past 6 months, we’ve onboarded 240 vendors and increased transaction volume by 5x.\n\nOur average CAC is $14 and payback period is just under 3 months. With this round, we’ll scale operations in three major cities, complete our route optimization engine, and grow the product team.\n\nWe’re raising $2.5M at a $12M pre-money valuation, with lead interest already confirmed.\n\nI’d love to take your questions and walk you through the product roadmap in more detail.`,
+    text: `Thank you for having me here today.\n\nWe're building a platform that radically redefines how local businesses digitize their logistics, starting with underserved regions in Southeast Asia. In the past 6 months, we've onboarded 240 vendors and increased transaction volume by 5x.\n\nOur average CAC is $14 and payback period is just under 3 months. With this round, we'll scale operations in three major cities, complete our route optimization engine, and grow the product team.\n\nWe're raising $2.5M at a $12M pre-money valuation, with lead interest already confirmed.\n\nI'd love to take your questions and walk you through the product roadmap in more detail.\n\nLet me share why this opportunity is so compelling. In Southeast Asia, 70% of retail happens through small, independent businesses that still operate entirely offline. These merchants lose 20-30% of potential revenue due to inventory stockouts, inefficient delivery routes, and limited customer reach. Our platform solves these pain points with a mobile-first approach designed specifically for low-tech users.\n\nOur founding team brings unique expertise to this challenge. Our CTO previously built logistics systems for Grab, while I led market expansion for Shopee across the region. We understand both the technical requirements and the cultural nuances of these markets.\n\nThe competitive landscape is favorable – existing solutions are either too complex or too expensive for these merchants. We've created a tiered pricing model that starts with basic free features and grows as businesses scale. This approach has resulted in our outstanding retention metrics, with 88% of merchants still active after 6 months.\n\nOur vision extends beyond logistics to creating a comprehensive digital infrastructure for small businesses across emerging markets. The logistics platform is our wedge into a much larger ecosystem of financial services, inventory management, and business intelligence tools.`,
     layout: {
       position: 'absolute',
       width: '58%',
@@ -1245,7 +1246,7 @@ export const promptsData = [
     title: 'Museum Policy Forum',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_14_14 PM.png'),
-    text: `Welcome to today’s policy forum on cultural preservation in the digital age.\n\nAs curators, educators, and scholars, we share a deep responsibility to protect access to our collective heritage. Today we’ll explore how AI and digitization can support conservation, accessibility, and ethical restoration.\n\nThe agenda includes keynotes from UNESCO partners, a demo of our virtual museum pilot, and breakout sessions on funding gaps for smaller institutions.\n\nLet’s begin with a reflection on what we lose when we fail to preserve — and what we stand to gain when we innovate with purpose.`,
+    text: `Welcome to today's policy forum on cultural preservation in the digital age.\n\nAs curators, educators, and scholars, we share a deep responsibility to protect access to our collective heritage. Today we'll explore how AI and digitization can support conservation, accessibility, and ethical restoration.\n\nThe agenda includes keynotes from UNESCO partners, a demo of our virtual museum pilot, and breakout sessions on funding gaps for smaller institutions.\n\nLet's begin with a reflection on what we lose when we fail to preserve — and what we stand to gain when we innovate with purpose.\n\nThe statistics are sobering: over the past decade, we've lost an estimated 14% of physical cultural artifacts due to conflict, climate disasters, and deterioration. Each loss represents not just an object, but a thread in the fabric of human understanding. Digital preservation offers a powerful solution, but brings its own complex challenges around authenticity, representation, and accessibility.\n\nOur recent global survey revealed that while 82% of major museums have digitization initiatives, only 23% have comprehensive strategies that address long-term storage, format evolution, and equitable access. Even fewer have protocols for the ethical application of AI in restoration and research.\n\nThe case studies we'll examine today demonstrate both tremendous successes and cautionary tales. From the Virtual Palmyra Project that reconstructed destroyed monuments using community photographs, to the Indigenous Knowledge Repository that's pioneering new approaches to cultural repatriation through digital means while respecting traditional knowledge protocols.\n\nThrough today's discussions, we aim to develop a framework that balances technological innovation with cultural sensitivity, institutional needs with public access, and preservation imperatives with the dynamic nature of living culture.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -1263,7 +1264,7 @@ export const promptsData = [
     title: 'Research Poster Discussion',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_12_19 PM.png'),
-    text: `Hi, thanks for stopping by! I’d love to walk you through our recent findings on behavioral trends in digital learning environments.\n\nWhat we discovered is that engagement isn’t just about time spent — it’s about cognitive triggers. With our adaptive feedback model, we saw a 26% improvement in knowledge retention among test groups.\n\nWe used a mixed-methods approach: qualitative surveys paired with machine learning analysis of usage data.\n\nIf you have time, I’d love your feedback on our methodology and whether you’ve seen similar results in your own work.\n\nHere’s our contact info as well — happy to collaborate.`,
+    text: `Hi, thanks for stopping by! I'd love to walk you through our recent findings on behavioral trends in digital learning environments.\n\nWhat we discovered is that engagement isn't just about time spent — it's about cognitive triggers. With our adaptive feedback model, we saw a 26% improvement in knowledge retention among test groups.\n\nWe used a mixed-methods approach: qualitative surveys paired with machine learning analysis of usage data.\n\nIf you have time, I'd love your feedback on our methodology and whether you've seen similar results in your own work.\n\nHere's our contact info as well — happy to collaborate.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -1282,7 +1283,7 @@ export const promptsData = [
     title: 'MIT Department Colloquium',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_15_05 PM.png'),
-    text: `Good evening, colleagues. I’m honored to present at this year’s MIT Department Colloquium.\n\nTonight, I’ll be discussing scalable quantum architectures for AI model training — specifically, our recent advancements in reducing decoherence during computation.\n\nThe team has made significant progress on error correction protocols, and we’re now benchmarking over 95% gate fidelity with qubit clusters above 64 units.\n\nI'll walk through the experimental framework, our lab instrumentation setup, and the implications for long-term general AI development.\n\nLet’s begin with the control circuit diagram and test conditions.`,
+    text: `Good evening, colleagues. I'm honored to present at this year's MIT Department Colloquium.\n\nTonight, I'll be discussing scalable quantum architectures for AI model training — specifically, our recent advancements in reducing decoherence during computation.\n\nThe team has made significant progress on error correction protocols, and we're now benchmarking over 95% gate fidelity with qubit clusters above 64 units.\n\nI'll walk through the experimental framework, our lab instrumentation setup, and the implications for long-term general AI development.\n\nLet's begin with the control circuit diagram and test conditions.\n\nAs you can see on this first slide, our approach fundamentally reimagines the relationship between quantum processing and neural network training. Previous attempts at quantum machine learning have typically focused on implementing quantum versions of classical algorithms. Our innovation lies in leveraging quantum parallelism for specific computational bottlenecks while maintaining classical processing for tasks where it remains efficient.\n\nThe key breakthrough came when we developed a hybrid tensor network that dynamically allocates computations between quantum and classical processors based on the entanglement requirements of each layer in the neural network. This allowed us to achieve what was previously thought impossible – maintaining coherence long enough to process complex, high-dimensional datasets without requiring temperatures approaching absolute zero.\n\nOur experimental results have implications beyond just faster AI training. The coherence preservation techniques we've developed could revolutionize quantum communication networks, cryptographic systems, and simulation capabilities for materials science and pharmaceutical research. We're currently collaborating with teams at CERN and the Max Planck Institute to explore these applications.`,
     layout: {
       position: 'absolute',
       width: '57%',
@@ -1299,7 +1300,7 @@ export const promptsData = [
     title: 'Hospital Grand Rounds',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_19_50 PM.png'),
-    text: `Good morning, and welcome to this week’s Grand Rounds.\n\nToday we’ll review a complex case involving multi-drug-resistant infections in a post-transplant patient.\n\nWe’ll walk through the initial presentation, diagnostic pathway, microbiology findings, and evolving treatment strategy.\n\nAfter the case discussion, we’ll hear from Dr. Hassan on the hospital’s new infection control protocols and results from the antimicrobial stewardship program.\n\nPlease hold your questions until the end of the primary case presentation — we’ll leave 15 minutes for open discussion.`,
+    text: `Good morning, and welcome to this week's Grand Rounds.\n\nToday we'll review a complex case involving multi-drug-resistant infections in a post-transplant patient.\n\nWe'll walk through the initial presentation, diagnostic pathway, microbiology findings, and evolving treatment strategy.\n\nAfter the case discussion, we'll hear from Dr. Hassan on the hospital's new infection control protocols and results from the antimicrobial stewardship program.\n\nPlease hold your questions until the end of the primary case presentation — we'll leave 15 minutes for open discussion.\n\nOur patient is a 47-year-old male who underwent renal transplantation four months ago following end-stage renal disease secondary to hypertensive nephropathy. His post-transplant course was initially uncomplicated, with stable allograft function and standard triple immunosuppression therapy. However, he presented to the emergency department three weeks ago with fever, malaise, and decreased urine output.\n\nWhat makes this case particularly instructive is the complex interplay between maintaining necessary immunosuppression and effectively treating multiple concurrent infections. Initial cultures revealed not one, but three resistant organisms: MRSA in the bloodstream, Pseudomonas aeruginosa in the urine, and evidence of CMV reactivation on PCR testing. This constellation of findings created significant therapeutic challenges.\n\nThe microbiology findings warrant close attention. The Pseudomonas isolate showed resistance to carbapenems, fluoroquinolones, and piperacillin-tazobactam, leaving limited treatment options. Susceptibility testing revealed sensitivity only to colistin and ceftolozane-tazobactam. The MRSA isolate demonstrated heterogeneous vancomycin resistance, requiring careful pharmacokinetic monitoring throughout treatment.`,
     layout: {
       position: 'absolute',
       width: '58%',
@@ -1316,7 +1317,7 @@ export const promptsData = [
     title: 'NGO Policy Conference',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_22_04 PM.png'),
-    text: `Thank you for joining this year's International NGO Conference on Global Issues.\n\nThis session will cover cross-border collaboration in climate response policy, particularly around disaster relief logistics and carbon offset verification.\n\nWe’ll be joined by policy analysts from the UNHCR, and panelists from our regional offices in Bangladesh, Kenya, and Brazil will present case data.\n\nFollowing the talks, we’ll split into groups to co-design next quarter’s operational KPIs and funding scenarios.\n\nLet’s begin with the top five learnings from our field reports in Q1.`,
+    text: `Thank you for joining this year's International NGO Conference on Global Issues.\n\nThis session will cover cross-border collaboration in climate response policy, particularly around disaster relief logistics and carbon offset verification.\n\nWe'll be joined by policy analysts from the UNHCR, and panelists from our regional offices in Bangladesh, Kenya, and Brazil will present case data.\n\nFollowing the talks, we'll split into groups to co-design next quarter's operational KPIs and funding scenarios.\n\nLet's begin with the top five learnings from our field reports in Q1.\n\nFirst, early warning systems integrated with locally-led response coordination have reduced evacuation times by an average of 37% across vulnerable coastal regions. The community-based alert networks in Bangladesh have become particularly effective, with their model now being adapted for implementation in Mozambique and the Philippines.\n\nSecond, our carbon verification methodologies have revealed significant discrepancies between reported and actual sequestration in forestry projects. The satellite monitoring protocol developed in partnership with our Brazilian colleagues has identified several instances where carbon credits were issued for preservation efforts in areas that were subsequently partially cleared or degraded.\n\nThird, climate financing continues to disproportionately flow to mitigation rather than adaptation projects, despite mounting evidence that many communities have already crossed critical thresholds where adaptation is urgently needed. Our advocacy work has focused on recalibrating this balance, particularly for least-developed countries.\n\nFourth, cross-sector partnerships involving private industry, local governments, and NGOs have demonstrated the most resilient response capabilities. The Kenya drought response coalition stands as a powerful example, where agricultural technology companies worked alongside traditional community leadership structures to deploy water conservation systems.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1333,7 +1334,7 @@ export const promptsData = [
     title: 'NYSE IPO Bell Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_24_23 PM.png'),
-    text: `Team, congratulations — today marks our IPO debut on the New York Stock Exchange.\n\nBefore we head to the bell, I want to thank every single one of you for the relentless effort it took to get us here. From product to legal, engineering to marketing — you made this milestone possible.\n\nWe’ve raised $180M in capital and now begin a new chapter with even greater responsibility.\n\nThis morning, I’ll walk through what’s changing (and what’s not): our new investor communications protocol, governance disclosures, and quarterly reporting cadence.\n\nLet’s take a group photo before we head to the floor — you’ve earned it.`,
+    text: `Team, congratulations — today marks our IPO debut on the New York Stock Exchange.\n\nBefore we head to the bell, I want to thank every single one of you for the relentless effort it took to get us here. From product to legal, engineering to marketing — you made this milestone possible.\n\nWe've raised $180M in capital and now begin a new chapter with even greater responsibility.\n\nThis morning, I'll walk through what's changing (and what's not): our new investor communications protocol, governance disclosures, and quarterly reporting cadence.\n\nLet's take a group photo before we head to the floor — you've earned it.\n\nI want to take a moment to reflect on our journey. Just seven years ago, we were five people working out of a tiny office with a bold vision to transform the industry. There were countless moments when success seemed impossible – the funding round that almost didn't close, the product pivot that risked everything, the competitive challenges that kept us up at night. But at each critical juncture, this team showed extraordinary resilience and creativity.\n\nBecoming a public company brings new expectations and scrutiny. Starting tomorrow, we'll operate with greater transparency and face quarterly performance assessments from analysts and investors. While this adds pressure, it also provides the resources and platform to accelerate our mission. Our core values remain unchanged – we still prioritize customer obsession, collaborative innovation, and long-term thinking over short-term gains.\n\nThe coming months will require adjustment as we implement new compliance processes and adapt to public market dynamics. We've assembled a stellar investor relations team to help navigate these waters, and our executive committee has completed extensive preparation for this transition.`,
     layout: {
       position: 'absolute',
       width: '58%',
@@ -1350,7 +1351,7 @@ export const promptsData = [
     title: 'Government Economic Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 10_23_14 PM.png'),
-    text: `Good morning, members of the economic council.\n\nToday’s session focuses on our national financial outlook and key fiscal policies moving forward. As illustrated on the screen behind me, our GDP growth trajectory remains positive, with increased capital expenditure driving momentum.\n\nHowever, inflation remains above the 2% target, largely driven by energy and housing sectors. We're implementing targeted subsidies to ease public burden while maintaining monetary discipline.\n\nOur near-term focus includes supporting innovation-led industries, optimizing tax incentives for SMEs, and maintaining global investor confidence.\n\nI welcome your questions and feedback as we fine-tune our policy actions.`,
+    text: `Good morning, members of the economic council.\n\nToday's session focuses on our national financial outlook and key fiscal policies moving forward. As illustrated on the screen behind me, our GDP growth trajectory remains positive, with increased capital expenditure driving momentum.\n\nHowever, inflation remains above the 2% target, largely driven by energy and housing sectors. We're implementing targeted subsidies to ease public burden while maintaining monetary discipline.\n\nOur near-term focus includes supporting innovation-led industries, optimizing tax incentives for SMEs, and maintaining global investor confidence.\n\nI welcome your questions and feedback as we fine-tune our policy actions.\n\nLet me elaborate on the specific macroeconomic indicators. Our quarterly GDP growth stands at 2.8%, outperforming initial projections of 2.3%. Labor market metrics show continued strength with unemployment at a 15-year low of 3.7%. Job creation is especially robust in manufacturing, renewable energy, and technology sectors, with 195,000 new positions created last quarter.\n\nThe inflation challenge warrants deeper discussion. While the headline rate of 3.6% exceeds our target, we're observing encouraging trends in the core inflation components. The energy price surge appears transitory, related to geopolitical factors that our diplomatic corps is actively addressing. Housing inflation, however, reflects structural supply constraints that require multi-year solutions combining zoning reforms, construction incentives, and public-private partnerships.\n\nOur fiscal position has improved markedly. Tax revenues exceed forecasts by 4.2%, primarily due to stronger corporate performance and capital gains realizations. This has allowed us to reduce our deficit projection from 3.1% to a more manageable 2.6% of GDP while maintaining planned investments in critical infrastructure and human capital development.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -1367,7 +1368,7 @@ export const promptsData = [
     title: 'Hospital Grand Rounds',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_01_21 PM.png'),
-    text: `Good afternoon, colleagues.\n\nIn today’s Grand Rounds, we’ll review a unique cardiac case that highlights critical decision points in emergency care.\n\nThe patient presented with atypical symptoms that challenged our initial diagnostic assumptions. We'll walk through the ECG patterns, the pharmacological interventions administered, and the rationale for surgical escalation.\n\nOur goal is to extract lessons for future protocols and explore where AI-driven tools could have accelerated decision-making.\n\nPlease prepare to share your thoughts and experiences during the open discussion segment.`,
+    text: `Good afternoon, colleagues.\n\nIn today's Grand Rounds, we'll review a unique cardiac case that highlights critical decision points in emergency care.\n\nThe patient presented with atypical symptoms that challenged our initial diagnostic assumptions. We'll walk through the ECG patterns, the pharmacological interventions administered, and the rationale for surgical escalation.\n\nOur goal is to extract lessons for future protocols and explore where AI-driven tools could have accelerated decision-making.\n\nPlease prepare to share your thoughts and experiences during the open discussion segment.\n\nThe case involves a 62-year-old female with no significant cardiac history who presented to the ED with primary complaints of epigastric discomfort, mild dyspnea, and unusual fatigue. Notably absent were the classic symptoms of chest pain, radiation to left arm, or diaphoresis that typically trigger our STEMI protocols. Her initial vital signs showed mild tachycardia at 96 bpm, blood pressure of 142/88 mmHg, and oxygen saturation of 94% on room air.\n\nThe first ECG, which you can see on slide two, showed subtle ST depressions in leads V3-V5 with minimal T-wave inversions – changes that could easily be dismissed as non-specific. Initial troponin was only marginally elevated at 0.04 ng/mL. However, what caught our attending's attention was the patient's description of symptoms that worsened when lying flat and improved with sitting forward – a presentation more consistent with pericarditis than acute coronary syndrome.\n\nGiven these conflicting indicators, the team ordered point-of-care ultrasound, which revealed unexpected findings: regional wall motion abnormalities in the posterolateral segments with preserved ejection fraction. This prompted immediate cardiology consultation and repeat troponin testing, which showed a significant jump to 0.9 ng/mL just 90 minutes later.`,
     layout: {
       position: 'absolute',
       width: '54%',
@@ -1385,7 +1386,7 @@ export const promptsData = [
     title: 'Corporate All-Hands Update',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_03_22 PM.png'),
-    text: `Hi everyone,\n\nThanks for joining our monthly all-hands. We’re continuing strong with a 27% growth in customer engagement metrics, largely driven by the new onboarding flow.\n\nWe’ve made solid progress on the OKRs for Q2 — but a few teams are still blocked on infrastructure access, so we’ll address that today. Also, our hybrid work transition pilot has been approved and will roll out next week.\n\nToday, we’ll also spotlight three product initiatives that went live, including the accessibility overhaul — kudos to the team!\n\nLet’s wrap up with open Q&A and then move to team breakouts.`,
+    text: `Hi everyone,\n\nThanks for joining our monthly all-hands. We're continuing strong with a 27% growth in customer engagement metrics, largely driven by the new onboarding flow.\n\nWe've made solid progress on the OKRs for Q2 — but a few teams are still blocked on infrastructure access, so we'll address that today. Also, our hybrid work transition pilot has been approved and will roll out next week.\n\nToday, we'll also spotlight three product initiatives that went live, including the accessibility overhaul — kudos to the team!\n\nLet's wrap up with open Q&A and then move to team breakouts.\n\nBefore diving into the details, I want to acknowledge the exceptional work happening across departments. Our engineering team has been shipping code at 140% of last quarter's velocity while maintaining our quality standards. The customer success team has reduced response times by half while increasing satisfaction scores. And our sales organization has closed three enterprise deals ahead of schedule.\n\nLooking at financial performance, we're tracking 8% above revenue targets for the quarter, with particularly strong growth in our European and APAC markets. Our cash position remains healthy, allowing us to accelerate hiring in key roles – you'll see 15 new positions posted later this week across product, engineering, and customer success.\n\nRegarding the infrastructure access issues affecting the data science and analytics teams: we've identified the root cause in our permission governance system. The DevOps team has implemented a temporary workaround while developing a permanent solution. Everyone affected should see resolution by end of day tomorrow, and we're implementing additional monitoring to prevent similar bottlenecks in the future.`,
     layout: {
       position: 'absolute',
       width: '58%',
@@ -1403,7 +1404,7 @@ export const promptsData = [
     title: 'Architecture Walkthrough',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_06_35 PM.png'),
-    text: `Welcome, everyone.\n\nToday we’ll be walking through the floor plan revisions for Phase II of our development project. This version includes updated common areas, better daylight optimization, and green zones aligned with our sustainability goals.\n\nThe engineering team has suggested material upgrades for the west-facing walls based on the new thermal analysis.\n\nWe’ll now open up to suggestions on flow efficiency and final placement of service shafts before sending this version to permit review.\n\nLet’s dive into each section — starting with the lobby configuration.`,
+    text: `Welcome, everyone.\n\nToday we'll be walking through the floor plan revisions for Phase II of our development project. This version includes updated common areas, better daylight optimization, and green zones aligned with our sustainability goals.\n\nThe engineering team has suggested material upgrades for the west-facing walls based on the new thermal analysis.\n\nWe'll now open up to suggestions on flow efficiency and final placement of service shafts before sending this version to permit review.\n\nLet's dive into each section — starting with the lobby configuration.\n\nAs you can see from the 3D renderings, we've reimagined the main entrance to create a more welcoming transition from the street level. The previous design had several blind spots and congestion points during peak hours. The new layout features a double-height atrium with natural ventilation and improved sight lines throughout the space.\n\nMoving to the residential floors, we've increased unit diversity by 15% while maintaining the same overall density. Each floor now includes studio, one-bedroom, and two-bedroom options, with corner units optimized for views and cross-ventilation. The community spaces on floors 3, 8, and 12 have been expanded based on resident feedback from Phase I.\n\nOne significant change worth highlighting is our response to the city planning commission's request for more integrated green spaces. We've converted what was previously a traditional roof into a series of terraced gardens that provide both recreational areas and improve the building's thermal performance.`,
     layout: {
       position: 'absolute',
       width: '57%',
@@ -1421,7 +1422,7 @@ export const promptsData = [
     title: 'University Poster Session',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_12_19 PM.png'),
-    text: `Hi, thank you for stopping by our research poster!\n\nThis study explores gene-environment interactions in the progression of autoimmune diseases. We analyzed data from over 2,000 patient records across 3 regions, focusing on correlations between exposure levels and antibody markers.\n\nAs you can see in the results section, there’s a statistically significant spike in Type II cytokines when PM2.5 levels exceed baseline thresholds.\n\nWe’re particularly excited about how this can inform early interventions using targeted therapies.\n\nLet us know if you have questions — happy to walk you through any part of the methodology.`,
+    text: `Hi, thank you for stopping by our research poster!\n\nThis study explores gene-environment interactions in the progression of autoimmune diseases. We analyzed data from over 2,000 patient records across 3 regions, focusing on correlations between exposure levels and antibody markers.\n\nAs you can see in the results section, there's a statistically significant spike in Type II cytokines when PM2.5 levels exceed baseline thresholds.\n\nWe're particularly excited about how this can inform early interventions using targeted therapies.\n\nLet us know if you have questions — happy to walk you through any part of the methodology.\n\nThe work began three years ago when our lab noticed an unusual clustering of autoimmune diagnoses in communities near industrial zones. Initially, we were looking at traditional risk factors like genetic predisposition and lifestyle, but the geographic pattern suggested environmental triggers might play a larger role than previously understood.\n\nOur methodology combined clinical data with environmental monitoring stations and satellite imagery to create high-resolution exposure maps. We then developed a novel statistical model that accounts for both genetic susceptibility markers and temporal exposure patterns. This allowed us to identify not just correlations, but potential causal mechanisms and exposure thresholds.\n\nOne of the most surprising findings was the strong association between intermittent exposure spikes and disease progression, rather than just chronic low-level exposure as previously thought. This suggests that even temporary environmental events could trigger lasting immunological changes in susceptible individuals.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -1439,7 +1440,7 @@ export const promptsData = [
     title: 'Community Town Hall',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_15_56 PM.png'),
-    text: `Good evening, everyone.\n\nThank you for taking the time to join this community town hall. I want to begin by acknowledging the incredible work you all do to support our neighborhood’s resilience and well-being.\n\nTonight, we’ll discuss three topics: proposed zoning adjustments, our upcoming senior care initiatives, and the budget review for next quarter.\n\nWe’re also collecting feedback on the new digital reporting portal, which is now live. Please try it out and let us know how it can better serve you.\n\nLet’s open the floor for your questions and concerns.`,
+    text: `Good evening, everyone.\n\nThank you for taking the time to join this community town hall. I want to begin by acknowledging the incredible work you all do to support our neighborhood's resilience and well-being.\n\nTonight, we'll discuss three topics: proposed zoning adjustments, our upcoming senior care initiatives, and the budget review for next quarter.\n\nWe're also collecting feedback on the new digital reporting portal, which is now live. Please try it out and let us know how it can better serve you.\n\nLet's open the floor for your questions and concerns.\n\nBefore we dive into the agenda items, I'd like to highlight some of the progress we've made since our last meeting three months ago. The community garden project has expanded to three additional locations, with over 50 families now participating. Our neighborhood watch program has seen a 40% increase in volunteers, and reported incidents are down 15% compared to this time last year.\n\nRegarding the zoning adjustments, we're proposing changes that would allow more mixed-use development along Main Street while preserving the residential character of surrounding blocks. The planning commission has prepared detailed maps and impact assessments, which are available at the information table and on our website.\n\nOur senior care initiative builds on the success of last year's pilot program. We're expanding transportation services, implementing a neighbor-to-neighbor support network, and partnering with the regional healthcare system to bring more preventive care services directly to our community center.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1457,15 +1458,21 @@ export const promptsData = [
     title: 'LinkedIn Industry Insights',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 02_48_05 PM.png'),
-    text: `Welcome to LinkedIn’s quarterly industry insights session.
+    text: `Welcome to LinkedIn's quarterly industry insights session.
 
-  We’ll begin with a breakdown of current networking trends — remote-first professionals now drive over 60% of high-engagement connection activity.
+  We'll begin with a breakdown of current networking trends — remote-first professionals now drive over 60% of high-engagement connection activity.
 
   We're also seeing a major uptick in content shares from early-career professionals, especially in fields like green tech and fintech.
 
-  Later in the session, we’ll review LinkedIn Learning’s most in-demand skills, followed by an audience Q&A.
+  Later in the session, we'll review LinkedIn Learning's most in-demand skills, followed by an audience Q&A.
 
-  Let’s dive in and uncover what’s shaping professional ecosystems in 2025.`,
+  Let's dive in and uncover what's shaping professional ecosystems in 2025.
+  
+  Our data team has analyzed over 800 million professional profiles and billions of interactions to identify emerging patterns in how people connect, learn, and advance their careers. What's particularly fascinating is how dramatically the professional landscape has evolved since the hybrid work revolution that began in the early 2020s.
+  
+  Looking at connection patterns, we're observing that geographic proximity is no longer the primary driver of professional networking. Instead, skill adjacency and shared industry challenges are creating communities of practice that span continents. Professionals in Nairobi are collaborating with counterparts in Singapore and Santiago in ways that would have been exceptional just five years ago.
+  
+  Content engagement metrics show a clear shift toward video-based thought leadership and micro-credentials. The average professional now spends 4.2 hours weekly consuming career development content, with a strong preference for bite-sized, specialized learning modules rather than generalized courses.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -1484,13 +1491,19 @@ export const promptsData = [
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 02_52_05 PM.png'),
     text: `Thanks for joining our autonomous driving research briefing.
 
-  Today we’re highlighting updates from our edge-case simulations and LiDAR model retraining pipeline.
+  Today we're highlighting updates from our edge-case simulations and LiDAR model retraining pipeline.
 
-  You’ll see how our new data aggregation loop reduces false positives by 18% — a major breakthrough for unstructured environments.
+  You'll see how our new data aggregation loop reduces false positives by 18% — a major breakthrough for unstructured environments.
 
-  We’re also excited to share findings on the driver-assist behavioral models and the next phase of real-world testing.
+  We're also excited to share findings on the driver-assist behavioral models and the next phase of real-world testing.
 
-  Feel free to raise questions throughout — we want this session to be interactive.`,
+  Feel free to raise questions throughout — we want this session to be interactive.
+  
+  Let me start with some context on the challenges we've been addressing. Our fleet has now logged over 20 billion miles in autonomous mode across 42 countries, providing an unprecedented dataset for training. However, as we've expanded into more complex urban environments, we've encountered edge cases that traditional computer vision struggles to handle consistently.
+  
+  The research team has developed a novel approach combining our vision-based systems with selective LiDAR augmentation at critical decision points. This hybrid architecture maintains the cost efficiency of vision systems while benefiting from the precision of LiDAR in scenarios like adverse weather conditions and complex intersection navigation.
+  
+  What's truly groundbreaking is our new neural network architecture that can dynamically allocate computational resources based on scenario complexity. In straightforward highway driving, the system runs efficiently on minimal power, but when encountering construction zones or emergency vehicles, it instantly scales up processing capacity to handle the increased complexity.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -1508,15 +1521,21 @@ export const promptsData = [
     title: 'Netflix Subscriber Trends',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 02_54_25 PM.png'),
-    text: `Let’s take a quick dive into our current subscriber trends.
+    text: `Let's take a quick dive into our current subscriber trends.
 
   As you can see from the chart, Q4 marked a significant uptick following the global release of our new originals and ad-supported tier.
 
   The retention rate for 18-25 age group is up 22%, and we're seeing stronger re-engagement from former churned users.
 
-  We’ll now walk through performance by region and upcoming personalization improvements powered by our new recommendation engine.
+  We'll now walk through performance by region and upcoming personalization improvements powered by our new recommendation engine.
 
-  Questions are welcome anytime.`,
+  Questions are welcome anytime.
+  
+  Breaking down the regional performance, APAC continues to be our fastest-growing market with a 28% year-over-year increase. Japan and South Korea are particularly strong, driven by our investment in local content production and the global popularity of their entertainment formats. Our Korean originals have consistently ranked in our top 10 globally, creating a powerful cross-market appeal.
+  
+  In mature markets like North America and Western Europe, our strategy has shifted more toward retention and ARPU growth rather than new subscriber acquisition. The introduction of the ad-supported tier has been particularly successful in these regions, with 34% of new sign-ups choosing this option. This has opened up a significant new revenue stream while making our service more accessible to price-sensitive segments.
+  
+  Looking at content performance, our investment in diverse genres is paying off. While sci-fi and thrillers continue to perform strongly, we've seen unexpected success in documentary series and international dramas that cross cultural boundaries. The algorithm now identifies potential cross-genre interests with remarkable accuracy.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1535,13 +1554,19 @@ export const promptsData = [
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_00_29 PM.png'),
     text: `Thanks for joining us at Open Mic Tech Demo Austin.
 
-  Today I’m presenting a beta build of our platform: a lightweight tool that helps small teams track ideas, tasks, and communication in one place — optimized for async workflows.
+  Today I'm presenting a beta build of our platform: a lightweight tool that helps small teams track ideas, tasks, and communication in one place — optimized for async workflows.
 
   Our core features include a kanban view, chat, analytics dashboard, and AI-assisted prioritization.
 
-  We’re currently onboarding pilot customers and seeking feedback on the user experience before public launch.
+  We're currently onboarding pilot customers and seeking feedback on the user experience before public launch.
 
-  Looking forward to your questions and suggestions!`,
+  Looking forward to your questions and suggestions!
+  
+  Let me share the origin story that led us to build this solution. Our founding team previously worked at distributed companies where we constantly juggled between 5-7 different tools to manage our daily work. The context-switching was exhausting, and valuable information kept getting lost between systems. We realized there was a gap in the market for truly integrated workflows that don't require multiple subscriptions or complex integrations.
+  
+  What makes our approach different is our focus on reducing cognitive load. Instead of building another feature-packed platform, we've designed around natural work patterns. The system learns from how your team operates and adapts its interface to minimize friction. For example, when you mention a deadline in chat, it automatically suggests creating a task card with that timeline.
+  
+  Our early metrics from the beta program have been encouraging. Teams report an average 26% reduction in time spent on work coordination and a 34% decrease in missed deadlines. The AI prioritization feature has been particularly valuable for remote teams working across time zones, ensuring that high-impact tasks remain visible despite asynchronous workflows.`,
     layout: {
       position: 'absolute',
       width: '58%',
@@ -1558,7 +1583,7 @@ export const promptsData = [
     title: 'Stanford Design Thinking Workshop',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_02_23 PM.png'),
-    text: `Welcome to the Stanford d.school Design Thinking Workshop.\n\nThis session is all about real-world problem-solving using empathy and creativity. We'll walk through the five stages: Empathize, Define, Ideate, Prototype, and Test. These aren't just buzzwords—they're tools that drive innovation across industries.\n\nDuring the next 90 minutes, you'll team up with peers, identify user needs, brainstorm solutions, and create rough prototypes. Don't worry about getting it perfect. Design thinking celebrates iteration and learning through doing.\n\nLet’s start by introducing ourselves and sharing one problem we’ve noticed in our daily routines. You’ll be surprised how many innovative ideas are hiding in plain sight.`,
+    text: `Welcome to the Stanford d.school Design Thinking Workshop.\n\nThis session is all about real-world problem-solving using empathy and creativity. We'll walk through the five stages: Empathize, Define, Ideate, Prototype, and Test. These aren't just buzzwords—they're tools that drive innovation across industries.\n\nDuring the next 90 minutes, you'll team up with peers, identify user needs, brainstorm solutions, and create rough prototypes. Don't worry about getting it perfect. Design thinking celebrates iteration and learning through doing.\n\nLet's start by introducing ourselves and sharing one problem we've noticed in our daily routines. You'll be surprised how many innovative ideas are hiding in plain sight.\n\nThe design thinking approach we're practicing today has transformed how organizations from Apple to the Red Cross solve complex challenges. At its core, this methodology shifts our focus from technical constraints to human needs and experiences. This human-centered approach often reveals solutions that traditional problem-solving methods might overlook.\n\nIn the Empathize phase, we'll practice techniques for suspending our assumptions and truly understanding user perspectives. This might involve observation, interviews, or immersive experiences that help us identify unstated needs and emotional drivers. The Define stage helps us synthesize these insights into a clear problem statement that guides our innovation efforts.\n\nWhen we move to Ideation, we'll use structured brainstorming techniques that push beyond obvious solutions. The key here is volume and diversity of ideas—we aim for quantity first, knowing that quality will emerge through the process. You'll learn techniques for building on others' ideas and overcoming creative blocks.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1575,7 +1600,7 @@ export const promptsData = [
     title: 'CDC Public Health Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_09_20 PM.png'),
-    text: `Good afternoon, and thank you for attending this CDC public health update.\n\nToday’s briefing focuses on the rising flu activity across several states. We are seeing early spikes in hospitalization rates, especially among the elderly and young children.\n\nOur guidance is simple: Get vaccinated, wash your hands regularly, and stay home when feeling sick. We'll also provide updated guidance on mask recommendations and travel advisories.\n\nWe’re working closely with state and local health departments to expand vaccination sites and ensure timely communication.\n\nI’ll now open the floor for questions and invite our team leads in virology and epidemiology to join the panel.`,
+    text: `Good afternoon, and thank you for attending this CDC public health update.\n\nToday's briefing focuses on the rising flu activity across several states. We are seeing early spikes in hospitalization rates, especially among the elderly and young children.\n\nOur guidance is simple: Get vaccinated, wash your hands regularly, and stay home when feeling sick. We'll also provide updated guidance on mask recommendations and travel advisories.\n\nWe're working closely with state and local health departments to expand vaccination sites and ensure timely communication.\n\nI'll now open the floor for questions and invite our team leads in virology and epidemiology to join the panel.`,
     layout: {
       position: 'absolute',
       width: '65%',
@@ -1592,7 +1617,7 @@ export const promptsData = [
     title: 'Slack Feature Rollout Review',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_11_25 PM.png'),
-    text: `Welcome everyone to our internal Slack product review session.\n\nWe’ve just wrapped the beta testing of our latest features: a redesigned thread view, improved sidebar search, and new user tagging analytics.\n\nEarly user feedback is promising—90% of testers reported faster navigation and more efficient team communication. The new performance engine also reduced load times by 40%.\n\nOur next steps involve finalizing localization and launching across 10 key markets. Let’s walk through each feature set, usage metrics, and known issues before we prep for global rollout next Friday.`,
+    text: `Welcome everyone to our internal Slack product review session.\n\nWe've just wrapped the beta testing of our latest features: a redesigned thread view, improved sidebar search, and new user tagging analytics.\n\nEarly user feedback is promising—90% of testers reported faster navigation and more efficient team communication. The new performance engine also reduced load times by 40%.\n\nOur next steps involve finalizing localization and launching across 10 key markets. Let's walk through each feature set, usage metrics, and known issues before we prep for global rollout next Friday.`,
     layout: {
       position: 'absolute',
       width: '58%',
@@ -1609,7 +1634,7 @@ export const promptsData = [
     title: 'NOAA Climate Policy Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_12_59 PM.png'),
-    text: `Thank you for joining us at NOAA’s quarterly policy briefing.\n\nToday, we’re reviewing new climate data trends and their implications for federal coastal planning.\n\nOur updated satellite measurements confirm a 6.8 mm rise in global sea levels over the last year. Areas of concern include the Gulf Coast and Southeast Atlantic regions.\n\nWe’ll walk through our updated impact models and the proposal to expand NOAA’s community resilience grant program. We’ll also present our digital tool for forecasting localized flooding risk.\n\nLet’s begin with a recap of last quarter’s regional impact assessments.`,
+    text: `Thank you for joining us at NOAA's quarterly policy briefing.\n\nToday, we're reviewing new climate data trends and their implications for federal coastal planning.\n\nOur updated satellite measurements confirm a 6.8 mm rise in global sea levels over the last year. Areas of concern include the Gulf Coast and Southeast Atlantic regions.\n\nWe'll walk through our updated impact models and the proposal to expand NOAA's community resilience grant program. We'll also present our digital tool for forecasting localized flooding risk.\n\nLet's begin with a recap of last quarter's regional impact assessments.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1626,7 +1651,7 @@ export const promptsData = [
     title: 'Silicon Valley Boardroom Strategy Pitch',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_14_30 PM.png'),
-    text: `Thank you for making time for this early Q2 boardroom strategy session.\n\nOur revised customer LTV projection is $942 per cohort—up 17% from our last quarter model. We attribute this to higher retention from our AI-powered onboarding and renewed enterprise interest.\n\nOur ask: greenlight the $1.8M budget to expand our data ops and launch the product-led growth funnel across 3 new enterprise verticals.\n\nWe’ll walk through risk controls, rollout sequencing, and the hiring roadmap next.\n\nOpen to thoughts or questions before we proceed?`,
+    text: `Thank you for making time for this early Q2 boardroom strategy session.\n\nOur revised customer LTV projection is $942 per cohort—up 17% from our last quarter model. We attribute this to higher retention from our AI-powered onboarding and renewed enterprise interest.\n\nOur ask: greenlight the $1.8M budget to expand our data ops and launch the product-led growth funnel across 3 new enterprise verticals.\n\nWe'll walk through risk controls, rollout sequencing, and the hiring roadmap next.\n\nOpen to thoughts or questions before we proceed?`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -1643,7 +1668,7 @@ export const promptsData = [
     title: 'Department of Homeland Security Cyber Briefing',
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_23_40 PM.png'),
-    text: `Welcome to today’s cybersecurity update from the Department of Homeland Security.\n\nWe’ve identified a critical vulnerability impacting federal agencies’ cloud infrastructure, linked to a zero-day exploit in third-party APIs.\n\nMitigation steps have been issued and will be discussed in detail shortly. Our priority is containment, data integrity verification, and patch deployment across all endpoints.\n\nFollowing the update, our technical teams will hold breakout Q&As on threat attribution, system audits, and proactive defense mechanisms.\n\nLet’s begin with a recap of the intrusion detection timeline and access log anomalies.`,
+    text: `Welcome to today's cybersecurity update from the Department of Homeland Security.\n\nWe've identified a critical vulnerability impacting federal agencies' cloud infrastructure, linked to a zero-day exploit in third-party APIs.\n\nMitigation steps have been issued and will be discussed in detail shortly. Our priority is containment, data integrity verification, and patch deployment across all endpoints.\n\nFollowing the update, our technical teams will hold breakout Q&As on threat attribution, system audits, and proactive defense mechanisms.\n\nLet's begin with a recap of the intrusion detection timeline and access log anomalies.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -1661,7 +1686,7 @@ export const promptsData = [
     title: "Meta Policy Review Briefing",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_06_29 PM.png'),
-    text: "Good afternoon, and thank you for joining this session.\n\nAt Meta, our mission is to build responsible, privacy-first technologies that empower billions. Today, we’ll walk through recent policy shifts and their implications for product development, data governance, and regulatory compliance.\n\nAs you can see in the latest audit results, we’ve reduced third-party data dependencies by 28% and rolled out a global transparency dashboard for users.\n\nWe're here to gather your insights on improving internal alignment between our legal, engineering, and product teams. Let's begin with a high-level overview of our policy compliance roadmap and then open the floor for your questions and recommendations.",
+    text: "Good afternoon, and thank you for joining this session.\n\nAt Meta, our mission is to build responsible, privacy-first technologies that empower billions. Today, we'll walk through recent policy shifts and their implications for product development, data governance, and regulatory compliance.\n\nAs you can see in the latest audit results, we've reduced third-party data dependencies by 28% and rolled out a global transparency dashboard for users.\n\nWe're here to gather your insights on improving internal alignment between our legal, engineering, and product teams. Let's begin with a high-level overview of our policy compliance roadmap and then open the floor for your questions and recommendations.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1678,7 +1703,7 @@ export const promptsData = [
     title: "BuzzFeed Editorial Pitch Workshop",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_08_54 PM.png'),
-    text: "Hey everyone, excited to have you here!\n\nThis session is all about refining your story ideas into viral-ready features. We’ll look at what’s trending, how to pitch for cross-platform appeal, and brainstorm collaborations that could supercharge visibility.\n\nLet’s start with your strongest headline. Then we’ll stress-test it against our engagement models and see if it’s quiz-worthy, listicle-friendly, or podcast material.\n\nRemember: authenticity, humor, and community impact are our north stars.",
+    text: "Hey everyone, excited to have you here!\n\nThis session is all about refining your story ideas into viral-ready features. We'll look at what's trending, how to pitch for cross-platform appeal, and brainstorm collaborations that could supercharge visibility.\n\nLet's start with your strongest headline. Then we'll stress-test it against our engagement models and see if it's quiz-worthy, listicle-friendly, or podcast material.\n\nRemember: authenticity, humor, and community impact are our north stars.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1695,7 +1720,7 @@ export const promptsData = [
     title: "Salesforce Innovation Roadmap Briefing",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_10_42 PM.png'),
-    text: "Welcome to the Salesforce Tower Innovation Center.\n\nToday we’ll be diving into our 2025 product roadmap and outlining how our platform innovations are driving deeper client relationships.\n\nLet’s begin with Einstein AI and how it’s transforming CRM workflows. We’ve seen a 31% uplift in lead qualification accuracy across our pilot teams.\n\nI’ll walk you through the updated Salesforce Platform features, and then we’ll workshop your ideas on how to elevate customer success in your regions.",
+    text: "Welcome to the Salesforce Tower Innovation Center.\n\nToday we'll be diving into our 2025 product roadmap and outlining how our platform innovations are driving deeper client relationships.\n\nLet's begin with Einstein AI and how it's transforming CRM workflows. We've seen a 31% uplift in lead qualification accuracy across our pilot teams.\n\nI'll walk you through the updated Salesforce Platform features, and then we'll workshop your ideas on how to elevate customer success in your regions.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1713,7 +1738,7 @@ export const promptsData = [
     title: "Amazon Robotics All-Hands",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_11_35 PM.png'),
-    text: "Team, thank you all for gathering today.\n\nThis year at Amazon Robotics, we’ve achieved major milestones: reduced pick times by 22%, improved autonomous pathfinding, and launched our first AI-augmented safety system.\n\nThese results reflect your dedication and passion for operational excellence. In this session, we’ll review key KPIs, share spotlight achievements, and open a Q&A to hear your ideas for scaling innovation across sites.\n\nLet’s keep raising the bar, together.",
+    text: "Team, thank you all for gathering today.\n\nThis year at Amazon Robotics, we've achieved major milestones: reduced pick times by 22%, improved autonomous pathfinding, and launched our first AI-augmented safety system.\n\nThese results reflect your dedication and passion for operational excellence. In this session, we'll review key KPIs, share spotlight achievements, and open a Q&A to hear your ideas for scaling innovation across sites.\n\nLet's keep raising the bar, together.",
     layout: {
       position: "absolute",
       width: "65%",
@@ -1730,7 +1755,7 @@ export const promptsData = [
     title: "Dropbox Product Strategy Sync",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_13_21 PM.png'),
-    text: "Hi everyone — welcome to today’s strategy sync.\n\nDropbox has always stood for simplicity and reliability. As we expand into AI-powered document workflows and team collaboration features, our focus must remain razor-sharp on user experience.\n\nLet’s start with a review of customer feedback from our beta cohort. Then we’ll discuss roadmap tradeoffs and align on the top three product priorities for Q3.\n\nYour input today shapes our next chapter.",
+    text: "Hi everyone — welcome to today's strategy sync.\n\nDropbox has always stood for simplicity and reliability. As we expand into AI-powered document workflows and team collaboration features, our focus must remain razor-sharp on user experience.\n\nLet's start with a review of customer feedback from our beta cohort. Then we'll discuss roadmap tradeoffs and align on the top three product priorities for Q3.\n\nYour input today shapes our next chapter.",
     layout: {
       position: "absolute",
       width: "60%",
@@ -1751,7 +1776,7 @@ export const promptsData = [
     title: 'Google Networking Interview',
     category: 'Interviews',
     image: require('../assets/interviewpics/pic9300.png'),
-    text: `[Question 1]\nTell me about yourself and your background.\n\n[Answer]\nI am a software engineer with 5 years of experience in full-stack development. I specialize in building scalable web applications using React and Node.js. In my current role at XYZ Company, I led a team that improved application performance by 40%.\n\n[Question 2]\nWhat interests you about this position?\n\n[Answer]\nI'm particularly excited about this opportunity because of Google's innovative approach to technology and its commitment to solving complex problems. The role's emphasis on cloud architecture and AI integration aligns perfectly with my career goals.\n\n[Question 3]\nHow do you handle working in a team environment?\n\n[Answer]\nI believe in collaborative development and open communication. In my previous role, I regularly conducted code reviews and mentored junior developers, which helped improve our team's overall code quality by 30%.`,
+    text: `[Question 1]\nTell me about yourself and your background.\n\n[Answer]\nI am a software engineer with 5 years of experience in full-stack development, specializing in building scalable web applications using React and Node.js. In my current role at XYZ Company, I led a team that improved application performance by 40% through implementing microservices architecture and optimizing database queries. I've also contributed to open-source projects focused on networking protocols and distributed systems. My passion for technology started early - I built my first network monitoring tool during my university years, which was later adopted by the computer science department for teaching purposes. I hold a master's degree in Computer Science with a focus on network security and distributed systems.\n\n[Question 2]\nWhat interests you about this position?\n\n[Answer]\nI'm particularly excited about this opportunity because of Google's innovative approach to technology and its commitment to solving complex problems at scale. The role's emphasis on cloud architecture and AI integration aligns perfectly with my career goals and expertise. I'm especially intrigued by Google's work on network automation and machine learning-driven traffic optimization. Having worked on similar challenges at a smaller scale, I'm eager to contribute to solutions that impact billions of users. The team's recent publications on network resilience and their open-source contributions to the networking community demonstrate the kind of impactful work I want to be part of.\n\n[Question 3]\nHow do you handle working in a team environment?\n\n[Answer]\nI believe in collaborative development and open communication. In my previous role, I regularly conducted code reviews and mentored junior developers, which helped improve our team's overall code quality by 30%. I established a weekly knowledge-sharing session where team members could present new technologies or challenging problems they solved. This initiative not only improved team collaboration but also reduced debugging time by 25%. I also believe in creating a positive team culture where everyone feels comfortable sharing ideas and concerns. When conflicts arise, I focus on understanding different perspectives and finding solutions that benefit the entire team while maintaining technical excellence.`,
     layout: { position: 'absolute', width: '60%', height: '30%', top: '64%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '8deg' }] }
   },
   {
@@ -1759,7 +1784,7 @@ export const promptsData = [
     title: 'TV Presenter Interview',
     category: 'Interviews',
     image: require('../assets/interviewpics/pic8025.png'),
-    text: `[Question 1]\nHow did you get started in broadcasting?\n\n[Answer]\nI began my career as a news reporter for a local station, where I developed my skills in live reporting and storytelling. My passion for connecting with audiences led me to pursue opportunities in television presenting.\n\n[Question 2]\nHow do you prepare for a live broadcast?\n\n[Answer]\nI follow a thorough preparation routine that includes researching the topic, practicing my delivery, and reviewing technical aspects. I also make sure to arrive early to check equipment and review the script with the production team.\n\n[Question 3]\nHow do you handle unexpected situations during live broadcasts?\n\n[Answer]\nI stay calm and maintain professionalism. For example, during a recent weather report, our teleprompter failed. I smoothly transitioned to ad-libbing while maintaining eye contact with the camera and delivering the information accurately.`,
+    text: `[Question 1]\nHow did you get started in broadcasting?\n\n[Answer]\nI began my career as a news reporter for a local station in Denver, where I developed my skills in live reporting and storytelling. My passion for connecting with audiences led me to pursue opportunities in television presenting. During my early days, I covered everything from local council meetings to breaking news events, which taught me the importance of quick thinking and clear communication. I also took evening classes in broadcast journalism to strengthen my technical skills and understanding of media ethics. A defining moment came when I covered a major snowstorm that affected thousands - my ability to provide clear, timely updates while maintaining composure caught the attention of network executives.\n\n[Question 2]\nHow do you prepare for a live broadcast?\n\n[Answer]\nI follow a thorough preparation routine that includes extensive research on the topic, practicing delivery, and reviewing technical aspects. I start by gathering background information from multiple sources, creating detailed notes, and identifying potential talking points. I conduct pre-interviews when possible and prepare backup questions or topics. I also make sure to arrive at least two hours early to check equipment, review the script with the production team, and do a final run-through. I've developed a pre-broadcast checklist that covers everything from microphone checks to backup power sources, ensuring we're prepared for any technical challenges.\n\n[Question 3]\nHow do you handle unexpected situations during live broadcasts?\n\n[Answer]\nI stay calm and maintain professionalism by drawing on my experience and training. For example, during a recent weather report, our teleprompter failed completely. I smoothly transitioned to ad-libbing while maintaining eye contact with the camera and delivering accurate information. I've learned to always have key data points memorized and to keep backup notes nearby. Another time, during a live interview, a guest became confrontational - I defused the situation by remaining composed, steering the conversation back to factual discussion, and ensuring all viewpoints were respected. These experiences have taught me that preparation and adaptability are crucial in live broadcasting.`,
     layout: { position: 'absolute', width: '55%', height: '35%', top: '55%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '5deg' }] }
   },
   {
@@ -1823,7 +1848,7 @@ export const promptsData = [
     title: 'Technical Panel Interview',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_26_51 PM.png'),
-    text: `[Question 1]\nHow do you approach debugging a critical production issue?\n\n[Answer]\nI start by identifying the symptoms, isolating variables, and analyzing logs. Then I replicate the issue in a safe environment and apply fixes step-by-step while communicating progress with stakeholders.\n\n[Question 2]\nWhat’s your experience with system design interviews?\n\n[Answer]\nI’ve led and participated in many. I focus on clarity, scalability, and trade-offs, often using diagrams to visualize data flow and structure.\n\n[Question 3]\nHow do you give technical feedback?\n\n[Answer]\nI focus on clarity and intent, provide examples, and ensure my tone is constructive. I also encourage open dialogue to make it a two-way learning moment.`,
+    text: `[Question 1]\nHow do you approach debugging a critical production issue?\n\n[Answer]\nI start by identifying the symptoms, isolating variables, and analyzing logs. Then I replicate the issue in a safe environment and apply fixes step-by-step while communicating progress with stakeholders.\n\n[Question 2]\nWhat's your experience with system design interviews?\n\n[Answer]\nI've led and participated in many. I focus on clarity, scalability, and trade-offs, often using diagrams to visualize data flow and structure.\n\n[Question 3]\nHow do you give technical feedback?\n\n[Answer]\nI focus on clarity and intent, provide examples, and ensure my tone is constructive. I also encourage open dialogue to make it a two-way learning moment.`,
     layout: { position: 'absolute', width: '60%', height: '15%', top: '80%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
   },
   {
@@ -1839,7 +1864,7 @@ export const promptsData = [
     title: 'Coffee Chat Interview',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_34_22 PM.png'),
-    text: `[Question 1]\nWhat kind of team environment helps you do your best work?\n\n[Answer]\nI thrive in a transparent, supportive, and feedback-driven environment where ideas are respected and teammates help each other grow.\n\n[Question 2]\nHow do you handle disagreements in informal settings?\n\n[Answer]\nI listen first, then respectfully offer my view. I avoid escalating tensions and look for common ground.\n\n[Question 3]\nWhat’s something fun or unexpected about you?\n\n[Answer]\nI used to run a travel blog and still love planning spontaneous weekend trips.`,
+    text: `[Question 1]\nWhat kind of team environment helps you do your best work?\n\n[Answer]\nI thrive in a transparent, supportive, and feedback-driven environment where ideas are respected and teammates help each other grow.\n\n[Question 2]\nHow do you handle disagreements in informal settings?\n\n[Answer]\nI listen first, then respectfully offer my view. I avoid escalating tensions and look for common ground.\n\n[Question 3]\nWhat's something fun or unexpected about you?\n\n[Answer]\nI used to run a travel blog and still love planning spontaneous weekend trips.`,
     layout: { position: 'absolute', width: '65%', height: '38%', top: '48%', left: '17%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1863,7 +1888,7 @@ export const promptsData = [
     title: 'HR Screening Round',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_37_39 PM.png'),
-    text: `[Question 1]\nWhy are you interested in this position?\n\n[Answer]\nThis role aligns with both my experience and long-term goals. I’m excited about the team’s vision and confident I can bring strong contributions from day one.\n\n[Question 2]\nWhat are your salary expectations?\n\n[Answer]\nI'm looking for a role that reflects my skills and market standards. I'm open to a fair discussion based on responsibilities and benefits.\n\n[Question 3]\nAre you interviewing elsewhere?\n\n[Answer]\nYes, I'm exploring a few opportunities, but this role is a top contender due to its mission and team culture.`,
+    text: `[Question 1]\nWhy are you interested in this position?\n\n[Answer]\nThis role aligns with both my experience and long-term goals. I'm excited about the team's vision and confident I can bring strong contributions from day one.\n\n[Question 2]\nWhat are your salary expectations?\n\n[Answer]\nI'm looking for a role that reflects my skills and market standards. I'm open to a fair discussion based on responsibilities and benefits.\n\n[Question 3]\nAre you interviewing elsewhere?\n\n[Answer]\nYes, I'm exploring a few opportunities, but this role is a top contender due to its mission and team culture.`,
     layout: { position: 'absolute', width: '75%', height: '20%', top: '75%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '3deg' }] }
   },
   {
@@ -1871,7 +1896,7 @@ export const promptsData = [
     title: 'Virtual Interview Setup',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_39_08 PM.png'),
-    text: `[Question 1]\nHow do you prepare for virtual interviews?\n\n[Answer]\nI test all tech ahead of time, ensure good lighting, and minimize distractions. I also keep backup devices nearby and notes visible but off-camera.\n\n[Question 2]\nWhat’s your experience working remotely?\n\n[Answer]\nI've led distributed teams across time zones, using tools like Slack and Zoom effectively. I prioritize async updates and make time for virtual rapport-building.\n\n[Question 3]\nAny tips for video interview etiquette?\n\n[Answer]\nYes — dress professionally, look at the camera to mimic eye contact, and smile. Use a neutral background and avoid interrupting; let your voice finish strong.`,
+    text: `[Question 1]\nHow do you prepare for virtual interviews?\n\n[Answer]\nI test all tech ahead of time, ensure good lighting, and minimize distractions. I also keep backup devices nearby and notes visible but off-camera.\n\n[Question 2]\nWhat's your experience working remotely?\n\n[Answer]\nI've led distributed teams across time zones, using tools like Slack and Zoom effectively. I prioritize async updates and make time for virtual rapport-building.\n\n[Question 3]\nAny tips for video interview etiquette?\n\n[Answer]\nYes — dress professionally, look at the camera to mimic eye contact, and smile. Use a neutral background and avoid interrupting; let your voice finish strong.`,
     layout: { position: 'absolute', width: '70%', height: '40%', top: '52%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1879,7 +1904,7 @@ export const promptsData = [
     title: 'Recruiter Discussion at Career Fair',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_44_51 PM.png'),
-    text: `[Question 1]\nWhat brings you to this career fair?\n\n[Answer]\nI'm actively seeking a role that aligns with my experience and growth goals. Your company stood out to me because of its innovation and culture.\n\n[Question 2]\nWhat are you most proud of in your resume?\n\n[Answer]\nLeading a cloud migration that reduced hosting costs by 35% while improving system reliability. It was a cross-functional effort that I coordinated.\n\n[Question 3]\nHow soon are you available to start?\n\n[Answer]\nI’m available to start with a two-week notice. I'm committed to a smooth transition from my current responsibilities.`,
+    text: `[Question 1]\nWhat brings you to this career fair?\n\n[Answer]\nI'm actively seeking a role that aligns with my experience and growth goals. Your company stood out to me because of its innovation and culture.\n\n[Question 2]\nWhat are you most proud of in your resume?\n\n[Answer]\nLeading a cloud migration that reduced hosting costs by 35% while improving system reliability. It was a cross-functional effort that I coordinated.\n\n[Question 3]\nHow soon are you available to start?\n\n[Answer]\nI'm available to start with a two-week notice. I'm committed to a smooth transition from my current responsibilities.`,
     layout: { position: 'absolute', width: '70%', height: '32%', top: '62%', left: '13%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1887,7 +1912,7 @@ export const promptsData = [
     title: 'Product Manager Chat at Google Lounge',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_37_26 PM.png'),
-    text: `[Question 1]\nWhat’s your approach to product strategy?\n\n[Answer]\nI start with user insights and business objectives. I map needs to features, validate through feedback, and iterate quickly with measurable milestones.\n\n[Question 2]\nHow do you handle conflicting stakeholder priorities?\n\n[Answer]\nI align priorities to core goals, facilitate data-backed decisions, and ensure transparency through regular check-ins and roadmap visibility.\n\n[Question 3]\nHow do you ensure product quality?\n\n[Answer]\nI collaborate with QA and engineering early, define acceptance criteria, and use continuous feedback from real users to drive improvements.`,
+    text: `[Question 1]\nWhat's your approach to product strategy?\n\n[Answer]\nI start with user insights and business objectives. I map needs to features, validate through feedback, and iterate quickly with measurable milestones.\n\n[Question 2]\nHow do you handle conflicting stakeholder priorities?\n\n[Answer]\nI align priorities to core goals, facilitate data-backed decisions, and ensure transparency through regular check-ins and roadmap visibility.\n\n[Question 3]\nHow do you ensure product quality?\n\n[Answer]\nI collaborate with QA and engineering early, define acceptance criteria, and use continuous feedback from real users to drive improvements.`,
     layout: { position: 'absolute', width: '70%', height: '35%', top: '58%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '1deg' }] }
   },
   {
@@ -1895,7 +1920,7 @@ export const promptsData = [
     title: 'Live TV Interview Set',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_44_41 PM.png'),
-    text: `[Question 1]\nHow do you stay composed on live TV?\n\n[Answer]\nPreparation is key. I rehearse thoroughly, focus on my breathing, and keep my core message front and center.\n\n[Question 2]\nWhat’s the biggest risk you’ve taken professionally?\n\n[Answer]\nLeaving a secure job to join a fast-moving startup. It paid off — I learned rapidly, wore many hats, and contributed to doubling our user base.\n\n[Question 3]\nHow do you prepare for tricky or controversial questions?\n\n[Answer]\nI study past interviews, understand the context, and script responses that stay true to my values without sounding rehearsed.`,
+    text: `[Question 1]\nHow do you stay composed on live TV?\n\n[Answer]\nPreparation is key. I rehearse thoroughly, focus on my breathing, and keep my core message front and center.\n\n[Question 2]\nWhat's the biggest risk you've taken professionally?\n\n[Answer]\nLeaving a secure job to join a fast-moving startup. It paid off — I learned rapidly, wore many hats, and contributed to doubling our user base.\n\n[Question 3]\nHow do you prepare for tricky or controversial questions?\n\n[Answer]\nI study past interviews, understand the context, and script responses that stay true to my values without sounding rehearsed.`,
     layout: { position: 'absolute', width: '70%', height: '40%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1903,7 +1928,7 @@ export const promptsData = [
     title: 'White House Policy Discussion',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_19_01 PM.png'),
-    text: `[Question 1]\nWhat measures do you propose to improve national security?\n\n[Answer]\nI propose strengthening intelligence sharing, modernizing infrastructure, and enhancing cybersecurity through public-private partnerships.\n\n[Question 2]\nHow will your policy support economic growth?\n\n[Answer]\nThrough targeted investments in innovation, infrastructure, and workforce training to stimulate job creation and competitiveness globally.\n\n[Question 3]\nWhat’s your strategy on international cooperation?\n\n[Answer]\nBuilding strong alliances, engaging in multilateral institutions, and leading by example on global challenges such as climate and trade.`,
+    text: `[Question 1]\nWhat measures do you propose to improve national security?\n\n[Answer]\nI propose strengthening intelligence sharing, modernizing infrastructure, and enhancing cybersecurity through public-private partnerships.\n\n[Question 2]\nHow will your policy support economic growth?\n\n[Answer]\nThrough targeted investments in innovation, infrastructure, and workforce training to stimulate job creation and competitiveness globally.\n\n[Question 3]\nWhat's your strategy on international cooperation?\n\n[Answer]\nBuilding strong alliances, engaging in multilateral institutions, and leading by example on global challenges such as climate and trade.`,
     layout: { position: 'absolute', width: '70%', height: '35%', top: '60%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1943,7 +1968,7 @@ export const promptsData = [
     title: 'Enterprise Strategy Meeting at IBM HQ',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_24_42 PM.png'),
-    text: `[Question 1]\nWhat are IBM’s key innovation priorities?\n\n[Answer]\nFocusing on AI-driven solutions, hybrid cloud expansion, and quantum computing research to stay ahead in enterprise technology.\n\n[Question 2]\nHow do you approach digital transformation for clients?\n\n[Answer]\nBy conducting readiness assessments, co-creating roadmaps, and deploying agile teams for rapid, measurable value delivery.\n\n[Question 3]\nHow do you mitigate risks associated with legacy systems?\n\n[Answer]\nImplementing phased modernization, robust integration layers, and continuous cybersecurity monitoring.`,
+    text: `[Question 1]\nWhat are IBM's key innovation priorities?\n\n[Answer]\nFocusing on AI-driven solutions, hybrid cloud expansion, and quantum computing research to stay ahead in enterprise technology.\n\n[Question 2]\nHow do you approach digital transformation for clients?\n\n[Answer]\nBy conducting readiness assessments, co-creating roadmaps, and deploying agile teams for rapid, measurable value delivery.\n\n[Question 3]\nHow do you mitigate risks associated with legacy systems?\n\n[Answer]\nImplementing phased modernization, robust integration layers, and continuous cybersecurity monitoring.`,
     layout: { position: 'absolute', width: '70%', height: '32%', top: '68%', left: '14%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -1951,7 +1976,7 @@ export const promptsData = [
     title: 'Content Creator Pitch at YouTube Studio',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_26_20 PM.png'),
-    text: `[Question 1]\nHow do you grow your channel audience?\n\n[Answer]\nConsistent, high-quality content, SEO-optimized titles and thumbnails, and active engagement with viewers.\n\n[Question 2]\nWhat’s your strategy for sustainable monetization?\n\n[Answer]\nDiversifying revenue streams through ads, sponsorships, merchandise, and membership programs.\n\n[Question 3]\nHow do you handle negative feedback or controversy?\n\n[Answer]\nListening objectively, responding professionally, and using criticism constructively to improve content.`,
+    text: `[Question 1]\nHow do you grow your channel audience?\n\n[Answer]\nConsistent, high-quality content, SEO-optimized titles and thumbnails, and active engagement with viewers.\n\n[Question 2]\nWhat's your strategy for sustainable monetization?\n\n[Answer]\nDiversifying revenue streams through ads, sponsorships, merchandise, and membership programs.\n\n[Question 3]\nHow do you handle negative feedback or controversy?\n\n[Answer]\nListening objectively, responding professionally, and using criticism constructively to improve content.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
   {
@@ -1967,7 +1992,7 @@ export const promptsData = [
     title: 'Disney Imagineering Technical Review',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_30_26 PM.png'),
-    text: `[Question 1]\nHow do you balance storytelling with engineering constraints?\n\n[Answer]\nIterative prototyping, cross-disciplinary teams, and user testing ensure both imaginative design and technical feasibility.\n\n[Question 2]\nDescribe a themed experience you’ve successfully delivered.\n\n[Answer]\nI led a ride concept incorporating AR effects, synchronized show lighting, and dynamic audio for immersive guest engagement.\n\n[Question 3]\nHow do you validate guest interaction flows?\n\n[Answer]\nThrough small-scale simulations, sensor-based tracking, and real-time feedback to refine user experience.`,
+    text: `[Question 1]\nHow do you balance storytelling with engineering constraints?\n\n[Answer]\nIterative prototyping, cross-disciplinary teams, and user testing ensure both imaginative design and technical feasibility.\n\n[Question 2]\nDescribe a themed experience you've successfully delivered.\n\n[Answer]\nI led a ride concept incorporating AR effects, synchronized show lighting, and dynamic audio for immersive guest engagement.\n\n[Question 3]\nHow do you validate guest interaction flows?\n\n[Answer]\nThrough small-scale simulations, sensor-based tracking, and real-time feedback to refine user experience.`,
     layout: { position: 'absolute', width: '50%', height: '27%', top: '55%', left: '5%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
   {
@@ -2017,7 +2042,7 @@ export const promptsData = [
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_19_13 PM.png'),
     text: `[Question 1]\nHow do you analyze market trends effectively?\n\n[Answer]\nBy employing quantitative models, real-time data feeds, and cross-market correlation analysis.\n\n[Question 2]\nHow do you communicate complex insights to stakeholders?\n\n[Answer]\nWith interactive dashboards, concise executive summaries, and data visualization techniques.\n\n[Question 3]\nHow do you ensure data accuracy under tight deadlines?\n\n[Answer]\nThrough automated data validation, redundancy checks, and rapid peer reviews.`,
-    layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-2deg' }]  }
+    layout: { position: 'absolute', width: '60%', height: '35%', top: '65%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-2deg' }] }
   },
   {
     id: 'interview36',
@@ -2040,7 +2065,7 @@ export const promptsData = [
     title: 'Brand Strategy Discussion at Starbucks HQ',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_18_12 PM.png'),
-    text: `[Question 1]\nHow do you maintain brand loyalty globally?\n\n[Answer]\nBy delivering consistent customer experiences, authentic storytelling, and localized offerings.\n\n[Question 2]\nWhat’s your approach to digital engagement?\n\n[Answer]\nIntegrating app-based rewards, personalized recommendations, and social media activations.\n\n[Question 3]\nHow do you ensure responsible expansion?\n\n[Answer]\nThrough market research, community partnerships, and sustainable sourcing.`,
+    text: `[Question 1]\nHow do you maintain brand loyalty globally?\n\n[Answer]\nBy delivering consistent customer experiences, authentic storytelling, and localized offerings.\n\n[Question 2]\nWhat's your approach to digital engagement?\n\n[Answer]\nIntegrating app-based rewards, personalized recommendations, and social media activations.\n\n[Question 3]\nHow do you ensure responsible expansion?\n\n[Answer]\nThrough market research, community partnerships, and sustainable sourcing.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '55%', left: '16%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '4deg' }] }
   },
   {
@@ -2048,7 +2073,7 @@ export const promptsData = [
     title: 'Social Media Strategist Interview at Snap Inc.',
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_22_25 PM.png'),
-    text: `[Question 1]\nHow do you drive user engagement on social platforms?\n\n[Answer]\nBy creating interactive features, leveraging AR filters, and fostering community trends.\n\n[Question 2]\nWhat’s your strategy for monetizing content?\n\n[Answer]\nThrough targeted advertising, sponsored lenses, and premium subscription offerings.\n\n[Question 3]\nHow do you protect user data privacy?\n\n[Answer]\nImplementing privacy-by-design, user consent flows, and rigorous data governance.`,
+    text: `[Question 1]\nHow do you drive user engagement on social platforms?\n\n[Answer]\nBy creating interactive features, leveraging AR filters, and fostering community trends.\n\n[Question 2]\nWhat's your strategy for monetizing content?\n\n[Answer]\nThrough targeted advertising, sponsored lenses, and premium subscription offerings.\n\n[Question 3]\nHow do you protect user data privacy?\n\n[Answer]\nImplementing privacy-by-design, user consent flows, and rigorous data governance.`,
     layout: { position: 'absolute', width: '65%', height: '33%', top: '66%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
   {
@@ -2123,14 +2148,6 @@ export const promptsData = [
     layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
   {
-    id: 'specific8',
-    title: 'Mediating a Disagreement Between Team Members',
-    category: 'Situational/Specific',
-    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_56_57 PM.png'),
-    text: `Okay, Sarah, Tom, I understand there's some disagreement about the best approach for the next phase of the project. Let's take a step back. Sarah, could you first explain your perspective and concerns? \n(Listen) \nOkay, thank you. Tom, now could you share your viewpoint and the reasoning behind your proposed method? \n(Listen) \nAlright, it sounds like both approaches have merits. Let's focus on the core objective here. How can we combine the strengths of both ideas or find a compromise that addresses both the timeline concerns and the scalability requirements?`,
-    layout: { position: 'absolute', width: '60%', height: '40%', top: '53%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-3deg' }] }
-  },
-  {
     id: 'specific9',
     title: 'Explaining a Technical Issue to Non-Technical Manager',
     category: 'Situational/Specific',
@@ -2191,7 +2208,7 @@ export const promptsData = [
     title: 'Storm Update Press Briefing',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 03_50_44 PM.png'),
-    text: `Good afternoon and welcome to today’s FEMA Storm Update Press Briefing. We will cover the latest forecast models, projected impact zones, and evacuation orders for residents in the storm’s path.\n\nMeteorological experts will present detailed data on wind speeds and precipitation levels, followed by logistics coordinators explaining resource deployment strategies and shelter locations.\n\nOur objective is to ensure that all media partners have accurate, actionable information to share with the public. Please hold questions until the end of the presentation and submit them via the chat or by raising your hand. Thank you for your cooperation.`,
+    text: `Good afternoon and welcome to today's FEMA Storm Update Press Briefing. We will cover the latest forecast models, projected impact zones, and evacuation orders for residents in the storm's path.\n\nMeteorological experts will present detailed data on wind speeds and precipitation levels, followed by logistics coordinators explaining resource deployment strategies and shelter locations.\n\nOur objective is to ensure that all media partners have accurate, actionable information to share with the public. Please hold questions until the end of the presentation and submit them via the chat or by raising your hand. Thank you for your cooperation.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '50%', height: '45%', top: '30%', left: '-1%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
   },
@@ -2209,7 +2226,7 @@ export const promptsData = [
     title: 'Rocket Launch Site Crew Coordination',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_03_51 PM.png'),
-    text: `Good morning, team. Today’s coordination meeting at the rocket launch site will focus on countdown procedures, safety checks, and inter-team communication protocols.\n\nWe will review the final systems integration tests, including propulsion activation, fuel line pressurization, and telemetry link verification. Ground support will confirm clearance zones and emergency egress routes, while the weather team provides real-time updates on wind and cloud cover.\n\nOur primary goal is to ensure every subsystem meets launch criteria and that all personnel understand their roles during T-minus countdown. We will conclude with a rehearsal of rapid response actions should any anomaly arise.`,
+    text: `Good morning, team. Today's coordination meeting at the rocket launch site will focus on countdown procedures, safety checks, and inter-team communication protocols.\n\nWe will review the final systems integration tests, including propulsion activation, fuel line pressurization, and telemetry link verification. Ground support will confirm clearance zones and emergency egress routes, while the weather team provides real-time updates on wind and cloud cover.\n\nOur primary goal is to ensure every subsystem meets launch criteria and that all personnel understand their roles during T-minus countdown. We will conclude with a rehearsal of rapid response actions should any anomaly arise.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '42%', height: '34%', top: '54%', left: '18%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
@@ -2218,7 +2235,7 @@ export const promptsData = [
     title: 'Team Locker Room Pre-game Huddle',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_07_48 PM.png'),
-    text: `Alright squad, gather up. This is our pre-game huddle to align on strategy and boost team morale before we hit the field.\n\nWe’ll start by reviewing our defensive assignments, emphasizing communication on coverage switches and maintaining gap integrity. Then, we’ll go over our offensive tempo plan, including tempo snaps and play-action sequences to keep the opponent off balance.\n\nRemember to stay hydrated, focus on the fundamentals, and trust your training. We execute exactly as practiced and finish every play with maximum effort. Let’s lock in and bring the heat from kick-off.`,
+    text: `Alright squad, gather up. This is our pre-game huddle to align on strategy and boost team morale before we hit the field.\n\nWe'll start by reviewing our defensive assignments, emphasizing communication on coverage switches and maintaining gap integrity. Then, we'll go over our offensive tempo plan, including tempo snaps and play-action sequences to keep the opponent off balance.\n\nRemember to stay hydrated, focus on the fundamentals, and trust your training. We execute exactly as practiced and finish every play with maximum effort. Let's lock in and bring the heat from kick-off.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '32%', top: '40%', left: '28%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '2deg' }] }
   },
@@ -2227,7 +2244,7 @@ export const promptsData = [
     title: 'Disaster Relief Coordination Meeting',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 03_54_55 PM.png'),
-    text: `Welcome to today’s disaster relief coordination meeting for the recent flood response. Our objective is to synchronize efforts across multiple agencies, including Red Cross, local emergency services, and volunteer networks.\n\nWe will review current damage assessments, population displacement figures, and priority zones for mobile clinic deployment. Logistics leads will present supply chain updates for food, water, and medical shipments, while shelter managers confirm capacity and staffing levels.\n\nIt is critical that we maintain clear communication channels, minimize duplication of efforts, and ensure rapid resource allocation to the most affected areas. Let’s collaborate on action items and timelines for the next 24 hours.`,
+    text: `Welcome to today's disaster relief coordination meeting for the recent flood response. Our objective is to synchronize efforts across multiple agencies, including Red Cross, local emergency services, and volunteer networks.\n\nWe will review current damage assessments, population displacement figures, and priority zones for mobile clinic deployment. Logistics leads will present supply chain updates for food, water, and medical shipments, while shelter managers confirm capacity and staffing levels.\n\nIt is critical that we maintain clear communication channels, minimize duplication of efforts, and ensure rapid resource allocation to the most affected areas. Let's collaborate on action items and timelines for the next 24 hours.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '30%', top: '51%', left: '28%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1.5deg' }] }
   },
@@ -2236,7 +2253,7 @@ export const promptsData = [
     title: 'Pandemic Drill Emergency Response',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_09_46 PM.png'),
-    text: `Good morning, and thank you for participating in today’s pandemic drill in the Emergency Command Center. This exercise will simulate a high-volume patient influx requiring rapid triage, quarantine protocols, and supply allocation.\n\nWe will walk through patient tracking systems, PPE distribution workflows, and inter-departmental communication methods. Observers from health agencies will evaluate adherence to infection control guidelines and the speed of resource mobilization.\n\nOur goal is to identify any bottlenecks or gaps in the response plan so we can refine standard operating procedures before a real event occurs. Please treat this as a live exercise and follow instructions precisely.`,
+    text: `Good morning, and thank you for participating in today's pandemic drill in the Emergency Command Center. This exercise will simulate a high-volume patient influx requiring rapid triage, quarantine protocols, and supply allocation.\n\nWe will walk through patient tracking systems, PPE distribution workflows, and inter-departmental communication methods. Observers from health agencies will evaluate adherence to infection control guidelines and the speed of resource mobilization.\n\nOur goal is to identify any bottlenecks or gaps in the response plan so we can refine standard operating procedures before a real event occurs. Please treat this as a live exercise and follow instructions precisely.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '50%', height: '43%', top: '40%', left: '24%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1.5deg' }] }
   },
@@ -2245,7 +2262,7 @@ export const promptsData = [
     title: 'Warehouse Operations Coordination',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_10_50 PM.png'),
-    text: `Welcome to the daily warehouse operations coordination meeting. Today we’ll review inbound and outbound shipment schedules, inventory levels, and forklift deployment plans.\n\nWe will start with a report on current stock counts, highlighting any items that have fallen below reorder thresholds. Next, the shipping team will outline prioritized orders and expected departure windows. Finally, maintenance will brief us on equipment status and safety checks.\n\nIt’s essential that we optimize aisle traffic, minimize picking errors, and ensure timely delivery to our distribution network. Please share any challenges you’re facing and your proposed solutions.`,
+    text: `Welcome to the daily warehouse operations coordination meeting. Today we'll review inbound and outbound shipment schedules, inventory levels, and forklift deployment plans.\n\nWe will start with a report on current stock counts, highlighting any items that have fallen below reorder thresholds. Next, the shipping team will outline prioritized orders and expected departure windows. Finally, maintenance will brief us on equipment status and safety checks.\n\nIt's essential that we optimize aisle traffic, minimize picking errors, and ensure timely delivery to our distribution network. Please share any challenges you're facing and your proposed solutions.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '50%', height: '40%', top: '41%', left: '24%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
   },
@@ -2263,7 +2280,7 @@ export const promptsData = [
     title: 'National Park Ranger Briefing',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_12_41 PM.png'),
-    text: `Welcome to today’s briefing at Yellowstone National Park. Rangers will receive updates on visitor safety alerts, wildlife movements, and trail conditions.\n\nThe wildlife biologist will report on recent elk migration patterns, while the fire management team outlines current controlled burn zones and air quality considerations. Trail maintenance will cover closures and hazard assessments from recent storms.\n\nPlease ensure all patrols carry bear spray and emergency radio check-ins occur at 30-minute intervals. Let’s work together to keep both visitors and wildlife safe during peak season.`,
+    text: `Welcome to today's briefing at Yellowstone National Park. Rangers will receive updates on visitor safety alerts, wildlife movements, and trail conditions.\n\nThe wildlife biologist will report on recent elk migration patterns, while the fire management team outlines current controlled burn zones and air quality considerations. Trail maintenance will cover closures and hazard assessments from recent storms.\n\nPlease ensure all patrols carry bear spray and emergency radio check-ins occur at 30-minute intervals. Let's work together to keep both visitors and wildlife safe during peak season.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '33%', top: '45%', left: '29%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-1deg' }] }
   },
@@ -2272,7 +2289,7 @@ export const promptsData = [
     title: 'Airport Ground Operations Coordination',
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_15_03 PM.png'),
-    text: `Good morning and welcome to the airport ground operations coordination session. Today’s focus will be on runway scheduling, aircraft turnaround procedures, and ground staff assignments.\n\nWe will begin with a status update on current flight arrivals and departures, followed by gate allocation changes due to maintenance delays. Baggage handling will brief on conveyor belt repairs and staffing levels.\n\nSafety officers will reiterate vehicle traffic patterns on tarmac and pedestrian clearances. It’s crucial we maintain efficient aircraft flow and uphold regulatory compliance to ensure on-time performance for all carriers.`,
+    text: `Good morning and welcome to the airport ground operations coordination session. Today's focus will be on runway scheduling, aircraft turnaround procedures, and ground staff assignments.\n\nWe will begin with a status update on current flight arrivals and departures, followed by gate allocation changes due to maintenance delays. Baggage handling will brief on conveyor belt repairs and staffing levels.\n\nSafety officers will reiterate vehicle traffic patterns on tarmac and pedestrian clearances. It's crucial we maintain efficient aircraft flow and uphold regulatory compliance to ensure on-time performance for all carriers.`,
     textColor: 'white',
     layout: { position: 'absolute', width: '45%', height: '32%', top: '46%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
   },
@@ -2314,14 +2331,6 @@ export const promptsData = [
     image: require('../assets/socialpics/pic5021.png'),
     text: `Shh... I know we're in the library, but I just had to tell you about this amazing book I found in the new arrivals section.\n\nIt's a historical fiction novel set in ancient Rome, and the writing is absolutely captivating. I think you'd really enjoy it too.\n\nWould you like to join our book club meeting next week? We're discussing this month's pick, and I know you'd have some great insights to share.\n\nWe meet in the community room every Thursday at 6 PM.`,
     layout: { position: 'absolute', width: '55%', height: '40%', top: '53%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '7deg' }] }
-  },
-  {
-    id: 'social5',
-    title: 'Park Social Scene',
-    category: 'Social & Casual',
-    image: require('../assets/socialpics/pic8203.png'),
-    text: `What a beautiful day for a picnic in the park! I brought some sandwiches, fruit, and drinks for everyone.\n\nThere's a great spot over by the big oak tree with plenty of shade. We can set up our blankets there and enjoy the afternoon.\n\nAfter we eat, we could play some frisbee or maybe take a walk around the lake. I heard they just added some new walking trails that are really nice.\n\nDon't forget to bring your sunscreen - it's quite sunny today!`,
-    layout: { position: 'absolute', width: '50%', height: '35%', top: '60%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '6deg' }] }
   },
   {
     id: 'social6',
@@ -2384,7 +2393,7 @@ export const promptsData = [
     title: 'Giving a Casual Compliment',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_40_32 PM.png'),
-    text: `Hey, excuse me, I just wanted to quickly say, I really admire your presentation style in that meeting earlier. You explained those complex ideas so clearly! \n\nYou make that look so effortless, any tips on how you developed that skill? \n\nSeriously though, I was genuinely impressed. Just wanted to mention it!`,
+    text: `Hey, excuse me, I just wanted to quickly say, I really admire your presentation style in that meeting earlier. You explained those complex ideas so clearly! The way you broke down the technical concepts into digestible parts was masterful, and your use of analogies really helped everyone grasp the key points.\n\nYou make that look so effortless, any tips on how you developed that skill? I've been trying to improve my own presentation abilities, and I'd love to know how you prepare and structure your talks. Do you have any particular techniques for keeping the audience engaged?\n\nSeriously though, I was genuinely impressed. Just wanted to mention it! Your confidence and clarity really made a difference in how the team received the information. It's not often you see someone who can make technical content both accessible and engaging.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '50%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '10deg' }] }
   },
   {
@@ -2392,7 +2401,7 @@ export const promptsData = [
     title: 'Ending a Conversation Politely',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_47_47 PM.png'),
-    text: `Well, listen, it has been genuinely great chatting with you about the future of remote work and hearing your perspective, but I unfortunately need to grab another drink before the next session starts. \n\nThank you so much for the interesting conversation! It was a pleasure meeting you. Hopefully, our paths will cross again soon at another event perhaps. \n\nTake care and enjoy the rest of the conference!`,
+    text: `Well, listen, it has been genuinely great chatting with you about the future of remote work and hearing your perspective, but I unfortunately need to grab another drink before the next session starts. Your insights about hybrid team dynamics were particularly thought-provoking, and I'd love to continue this conversation another time.\n\nThank you so much for the interesting conversation! It was a pleasure meeting you. Hopefully, our paths will cross again soon at another event perhaps. I'll definitely keep an eye out for your name on future conference schedules - your experience in distributed team management is really valuable.\n\nTake care and enjoy the rest of the conference! If you're interested, I'd be happy to connect on LinkedIn to stay in touch. I think we could both benefit from sharing more ideas about remote work best practices.`,
     layout: { position: 'absolute', width: '50%', height: '35%', top: '52%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '0deg' }] }
   },
   {
@@ -2408,7 +2417,7 @@ export const promptsData = [
     title: 'Campfire Story Night',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_20_52 PM.png'),
-    text: `Alright everyone, gather close — I’ve got one last story before we turn in.\n\nThis one’s from my first solo hike through Yosemite, back when I barely knew how to read a compass. I ended up lost for hours, no signal, just me, the trees, and a very persistent raccoon.\n\nBut what I learned that night under the stars stuck with me for life. Nature has a way of teaching you things no classroom ever could.\n\nNow, who's got the marshmallows?`,
+    text: `Alright everyone, gather close — I've got one last story before we turn in.\n\nThis one's from my first solo hike through Yosemite, back when I barely knew how to read a compass. I ended up lost for hours, no signal, just me, the trees, and a very persistent raccoon.\n\nI wandered aimlessly until I found a stream and decided to wait it out. That night, under the stars, I felt both fear and awe. Nature has a way of humbling you, teaching lessons in silence.\n\nEventually, I made it back thanks to a ranger's whistle echoing through the trees. That experience taught me more than any guidebook ever could.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -2426,7 +2435,7 @@ export const promptsData = [
     title: 'Thanksgiving Toast',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_22_36 PM.png'),
-    text: `Before we dig in, I just want to say how thankful I am to have each of you here tonight.\n\nThis year has had its share of ups and downs, but through it all, this family has been my anchor. The laughs, the support, the late-night calls — I don't take any of it for granted.\n\nSo here’s to the people at this table and the ones we hold in our hearts. Cheers to love, resilience, and perfectly golden turkey!`,
+    text: `Before we dig in, I just want to say how thankful I am to have each of you here tonight.\n\nThis year had its highs and lows, but through it all, this family — chosen and born — kept me grounded. The laughs, the support, the surprise check-ins, and the loud debates over board games — I don't take any of it for granted.\n\nSo here's to the people at this table and the ones we hold in our hearts. Here's to resilience, unconditional love, shared meals, and perfectly golden turkey. May this warmth carry us into the new year.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2444,7 +2453,7 @@ export const promptsData = [
     title: 'Outdoor Movie Night Welcome',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_26_02 PM.png'),
-    text: `Welcome, movie lovers! We’re so excited to have you here under the stars for our very first backyard cinema night.\n\nFeel free to grab some popcorn, pull up a blanket, and settle in. Tonight’s feature is a throwback favorite — one guaranteed to make you laugh, maybe cry, but definitely leave smiling.\n\nIf you need anything, snacks or bug spray, we’ve got a table set up near the back. Now, without further ado… lights, camera, action!`,
+    text: `Welcome, movie lovers! We're so excited to have you here under the stars for our first backyard cinema night.\n\nFeel free to grab popcorn, pull up a blanket, and get cozy. Tonight's feature is a throwback classic — one guaranteed to bring laughs and maybe a tear or two.\n\nIf you need snacks, bug spray, or extra pillows, we've got a table at the back. And yes, there's a trivia quiz during intermission — prizes included!\n\nLet's make this a night to remember. So without further ado... lights, camera, action!`,
     layout: {
       position: 'absolute',
       width: '65%',
@@ -2462,7 +2471,7 @@ export const promptsData = [
     title: 'Cabin Game Night Kickoff',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_18_47 PM.png'),
-    text: `Alright folks, the fire's crackling, the snacks are ready — it’s time to settle the age-old debate: who's the most competitive in the cabin?\n\nWe’re starting with a warm-up round of charades, then we’ll move into teams for some seriously strategic board games.\n\nNo phones, no distractions — just laughter, friendly rivalry, and a lot of inside jokes by the end of the night. Ready? Game on!`,
+    text: `Alright folks, the fire's crackling, the snacks are ready — it's time to settle the age-old debate: who's the most competitive in the cabin?\n\nWe're starting with charades, then splitting into teams for board games that will test wit, alliances, and bluffing skills. No phones, no distractions — just laughter, playful arguments, and new inside jokes.\n\nBy the end of tonight, someone will be crowned game night legend. Are you ready to play, scheme, and laugh until it hurts? Game on!`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2480,7 +2489,7 @@ export const promptsData = [
     title: 'Brewery Brainstorm Session',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_27_46 PM.png'),
-    text: `Alright, I know we said no work talk over beers… but I had an idea I couldn’t keep in.\n\nWhat if we took that seasonal batch and paired it with an experience — like an art night or live acoustic sets? We could market it as “Craft & Culture.”\n\nCrazy? Maybe. But we’re not exactly known for playing it safe. What do you all think? Could be worth testing this quarter.`,
+    text: `Alright, I know we said no work talk over beers… but I had an idea I couldn't keep in.\n\nWhat if we took that seasonal batch and paired it with an experience — like live art or acoustic nights? We could brand it "Craft & Culture."\n\nImagine curated pairings, small batch releases, and a rotating lineup of creators. Crazy? Maybe. But that's our thing — bold, unfiltered, and a little experimental.\n\nLet it simmer while we order another round. Could be something worth brewing up this quarter.`,
     layout: {
       position: 'absolute',
       width: '54%',
@@ -2498,7 +2507,7 @@ export const promptsData = [
     title: 'Festival Meet-Up Greeting',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_32_17 PM.png'),
-    text: `Hey! I can’t believe we finally found each other in this crowd — and just in time for the next set!\n\nYou all look amazing, by the way. That flower crown? Iconic.\n\nLet’s grab some drinks after this song, and maybe try to get closer to the stage? I don’t know about you, but I plan to lose my voice by the end of tonight!`,
+    text: `Hey! I can't believe we finally found each other in this crowd — and just in time for the next set!\n\nYou all look amazing, by the way. That flower crown? Iconic. And those glitter shades? Next level.\n\nLet's grab some drinks after this, maybe catch some merch, and then try to edge closer to the stage.\n\nI don't know about you, but I plan to dance like nobody's watching and lose my voice before the night's over. Let's make this a festival night to remember!`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2516,7 +2525,7 @@ export const promptsData = [
     title: 'Dorm Game Night Starter',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_30_03 PM.png'),
-    text: `Alright everyone, rules are simple: no phones, no mercy, and definitely no cheating.\n\nEach color card has a different challenge, so expect a little trivia, some acting, and possibly public embarrassment. But hey, that’s the fun, right?\n\nWinner gets bragging rights for the rest of the semester — let’s play!`,
+    text: `Alright everyone, rules are simple: no phones, no mercy, and absolutely no cheating.\n\nEach color card has a different challenge — trivia, charades, mini dares, or team tasks. It's unpredictable and guaranteed to lead to outrageous stories.\n\nWinner gets dorm bragging rights until finals. Loser? Well, they might end up with a ridiculous dare posted on the fridge.\n\nLet's laugh loud, play harder, and create the kind of memories we'll talk about for years. Let the games begin!`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2534,7 +2543,7 @@ export const promptsData = [
     title: 'Porch Group Catch-Up',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_39_35 PM.png'),
-    text: `This porch is giving me life right now. Breezy air, good company, and no calendar reminders popping up.\n\nI’ve seriously missed just *sitting* and catching up like this. So tell me everything — how's work? Any weird neighbor stories? Did you ever get that patio furniture built?\n\nI’m all ears and no rush. Let’s just hang.`,
+    text: `This porch is giving me life right now. Cool breeze, warm drink, and no calendar reminders popping up.\n\nI've missed just *sitting* and catching up like this. No rushed schedules, no background noise — just us.\n\nSo tell me everything — how's life, how's work, how's the dog? Any weird neighbor stories? Did you finally build that patio furniture you ordered months ago?\n\nTonight, we're just here. And honestly, that's more than enough.`,
     layout: {
       position: 'absolute',
       width: '55%',
@@ -2552,7 +2561,7 @@ export const promptsData = [
     title: 'Fairground Food Talk',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_44_47 PM.png'),
-    text: `Okay, serious question: which one of us is brave enough to try the deep-fried butter?\n\nThis fair is wild — I already lost count of how many neon snacks I’ve had. But I’m not leaving until I’ve had a corn dog and at least one ride on the Ferris wheel.\n\nAlso, someone *has* to win a plush toy before the night’s over. Who’s feeling lucky?`,
+    text: `Okay, serious question: who's brave enough to try the deep-fried butter?\n\nThis fair is like a neon dream — funnel cakes, rainbow slushies, and every food you can imagine dipped in batter. I've already demolished two corndogs and I regret nothing.\n\nBut the night isn't over until someone wins a giant plush bear and we ride the Ferris wheel just as the lights start to flicker on.\n\nLet's make this chaotic, sugar-fueled adventure count. Who's in?`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2570,7 +2579,7 @@ export const promptsData = [
     title: 'Rooftop Wine Conversation',
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_41_42 PM.png'),
-    text: `You know what I love about rooftop nights like this? The way city noise fades into the background and real conversations just flow.\n\nSo tell me, what’s something new you’ve been learning about yourself lately? No pressure, just curious.\n\nAlso, this wine is dangerously good — who picked it? Because they’re officially in charge of the next bottle too.`,
+    text: `You know what I love about rooftop nights like this? The way the city noise becomes a hum and real conversations just unfold naturally.\n\nSo tell me, what's something new you've been learning about yourself lately? Big or small, I want to hear it. No pressure, just genuine curiosity.\n\nAlso, this wine? Way too good. Whoever brought it is now officially the sommelier for the group. Let's keep the bottles flowing and the stories coming.`,
     layout: {
       position: 'absolute',
       width: '50%',
@@ -2582,7 +2591,7 @@ export const promptsData = [
       borderRadius: 10,
       transform: [{ rotate: '0deg' }]
     }
-  },
+  }
   // --- End Social & Casual Prompts ---
 
   // --- Virtual Communication Prompts ---
@@ -2591,9 +2600,7 @@ export const promptsData = [
     title: 'Quarterly Project Update & Next Steps', // Updated title
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_25_39 PM.png'),
-    text: `Good morning, team. Let's dive into the Q3 progress for Project Phoenix. We successfully completed the alpha testing phase two days ahead of schedule, thanks to the diligent work from the engineering team. Key performance indicators show a 15% improvement in processing speed compared to the previous build, which is fantastic news.
-
-Looking ahead to Q4, our primary focus will be on beta testing and addressing the feedback received from alpha users. We need to finalize the user documentation by November 15th and prepare for the limited launch targeted for the first week of December. Marketing, please ensure the campaign materials are aligned with this timeline. Let's open the floor for any questions regarding resource allocation for the beta phase.`, // Updated text
+    text: `Good morning, team. Let's dive into the Q3 progress for Project Phoenix. We successfully completed the alpha testing phase two days ahead of schedule, thanks to the diligent work from the engineering team. Key performance indicators show a 15% improvement in processing speed compared to the previous build, which is fantastic news.\n\nLooking ahead to Q4, our primary focus will be on beta testing and addressing the feedback received from alpha users. We need to finalize the user documentation by November 15th and prepare for the limited launch targeted for the first week of December. Marketing, please ensure the campaign materials are aligned with this timeline. Let's open the floor for any questions regarding resource allocation for the beta phase.`, // Updated text
     layout: { // Default layout - ADJUST AS NEEDED!
       position: 'absolute',
       width: '60%',
@@ -2667,9 +2674,9 @@ Looking forward, let's discuss development goals for the upcoming year. Based on
     title: 'Large Group Webinar: Polling Session',
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_19_40 AM.png'),
-    text: `Welcome everyone to today’s webinar. Before we begin the main presentation, we’ll start with a quick interactive poll to better understand our audience demographics. Please take a moment to answer the three questions displayed on your screen.
+    text: `Welcome everyone to today's webinar. Before we begin the main presentation, we'll start with a quick interactive poll to better understand our audience demographics. Please take a moment to answer the three questions displayed on your screen.
 
-Your responses will help tailor the rest of the session to your needs and interests. Once everyone has responded, we’ll display the aggregated results and proceed accordingly. Let’s get started with Question 1.`,
+Your responses will help tailor the rest of the session to your needs and interests. Once everyone has responded, we'll display the aggregated results and proceed accordingly. Let's get started with Question 1.`,
     layout: {
       position: 'absolute',
       width: '60%',
@@ -2686,9 +2693,9 @@ Your responses will help tailor the rest of the session to your needs and intere
     title: 'Video Status Update for Internal Team',
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_25_15 AM.png'),
-    text: `Hey team, here’s the latest status update on the Gird Project. We’ve just completed milestone three, which involved finalizing backend APIs and running security validations.
+    text: `Hey team, here's the latest status update on the Gird Project. We've just completed milestone three, which involved finalizing backend APIs and running security validations.
 
-Next up is the front‑end integration and QA testing phase. If you have any blockers or need support, please drop a note in the project thread. I’ll be reviewing all pending pull requests by end of day. Thanks again for staying on track — keep up the great work!`,
+Next up is the front-end integration and QA testing phase. If you have any blockers or need support, please drop a note in the project thread. I'll be reviewing all pending pull requests by end of day. Thanks again for staying on track — keep up the great work!`,
     layout: {
       position: 'absolute',
       width: '70%',
@@ -2702,47 +2709,42 @@ Next up is the front‑end integration and QA testing phase. If you have any blo
   },
   {
     id: 'virtual7',
-    title: 'Hotel‑Based Remote Check‑In Meeting',
+    title: 'Hotel-Based Remote Check-In Meeting',
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_28_35 AM.png'),
-    text: `Good evening! Just wanted to check in quickly before tomorrow’s investor meeting. Everything is prepared and the presentation deck has been shared via email. I’ll be joining from my hotel room, but fully available to walk through any last‑minute changes you may need.
-
-Thanks again for the support and hard work from the entire team — this pitch is going to be a game changer. Let me know if there’s anything I should adjust tonight.`,
-    layout: {
-      position: 'absolute',
-      width: '65%',
-      height: '38%',
-      top: '63%',
-      left: '18.5%',
-      backgroundColor: 'transparent',
-      overflow: 'hidden',
-      borderRadius: 10
-    }
-  },
-  {
-    id: 'virtual8',
-    title: 'Remote Team Planning Huddle',
-    category: 'Virtual Communication',
-    image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_39_04 AM.png'),
-    text: `
-    
-    Morning, everyone.
-
-Let’s use this time to align on our Q2 priorities and ensure we’re all moving in the same direction. We’ve got several moving parts across teams, so we’ll start with brief status updates from each function and then open the floor to coordinate any dependencies, address blockers, and clarify next steps.
-
-Today’s discussion will focus on identifying key deliverables for the week, aligning on ownership, and ensuring we’re all clear on expectations. By the end of this session, the goal is to have a shared understanding of what needs to be completed by week’s end, with defined responsibilities and agreed timelines across Product, Engineering, Design, and Marketing.
-
-Let’s begin with an update from Product, followed by Engineering, then Design, and finally Marketing. Looking forward to a focused and productive conversation.`,
+    text: `Good evening! Just wanted to check in quickly before tomorrow's investor meeting. Everything is prepared and the presentation deck has been shared via email. I'll be joining from my hotel room, but fully available to walk through any last-minute changes you may need.`,
     layout: {
       position: 'absolute',
       width: '70%',
-      height: '45%',
-      top: '54%',
+      height: '36%',
+      top: '57%',
       left: '15%',
       backgroundColor: 'transparent',
       overflow: 'hidden',
       borderRadius: 10
     }
+  }
+  // --- End Virtual Communication Prompts ---
+
+  // --- Situational/Specific Prompts ---
+  {
+    id: 'specific1',
+    title: 'Client Meeting Follow-Up',
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_47_11 PM.png'),
+    text: `Hey team, I wanted to quickly follow up on our client meeting yesterday.\n\nI've drafted a summary email that includes key action items and next steps. Please review and provide any feedback by end of day.\n\nI'll send out the final version tomorrow morning.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific2',
+    title: 'Team Lunch Discussion',
+    category: 'Situational/Specific',
+    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_47_58 PM.png'),
+    text: `Alright team, let's gather around for a quick lunch discussion.\n\nWe've received some feedback about the current project timeline. It seems there might be a delay in the delivery of a key component, which could potentially impact our launch date.\n\nI've invited the relevant stakeholders to join this call. Let's discuss potential solutions and mitigation strategies.`,
+    layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
+  },
+  {
+    id: 'specific3',
   },
   {
     id: "virtual9",
@@ -2848,177 +2850,178 @@ Let’s begin with an update from Product, followed by Engineering, then Design,
       transform: [{ rotate: '3deg' }]
     }
   },
-  {
-    id: "virtual15",
-    title: "Virtual Trivia Night",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_17_01 PM.png"),
-    text: `Welcome to Trivia Night! Tonight’s theme covers general knowledge, tech history, and programming trivia.\n\nWatch the live scoreboard on the right and type your answers in chat. We’ll reveal correct answers after each question, plus share interesting facts and background stories for extra context. Let’s see who takes the crown this evening!`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "40%",
-      height: "33%",
-      top: "34%",
-      left: "-4%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '-2deg' }]
+  [
+    {
+      id: "virtual15",
+      title: "Virtual Trivia Night",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_17_01 PM.png"),
+      text: `Welcome to Trivia Night! Tonight’s theme covers general knowledge, tech history, and programming trivia.\n\nGet ready for a fast-paced, fun-filled session where everyone can participate and test their smarts. Watch the live scoreboard on the right and type your answers in the chat box before time runs out. We'll announce the correct answer after each round, along with a quick explanation or fun fact you might not know.\n\nBonus points may be awarded for speed, creativity, or wit—so stay sharp! Whether you’re here to win or just to have a blast, we’re thrilled to have you. Let's build friendly competition, cheer each other on, and crown our trivia champion by the end of the night. Buckle up—it’s going to be an exciting ride!`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "40%",
+        height: "33%",
+        top: "34%",
+        left: "-4%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '-2deg' }]
+      }
+    },
+    {
+      id: "virtual16",
+      title: "Team Sync: Project Overview",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_19_26 PM.png"),
+      text: `Welcome everyone to our weekly team sync.\n\nToday’s agenda includes:\n• Recap of project objectives and progress made so far.\n• Detailed milestone timeline, including current status and next deliverables.\n• Cross-functional alignment across teams to ensure our shared goals are clear.\n• Identification of current blockers and interdependencies that could affect progress.\n\nPlease prepare your updates in advance, highlight any risks needing escalation, and note any wins worth sharing. The goal is to foster transparency and make decisions faster. Let’s keep our conversation concise, focused on outcomes, and ensure every team member leaves this call with clarity on priorities and next steps.`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "50%",
+        height: "42%",
+        top: "41%",
+        left: "26%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '1deg' }]
+      }
+    },
+    {
+      id: "virtual17",
+      title: "Reddit Live AMA Session",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_21_13 PM.png"),
+      text: `Thank you for joining our Reddit AMA!\n\nAsk me anything about our latest project developments, industry insights, or career advice. I’ll be monitoring the comment thread in real time and answering top-voted questions every 5 minutes. Don’t hesitate to dive deep—this is your chance for direct interaction!\n\nOur moderators will help manage the flow of questions and ensure a respectful environment for all participants. We value curiosity, honesty, and openness. You can also share feedback about our work or ask about behind-the-scenes decision-making. Let’s make this a vibrant, insightful discussion that benefits the whole community.`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "48%",
+        height: "38%",
+        top: "41%",
+        left: "18%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '1deg' }]
+      }
+    },
+    {
+      id: "virtual18",
+      title: "Clubhouse Live Audio Panel",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_23_48 PM.png"),
+      text: `Welcome to today’s Clubhouse panel discussion.\n\nSpeakers will share insights on emerging tech trends and product strategy. If you’d like to speak, raise your hand and we’ll invite you to the stage.\n\nFeel free to drop questions or topics in chat at any time. Let’s foster an engaging dialogue!\n\nWe encourage thoughtful exchanges, so keep comments constructive and collaborative. We aim to include diverse perspectives from across industries and regions. Be sure to follow our moderators and panelists if you'd like to stay updated on future rooms. Enjoy the conversation!`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "50%",
+        height: "42%",
+        top: "37%",
+        left: "25%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '2deg' }]
+      }
+    },
+    {
+      id: "virtual19",
+      title: "Horizon Virtual Meeting Login",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_25_37 PM.png"),
+      text: `Please log in with your Horizon credentials to access the secure meeting room.\n\nEnter your email and password in the fields above. If you forgot your password, click “Forgot your password?” to reset it securely. Contact IT support for any access issues.\n\nThis platform uses advanced encryption protocols to ensure session security. For best results, connect via a supported browser and stable VPN. Unauthorized access is prohibited and monitored. Once logged in, you'll be redirected to the meeting dashboard with access to your session schedule, shared files, and live chat features.`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "50%",
+        height: "52%",
+        top: "30%",
+        left: "28%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '7deg' }]
+      }
+    },
+    {
+      id: "virtual20",
+      title: "Discord Screen Sharing Session",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_26_30 PM.png"),
+      text: `I’m now sharing my screen to walk you through the new workflow setup.\n\nYou should see the presentation slide in the center. Confirm in the voice channel if everything is visible. We’ll pause after each section for questions.\n\nThis walkthrough covers onboarding, permissions, user roles, and final handoff. Please take notes and share questions in the #feedback thread. For those who can’t attend live, a recording and resource links will be available post-session. Let’s ensure everyone is aligned before rollout.`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "50%",
+        height: "38%",
+        top: "50%",
+        left: "48%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '1deg' }]
+      }
+    },
+    {
+      id: "virtual21",
+      title: "Live News Broadcast",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_30_43 PM.png"),
+      text: `Good evening and welcome to our live news broadcast.\n\nI’m your anchor with tonight’s top headlines and in-depth analysis.\n\nComing up: market updates, global events, and exclusive interviews. Stay tuned for expert commentary and live reports.\n\nWe begin with breaking news from the capital, then zoom out to regional developments and economic shifts impacting policy. Field reporters will join us shortly with on-the-ground coverage. Later in the hour, we’ll feature a special editorial roundtable. Let's get started.`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "50%",
+        height: "40%",
+        top: "44%",
+        left: "25%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10
+      }
+    },
+    {
+      id: "virtual22",
+      title: "StreamYard Live Broadcast",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_37_36 PM.png"),
+      text: `Welcome to our multi-platform live broadcast via StreamYard.\n\nWe’re streaming simultaneously to YouTube, Facebook, and LinkedIn. Interact with us through the live chat or comment section on your preferred platform.\n\nWe’ll highlight key viewer reactions, answer audience questions, and share behind-the-scenes context about our work. Stay tuned for special announcements and giveaways during the session. If you encounter audio or video issues, try refreshing your browser or switching devices. Thanks for being part of our virtual community!`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "45%",
+        height: "36%",
+        top: "34%",
+        left: "-3%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '1deg' }]
+      }
+    },
+    {
+      id: "virtual23",
+      title: "Video Standup Meeting",
+      category: "Virtual Communication",
+      image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_39_29 PM.png"),
+      text: `Daily standup agenda on screen: Video Standup\n\nAgenda:\n• Team updates\n• Roadmap discussion\n• Blockers review\n\nTasks status:\n☐ Finish quarter report\n☐ Design new feature\n✅ Fix login issue\n☐ Plan offsite\n\nShare your updates one by one. Let’s keep it to 15 minutes. Please use your allocated time wisely, call out dependencies, and mention if you're blocked on anything. The goal is alignment, momentum, and visibility. Post-standup, notes will be shared in the team channel for follow-ups.`,
+      textColor: 'white',
+      layout: {
+        position: "absolute",
+        width: "45%",
+        height: "38%",
+        top: "47%",
+        left: "35%",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        borderRadius: 10,
+        transform: [{ rotate: '1deg' }]
+      }
     }
-  },
-  {
-    id: "virtual16",
-    title: "Team Sync: Project Overview",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_19_26 PM.png"),
-    text: `Welcome everyone to our weekly team sync.\n\nToday’s agenda includes:
-• Project objectives recap and milestone review.\n• Detailed timeline and upcoming deliverables discussion.\n• Key goals alignment across teams and status updates.\n• Identification of dependencies and potential roadblocks.\n\nPlease prepare your updates and be ready to highlight any critical issues that need escalation. Let’s keep it concise and action-oriented!`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "50%",
-      height: "42%",
-      top: "41%",
-      left: "26%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '1deg' }]
-    }
-  },
-  {
-    id: "virtual17",
-    title: "Reddit Live AMA Session",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_21_13 PM.png"),
-    text: `Thank you for joining our Reddit AMA!\n\nAsk me anything about our latest project developments, industry insights, or career advice.\n\nI’ll be monitoring the comment thread in real time and answering top-voted questions every 5 minutes. Don’t hesitate to dive deep—this is your chance for direct interaction!`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "48%",
-      height: "38%",
-      top: "41%",
-      left: "18%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '1deg' }]
-    }
-  },
-  {
-    id: "virtual18",
-    title: "Clubhouse Live Audio Panel",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_23_48 PM.png"),
-    text: `Welcome to today’s Clubhouse panel discussion.\n\nSpeakers will share insights on emerging tech trends and product strategy. If you’d like to speak, raise your hand and we’ll invite you to the stage.\n\nFeel free to drop questions or topics in chat at any time. Let’s foster an engaging dialogue!`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "50%",
-      height: "42%",
-      top: "37%",
-      left: "25%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '2deg' }]
-    }
-  },
-  {
-    id: "virtual19",
-    title: "Horizon Virtual Meeting Login",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_25_37 PM.png"),
-    text: `Please log in with your Horizon credentials to access the secure meeting room.\n\nEnter your email and password in the fields above.\n\nIf you forgot your password, click “Forgot your password?” below to reset. Contact IT support for any access issues.\n\nYour session is encrypted for security, and access is limited to authorized users only.\n\nFor best results, use a supported browser and ensure your VPN is connected if accessing remotely.\n\nOnce logged in, you’ll be redirected automatically to the meeting dashboard.`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "50%",
-      height: "52%",
-      top: "30%",
-      left: "28%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '7deg' }]
-    }
-  },
-  {
-    id: "virtual20",
-    title: "Discord Screen Sharing Session",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_26_30 PM.png"),
-    text: `I’m now sharing my screen to walk you through the new workflow setup.\n\nYou should see the presentation slide in the center.\n\nConfirm in the voice channel if everything is visible. We’ll pause after each section for questions.`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "50%",
-      height: "38%",
-      top: "50%",
-      left: "48%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '1deg' }]
-    }
-  },
-  {
-    id: "virtual21",
-    title: "Live News Broadcast",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_30_43 PM.png"),
-    text: `Good evening and welcome to our live news broadcast.\n\nI’m your anchor with tonight’s top headlines and in-depth analysis.\n\nComing up: market updates, global events, and exclusive interviews. Stay tuned for expert commentary and live reports.\n\nWe’ll begin with breaking news out of the capital, followed by a detailed look at international developments.\n\nLater in the hour, we’ll hear from our field reporters on the ground and get expert insights into what it all means for you.\n\nLet’s get started with the latest headlines.`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "50%",
-      height: "40%",
-      top: "44%",
-      left: "25%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10
-    }
-  },
-  {
-    id: "virtual22",
-    title: "StreamYard Live Broadcast",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_37_36 PM.png"),
-    text: `Welcome to our multi-platform live broadcast via StreamYard.\n\nWe’re streaming simultaneously to YouTube, Facebook, and LinkedIn.\n\nInteract using the chat or comment section on your preferred platform. We’ll address comments live and highlight top reactions.`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "45%",
-      height: "36%",
-      top: "34%",
-      left: "-3%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '1deg' }]
-    }
-  },
-  {
-    id: "virtual23",
-    title: "Video Standup Meeting",
-    category: "Virtual Communication",
-    image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_39_29 PM.png"),
-    text: `Daily standup agenda on screen: Video Standup\n\nAgenda:\n• Team updates\n• Roadmap discussion\n• Blockers review\n\nTasks status:\n☐ Finish quarter report\n☐ Design new feature\n✅ Fix login issue\n☐ Plan offsite\n\nShare your updates one by one. Let’s keep it to 15 minutes.`,
-    textColor: 'white',
-    layout: {
-      position: "absolute",
-      width: "45%",
-      height: "38%",
-      top: "47%",
-      left: "35%",
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      borderRadius: 10,
-      transform: [{ rotate: '1deg' }]
-    }
-  }
+  ]
   // --- End Virtual Communication Prompts ---
 
   // Add more prompts here in the future
