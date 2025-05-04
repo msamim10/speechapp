@@ -2722,29 +2722,10 @@ Next up is the front-end integration and QA testing phase. If you have any block
       overflow: 'hidden',
       borderRadius: 10
     }
-  }
+  },
   // --- End Virtual Communication Prompts ---
 
   // --- Situational/Specific Prompts ---
-  {
-    id: 'specific1',
-    title: 'Client Meeting Follow-Up',
-    category: 'Situational/Specific',
-    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_47_11 PM.png'),
-    text: `Hey team, I wanted to quickly follow up on our client meeting yesterday.\n\nI've drafted a summary email that includes key action items and next steps. Please review and provide any feedback by end of day.\n\nI'll send out the final version tomorrow morning.`,
-    layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  },
-  {
-    id: 'specific2',
-    title: 'Team Lunch Discussion',
-    category: 'Situational/Specific',
-    image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_47_58 PM.png'),
-    text: `Alright team, let's gather around for a quick lunch discussion.\n\nWe've received some feedback about the current project timeline. It seems there might be a delay in the delivery of a key component, which could potentially impact our launch date.\n\nI've invited the relevant stakeholders to join this call. Let's discuss potential solutions and mitigation strategies.`,
-    layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '22%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
-  },
-  {
-    id: 'specific3',
-  },
   {
     id: "virtual9",
     title: "Conference Networking Recap",
