@@ -773,7 +773,6 @@ export const promptsData = [
     id: 'speech19',
     title: 'TED Talk Introduction',
     category: 'Speeches',
-    image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_01_29 PM.png'),
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_03_23 PM.png'),
     text: `What if I told you that the future you're afraid of — is actually the opportunity you've been waiting for?\n\nGood afternoon, TED community. Today, I want to challenge the assumptions we've made about failure, fear, and forward momentum.\n\nThis talk is not about being perfect. It's about being courageous enough to show up, even when you don't have all the answers.\n\nLet's dive in together and explore how small ideas, repeated with heart, can change everything.\n\nFive years ago, I lost everything — my company, my savings, my confidence. I was that classic cautionary tale of an entrepreneur who reached too far. The spectacular failure was covered in business magazines and analyzed by industry experts. Everyone had an opinion about what went wrong.\n\nBut what I discovered in that darkest moment wasn't just the depth of loss — it was the beginning of a profound transformation. When you have nothing left to lose, you suddenly have everything to gain. The fear that once paralyzed me became irrelevant.\n\nDuring the next 18 months, I interviewed over 200 people who had experienced similar catastrophic failures. What emerged was a pattern, a roadmap of sorts, for turning moments of greatest defeat into catalysts for unprecedented growth. These conversations revealed a counterintuitive truth: our biggest breakthroughs often lie on the other side of our most painful breakdowns.`,
     layout: {
@@ -2607,7 +2606,7 @@ export const promptsData = [
       borderRadius: 10,
       transform: [{ rotate: '0deg' }]
     }
-  }
+  },
   // --- End Social & Casual Prompts ---
 
   // --- Virtual Communication Prompts ---
