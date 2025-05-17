@@ -237,6 +237,7 @@ function TeleprompterScreen({ route, navigation }) {
 
     async function loadSounds() {
       console.log('Loading Sounds (optimized)');
+      let allLoadedSuccessfully = true; // Flag to track success
       try {
         // Only load sounds needed for this prompt type
         if (soundsNeeded.clapping) {
@@ -248,6 +249,8 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setSound(soundCache.clapping);
           console.log('Clapping sound loaded successfully');
+        } else {
+          setSound(undefined); // Ensure state is undefined if not needed/loaded
         }
 
         if (soundsNeeded.race) {
@@ -259,6 +262,8 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setRaceSound(soundCache.race);
           console.log('Race noise loaded successfully');
+        } else {
+          setRaceSound(undefined);
         }
 
         if (soundsNeeded.room) {
@@ -271,6 +276,8 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setRoomSound(soundCache.room);
           console.log('Room sound loaded successfully and set to loop');
+        } else {
+          setRoomSound(undefined);
         }
         
         if (soundsNeeded.speech) {
@@ -282,6 +289,8 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setSpeechSound(soundCache.speech);
           console.log('Speech sound loaded successfully');
+        } else {
+          setSpeechSound(undefined);
         }
 
         if (soundsNeeded.interview) {
@@ -293,6 +302,8 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setInterviewSound(soundCache.interview);
           console.log('Interview sound loaded successfully');
+        } else {
+          setInterviewSound(undefined);
         }
 
         if (soundsNeeded.vc) {
@@ -306,15 +317,32 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setVcSound(soundCache.vc);
           console.log('VC sound set successfully');
+        } else {
+          setVcSound(undefined);
         }
 
-        // Mark sounds as loaded and start countdown
-        setSoundsLoaded(true);
-        
       } catch (error) {
         console.error('Failed to load sound(s)', error);
-        // Even if there's an error, we should proceed with the countdown
-        setSoundsLoaded(true);
+        allLoadedSuccessfully = false; // Mark as failed
+        // Optionally, reset specific sound states that might have partially loaded
+        setSound(undefined);
+        setRaceSound(undefined);
+        setRoomSound(undefined);
+        setSpeechSound(undefined);
+        setInterviewSound(undefined);
+        setVcSound(undefined);
+        // DO NOT set soundsLoaded to true here anymore
+        // Maybe show an error message to the user?
+        // Alert.alert("Sound Error", "Could not load all required sounds. Some features might be affected.");
+      } finally {
+        // Only set soundsLoaded to true if everything loaded without errors
+        if (allLoadedSuccessfully) {
+          console.log("All required sounds loaded successfully.");
+          setSoundsLoaded(true);
+        } else {
+          console.error("Sound loading failed, soundsLoaded remains false.");
+          // Consider showing an error message or disabling sound-related features
+        }
       }
     }
     loadSounds();
@@ -341,7 +369,6 @@ function TeleprompterScreen({ route, navigation }) {
   useEffect(() => {
     if (!showCountdown) return;
 
-    let raceSoundTimeoutId = null;
     let countdownIntervalId = null;
     let clapSoundTimeoutId = null;
 
@@ -363,13 +390,6 @@ function TeleprompterScreen({ route, navigation }) {
           await raceSound.playAsync();
           console.log('Race Noise playing successfully');
           
-          // Set timeout to stop the sound
-          raceSoundTimeoutId = setTimeout(() => {
-            raceSound.stopAsync().catch(error => {
-              console.error('Error stopping race noise:', error);
-            });
-            console.log('Race Noise stopped after 5 seconds (countdown end)');
-          }, 5000);
         } catch (error) {
           console.error('Failed to play race noise:', error);
           // Try to reload the sound if there was an error
@@ -485,7 +505,6 @@ function TeleprompterScreen({ route, navigation }) {
     // Cleanup function
     return () => {
       clearInterval(countdownIntervalId);
-      clearTimeout(raceSoundTimeoutId);
       clearTimeout(clapSoundTimeoutId);
 
       // Stop looping/playing sounds on cleanup (if countdown finished)
@@ -629,6 +648,25 @@ function TeleprompterScreen({ route, navigation }) {
     };
   }, [isScrolling, scrollSpeed, contentHeight, containerHeight, recordPracticeSession]); // Add recordPracticeSession dependency
 
+  // --- NEW useEffect to handle scrolling based on isScrolling state ---
+  useEffect(() => {
+    if (isScrolling) {
+      if (soundsLoaded) {
+        const currentPosition = scrollY._value;
+        console.log(`Effect: Starting scroll from position ${currentPosition}`);
+        startScrolling(currentPosition);
+      } else {
+        console.warn("Effect: Tried to start scrolling, but sounds not loaded.");
+        // Optionally force isScrolling back to false if sounds aren't ready
+        // setIsScrolling(false);
+      }
+    } else {
+      // This will handle both explicit pause and stop actions
+      console.log("Effect: Pausing scroll");
+      pauseScrolling();
+    }
+  }, [isScrolling, soundsLoaded, startScrolling, pauseScrolling]); // Dependencies
+
   // --- ScrollView Position Update Listener ---
   /* DEBUG: Disable scroll listener */
   useEffect(() => {
@@ -684,12 +722,33 @@ function TeleprompterScreen({ route, navigation }) {
 
   // --- Scroll Logic --- 
   const startScrolling = useCallback((fromPosition = 0) => {
-    // ... (existing scroll calculation logic) ...
+    // Calculate target scroll position (end of content)
+    const targetScrollY = Math.max(0, contentHeight - containerHeight);
     
-    if (timeToScroll > 0) {
+    // If already at or past the target, don't scroll
+    if (fromPosition >= targetScrollY - 1) { // Small threshold
+      console.log("StartScroll: Already at or past target end. No scroll needed.");
+      // Still start the timer if it wasn't already running
+      if (!practiceSessionStartTime) {
+           setPracticeSessionStartTime(Date.now());
+           console.log("Practice timer started (no scroll needed)");
+      }
+      return; // Exit the function
+    }
+
+    // Calculate remaining distance
+    const remainingDistance = targetScrollY - fromPosition;
+    const pixelsPerSecond = scrollSpeed * 50; // Base speed (pixels/sec) - Adjust multiplier as needed
+    const duration = Math.max((remainingDistance / pixelsPerSecond) * 1000, 1); // Duration in ms, ensure positive
+    
+    console.log(`StartScroll: From=${fromPosition.toFixed(2)}, Target=${targetScrollY.toFixed(2)}, Remaining=${remainingDistance.toFixed(2)}, Duration=${duration.toFixed(0)}ms`);
+
+    // Check if duration is valid before starting animation
+    if (duration > 0) {
         // Clear previous animation if any
         if (animationRef.current) {
             animationRef.current.stop();
+            console.log("StartScroll: Stopped previous animation.");
         }
         
         // <<< START tracking time when scrolling starts >>>
@@ -699,18 +758,38 @@ function TeleprompterScreen({ route, navigation }) {
         }
         // <<< END tracking time >>>
 
-        // ... (rest of Animated.timing logic) ... 
-       animationRef.current = Animated.timing(scrollY, { /* ... animation config ... */ });
-       animationRef.current.start(/* ... callback ... */);
+        // Create and start the timing animation
+       const animation = Animated.timing(scrollY, { 
+           toValue: targetScrollY,
+           duration: duration, // Use the calculated duration
+           useNativeDriver: false,
+           easing: Easing.linear,
+       });
+       animationRef.current = animation;
+       animationRef.current.start(({ finished }) => {
+           animationRef.current = null; // Clear ref after animation finishes or stops
+           if (finished) {
+               console.log("Animation finished naturally.");
+               setIsScrolling(false); // Update state when finished
+               // Record practice session completion
+               if (!practiceRecordedRef.current) {
+                   recordPracticeSession();
+                   practiceRecordedRef.current = true; // Mark as recorded
+               }
+           } else {
+               console.log("Animation stopped/interrupted before finishing.");
+               // Don't set isScrolling false here, pause button/stop button handles that
+           }
+       });
     } else {
-         console.log("Content fits, no scroll needed or calculation error.");
+         console.log("StartScroll: Calculated duration is zero or negative. No scroll started.");
          // Even if no scroll, mark practice session as started if button pressed
          if (!practiceSessionStartTime) { 
              setPracticeSessionStartTime(Date.now());
              console.log("Practice timer started (no scroll needed)");
          }
     }
-  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime]); // Added practiceSessionStartTime dependency
+  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession]); // Added dependencies
 
   const pauseScrolling = useCallback(() => {
     if (animationRef.current) {
@@ -729,11 +808,23 @@ function TeleprompterScreen({ route, navigation }) {
 
   const stopScrolling = useCallback(async () => {
     console.log("Stopping scroll and saving time...");
-    setIsScrolling(false);
-    if (animationRef.current) {
-        animationRef.current.stop();
-        animationRef.current = null;
+    // Set isScrolling to false FIRST to trigger the useEffect cleanup/pause
+    setIsScrolling(false); 
+    
+    // Stop animation with error handling
+    try {
+      if (animationRef.current) {
+          animationRef.current.stop();
+          animationRef.current = null;
+          console.log("Animation stopped successfully.");
+      } else {
+          console.log("No active animation to stop.");
+      }
+    } catch (error) {
+      console.error("Error stopping animation:", error);
+      animationRef.current = null; // Ensure ref is cleared even if stop fails
     }
+    
     // <<< STOP tracking time and SAVE >>>
     let finalDuration = accumulatedPracticeTime;
     if (practiceSessionStartTime) {
@@ -758,9 +849,14 @@ function TeleprompterScreen({ route, navigation }) {
         practiceRecordedRef.current = true;
     }
 
-    // Stop sounds only if NOT in warm-up mode?
-    // Or stop always? Let's stop always for now.
-    await stopAllSounds(); 
+    // Stop sounds with error handling
+    try {
+      await stopAllSounds(); 
+      console.log("Sounds stopped successfully.");
+    } catch (error) {
+      console.error("Error stopping sounds:", error);
+    }
+    
     setShowCountdown(false); // Hide countdown after stop
     setCountdown(4); // Reset countdown
     setSoundsLoaded(false); // Reset sounds loaded flag to reload on next start
@@ -770,37 +866,11 @@ function TeleprompterScreen({ route, navigation }) {
   // --- Button Handlers --- 
   const handleStartPause = () => {
      if (!soundsLoaded) {
-        console.warn("Attempted to start/pause before sounds loaded.");
+        console.warn("Attempted to start/pause toggle before sounds loaded.");
         return; // Prevent action if sounds aren't ready
     }
-    if (isScrolling) {
-      // Pause logic
-      pauseScrolling();
-      setIsScrolling(false);
-      // Stop looping ambient sounds on pause?
-      // roomSound?.stopAsync(); // Consider if ambient should stop on pause
-    } else {
-      // Start logic
-      if (contentHeight > containerHeight) {
-         // Check current scroll position to resume correctly
-          scrollY.addListener(({ value }) => {
-              // We only need the listener temporarily to get the current value
-              scrollY.removeAllListeners(); // Remove immediately
-              console.log(`Resuming scroll from position: ${value}`);
-              startScrolling(value); // Resume from current position
-          });
-          // Trigger the listener by getting the value (a bit hacky)
-          scrollY.extractOffset(); 
-      } else {
-         startScrolling(0); // Start from top if content fits or first start
-      }
-      setIsScrolling(true);
-      // Start looping ambient sounds on start?
-      // roomSound?.playAsync(); // Start room sound loop
-      // speechSound?.playAsync(); // Start speech sound loop
-      // interviewSound?.playAsync(); // Start interview sound loop
-      // vcSound?.playAsync(); // Start VC sound loop
-    }
+    // Simply toggle the state. The useEffect will handle the action.
+    setIsScrolling(prevIsScrolling => !prevIsScrolling);
   };
   
   // Modify handleStop to use the new stopScrolling function
@@ -812,7 +882,35 @@ function TeleprompterScreen({ route, navigation }) {
   const handleNextPrompt = async () => {
       console.log("Next Prompt requested");
       await stopScrolling(); // Stop scroll, save time, stop sounds
-      // ... rest of existing next prompt logic ...
+
+      if (isWarmUpMode || !categoryPrompts || categoryPrompts.length === 0) {
+        console.log("Cannot navigate to next prompt: Not in regular mode or no category prompts.");
+        return;
+      }
+
+      const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
+      if (currentIndex === -1) {
+        console.error("Could not find current prompt in category. Navigating to first.");
+        navigation.replace('Teleprompter', { 
+            selectedPromptId: categoryPrompts[0].id, 
+            categoryPrompts 
+        });
+        return;
+      }
+
+      const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Loop back to start
+      const nextPrompt = categoryPrompts[nextIndex];
+
+      if (nextPrompt && nextPrompt.id) {
+        console.log(`Navigating to next prompt: ${nextPrompt.id}`);
+        navigation.replace('Teleprompter', { 
+            selectedPromptId: nextPrompt.id, 
+            categoryPrompts 
+        });
+      } else {
+        console.error("Could not find next prompt or next prompt ID is invalid.");
+        // Optionally, navigate back to category selection or show an error
+      }
   };
 
   const handleGoBack = async () => {
