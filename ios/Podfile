@@ -33,9 +33,8 @@ target 'PublicSpeakingApp' do
 
   config = use_native_modules!(config_command)
 
-  use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
-  use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
-
+  # Enforce static linkage
+  use_frameworks! :linkage => :static
   use_react_native!(
     :path => config[:reactNativePath],
     :hermes_enabled => podfile_properties['expo.jsEngine'] == nil || podfile_properties['expo.jsEngine'] == 'hermes',
@@ -62,5 +61,12 @@ target 'PublicSpeakingApp' do
         end
       end
     end
+
+    # Force DEFINES_MODULE to NO for all pods to resolve conflicts - REVERTING THIS
+    # installer.pods_project.targets.each do |target|
+    #   target.build_configurations.each do |config|
+    #     config.build_settings['DEFINES_MODULE'] = 'NO'
+    #   end
+    # end
   end
 end

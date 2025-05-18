@@ -289,10 +289,10 @@ function HomeScreen() {
           <TouchableOpacity style={[styles.ctaButton, styles.primaryButton]} onPress={handleStartPractice}>
             <Text style={[styles.ctaButtonText, styles.primaryButtonText]}>Start Practice</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.ctaButton, styles.secondaryButton]} onPress={handleQuickPractice}>
+          {/* <TouchableOpacity style={[styles.ctaButton, styles.secondaryButton]} onPress={handleQuickPractice}>
             <Ionicons name="pulse-outline" size={20} color={colors.primary} style={styles.secondaryButtonIcon} />
             <Text style={[styles.ctaButtonText, styles.secondaryButtonText]}>Quick Warm-Up</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         {/* Stats Section */}

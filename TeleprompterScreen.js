@@ -21,30 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'; // <<< ADD
 const { height: screenHeight } = Dimensions.get('window');
 
 // Sample prompt text (long enough to require scrolling)
-const sampleText = `Welcome to the Public Speaking Practice App!
-
-This is your teleprompter screen. The text you see here will scroll automatically based on the speed you set.
-
-You can adjust the scrolling speed using the slider below. Faster speeds mean the text moves quicker, while slower speeds give you more time to read.
-
-Font size can also be adjusted using the 'A-' and 'A+' buttons. Find a size that's comfortable for you to read from a distance.
-
-The 'Start' button begins the scrolling animation. Once started, it changes to 'Pause', allowing you to temporarily halt the text movement.
-
-The 'Stop' button will cease the scrolling entirely and reset the text position back to the very beginning.
-
-Practice delivering your speech smoothly and confidently. Remember to maintain eye contact with your imaginary audience and use appropriate gestures.
-
-Effective public speaking is a skill that improves with practice. Use this tool regularly to rehearse your presentations, speeches, or even just talking points for meetings.
-
-Try varying the speed and font size to simulate different conditions or preferences. Good luck with your practice session!
-
-Here is some more text just to ensure the content is long enough to properly test the scrolling functionality across different device heights and font sizes. Keep going, you are doing great! Public speaking can be challenging, but preparation makes a huge difference.
-
-Final paragraph to fill things out. Focus on clarity, pace, and engagement during your delivery.`;
-
-// Define which prompts should have clapping
-const CLAPPING_PROMPT_IDS = ['prompt2', 'prompt4', 'prompt6', 'prompt7', 'prompt8'];
+const sampleText = `Welcome to the Public Speaking Practice App!\n\nThis is your teleprompter screen. The text you see here will scroll automatically based on the speed you set.\n\nYou can adjust the scrolling speed using the slider below. Faster speeds mean the text moves quicker, while slower speeds give you more time to read.\n\nFont size can also be adjusted using the 'A-' and 'A+' buttons. Find a size that's comfortable for you to read from a distance.\n\nThe 'Start' button begins the scrolling animation. Once started, it changes to 'Pause', allowing you to temporarily halt the text movement.\n\nThe 'Stop' button will cease the scrolling entirely and reset the text position back to the very beginning.\n\nPractice delivering your speech smoothly and confidently. Remember to maintain eye contact with your imaginary audience and use appropriate gestures.\n\nEffective public speaking is a skill that improves with practice. Use this tool regularly to rehearse your presentations, speeches, or even just talking points for meetings.\n\nTry varying the speed and font size to simulate different conditions or preferences. Good luck with your practice session!\n\nHere is some more text just to ensure the content is long enough to properly test the scrolling functionality across different device heights and font sizes. Keep going, you are doing great! Public speaking can be challenging, but preparation makes a huge difference.\n\nFinal paragraph to fill things out. Focus on clarity, pace, and engagement during your delivery.`;
 
 // Cache for sound objects to avoid reloading
 const soundCache = {};
@@ -177,7 +154,7 @@ function TeleprompterScreen({ route, navigation }) {
       });
     } else if (currentPromptData) {
       // For regular prompts, determine based on category/id
-      const needsClapping = CLAPPING_PROMPT_IDS.includes(selectedPromptId);
+      const needsClapping = !!currentPromptData?.soundAsset; // NEW LOGIC: Check if soundAsset exists on the prompt data
       const category = currentPromptData.category || ''; // Get original category name
       const categoryLower = category.toLowerCase(); // Use lowercase for broader checks if needed
       
@@ -240,17 +217,23 @@ function TeleprompterScreen({ route, navigation }) {
       let allLoadedSuccessfully = true; // Flag to track success
       try {
         // Only load sounds needed for this prompt type
-        if (soundsNeeded.clapping) {
-          if (!soundCache.clapping) {
+        if (soundsNeeded.clapping && currentPromptData && currentPromptData.soundAsset) { // Check currentPromptData and soundAsset
+          const soundAssetKey = currentPromptData.id + 'clapping'; // Unique key for cache based on prompt ID
+          if (!soundCache[soundAssetKey]) {
+            console.log('Loading clapping sound from currentPromptData.soundAsset', currentPromptData.soundAsset);
             const { sound: loadedClapSound } = await Audio.Sound.createAsync(
-              require('./assets/sounds/clapping.mp3')
+              currentPromptData.soundAsset // Use the asset from prompt data
             );
-            soundCache.clapping = loadedClapSound;
+            soundCache[soundAssetKey] = loadedClapSound;
+            setSound(loadedClapSound); // Set the sound state immediately after loading this specific sound
+          } else {
+            setSound(soundCache[soundAssetKey]);
           }
-          setSound(soundCache.clapping);
-          console.log('Clapping sound loaded successfully');
-        } else {
-          setSound(undefined); // Ensure state is undefined if not needed/loaded
+        } else if (soundsNeeded.clapping) {
+          // Fallback or legacy behavior if currentPromptData.soundAsset is not defined but clapping is needed
+          // This part might need adjustment based on whether you want a default clap sound
+          // For now, let's assume if soundAsset isn't there, no specific clap sound for this prompt.
+          console.warn('Clapping needed but no soundAsset found on currentPromptData');
         }
 
         if (soundsNeeded.race) {
@@ -484,9 +467,9 @@ function TeleprompterScreen({ route, navigation }) {
       }
 
       // --- Play Clapping Sound (Conditionally and NOT in warm-up) ---
-      if (!isWarmUpMode && CLAPPING_PROMPT_IDS.includes(selectedPromptId) && sound) {
+      if (!isWarmUpMode && soundsNeeded.clapping && sound) {
         try {
-          console.log('Playing Clapping Sound (conditional)');
+          console.log('Playing Clapping Sound (conditional from soundAsset)');
           sound.replayAsync().then(() => {
             clapSoundTimeoutId = setTimeout(() => {
               sound.stopAsync();
@@ -495,8 +478,8 @@ function TeleprompterScreen({ route, navigation }) {
         } catch (error) {
           console.error('Failed to play clapping sound', error);
         }
-      } else if (!isWarmUpMode && CLAPPING_PROMPT_IDS.includes(selectedPromptId)) {
-           console.log('Clapping appropriate, but sound object not loaded.');
+      } else if (!isWarmUpMode && soundsNeeded.clapping) {
+           console.log('Clapping appropriate (from soundAsset), but sound object not loaded.');
       }
       // --- End Play Clapping Sound ---
     }

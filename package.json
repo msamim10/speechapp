@@ -10,9 +10,10 @@
     "web": "npx expo start --web"
   },
   "dependencies": {
+    "@expo/config-plugins": "~9.0.0",
     "@expo/metro-runtime": "~4.0.1",
     "@expo/vector-icons": "^14.0.2",
-    "@react-native-async-storage/async-storage": "^2.1.2",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/slider": "4.5.5",
     "@react-native-google-signin/google-signin": "^13.2.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
@@ -22,7 +23,7 @@
     "expo-auth-session": "^6.0.3",
     "expo-av": "~15.0.2",
     "expo-crypto": "^14.0.2",
-    "expo-dev-client": "^5.0.20",
+    "expo-dev-client": "~5.0.20",
     "expo-image-picker": "^16.0.6",
     "expo-linear-gradient": "~14.0.2",
     "expo-random": "^14.0.1",

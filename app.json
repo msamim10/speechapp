@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.anonymous.PublicSpeakingApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
