@@ -12,6 +12,7 @@ import {
   Alert,
   ScrollView,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import colors from './constants/colors';
@@ -20,6 +21,7 @@ import { categoryImageSources, preloadImages, defaultImages } from './constants/
 import { useUser } from './context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { promptsData } from './data/prompts';
+import { LinearGradient } from 'expo-linear-gradient';
 
 // Helper function to format seconds
 const formatSeconds = (totalSeconds) => {
@@ -72,7 +74,7 @@ const formatTimestamp = (timestamp) => {
 const screenWidth = Dimensions.get('window').width;
 const horizontalPadding = 20; // Consistent padding for sections
 const featuredCardWidth = screenWidth - horizontalPadding * 2;
-const recentCardWidth = screenWidth * 0.4; // Smaller width for recent cards
+const recentCardWidth = screenWidth * 0.48; // Increased from 0.4
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -112,12 +114,12 @@ function HomeScreen() {
           }
         }
 
-        // --- Load Recent Prompts ---
-        const recentJson = await AsyncStorage.getItem('@recentPromptIds');
-        if (isMounted && recentJson) {
-          const recentIds = JSON.parse(recentJson);
-          const fullRecentPrompts = recentIds.map(id => promptsData.flat().find(p => p.id === id)).filter(Boolean);
-          setRecentPrompts(fullRecentPrompts);
+        // --- Load 5 Random Prompts for "Explore Prompts" ---
+        if (isMounted && promptsData && promptsData.flat().length > 0) {
+            const allPrompts = promptsData.flat();
+            // Shuffle all prompts and take the first 5
+            const shuffledPrompts = [...allPrompts].sort(() => 0.5 - Math.random());
+            setRecentPrompts(shuffledPrompts.slice(0, 5));
         }
 
         // --- Select Featured Prompt ---
@@ -196,7 +198,7 @@ function HomeScreen() {
     });
   };
 
-  const handleGoToProfile = () => navigation.navigate('UserProfile');
+  const handleGoToProfile = () => navigation.navigate('ProfileTab', { screen: 'UserProfile' });
 
   // <<< Implement Select Recent/Featured Prompt Navigation >>>
   const handleSelectRecentPrompt = (prompt) => {
@@ -256,6 +258,104 @@ function HomeScreen() {
     </TouchableOpacity>
   );
 
+  const renderHeader = () => (
+    <View style={styles.header}>
+      <View style={styles.headerContent}>
+        <Text style={styles.greeting}>Welcome back, {username || 'Speaker'}!</Text>
+        {/* <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
+          <Ionicons name="person-circle-outline" size={30} color={colors.primary} />
+        </TouchableOpacity> */}
+      </View>
+      <View style={styles.statsOuterContainer}>
+        <View style={styles.statCard}>
+          <Ionicons name="flame-outline" size={28} color={colors.primary} style={styles.statIcon} />
+          <Text style={styles.statValue}>{currentStreak || 0}</Text>
+          <Text style={styles.statLabel}>Day Streak</Text>
+        </View>
+        <View style={styles.statCard}>
+          <Ionicons name="barbell-outline" size={28} color={colors.primary} style={styles.statIcon} />
+          <Text style={styles.statValue}>{formatSeconds(totalPracticeTime)}</Text>
+          <Text style={styles.statLabel}>Total Practice</Text>
+        </View>
+        <View style={styles.statCard}>
+          <Ionicons name="calendar-outline" size={28} color={colors.primary} style={styles.statIcon} />
+          <Text style={styles.statValue}>{formatTimestamp(lastPracticedTimestamp).split(' at ')[0]}</Text>
+          <Text style={styles.statLabel}>Last Practice</Text>
+          {lastPracticedTimestamp && formatTimestamp(lastPracticedTimestamp).includes('at') && (
+            <Text style={styles.statSubLabel}>{formatTimestamp(lastPracticedTimestamp).split(' at ')[1]}</Text>
+          )}
+        </View>
+      </View>
+    </View>
+  );
+
+  const renderFeaturedPrompt = () => (
+    <View style={styles.featuredSectionContainer}> 
+      <Text style={styles.featuredSectionTitle}>Featured Practice</Text>
+      <TouchableOpacity
+        style={styles.featuredCard}
+        onPress={handleSelectFeaturedPrompt}
+        activeOpacity={0.9}
+      >
+        <ImageBackground
+          source={featuredPrompt?.image || defaultImages.promptBackground}
+          style={styles.featuredCardBackground}
+          imageStyle={styles.featuredCardImageStyle}
+        >
+          <LinearGradient
+            colors={['transparent', 'rgba(0,0,0,0.8)']}
+            style={styles.featuredGradient}
+          >
+            <View style={styles.featuredContent}>
+              <Text style={styles.featuredTitle}>{featuredPrompt?.title || 'Loading...'}</Text>
+              <Text style={styles.featuredDescription} numberOfLines={2}>
+                {featuredPrompt?.description || 'Select to start practicing'}
+              </Text>
+            </View>
+          </LinearGradient>
+        </ImageBackground>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const renderQuickActions = () => (
+    <View style={styles.quickActionsContainer}>
+      <TouchableOpacity
+        style={[styles.quickActionButton, styles.primaryAction]}
+        onPress={handleStartPractice}
+      >
+        <Ionicons name="mic" size={24} color="white" />
+        <Text style={styles.quickActionText}>Start Practice</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.quickActionButton, styles.secondaryAction]}
+        onPress={handleQuickPractice}
+      >
+        <Ionicons name="flash" size={24} color={colors.primary} />
+        <Text style={[styles.quickActionText, { color: colors.primary }]}>Quick Practice</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const renderRecentPrompts = () => (
+    <View style={styles.recentSection}>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Explore Prompts</Text>
+        <TouchableOpacity onPress={handleStartPractice}>
+          <Text style={styles.seeAllButton}>See All</Text>
+        </TouchableOpacity>
+      </View>
+      <FlatList
+        data={recentPrompts}
+        renderItem={renderRecentPromptCard}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.recentList}
+      />
+    </View>
+  );
+
   // --- Loading State ---
   if (!imagesReady || isUserLoading) {
     return (
@@ -265,101 +365,18 @@ function HomeScreen() {
     );
   }
 
-  // --- Formatted Values ---
-  const formattedLastPracticed = formatTimestamp(lastPracticedTimestamp);
-  const formattedTotalTime = formatSeconds(totalPracticeTime);
-
   return (
-    <SafeAreaView style={styles.safeArea}>
-       {/* Profile/Settings Button - Top Left */}
-      <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
-        <Ionicons name="settings-outline" size={28} color={colors.textPrimary} />
-      </TouchableOpacity>
-
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" />
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={styles.scrollContentContainer}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
       >
-        {/* Welcome Header */}
-        <Text style={styles.welcomeHeader}>Welcome, {username || 'User'}!</Text>
-
-        {/* CTA Buttons */}
-        <View style={styles.ctaButtonContainer}>
-          <TouchableOpacity style={[styles.ctaButton, styles.primaryButton]} onPress={handleStartPractice}>
-            <Text style={[styles.ctaButtonText, styles.primaryButtonText]}>Start Practice</Text>
-          </TouchableOpacity>
-          {/* <TouchableOpacity style={[styles.ctaButton, styles.secondaryButton]} onPress={handleQuickPractice}>
-            <Ionicons name="pulse-outline" size={20} color={colors.primary} style={styles.secondaryButtonIcon} />
-            <Text style={[styles.ctaButtonText, styles.secondaryButtonText]}>Quick Warm-Up</Text>
-          </TouchableOpacity> */}
-        </View>
-
-        {/* Stats Section */}
-        <View style={styles.statsContainer}>
-            <View style={styles.statItem}>
-                <Ionicons name="flame-outline" size={26} color={colors.textSecondary} style={styles.statIcon} />
-                <Text style={styles.statValue}>{currentStreak}</Text>
-                <Text style={styles.statLabel}>Day Streak</Text>
-            </View>
-            <View style={styles.statItem}>
-                <Ionicons name="time-outline" size={26} color={colors.textSecondary} style={styles.statIcon} />
-                <Text style={styles.statValue}>{formattedTotalTime}</Text>
-                <Text style={styles.statLabel}>Total Time</Text>
-            </View>
-            <View style={styles.statItem}>
-                <Ionicons name="calendar-outline" size={26} color={colors.textSecondary} style={styles.statIcon} />
-                {/* Adjusted layout for last practiced */}
-                <Text style={[styles.statValue, styles.statValueSmall]}>{formattedLastPracticed.split(' at ')[0]}</Text>
-                {formattedLastPracticed !== 'Never' && <Text style={styles.statLabelSmall}>{formattedLastPracticed.split(' at ')[1]}</Text>}
-                <Text style={styles.statLabel}>Last Practiced</Text>
-            </View>
-        </View>
-
-        {/* Featured Prompt Section */}
-        {featuredPrompt && (
-            <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Featured Practice</Text>
-                <TouchableOpacity
-                  style={styles.featuredCard}
-                  onPress={handleSelectFeaturedPrompt}
-                  activeOpacity={0.8}
-                >
-                  <ImageBackground
-                      source={featuredPrompt.image || defaultImages.promptBackground}
-                      style={styles.featuredCardBackground}
-                      imageStyle={styles.featuredCardImageStyle}
-                      resizeMode="cover"
-                  >
-                    <View style={styles.featuredCardOverlay} />
-                     <View style={styles.featuredTextContainer}>
-                        <Text style={styles.featuredCardTitle} numberOfLines={2}>{featuredPrompt.title}</Text>
-                        <Text style={styles.featuredCardCategory} numberOfLines={1}>{featuredPrompt.category}</Text>
-                     </View>
-                  </ImageBackground>
-                </TouchableOpacity>
-            </View>
-        )}
-
-        {/* Recently Practiced Section */}
-        {recentPrompts.length > 0 && (
-            <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Recently Practiced</Text>
-                <FlatList
-                    data={recentPrompts}
-                    renderItem={renderRecentPromptCard}
-                    keyExtractor={(item) => item.id}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.recentListContainer}
-                />
-            </View>
-        )}
-
-        {/* --- Category Section Removed --- */}
-        {/* --- Tip Section Styles Removed --- */}
-        {/* --- Resume Section Styles Removed (Can be added back if needed) --- */}
-
+        {renderHeader()}
+        {renderQuickActions()}
+        {renderFeaturedPrompt()}
+        {renderRecentPrompts()}
       </ScrollView>
     </SafeAreaView>
   );
@@ -367,24 +384,209 @@ function HomeScreen() {
 
 // --- Stylesheet (Refactored) ---
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight, // Use a light background
+    backgroundColor: '#F8F9FA',
   },
   scrollView: {
     flex: 1,
   },
-  scrollContentContainer: {
-    paddingHorizontal: horizontalPadding,
-    paddingTop: 80, // Increased padding for header/settings button space
-    paddingBottom: 40, // Padding at the bottom
+  scrollContent: {
+    paddingBottom: 24,
+  },
+  header: {
+    padding: 20,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E9ECEF',
+  },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  greeting: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#212529',
   },
   profileButton: {
+    padding: 8,
+  },
+  statsOuterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 16,
+    gap: 10,
+  },
+  statCard: {
+    flex: 1,
+    backgroundColor: colors.white,
+    borderRadius: 12,
+    padding: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+    elevation: 2,
+    minHeight: 110,
+    justifyContent: 'center',
+  },
+  statIcon: {
+    marginBottom: 8,
+  },
+  statValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primary,
+    marginBottom: 2,
+    textAlign: 'center',
+  },
+  statLabel: {
+    fontSize: 12,
+    color: '#6C757D',
+    textAlign: 'center',
+  },
+  statSubLabel: {
+    fontSize: 10,
+    color: '#888',
+    textAlign: 'center',
+    marginTop: 2,
+  },
+  quickActionsContainer: {
+    flexDirection: 'row',
+    padding: 20,
+    gap: 12,
+  },
+  quickActionButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    borderRadius: 12,
+    gap: 8,
+  },
+  primaryAction: {
+    backgroundColor: colors.primary,
+  },
+  secondaryAction: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: colors.primary,
+  },
+  quickActionText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'white',
+  },
+  featuredSectionContainer: {
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  featuredSectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#212529',
+    marginBottom: 12,
+  },
+  featuredCard: {
+    height: 300,
+    borderRadius: 16,
+    overflow: 'hidden',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+  },
+  featuredCardBackground: {
+    width: '100%',
+    height: '100%',
+  },
+  featuredCardImageStyle: {
+    borderRadius: 16,
+  },
+  featuredGradient: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    padding: 20,
+  },
+  featuredContent: {
+    gap: 8,
+  },
+  featuredTitle: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '700',
+  },
+  featuredDescription: {
+    color: 'white',
+    fontSize: 16,
+    opacity: 0.9,
+  },
+  recentSection: {
+    paddingHorizontal: 20,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#212529',
+  },
+  seeAllButton: {
+    fontSize: 14,
+    color: colors.primary,
+    fontWeight: '600',
+  },
+  recentList: {
+    paddingRight: 20,
+    paddingBottom: 10,
+  },
+  recentCard: {
+    width: recentCardWidth,
+    height: 190,
+    marginRight: 12,
+    borderRadius: 12,
+    overflow: 'hidden',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  recentCardBackground: {
+    width: '100%',
+    height: '100%',
+  },
+  recentCardImageStyle: {
+    borderRadius: 12,
+  },
+  recentCardOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.3)', // Dark overlay for text visibility
+    borderRadius: 12,
+  },
+  recentCardTitle: {
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 55 : 45, // Adjust for status bar
-    left: horizontalPadding,
-    zIndex: 10,
-    padding: 5, // Make tappable area larger
+    bottom: 10,
+    left: 10,
+    right: 10,
+    color: 'white', // White text color
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: colors.backgroundLight, // Use a light background
   },
   loadingContainer: {
     flex: 1,
@@ -395,193 +597,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.primaryDark,
   },
-  welcomeHeader: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: colors.textPrimary,
-    marginBottom: 25,
-    textAlign: 'center', // Center the welcome text
-  },
-  ctaButtonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between', // Space buttons apart
-    marginBottom: 35,
-    width: '100%', // Ensure container spans width for spacing
-  },
-  ctaButton: {
-    paddingVertical: 14,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flex: 1, // Make buttons share space
-    marginHorizontal: 5, // Add slight gap between buttons
-    shadowColor: colors.shadowColor,
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 4,
-  },
-  primaryButton: {
-      backgroundColor: colors.primary, // Blue color from screenshot
-  },
-  secondaryButton: {
-      backgroundColor: colors.white, // White background
-      borderWidth: 1.5,
-      borderColor: colors.borderLight, // Light border
-  },
-  ctaButtonText: {
-    fontSize: 16,
-    fontWeight: '600', // Semi-bold
-  },
-  primaryButtonText: {
-    color: colors.white,
-  },
-  secondaryButtonText: {
-    color: colors.primary, // Blue text
-  },
-  secondaryButtonIcon: {
-    marginRight: 6,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 40,
-    width: '100%',
-    paddingVertical: 15, // Add padding inside stats area
-    backgroundColor: colors.white, // White background for stats box effect
-    borderRadius: 12,
-    shadowColor: colors.shadowColor,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  statItem: {
-    alignItems: 'center',
-    flex: 1, // Distribute space evenly
-  },
-  statIcon: {
-    marginBottom: 8,
-    color: colors.textSecondary, // Muted icon color
-  },
-  statValue: {
-    fontSize: 22, // Larger value text
-    fontWeight: 'bold',
-    color: colors.textPrimary,
-    marginBottom: 2,
-  },
-  statValueSmall: { // For multi-line stats like 'Last Practiced'
-      fontSize: 14,
-      fontWeight: '600',
-      color: colors.textPrimary,
-      textAlign: 'center',
-  },
-  statLabel: {
-    fontSize: 13,
-    color: colors.textSecondary,
-    marginTop: 2,
-  },
-  statLabelSmall: { // Smaller label for time part of 'Last Practiced'
-      fontSize: 11,
-      color: colors.textSecondary,
-  },
-  // Removed statSeparator - using spacing instead
-
-  sectionContainer: {
-    marginBottom: 30, // Space between sections
-    width: '100%',
-  },
-  sectionTitle: {
-    fontSize: 20, // Larger section titles
-    fontWeight: 'bold',
-    color: colors.textPrimary,
-    marginBottom: 15,
-  },
-
-  // --- Featured Styles (Refined) ---
-  featuredCard: {
-      width: featuredCardWidth,
-      height: featuredCardWidth * 0.55, // Aspect ratio for featured card
-      borderRadius: 15,
-      overflow: 'hidden',
-      backgroundColor: colors.secondaryBackground, // Fallback color
-      shadowColor: colors.shadowColor,
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.15,
-      shadowRadius: 8,
-      elevation: 5,
-  },
-  featuredCardBackground: {
-      flex: 1,
-      justifyContent: 'flex-end',
-  },
-  featuredCardImageStyle: {
-      borderRadius: 15,
-  },
-  featuredCardOverlay: {
-      ...StyleSheet.absoluteFillObject,
-      backgroundColor: 'rgba(0, 0, 0, 0.35)', // Linear gradient would be nicer
-      borderRadius: 15,
-  },
-   featuredTextContainer: { // Container for text over image
-       padding: 15,
-   },
-  featuredCardTitle: {
-      color: colors.white,
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginBottom: 3, // Space between title and category
-  },
-   featuredCardCategory: {
-      color: colors.white,
-      fontSize: 13,
-      fontWeight: '500',
-      opacity: 0.85,
-  },
-
-  // --- Recent Styles (Refined) ---
-  recentListContainer: {
-    paddingRight: horizontalPadding, // Ensure last item isn't cut off
-    paddingLeft: 2, // Small padding for shadow
-    paddingVertical: 5,
-  },
-  recentCard: {
-    width: recentCardWidth,
-    height: recentCardWidth * 1.25, // Taller aspect ratio for recent cards
-    marginRight: 15,
-    borderRadius: 12,
-    overflow: 'hidden',
-    backgroundColor: colors.white,
-    shadowColor: colors.shadowColor,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  recentCardBackground: {
-      flex: 1,
-      justifyContent: 'flex-end',
-  },
-  recentCardImageStyle: {
-      borderRadius: 12,
-  },
-  recentCardOverlay: {
-      ...StyleSheet.absoluteFillObject,
-      backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      borderRadius: 12,
-  },
-  recentCardTitle: {
-      color: colors.white,
-      fontSize: 14,
-      fontWeight: '600', // Semi-bold
-      padding: 10, // Increased padding
-  },
-
-  // --- Category Grid Styles Removed ---
-  // --- Tip Section Styles Removed ---
-  // --- Resume Section Styles Removed (Can be added back if needed) ---
-
 });
 
 export default HomeScreen; 

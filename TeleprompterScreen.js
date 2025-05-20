@@ -897,9 +897,13 @@ function TeleprompterScreen({ route, navigation }) {
   };
 
   const handleGoBack = async () => {
-      console.log("Go Back requested");
-      // Time saving now handled by the unmount effect
-      // await stopScrolling(); // No longer needed here, unmount effect handles it
+      console.log("Go Back requested from TeleprompterScreen");
+      // Log current navigation state for diagnostics
+      console.log("Current Navigation State:", JSON.stringify(navigation.getState(), null, 2));
+      
+      // Ensure scrolling and associated sounds/timers are stopped before going back
+      await stopScrolling(); // <<< ADDED THIS LINE
+
       navigation.goBack();
   };
 

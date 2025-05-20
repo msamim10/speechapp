@@ -20,11 +20,17 @@ import ComingSoonScreen from './ComingSoonScreen';
 import WarmUpScreen from './WarmUpScreen'; 
 import UserProfileScreen from './UserProfileScreen'; 
 import SettingsScreen from './SettingsScreen'; 
+import GetStartedScreen from './GetStartedScreen';
+import SignInScreen from './SignInScreen';
+import OnboardingScreen1 from './screens/OnboardingScreen1';
+import OnboardingScreen2 from './screens/OnboardingScreen2';
+import OnboardingScreen3 from './screens/OnboardingScreen3';
 
 const PracticeStackNav = createNativeStackNavigator(); 
 const Tab = createBottomTabNavigator();
 const AuthStackNav = createNativeStackNavigator();
 const MainStackNav = createNativeStackNavigator();
+const ProfileStackNav = createNativeStackNavigator();
 
 function PracticeStack() {
   return (
@@ -40,12 +46,24 @@ function PracticeStack() {
   );
 }
 
+function ProfileStack() {
+  return (
+    <ProfileStackNav.Navigator
+      initialRouteName="UserProfile"
+      screenOptions={{ headerShown: false }}
+    >
+      <ProfileStackNav.Screen name="UserProfile" component={UserProfileScreen} />
+      <ProfileStackNav.Screen name="Settings" component={SettingsScreen} />
+    </ProfileStackNav.Navigator>
+  );
+}
+
 function MainTabs() {
   return (
     <Tab.Navigator
       initialRouteName="HomeTab"
       screenOptions={({ route }) => ({ 
-        tabBarActiveTintColor: colors.accentTeal,
+        tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.playfulIconInactive,
         tabBarStyle: { display: getTabBarVisibility(route) }, 
         tabBarIcon: ({ focused, color, size }) => {
@@ -54,7 +72,9 @@ function MainTabs() {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'PracticeTab') {
             iconName = focused ? 'mic' : 'mic-outline';
-          } 
+          } else if (route.name === 'ProfileTab') {
+            iconName = focused ? 'person-circle' : 'person-circle-outline';
+          }
           return iconName ? <Ionicons name={iconName} size={size} color={color} /> : null;
         },
         tabBarLabel: ({ focused, color }) => {
@@ -63,6 +83,8 @@ function MainTabs() {
             label = 'Home';
           } else if (route.name === 'PracticeTab') {
             label = 'Practice';
+          } else if (route.name === 'ProfileTab') {
+            label = 'Profile';
           }
           return label ? <Text style={[styles.tabLabelStyle, { color: color }]}>{label}</Text> : null;
         },
@@ -71,6 +93,7 @@ function MainTabs() {
     >
       <Tab.Screen name="HomeTab" component={HomeScreen} />
       <Tab.Screen name="PracticeTab" component={PracticeStack} />
+      <Tab.Screen name="ProfileTab" component={ProfileStack} />
     </Tab.Navigator>
   );
 }
@@ -84,24 +107,31 @@ function MainStack() {
         options={{ headerShown: false }} 
       />
       <MainStackNav.Screen 
-        name="Settings" 
-        component={SettingsScreen} 
-        options={{ 
-          title: 'Settings', 
-          headerBackTitleVisible: false,
-        }}
+        name="WarmUp" 
+        component={WarmUpScreen} 
+        options={{ headerShown: false }}
       />
-      <MainStackNav.Screen name="WarmUp" component={WarmUpScreen} />
-      <MainStackNav.Screen name="UserProfile" component={UserProfileScreen} />
-      <MainStackNav.Screen name="TeleprompterScreen" component={TeleprompterScreen} /> 
+      <MainStackNav.Screen 
+        name="TeleprompterScreen" 
+        component={TeleprompterScreen} 
+        options={{ headerShown: false }}
+      /> 
     </MainStackNav.Navigator>
   );
 }
 
 function AuthStack() {
   return (
-    <AuthStackNav.Navigator screenOptions={{ headerShown: false }}>
+    <AuthStackNav.Navigator 
+      initialRouteName="Onboarding1"
+      screenOptions={{ headerShown: false }}
+    >
+      <AuthStackNav.Screen name="Onboarding1" component={OnboardingScreen1} />
+      <AuthStackNav.Screen name="Onboarding2" component={OnboardingScreen2} />
+      <AuthStackNav.Screen name="Onboarding3" component={OnboardingScreen3} />
       <AuthStackNav.Screen name="Welcome" component={WelcomeScreen} />
+      <AuthStackNav.Screen name="GetStarted" component={GetStartedScreen} />
+      <AuthStackNav.Screen name="SignIn" component={SignInScreen} />
     </AuthStackNav.Navigator>
   );
 }

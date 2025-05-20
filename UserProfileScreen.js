@@ -3,28 +3,29 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   Alert,
   Image,
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
+  ScrollView,
+  SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import { useUser } from './context/UserContext';
 import * as ImagePicker from 'expo-image-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import colors from './constants/colors';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const LOGOUT_TIME_KEY = '@userProfile_lastLogoutTime';
 
 function UserProfileScreen() {
   const navigation = useNavigation();
   const {
     username: currentUsername,
     avatarSource,
+    currentStreak,
+    totalPracticeTime,
     isLoading: isContextLoading,
     updateUsername,
     updateAvatarUri,
@@ -34,7 +35,7 @@ function UserProfileScreen() {
   const [editingUsername, setEditingUsername] = useState('');
 
   useEffect(() => {
-    if (!isContextLoading) {
+    if (!isContextLoading && currentUsername) {
       setEditingUsername(currentUsername);
     }
   }, [currentUsername, isContextLoading]);
@@ -45,17 +46,13 @@ function UserProfileScreen() {
       Alert.alert('Permission Required', 'Sorry, we need camera roll permissions to make this work!');
       return;
     }
-
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [1, 1],
       quality: 0.5,
     });
-
-    console.log(result);
-
-    if (!result.canceled) {
+    if (!result.canceled && result.assets && result.assets.length > 0) {
       await updateAvatarUri(result.assets[0].uri);
       Alert.alert('Success', 'Avatar updated!');
     }
@@ -70,7 +67,7 @@ function UserProfileScreen() {
       return;
     }
     try {
-      await updateUsername(editingUsername);
+      await updateUsername(editingUsername.trim());
       Alert.alert('Success', 'Username updated successfully.');
     } catch (e) {
       console.error('Failed to save username via context.', e);
@@ -81,169 +78,260 @@ function UserProfileScreen() {
   const handleLogout = async () => {
     try {
       await signOut();
-      navigation.navigate('Welcome');
     } catch (e) {
       console.error('Failed to logout:', e);
       Alert.alert('Error', 'Failed to logout. Please try again.');
     }
   };
 
-  const handleGoBack = () => {
-    navigation.goBack();
+  const formatPracticeTime = (seconds) => {
+    if (seconds == null || isNaN(seconds) || seconds < 0) return '0s';
+    if (seconds === 0) return '0s';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    return `${h > 0 ? h + 'h ' : ''}${m > 0 ? m + 'm ' : ''}${s}s`;
   };
 
   if (isContextLoading) {
     return (
-      <View style={styles.loadingContainer}>
-        <Text>Loading profile...</Text>
-      </View>
+      <SafeAreaView style={styles.loadingContainerSafeArea}>
+        <ActivityIndicator size="large" color={colors.primary} />
+        <Text style={styles.loadingText}>Loading Profile...</Text>
+      </SafeAreaView>
     );
   }
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-        <Ionicons name="arrow-back" size={28} color={colors.primaryDark} />
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={pickImage} style={styles.avatarTouchable}>
-        <Image source={avatarSource} style={styles.avatar} />
-        <View style={styles.editIconContainer}>
-            <Ionicons name="pencil" size={18} color={colors.textLight} />
-        </View>
-      </TouchableOpacity>
-
-      <View style={styles.usernameSection}>
-          <Text style={styles.usernameDisplay}>{currentUsername}</Text>
+    <SafeAreaView style={styles.safeAreaContainer}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.headerButton}>
+          <Ionicons name="arrow-back" size={28} color={colors.primary} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Profile</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Settings')} style={styles.headerButton}>
+          <Ionicons name="settings-outline" size={24} color={colors.primary} />
+        </TouchableOpacity>
       </View>
 
-      <View style={styles.fieldContainer}>
-        <View style={styles.inputRow}>
-            <TextInput
-              style={styles.input}
-              value={editingUsername}
-              onChangeText={setEditingUsername}
-              placeholder="Edit username"
-              placeholderTextColor={colors.textSecondary}
-            />
-            {editingUsername !== currentUsername && editingUsername.trim() !== '' && (
-                 <TouchableOpacity onPress={handleSaveUsername} style={styles.saveButton}>
-                    <Ionicons name="checkmark-circle" size={28} color={colors.success} />
-                 </TouchableOpacity>
-            )}
-        </View>
-      </View>
-
-      <TouchableOpacity 
-        onPress={handleLogout} 
-        style={styles.logoutButton}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
       >
-        <Ionicons name="log-out-outline" size={24} color={colors.error} />
-        <Text style={styles.logoutText}>Logout</Text>
-      </TouchableOpacity>
+        <ScrollView contentContainerStyle={styles.scrollContentContainer}>
+          <View style={styles.profileSection}>
+            <TouchableOpacity onPress={pickImage} style={styles.avatarTouchable}>
+              <Image source={avatarSource} style={styles.avatar} />
+              <View style={styles.avatarEditIconContainer}>
+                <Ionicons name="camera-reverse-outline" size={20} color={colors.white} />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.usernameDisplay}>{currentUsername}</Text>
+          </View>
 
-      <View style={{ flex: 1 }} />
-    </KeyboardAvoidingView>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Edit Username</Text>
+            <View style={styles.inputRow}>
+              <Ionicons name="person-outline" size={20} color={colors.textSecondary} style={styles.inputIcon} />
+              <TextInput
+                style={styles.input}
+                value={editingUsername}
+                onChangeText={setEditingUsername}
+                placeholder="Enter new username"
+                placeholderTextColor={colors.textPlaceholder}
+              />
+              {(editingUsername.trim() !== currentUsername && editingUsername.trim() !== '') && (
+                <TouchableOpacity onPress={handleSaveUsername} style={styles.saveButton}>
+                  <Ionicons name="checkmark-done-outline" size={24} color={colors.primary} />
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+          
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Statistics</Text>
+            <View style={styles.statsGrid}>
+              <View style={styles.statItem}>
+                <Ionicons name="flame-outline" size={28} color={colors.primary} />
+                <Text style={styles.statValue}>{currentStreak || 0}</Text>
+                <Text style={styles.statLabel}>Day Streak</Text>
+              </View>
+              <View style={styles.statItem}>
+                <Ionicons name="time-outline" size={28} color={colors.primary} />
+                <Text style={styles.statValue}>{formatPracticeTime(totalPracticeTime)}</Text>
+                <Text style={styles.statLabel}>Total Practice</Text>
+              </View>
+            </View>
+          </View>
+
+          <TouchableOpacity onPress={handleLogout} style={[styles.button, styles.logoutButton]}>
+            <Ionicons name="log-out-outline" size={22} color={colors.white} style={styles.buttonIcon} />
+            <Text style={styles.buttonText}>Logout</Text>
+          </TouchableOpacity>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  loadingContainer: {
+  safeAreaContainer: {
+    flex: 1,
+    backgroundColor: colors.backgroundLight || '#F8F9FA',
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
+  },
+  loadingContainerSafeArea: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundLight || '#F8F9FA',
   },
-  container: {
-    flex: 1,
-    backgroundColor: colors.backgroundLight,
+  loadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: colors.textSecondary,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 80,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderLight || '#E9ECEF',
+    backgroundColor: colors.white || 'white',
+  },
+  headerButton: {
+    padding: 5,
+    width: 38,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.textPrimary || '#212529',
+  },
+  scrollContentContainer: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  profileSection: {
+    alignItems: 'center',
+    marginBottom: 30,
   },
   avatarTouchable: {
-    alignItems: 'center',
-    marginBottom: 15,
     position: 'relative',
+    marginBottom: 15,
   },
   avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    borderWidth: 3,
-    borderColor: colors.accentTeal,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 4,
+    borderColor: colors.primary,
+    backgroundColor: colors.borderLight,
   },
-  editIconContainer: {
+  avatarEditIconContainer: {
     position: 'absolute',
-    bottom: 0,
-    right: 0,
-    backgroundColor: colors.primaryDark,
-    borderRadius: 15,
-    padding: 5,
+    bottom: 5,
+    right: 5,
+    backgroundColor: colors.primary,
+    borderRadius: 20,
+    padding: 8,
     borderWidth: 2,
-    borderColor: colors.backgroundLight,
-  },
-  usernameSection: {
-      marginBottom: 15,
-      alignItems: 'center',
+    borderColor: colors.white,
   },
   usernameDisplay: {
-      fontSize: 22,
-      fontWeight: '600',
-      color: colors.primaryDark,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.textPrimary || '#212529',
   },
-  fieldContainer: {
-    marginBottom: 20,
+  sectionContainer: {
     width: '100%',
+    marginBottom: 25,
+    backgroundColor: colors.white,
+    borderRadius: 12,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.textPrimary || '#343A40',
+    marginBottom: 15,
   },
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: colors.backgroundLight || '#F8F9FA',
+    borderRadius: 8,
+    paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: colors.borderLight,
-    borderRadius: 12,
-    backgroundColor: colors.backgroundLight,
-    paddingLeft: 15,
-    overflow: 'hidden',
+    borderColor: colors.borderLight || '#DEE2E6',
+  },
+  inputIcon: {
+    marginRight: 10,
   },
   input: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: Platform.OS === 'ios' ? 14 : 10,
     fontSize: 16,
-    color: colors.primaryDark,
+    color: colors.textPrimary || '#343A40',
   },
   saveButton: {
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    padding: 8, 
+    marginLeft: 8,
   },
-  backButton: {
-    position: 'absolute',
-    top: 55,
-    left: 20,
-    zIndex: 10,
-    padding: 8,
+  statsGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
-  logoutButton: {
+  statItem: {
+    alignItems: 'center',
+    padding: 10,
+    flex: 1,
+  },
+  statValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primary,
+    marginTop: 5,
+    marginBottom: 3,
+  },
+  statLabel: {
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  button: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.backgroundLight,
-    borderWidth: 1,
-    borderColor: colors.error,
-    borderRadius: 12,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    marginTop: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 30,
     width: '100%',
+    marginTop: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  logoutText: {
-    color: colors.error,
+  buttonIcon: {
+    marginRight: 10,
+  },
+  logoutButton: {
+    backgroundColor: colors.danger || '#DC3545',
+  },
+  buttonText: {
     fontSize: 16,
     fontWeight: '600',
-    marginLeft: 8,
+    color: colors.white || 'white',
   },
 });
 

@@ -1,9 +1,10 @@
 import React, { createContext, useState, useEffect, useCallback, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import { auth, db } from '../firebase';
-import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
-import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { onAuthStateChanged, signOut as firebaseSignOut, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import { doc, updateDoc, serverTimestamp, setDoc, getDoc } from 'firebase/firestore';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 // Storage Keys
 const USERNAME_KEY = '@userProfile_username';
@@ -45,6 +46,10 @@ const UserContext = createContext({
   updateAvatarUri: async (newUri) => {},
   recordPracticeSession: async () => {},
   signOut: async () => {},
+  googleSignInHandler: async (userNameFromInput) => {
+    console.warn("UserContext: Default googleSignInHandler called. This should be overridden by the provider.");
+    throw new Error("Google Sign-In not implemented in default context.");
+  },
 });
 
 // Create the provider component
@@ -210,6 +215,82 @@ export const UserProvider = ({ children }) => {
     }
   }, []);
 
+  // Function to sign in with Google
+  const googleSignInHandler = useCallback(async (userNameFromInput) => {
+    // Note: GoogleSignin.configure should be called once, typically at app start (e.g., in WelcomeScreen or App.js useEffect)
+    // We assume it has been configured before this handler is called.
+    console.log("UserContext: googleSignInHandler called with name:", userNameFromInput);
+    try {
+      await GoogleSignin.hasPlayServices();
+      const googleResponse = await GoogleSignin.signIn();
+      console.log("UserContext: Raw googleResponse from GoogleSignin.signIn():", JSON.stringify(googleResponse, null, 2));
+
+      // Correctly destructure from googleResponse.data
+      const { idToken, user: googleUserInfo } = googleResponse?.data || {}; 
+
+      if (!idToken) {
+        console.error("UserContext: idToken is missing from Google response. Full response was:", JSON.stringify(googleResponse, null, 2));
+        throw new Error('Google Sign-In failed: No ID token received from response.data.');
+      }
+
+      let finalName = userNameFromInput;
+      if (!finalName && googleUserInfo?.name) {
+        finalName = googleUserInfo.name.split(' ')[0]; // Use first name from Google
+      } else if (!finalName) {
+        finalName = DEFAULT_USERNAME; // Fallback name
+      }
+
+      // Update username in context and AsyncStorage immediately
+      // This might be slightly redundant if auth state change also loads it, but ensures UI consistency.
+      try {
+        await updateUsername(finalName); 
+      } catch (nameUpdateError) {
+        console.warn("UserContext: Failed to update username during sign-in, proceeding:", nameUpdateError);
+      }
+
+      const credential = GoogleAuthProvider.credential(idToken);
+      const userCredential = await signInWithCredential(auth, credential);
+      const firebaseUser = userCredential.user;
+
+      const userDocRef = doc(db, 'users', firebaseUser.uid);
+      const now = new Date();
+      const userDocSnap = await getDoc(userDocRef);
+      const existingData = userDocSnap.exists() ? userDocSnap.data() : {};
+
+      const userData = {
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+        name: finalName, 
+        photoURL: firebaseUser.photoURL || googleUserInfo?.photo || null,
+        createdAt: existingData.createdAt || now,
+        lastLoginAt: now,
+        loginCount: (existingData.loginCount || 0) + 1,
+        loginHistory: [
+          ...(existingData.loginHistory || []),
+          { timestamp: now, deviceInfo: { platform: Platform.OS, version: Platform.Version?.toString() } }, // Ensure version is string
+        ].slice(-10),
+        updatedAt: now,
+        provider: 'google',
+        isActive: true,
+      };
+
+      await setDoc(userDocRef, userData, { merge: true });
+      console.log("UserContext: Firebase authentication and Firestore save successful for", firebaseUser.uid);
+      // Auth state listener in App.js should handle navigation to MainStack
+      // setUser(firebaseUser) will be triggered by onAuthStateChanged listener
+
+    } catch (error) {
+      console.error("UserContext: Google Sign-In or Firestore error:", error);
+      if (error.code === 'USER_CANCELED') {
+        // Don't show alert here, let calling screen handle UI for cancellation
+      } else if (error.message && error.message.includes('NETWORK_ERROR')) {
+        Alert.alert('Network Error', 'Please check your internet connection and try again.');
+      }
+      // Re-throw for the calling screen to handle specific UI updates (e.g., stop loading indicator)
+      throw error; 
+    }
+  }, [updateUsername]);
+
   // Determine the source for the Image component
   // If avatarUri exists, use it, otherwise use the default placeholder
   const avatarSource = avatarUri ? { uri: avatarUri } : DEFAULT_AVATAR;
@@ -226,7 +307,8 @@ export const UserProvider = ({ children }) => {
       updateUsername,
       updateAvatarUri,
       recordPracticeSession,
-      signOut
+      signOut,
+      googleSignInHandler,
     }}>
       {children}
     </UserContext.Provider>

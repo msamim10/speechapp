@@ -59,12 +59,19 @@ export const clearImageCache = () => {
 };
 
 // Common category image sources pre-required
-export const categoryImageSources = {
-  speeches: require('../assets/speechpics/pic2003.png'),
-  presentations: require('../assets/presentationpics/pic1.png'),
-  social: require('../assets/socialpics/pic4002.png'),
-  interview: require('../assets/interviewpics/pic3921.png'),
-};
+export const categoryImageSources = [
+  { imageKey: 'speeches', image: require('../assets/speechpics/pic2003.png') },
+  { imageKey: 'presentations', image: require('../assets/presentationpics/pic1.png') },
+  { imageKey: 'social', image: require('../assets/socialpics/pic4002.png') },
+  { imageKey: 'interview', image: require('../assets/interviewpics/pic3921.png') },
+  { imageKey: 'fundamentals', image: require('../assets/presentationpics/pic1.png') }, 
+  { imageKey: 'virtual', image: require('../assets/interviewpics/pic3921.png') },
+  { imageKey: 'random', image: require('../assets/speechpics/pic2003.png') },
+  // Added/mapped keys for onboarding screens:
+  { imageKey: 'keynote_speech_stage_audience', image: require('../assets/speechpics/pic2003.png') },
+  { imageKey: 'man_in_suit_speaking_on_stage_side_view', image: require('../assets/presentationpics/pic1.png') }, 
+  { imageKey: 'woman_presenting_on_stage_ted_style', image: require('../assets/speechpics/pic2003.png') }
+];
 
 // Default images used by the app
 export const defaultImages = {

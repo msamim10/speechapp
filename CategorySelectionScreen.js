@@ -1,187 +1,168 @@
 import React from 'react';
-// Import FlatList if planning for many categories, otherwise map is fine for few
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ImageBackground } from 'react-native'; 
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ImageBackground, SafeAreaView, Platform } from 'react-native'; 
 import { useNavigation } from '@react-navigation/native';
-import colors from './constants/colors'; // Import colors
-import Ionicons from '@expo/vector-icons/Ionicons'; // Keep Ionicons
+import colors from './constants/colors';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
+import { categoryImageSources, defaultImages } from './constants/imageUtils'; // Import image sources
 
-// Define categories with background images
-// IMPORTANT: Replace placeholder require() paths with actual image assets!
-const categories = [
-  { id: 'meetings', name: 'Social & Casual', icon: 'briefcase-outline', bgImage: require('./assets/socialpics/pic2789.png') }, // Using social1 image
-  { id: 'speeches', name: 'Speeches', icon: 'megaphone-outline', bgImage: require('./assets/speechpics/pic8222.png') }, // Reused prompt image
-  { id: 'interviews', name: 'Interviews', icon: 'people-outline', bgImage: require('./assets/interviewpics/pic9300.png') }, // Reused prompt image
-  { id: 'presentations', name: 'Presentations', icon: 'easel-outline', bgImage: require('./assets/presentationpics/pic23.png') }, // Reused prompt image
-  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline', bgImage: require('./assets/specificpics/pic2215.png') }, // Reused prompt image
-  { id: 'fundamentals', name: 'Practice Fundamentals', icon: 'school-outline', bgImage: require('./assets/Practicefundamentalpics/mdk.png') }, // Reused prompt image
-  { id: 'virtual', name: 'Virtual Communication', icon: 'laptop-outline', bgImage: require('./assets/vcpics/ChatGPT Image Apr 26, 2025, 07_25_39 PM.png') }, // Reused prompt image
-  { id: 'random', name: 'Random', icon: 'shuffle-outline', bgImage: require('./assets/Practicefundamentalpics/mdk.png') }, // Using fundamentals1 image
-  // Add more categories here
+// Define categories - bgImage will be mapped dynamically
+const AppCategories = [
+  { id: 'meetings', name: 'Social & Casual', icon: 'briefcase-outline', imageKey: 'social' }, 
+  { id: 'speeches', name: 'Speeches', icon: 'megaphone-outline', imageKey: 'speeches' }, 
+  { id: 'interviews', name: 'Interviews', icon: 'people-outline', imageKey: 'interview' }, 
+  { id: 'presentations', name: 'Presentations', icon: 'easel-outline', imageKey: 'presentations' }, 
+  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline', imageKey: 'social' }, // Can reuse or add more specific keys
+  { id: 'fundamentals', name: 'Practice Fundamentals', icon: 'school-outline', imageKey: 'fundamentals' }, // No specific image, will use default
+  { id: 'virtual', name: 'Virtual Communication', icon: 'laptop-outline', imageKey: 'virtual' }, // No specific image, will use default
+  { id: 'random', name: 'Random', icon: 'shuffle-outline', imageKey: 'random' }, // Will use a default or cycle
 ];
+
+// Helper to get image, cycling through available if not specific
+const getImageForCategory = (imageKey, index) => {
+  // Find the specific image source object by imageKey
+  const specificImageSource = categoryImageSources.find(src => src.imageKey === imageKey);
+
+  if (specificImageSource) {
+    return specificImageSource.image; // Return the image path (require statement)
+  }
+  
+  // Fallback logic: Cycle through available images or use default
+  // Ensure we are accessing the .image property from the source objects
+  if (categoryImageSources.length > 0) {
+    return categoryImageSources[index % categoryImageSources.length].image;
+  }
+  
+  return defaultImages.promptBackground; // Fallback to a generic default
+};
 
 function CategorySelectionScreen() {
   const navigation = useNavigation();
 
   const handleSelectCategory = (category) => {
+    // Navigation logic remains largely the same, ensure category.name is used if that's what PromptSelection expects
     if (category.id === 'random') {
-      // Random navigates to PromptSelection with 'All'
       navigation.navigate('PromptSelection', { category: 'All' });
-    } else if (category.name === 'Presentations') {
-      // Presentations navigates to PromptSelection with 'Presentations'
-      navigation.navigate('PromptSelection', { category: 'Presentations' });
-    } else if (category.name === 'Speeches') {
-      // Speeches navigates to PromptSelection with 'Speeches'
-      navigation.navigate('PromptSelection', { category: 'Speeches' });
-    } else if (category.name === 'Interviews') {
-      // Interviews navigates to PromptSelection with 'Interviews'
-      navigation.navigate('PromptSelection', { category: 'Interviews' });
-    } else if (category.name === 'Situational/Specific') {
-      // Situational/Specific navigates to PromptSelection with 'Situational/Specific'
-      navigation.navigate('PromptSelection', { category: 'Situational/Specific' });
-    } else if (category.id === 'meetings') {
-      // Social & Casual navigates to PromptSelection with 'Social & Casual'
-      navigation.navigate('PromptSelection', { category: 'Social & Casual' });
-    } else if (category.name === 'Practice Fundamentals') {
-      navigation.navigate('PromptSelection', { category: 'Practice Fundamentals' });
-    } else if (category.name === 'Virtual Communication') {
-      navigation.navigate('PromptSelection', { category: 'Virtual Communication' });
     } else {
-      // Fallback for any other unexpected category
-      console.warn(`Unhandled category navigation: ${category.name} (ID: ${category.id})`);
-      navigation.navigate('ComingSoonScreen', { categoryName: category.name });
+      // Pass the category name, as PromptSelectionScreen seems to expect it.
+      navigation.navigate('PromptSelection', { category: category.name });
     }
   };
 
-  const handleGoBack = () => {
-    navigation.navigate('HomeTab');
+  const handleGoHome = () => {
+    navigation.navigate('HomeTab'); // Explicitly navigate to HomeTab
   };
 
   return (
-    <View style={styles.safeAreaContainer}>
-      {/* Back Button */}
-      <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-        <Ionicons name="arrow-back" size={28} color={colors.primary} />
-      </TouchableOpacity>
+    <SafeAreaView style={styles.safeAreaContainer}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={handleGoHome} style={styles.headerButton}>
+          <Ionicons name="arrow-back" size={28} color={colors.primary} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Choose a Category</Text>
+        <View style={styles.headerButton} />{/* Placeholder for balance */}
+      </View>
     
-      {/* Added Page Heading */}
-      <Text style={styles.pageHeading}>Choose a Practice Category</Text>
       <ScrollView 
-        contentContainerStyle={styles.container}
-        showsVerticalScrollIndicator={false} // Keep scrollbar hidden
+        contentContainerStyle={styles.scrollContentContainer}
+        showsVerticalScrollIndicator={false}
       >
-        {categories.map((category) => (
+        {AppCategories.map((category, index) => (
           <TouchableOpacity 
             key={category.id} 
-            style={styles.categoryCardTouchable} // Use updated touchable style
+            style={styles.categoryCard}
             onPress={() => handleSelectCategory(category)}
-            activeOpacity={0.8} // Slightly higher opacity for image backgrounds
+            activeOpacity={0.85}
           >
             <ImageBackground 
-              source={category.bgImage} 
-              style={styles.categoryCardBackground}
-              imageStyle={styles.categoryBackgroundImageStyle} // Apply borderRadius to image itself
+              source={getImageForCategory(category.imageKey, index)} 
+              style={styles.cardImageBackground}
+              imageStyle={styles.cardImageStyle}
               resizeMode="cover"
             >
-              {/* Placeholder for lock icon - requires data */}
-              {/* {category.isLocked && (
-                <View style={styles.lockIconContainer}>
-                  <Ionicons name="lock-closed" size={20} color={colors.textLight} />
-                </View>
-              )} */}
-              <View style={styles.cardOverlay}>
-                {/* Added Level Text */}
-                {/* <Text style={styles.levelText}>Level 1</Text> */}
-                <Text style={styles.categoryTitle}>{category.name}</Text>
-              </View>
+              <LinearGradient
+                colors={['transparent', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0.85)']} // Slightly stronger gradient at bottom
+                style={styles.gradientOverlay}
+              >
+                <Text style={styles.cardTitle}>{category.name}</Text>
+              </LinearGradient>
             </ImageBackground>
           </TouchableOpacity>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: colors.background,
-    paddingTop: 50, 
+    backgroundColor: colors.backgroundLight || '#F8F9FA',
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
   },
-  backButton: {
-    position: 'absolute',
-    top: 55,
-    left: 15, 
-    zIndex: 10,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderLight || '#E9ECEF',
+    backgroundColor: colors.white || 'white',
+  },
+  headerButton: {
     padding: 5,
-    // Optional: Add background for better visibility on images near the edge
-    // backgroundColor: 'rgba(255, 255, 255, 0.7)', 
-    // borderRadius: 15,
+    width: 38, // for balance
+    alignItems: 'center',
   },
-  pageHeading: { // Style for the main heading
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.textPrimary || '#212529',
+  },
+  scrollContentContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  categoryCard: {
+    width: '48%',
+    height: 250,
+    marginBottom: 24,
+    borderRadius: 16,
+    overflow: 'hidden',
+    backgroundColor: colors.borderLight,
+    elevation: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.20, 
+    shadowRadius: 5,
+  },
+  cardImageBackground: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  cardImageStyle: {
+     // borderRadius: 16, // ImageBackground itself handles clipping via overflow:hidden on parent
+  },
+  gradientOverlay: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+    paddingTop: 40,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    flex: 1,
+  },
+  cardTitle: {
+    color: colors.textLight,
     fontSize: 24,
     fontWeight: 'bold',
-    color: colors.textPrimary,
-    paddingHorizontal: 20, // Align with content padding
-    marginBottom: 15, // Reduced space below heading
-    marginTop: 10, // Space from top
-    textAlign: 'center', // Center the heading
+    textShadowColor: 'rgba(0, 0, 0, 0.7)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,
   },
-  container: { // Style for ScrollView content
-    alignItems: 'center', // Center cards horizontally
-    paddingHorizontal: 10, // Adjusted horizontal padding for full-width cards
-    paddingBottom: 20, // Padding at the bottom
-    paddingTop: 10, // Reduced padding at the top
-  },
-  categoryCardTouchable: { // Style for the TouchableOpacity wrapper
-    width: '100%', // Make cards full-width relative to container padding
-    minHeight: 180, // Keep increased card height
-    marginBottom: 20, // Keep margin between cards
-    borderRadius: 15, // Apply borderRadius here for clipping ImageBackground
-    overflow: 'hidden', // Ensure ImageBackground respects borderRadius
-    // Add shadow to the touchable wrapper
-    shadowColor: colors.shadowColor, 
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15, 
-    shadowRadius: 8, 
-    elevation: 5, 
-  },
-  categoryCardBackground: { // Style for ImageBackground
-    flex: 1, // Take full space of TouchableOpacity
-    justifyContent: 'flex-end', // Align overlay/text to the bottom
-    // Removed alignItems: 'center' - overlay handles text alignment
-  },
-  categoryBackgroundImageStyle: { // Style passed to imageStyle prop of ImageBackground
-     borderRadius: 15, // Ensures the image itself has rounded corners
-  },
-  cardOverlay: { // Semi-transparent overlay at the bottom
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Slightly darker overlay
-    paddingVertical: 12, // Adjusted vertical padding
-    paddingHorizontal: 12, // Added horizontal padding
-    width: '100%', // Cover full width
-    // Removed alignItems: 'center' - text components handle their own alignment
-  },
-  levelText: { // Style for the "Level X" text
-    color: colors.textLight,
-    fontSize: 12,
-    fontWeight: '600',
-    marginBottom: 2, // Space between level and title
-    opacity: 0.8, // Slightly less prominent
-  },
-  categoryTitle: { // Updated category title style
-    color: colors.textLight, // White text for contrast
-    fontSize: 18, // Increased font size
-    fontWeight: 'bold', // Make bolder
-    // Removed textAlign and marginTop
-  },
-  // Placeholder style for lock icon container
-  // lockIconContainer: {
-  //   position: 'absolute',
-  //   top: 10,
-  //   right: 10,
-  //   backgroundColor: 'rgba(0, 0, 0, 0.4)',
-  //   padding: 4,
-  //   borderRadius: 10,
-  // },
 });
 
 export default CategorySelectionScreen; 

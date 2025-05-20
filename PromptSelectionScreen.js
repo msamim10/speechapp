@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { promptsData } from './data/prompts.js'; // Import the full data
 import colors from './constants/colors'; // Import colors
 import Ionicons from '@expo/vector-icons/Ionicons'; // Ensure Ionicons is imported
+import { useFocusEffect } from '@react-navigation/native';
 
 function PromptSelectionScreen({ route, navigation }) {
   // Get the category passed from HomeScreen
   const { category } = route.params;
+
+  useFocusEffect(
+    useCallback(() => {
+      console.log('PromptSelectionScreen focused');
+      console.log('Navigation state on PromptSelectionScreen focus:', JSON.stringify(navigation.getState(), null, 2));
+      return () => {
+        // Optional: console.log('PromptSelectionScreen unfocused');
+      };
+    }, [navigation])
+  );
 
   // Determine which prompts to display
   const displayPrompts = category === 'All' 
@@ -120,7 +131,7 @@ const styles = StyleSheet.create({
   promptCard: {
     backgroundColor: colors.cardBackground,
     borderRadius: 10,
-    padding: 15,
+    padding: 20,
     marginBottom: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -133,13 +144,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   promptImageThumbnail: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     borderRadius: 8,
     marginRight: 15,
   },
   promptTitle: { 
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '500',
     color: colors.textPrimary,
     flex: 1,
