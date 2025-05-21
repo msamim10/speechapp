@@ -23,9 +23,7 @@ import SettingsScreen from './SettingsScreen';
 import GetStartedScreen from './GetStartedScreen';
 import SignInScreen from './SignInScreen';
 import SignUpScreen from './SignUpScreen';
-import OnboardingScreen1 from './screens/OnboardingScreen1';
-import OnboardingScreen2 from './screens/OnboardingScreen2';
-import OnboardingScreen3 from './screens/OnboardingScreen3';
+import OnboardingFlowScreen from './screens/OnboardingFlowScreen';
 
 const PracticeStackNav = createNativeStackNavigator(); 
 const Tab = createBottomTabNavigator();
@@ -124,12 +122,10 @@ function MainStack() {
 function AuthStack() {
   return (
     <AuthStackNav.Navigator 
-      initialRouteName="Onboarding1"
+      initialRouteName="OnboardingFlow"
       screenOptions={{ headerShown: false }}
     >
-      <AuthStackNav.Screen name="Onboarding1" component={OnboardingScreen1} />
-      <AuthStackNav.Screen name="Onboarding2" component={OnboardingScreen2} />
-      <AuthStackNav.Screen name="Onboarding3" component={OnboardingScreen3} />
+      <AuthStackNav.Screen name="OnboardingFlow" component={OnboardingFlowScreen} />
       <AuthStackNav.Screen name="Welcome" component={WelcomeScreen} />
       <AuthStackNav.Screen name="GetStarted" component={GetStartedScreen} />
       <AuthStackNav.Screen name="SignIn" component={SignInScreen} />
