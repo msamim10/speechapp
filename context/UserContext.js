@@ -29,6 +29,14 @@ const isYesterday = (d1, d2) => {
   yesterday.setDate(d2.getDate() - 1);
   return isSameDay(d1, yesterday);
 };
+
+// --- Name Helper Function ---
+const getFirstName = (fullName) => {
+  if (!fullName || typeof fullName !== 'string') {
+    return ''; // Return empty string or a default if no name
+  }
+  return fullName.split(' ')[0]; // Get the first part of the name
+};
 // --- End Date Helpers ---
 
 // Create the context
@@ -64,12 +72,12 @@ export const UserProvider = ({ children }) => {
   // Listen for Firebase auth state changes
   useEffect(() => {
     console.log("🔄 UserContext: Setting up auth state listener");
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("🔄 UserContext: Auth state changed, user:", user ? user.uid : "null");
-      setUser(user);
-      if (user) {
-        console.log("🔄 UserContext: User is signed in, loading data");
-        loadUserData();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("🔄 UserContext: Auth state changed, user:", currentUser ? currentUser.uid : "null");
+      setUser(currentUser);
+      if (currentUser) {
+        console.log("🔄 UserContext: User is signed in, loading data for UID:", currentUser.uid);
+        loadUserDataFromFirestore(currentUser);
       } else {
         console.log("🔄 UserContext: User is signed out, resetting to defaults");
         setUsername(DEFAULT_USERNAME);
@@ -86,19 +94,50 @@ export const UserProvider = ({ children }) => {
     };
   }, []);
 
-  // Load user data from storage
-  const loadUserData = async () => {
-    console.log("📥 UserContext: Starting to load user data");
+  // Load user data from storage AND FIRESTORE
+  const loadUserDataFromFirestore = async (firebaseUser) => {
+    if (!firebaseUser || !firebaseUser.uid) {
+      console.warn("⚠️ UserContext: loadUserDataFromFirestore called without a firebaseUser or UID.");
+      setIsLoading(false);
+      return;
+    }
+    console.log("📥 UserContext: Starting to load user data from Firestore for UID:", firebaseUser.uid);
     setIsLoading(true);
+    let displayNameFromStore = null;
+    let finalUsername = DEFAULT_USERNAME;
+
     try {
-      const storedUsername = await AsyncStorage.getItem(USERNAME_KEY);
-      console.log("📥 UserContext: Loaded stored username:", storedUsername);
-      
+      const userDocRef = doc(db, 'users', firebaseUser.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        console.log(" Firestore user data:", userData);
+        displayNameFromStore = userData.displayName;
+        if (displayNameFromStore) {
+          finalUsername = getFirstName(displayNameFromStore);
+        } else if (firebaseUser.email) { // Fallback to email prefix if displayName is missing
+          finalUsername = getFirstName(firebaseUser.email.split('@')[0]);
+        }
+        // Persist the determined username to AsyncStorage
+        await AsyncStorage.setItem(USERNAME_KEY, finalUsername);
+      } else {
+        console.log(" User document does not exist in Firestore. Will use default/email-based name.");
+        // If no Firestore doc, try to construct a name from Firebase Auth user email if available
+        if (firebaseUser.email) {
+          finalUsername = getFirstName(firebaseUser.email.split('@')[0]);
+          await AsyncStorage.setItem(USERNAME_KEY, finalUsername); // Save it
+        } else {
+          await AsyncStorage.setItem(USERNAME_KEY, DEFAULT_USERNAME); // Save default
+        }
+      }
+      setUsername(finalUsername);
+
+      // Load other data from AsyncStorage as before
       const storedAvatarUri = await AsyncStorage.getItem(AVATAR_URI_KEY);
       const storedLastPracticed = await AsyncStorage.getItem(LAST_PRACTICED_KEY);
       const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
 
-      setUsername(storedUsername !== null ? storedUsername : DEFAULT_USERNAME);
       setAvatarUri(storedAvatarUri);
 
       if (storedLastPracticed) {
@@ -114,37 +153,44 @@ export const UserProvider = ({ children }) => {
         setCurrentStreak(initialStreak);
       }
     } catch (e) {
-      console.error("❌ UserContext: Failed to load user data:", e);
+      console.error("❌ UserContext: Failed to load user data from Firestore/AsyncStorage:", e);
+      // Fallback to defaults in case of error, potentially also clear USERNAME_KEY
       setUsername(DEFAULT_USERNAME);
+      await AsyncStorage.setItem(USERNAME_KEY, DEFAULT_USERNAME);
       setAvatarUri(null);
       setCurrentStreak(0);
       setLastPracticedTimestamp(null);
     } finally {
-      console.log("✅ UserContext: Finished loading user data");
+      console.log("✅ UserContext: Finished loading user data. Username set to:", finalUsername);
       setIsLoading(false);
     }
   };
 
-  // Function to update username and save to storage
-  const updateUsername = useCallback(async (newUsername) => {
-    console.log("📝 UserContext: Attempting to update username to:", newUsername);
+  // Function to update username and save to storage AND FIRESTORE
+  const updateUsernameInContextAndStorage = useCallback(async (newUsername) => {
+    console.log("📝 UserContext: Attempting to update username (display name) to:", newUsername);
     const trimmedUsername = newUsername.trim();
     if (trimmedUsername === '') {
       console.warn("⚠️ UserContext: Attempted to save empty username");
-      return;
+      Alert.alert("Invalid Name", "Display name cannot be empty.");
+      return false; // Indicate failure
     }
     try {
-      console.log("📝 UserContext: Saving username to AsyncStorage");
-      await AsyncStorage.setItem(USERNAME_KEY, trimmedUsername);
-      console.log("📝 UserContext: Updating username state");
-      setUsername(trimmedUsername);
-      console.log("✅ UserContext: Username updated successfully:", trimmedUsername);
-      
-      // Force a re-render by updating the state
-      setUser(prevUser => ({ ...prevUser }));
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        await updateDoc(userDocRef, { displayName: trimmedUsername, updatedAt: serverTimestamp() });
+        console.log(" Firestore displayName updated.");
+      }
+      // Update AsyncStorage with the potentially full new name
+      await AsyncStorage.setItem(USERNAME_KEY, getFirstName(trimmedUsername)); 
+      setUsername(getFirstName(trimmedUsername)); // Update context state with first name
+      console.log("✅ UserContext: Username updated successfully. Context state (first name):", getFirstName(trimmedUsername));
+      return true; // Indicate success
     } catch (e) {
       console.error("❌ UserContext: Failed to save username:", e);
-      throw e;
+      Alert.alert("Error", "Could not update your name. Please try again.");
+      throw e; // Re-throw for caller to handle if needed
     }
   }, []);
 
@@ -240,44 +286,37 @@ export const UserProvider = ({ children }) => {
         finalName = DEFAULT_USERNAME; // Fallback name
       }
 
-      // Update username in context and AsyncStorage immediately
-      // This might be slightly redundant if auth state change also loads it, but ensures UI consistency.
-      try {
-        await updateUsername(finalName); 
-      } catch (nameUpdateError) {
-        console.warn("UserContext: Failed to update username during sign-in, proceeding:", nameUpdateError);
-      }
-
-      const credential = GoogleAuthProvider.credential(idToken);
-      const userCredential = await signInWithCredential(auth, credential);
+      // Create Firebase credential
+      const googleCredential = GoogleAuthProvider.credential(idToken);
+      const userCredential = await signInWithCredential(auth, googleCredential);
       const firebaseUser = userCredential.user;
 
-      const userDocRef = doc(db, 'users', firebaseUser.uid);
-      const now = new Date();
-      const userDocSnap = await getDoc(userDocRef);
-      const existingData = userDocSnap.exists() ? userDocSnap.data() : {};
+      // Save/Update user data in Firestore
+      if (firebaseUser) {
+        const userDocRef = doc(db, 'users', firebaseUser.uid);
+        const userDocSnap = await getDoc(userDocRef);
+        const userDataToSet = {
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          displayName: finalName, // This is the full name from Google or input
+          photoURL: googleUserInfo?.photo || firebaseUser.photoURL || null,
+          lastLoginAt: serverTimestamp(),
+          isActive: true,
+        };
+        if (userDocSnap.exists()) {
+          await updateDoc(userDocRef, userDataToSet);
+          console.log("UserContext: Google Sign-In - Firestore document updated for UID:", firebaseUser.uid);
+        } else {
+          userDataToSet.createdAt = serverTimestamp();
+          await setDoc(userDocRef, userDataToSet);
+          console.log("UserContext: Google Sign-In - New Firestore document created for UID:", firebaseUser.uid);
+        }
+        // The onAuthStateChanged listener will call loadUserDataFromFirestore, 
+        // which will parse and set the first name for the greeting.
+      }
 
-      const userData = {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email,
-        name: finalName, 
-        photoURL: firebaseUser.photoURL || googleUserInfo?.photo || null,
-        createdAt: existingData.createdAt || now,
-        lastLoginAt: now,
-        loginCount: (existingData.loginCount || 0) + 1,
-        loginHistory: [
-          ...(existingData.loginHistory || []),
-          { timestamp: now, deviceInfo: { platform: Platform.OS, version: Platform.Version?.toString() } }, // Ensure version is string
-        ].slice(-10),
-        updatedAt: now,
-        provider: 'google',
-        isActive: true,
-      };
-
-      await setDoc(userDocRef, userData, { merge: true });
-      console.log("UserContext: Firebase authentication and Firestore save successful for", firebaseUser.uid);
-      // Auth state listener in App.js should handle navigation to MainStack
-      // setUser(firebaseUser) will be triggered by onAuthStateChanged listener
+      // The username state (for greeting) will be updated by onAuthStateChanged -> loadUserDataFromFirestore
+      // No need to call updateUsernameInContextAndStorage here directly, as it will be handled.
 
     } catch (error) {
       console.error("UserContext: Google Sign-In or Firestore error:", error);
@@ -289,7 +328,7 @@ export const UserProvider = ({ children }) => {
       // Re-throw for the calling screen to handle specific UI updates (e.g., stop loading indicator)
       throw error; 
     }
-  }, [updateUsername]);
+  }, []);
 
   // Determine the source for the Image component
   // If avatarUri exists, use it, otherwise use the default placeholder
@@ -304,7 +343,7 @@ export const UserProvider = ({ children }) => {
       currentStreak,
       lastPracticedTimestamp,
       isLoading,
-      updateUsername,
+      updateUsername: updateUsernameInContextAndStorage,
       updateAvatarUri,
       recordPracticeSession,
       signOut,

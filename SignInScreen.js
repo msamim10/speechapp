@@ -8,41 +8,34 @@ import {
   Platform,
   ActivityIndicator,
   Alert,
-  TextInput, // Added for placeholder email/password
+  TextInput,
 } from 'react-native';
 import colors from './constants/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useUser } from './context/UserContext'; // <<< ADDED IMPORT
+import { useUser } from './context/UserContext';
+import { auth } from './firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
-// Placeholder for email/password sign-in
-// const handleEmailPasswordSignIn = async (email, password) => {
-//   console.log('Email/Password Sign-In initiated with:', email);
-//   // Simulate API call
-//   return new Promise(resolve => setTimeout(() => {
-//     Alert.alert("Signed In", "Email/Password Sign-In would happen here.");
-//     resolve();
-//   }, 1500));
-// };
-
-function SignInScreen({ navigation }) { // Removed route from props
+function SignInScreen({ navigation }) {
   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
   const [errorGoogle, setErrorGoogle] = useState(null);
-  // const [email, setEmail] = useState(''); // For placeholder
-  // const [password, setPassword] = useState(''); // For placeholder
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoadingEmail, setIsLoadingEmail] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(null);
 
-  const { googleSignInHandler } = useUser(); // <<< GET HANDLER FROM CONTEXT
+  const { googleSignInHandler } = useUser();
 
   const handleGoogleSignInPress = async () => {
-    if (!googleSignInHandler) { // Check if handler from context is available
+    if (!googleSignInHandler) {
         Alert.alert("Error", "Sign-in function not available. Please restart the app.");
         return;
     }
     setIsLoadingGoogle(true);
     setErrorGoogle(null);
     try {
-      await googleSignInHandler(null); // Pass null for name
+      await googleSignInHandler(null);
     } catch (e) {
-      // Specific error handling for user cancellation (no alert needed, just stop loading)
       if (e.code === 'USER_CANCELED' || (e.message && e.message.toLowerCase().includes('cancel'))) {
         console.log("SignInScreen: Google Sign-In cancelled by user.");
       } else {
@@ -51,6 +44,40 @@ function SignInScreen({ navigation }) { // Removed route from props
       }
     } finally {
       setIsLoadingGoogle(false);
+    }
+  };
+
+  const handleEmailPasswordSignIn = async () => {
+    if (!email || !password) {
+      Alert.alert("Missing Fields", "Please enter both email and password.");
+      return;
+    }
+    setIsLoadingEmail(true);
+    setErrorEmail(null);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Email Sign-In Successful");
+    } catch (e) {
+      let friendlyMessage = "An unexpected error occurred during sign-in.";
+      switch (e.code) {
+        case 'auth/user-not-found':
+          friendlyMessage = "No user found with this email. Please sign up or check your email.";
+          break;
+        case 'auth/wrong-password':
+          friendlyMessage = "Incorrect password. Please try again.";
+          break;
+        case 'auth/invalid-email':
+          friendlyMessage = "The email address is not valid.";
+          break;
+        default:
+          friendlyMessage = e.message;
+          break;
+      }
+      setErrorEmail(friendlyMessage);
+      Alert.alert('Sign-In Error', friendlyMessage);
+      console.error("Email Sign-In Error:", e);
+    } finally {
+      setIsLoadingEmail(false);
     }
   };
 
@@ -65,26 +92,41 @@ function SignInScreen({ navigation }) { // Removed route from props
           <Text style={styles.title}>Welcome Back!</Text>
           <Text style={styles.subtitle}>Sign in to continue.</Text>
 
-          {/* Placeholder for Email/Password fields - Can be developed later */}
-          {/* 
-          <TextInput 
-            style={styles.input} 
-            placeholder="Email" 
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
             keyboardType="email-address"
             autoCapitalize="none"
-            onChangeText={setEmail} 
+            value={email}
+            onChangeText={setEmail}
+            placeholderTextColor={colors.textSecondary}
           />
-          <TextInput 
-            style={styles.input} 
-            placeholder="Password" 
-            secureTextEntry 
-            onChangeText={setPassword} 
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+            placeholderTextColor={colors.textSecondary}
           />
-          <TouchableOpacity style={styles.button} onPress={() => Alert.alert("Sign In", "Email/Password sign-in coming soon!")}>
-            <Text style={styles.buttonText}>Sign In with Email</Text>
+          {errorEmail && <Text style={styles.errorText}>{errorEmail}</Text>}
+          <TouchableOpacity 
+            style={[styles.button, styles.emailButton, isLoadingEmail && styles.disabledButton]} 
+            onPress={handleEmailPasswordSignIn}
+            disabled={isLoadingEmail}
+          >
+            {isLoadingEmail ? (
+              <ActivityIndicator color={colors.white} />
+            ) : (
+              <Text style={styles.buttonText}>Sign In with Email</Text>
+            )}
           </TouchableOpacity>
-          <Text style={styles.orText}>OR</Text> 
-          */}
+          
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')} style={styles.linkButton}>
+            <Text style={styles.linkButtonText}>Don't have an account? Sign Up</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.orText}>OR</Text>
 
           <TouchableOpacity
             style={[styles.button, styles.googleButton, isLoadingGoogle && styles.disabledButton]}
@@ -143,7 +185,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     textAlign: 'center',
   },
-  input: { // Style for placeholder email/password
+  input: {
     width: '100%',
     height: 50,
     borderWidth: 1,
@@ -165,9 +207,14 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     flexDirection: 'row',
     justifyContent: 'center',
+    minHeight: 50,
+  },
+  emailButton: {
+    backgroundColor: colors.primary,
   },
   googleButton: {
-    backgroundColor: '#4285F4', // Google's blue
+    backgroundColor: '#4285F4',
+    marginTop: 10,
   },
   googleIcon: {
     marginRight: 10,
@@ -180,7 +227,7 @@ const styles = StyleSheet.create({
   disabledButton: {
     opacity: 0.7,
   },
-  orText: { // Style for "OR" text separator
+  orText: {
     fontSize: 16,
     color: colors.textSecondary,
     marginVertical: 15,
@@ -189,6 +236,16 @@ const styles = StyleSheet.create({
   errorText: {
     color: colors.danger,
     marginTop: 10,
+    textAlign: 'center',
+  },
+  linkButton: {
+    marginTop: 15,
+    paddingVertical: 10,
+  },
+  linkButtonText: {
+    color: colors.primary,
+    fontSize: 15,
+    fontWeight: '500',
     textAlign: 'center',
   },
 });

@@ -98,7 +98,16 @@ function GetStartedScreen({ navigation }) {
           ) : (
             <>
               <Text style={styles.title}>Hi, {name.trim()}!</Text>
-              <Text style={styles.subtitle}>Ready to join?</Text>
+              <Text style={styles.subtitle}>Choose how you'd like to join:</Text>
+              
+              <TouchableOpacity
+                style={[styles.button, styles.emailButton]}
+                onPress={() => navigation.navigate('SignUp', { userName: name.trim() })}
+              >
+                <Ionicons name="mail-outline" size={20} color={colors.white} style={styles.iconStyle} />
+                <Text style={styles.buttonText}>Sign Up with Email</Text>
+              </TouchableOpacity>
+
               <TouchableOpacity
                 style={[styles.button, styles.googleButton, isLoading && styles.disabledButton]}
                 onPress={handleGoogleSignInPress}
@@ -108,12 +117,19 @@ function GetStartedScreen({ navigation }) {
                   <ActivityIndicator color={colors.white} />
                 ) : (
                   <>
-                    <Ionicons name="logo-google" size={20} color={colors.white} style={styles.googleIcon} />
+                    <Ionicons name="logo-google" size={20} color={colors.white} style={styles.iconStyle} />
                     <Text style={styles.buttonText}>Continue with Google</Text>
                   </>
                 )}
               </TouchableOpacity>
               {error && <Text style={styles.errorText}>{error}</Text>}
+
+              <TouchableOpacity 
+                style={styles.linkButton} 
+                onPress={() => navigation.navigate('SignIn')}
+              >
+                <Text style={styles.linkButtonText}>Already have an account? Sign In</Text>
+              </TouchableOpacity>
             </>
           )}
         </View>
@@ -180,11 +196,15 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     flexDirection: 'row',
     justifyContent: 'center',
+    minHeight: 50,
+  },
+  emailButton: {
+    backgroundColor: colors.secondary,
   },
   googleButton: {
-    backgroundColor: '#4285F4', // Google's blue
+    backgroundColor: '#4285F4',
   },
-  googleIcon: {
+  iconStyle: {
     marginRight: 10,
   },
   buttonText: {
@@ -198,6 +218,16 @@ const styles = StyleSheet.create({
   errorText: {
     color: colors.danger,
     marginTop: 10,
+    textAlign: 'center',
+  },
+  linkButton: {
+    marginTop: 10,
+    paddingVertical: 10,
+  },
+  linkButtonText: {
+    color: colors.primary,
+    fontSize: 15,
+    fontWeight: '500',
     textAlign: 'center',
   },
 });

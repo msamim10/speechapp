@@ -22,6 +22,7 @@ import UserProfileScreen from './UserProfileScreen';
 import SettingsScreen from './SettingsScreen'; 
 import GetStartedScreen from './GetStartedScreen';
 import SignInScreen from './SignInScreen';
+import SignUpScreen from './SignUpScreen';
 import OnboardingScreen1 from './screens/OnboardingScreen1';
 import OnboardingScreen2 from './screens/OnboardingScreen2';
 import OnboardingScreen3 from './screens/OnboardingScreen3';
@@ -132,6 +133,7 @@ function AuthStack() {
       <AuthStackNav.Screen name="Welcome" component={WelcomeScreen} />
       <AuthStackNav.Screen name="GetStarted" component={GetStartedScreen} />
       <AuthStackNav.Screen name="SignIn" component={SignInScreen} />
+      <AuthStackNav.Screen name="SignUp" component={SignUpScreen} />
     </AuthStackNav.Navigator>
   );
 }
