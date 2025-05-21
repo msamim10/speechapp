@@ -74,7 +74,7 @@ function MainTabs() {
             iconName = focused ? 'mic' : 'mic-outline';
           } else if (route.name === 'ProfileTab') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
-          }
+          } 
           return iconName ? <Ionicons name={iconName} size={size} color={color} /> : null;
         },
         tabBarLabel: ({ focused, color }) => {

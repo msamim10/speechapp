@@ -57,7 +57,7 @@ function WelcomeScreen({ navigation }) {
           <Text style={styles.appName}>SpeechApp</Text>
         </View>
 
-        <Text style={styles.title}>Welcome!</Text>
+          <Text style={styles.title}>Welcome!</Text>
         <Text style={styles.subtitle}>Choose how you'd like to start.</Text>
 
         <TouchableOpacity
@@ -69,19 +69,19 @@ function WelcomeScreen({ navigation }) {
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+          <TouchableOpacity
           style={[styles.button, styles.signInButton]}
           onPress={() => navigation.navigate('SignIn')}
           disabled={isInitializingGS}
-        >
+          >
           <Ionicons name="log-in-outline" size={20} color={colors.primary} style={styles.buttonIconAlt} />
           <Text style={[styles.buttonText, styles.signInButtonText]}>Sign In</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
 
-        {error && (
+          {error && (
           <Text style={styles.errorText}>{error}</Text>
-        )}
-      </View>
+          )}
+        </View>
     </SafeAreaView>
   );
 }
@@ -168,8 +168,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loadingText: {
-      marginTop: 10,
-      fontSize: 16,
+    marginTop: 10,
+    fontSize: 16,
       color: colors.textSecondary
   },
 });

@@ -74,7 +74,7 @@ function WarmUpScreen() {
         setCountdown(prev => prev - 1);
       }, 1000);
     }
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
   }, [isPracticing, countdown]);
 
   const playSound = async () => {
@@ -114,8 +114,8 @@ function WarmUpScreen() {
             if (isPracticing) handleStopPractice();
             navigation.goBack();
         }} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={28} color={colors.primary} />
-        </TouchableOpacity>
+        <Ionicons name="arrow-back" size={28} color={colors.primary} />
+      </TouchableOpacity>
         <Text style={styles.headerTitle}>Quick Practice</Text>
         <View style={{ width: 28 }} />{/* Placeholder for spacing */}
       </View>

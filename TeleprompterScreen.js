@@ -106,34 +106,34 @@ function TeleprompterScreen({ route, navigation }) {
           console.error('Failed to save last prompt ID to AsyncStorage.', e);
         }
 
-        // <<< ADD LOGIC TO UPDATE RECENT PROMPTS LIST >>>
+        // <<< Logic to update Practice History List >>>
         if (selectedPromptId) { // Check again to be safe
           try {
-            const MAX_RECENT = 5; // Keep the last 5 prompts
+            const MAX_HISTORY_ITEMS = 10; // Changed from 5 to 10
             // Get current list
-            const recentJson = await AsyncStorage.getItem('@recentPromptIds');
-            let recentIds = recentJson ? JSON.parse(recentJson) : [];
+            const historyJson = await AsyncStorage.getItem('@practiceHistoryIds'); // Changed key
+            let historyIds = historyJson ? JSON.parse(historyJson) : [];
 
             // Remove the current prompt if it already exists to avoid duplicates and move it to the front
-            recentIds = recentIds.filter(id => id !== selectedPromptId);
+            historyIds = historyIds.filter(id => id !== selectedPromptId);
 
             // Add the current prompt ID to the beginning of the list
-            recentIds.unshift(selectedPromptId);
+            historyIds.unshift(selectedPromptId);
 
             // Limit the list size
-            if (recentIds.length > MAX_RECENT) {
-              recentIds = recentIds.slice(0, MAX_RECENT);
+            if (historyIds.length > MAX_HISTORY_ITEMS) {
+              historyIds = historyIds.slice(0, MAX_HISTORY_ITEMS);
             }
 
             // Save the updated list
-            await AsyncStorage.setItem('@recentPromptIds', JSON.stringify(recentIds));
-            console.log('Updated recent prompts list:', recentIds);
+            await AsyncStorage.setItem('@practiceHistoryIds', JSON.stringify(historyIds)); // Changed key
+            console.log('Updated practice history list in AsyncStorage:', historyIds);
 
           } catch (e) {
-            console.error('Failed to update recent prompts list.', e);
+            console.error('Failed to update practice history list.', e);
           }
         }
-        // <<< END RECENT PROMPTS UPDATE >>>
+        // <<< END Practice History List Update >>>
       }
     };
     saveLastPrompt();
@@ -1115,10 +1115,11 @@ const styles = StyleSheet.create({
   // Add Countdown Timer Styles
   countdownOverlay: {
     ...StyleSheet.absoluteFillObject, // Make it cover the whole screen
-    justifyContent: 'center',
+    justifyContent: 'flex-start', // Changed from 'center' to move to top
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background
     zIndex: 10, // Ensure it's above other elements except maybe modals
+    paddingTop: screenHeight * 0.2, // Added padding to push it down from the top edge
   },
   countdownText: {
     fontSize: 120, // Large text

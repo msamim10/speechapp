@@ -23,53 +23,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { promptsData } from './data/prompts';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// Helper function to format seconds
-const formatSeconds = (totalSeconds) => {
-    if (totalSeconds == null || isNaN(totalSeconds) || totalSeconds <= 0) { // Handle 0 seconds explicitly
-        return '0s';
-    }
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = Math.floor(totalSeconds % 60);
-
-    let formatted = '';
-    if (hours > 0) {
-        formatted += `${hours}h `;
-    }
-    if (minutes > 0 || hours > 0) {
-        formatted += `${minutes}m `;
-    }
-    // Always show seconds if total time > 0 or if it's the only unit
-     if (seconds > 0 || formatted === '') {
-         formatted += `${seconds}s`;
-     }
-    return formatted.trim();
-};
-
-// Date Formatting Helper
-const isSameDay = (d1, d2) => {
-  if (!d1 || !d2) return false;
-  return d1.getFullYear() === d2.getFullYear() &&
-         d1.getMonth() === d2.getMonth() &&
-         d1.getDate() === d2.getDate();
-};
-const formatTimestamp = (timestamp) => {
-  if (!timestamp) return 'Never';
-  const date = new Date(timestamp);
-  const now = new Date();
-  if (isSameDay(date, now)) {
-    return `Today at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
-  }
-  const yesterday = new Date(now);
-  yesterday.setDate(now.getDate() - 1);
-  if (isSameDay(date, yesterday)) {
-    return `Yesterday at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
-  }
-  return date.toLocaleDateString([], {
-    year: 'numeric', month: 'short', day: 'numeric'
-  });
-};
-
 // Calculate card widths based on screen dimensions
 const screenWidth = Dimensions.get('window').width;
 const horizontalPadding = 20; // Consistent padding for sections
@@ -78,13 +31,11 @@ const recentCardWidth = screenWidth * 0.48; // Increased from 0.4
 
 function HomeScreen() {
   const navigation = useNavigation();
-  const { username, currentStreak, lastPracticedTimestamp, isLoading: isUserLoading } = useUser();
+  const { username, currentStreak, isLoading: isUserLoading } = useUser();
   const [imagesReady, setImagesReady] = useState(false);
-  const [lastPromptId, setLastPromptId] = useState(null);
-  const [lastPromptTitle, setLastPromptTitle] = useState('');
+  const [practiceHistoryPrompts, setPracticeHistoryPrompts] = useState([]);
   const [recentPrompts, setRecentPrompts] = useState([]);
   const [featuredPrompt, setFeaturedPrompt] = useState(null);
-  const [totalPracticeTime, setTotalPracticeTime] = useState(0);
 
   useEffect(() => {
     console.log("--- HomeScreen Rendering --- Username:", username);
@@ -99,27 +50,27 @@ function HomeScreen() {
         // --- Temp: Set imagesReady immediately for faster testing ---
         if (isMounted) setImagesReady(true);
 
-
-        // --- Load Last Prompt ---
-        const storedId = await AsyncStorage.getItem('@lastPromptId');
-        if (isMounted && storedId !== null) {
-          setLastPromptId(storedId);
-          const prompt = promptsData.flat().find(p => p.id === storedId);
-          if (prompt) {
-            setLastPromptTitle(prompt.title);
-          } else {
-             setLastPromptTitle('Last Practice');
-             // Consider clearing invalid ID
-             // await AsyncStorage.removeItem('@lastPromptId'); setLastPromptId(null);
+        // --- Load Practice History --- 
+        const historyIdsJson = await AsyncStorage.getItem('@practiceHistoryIds');
+        if (isMounted && historyIdsJson) {
+          const historyIds = JSON.parse(historyIdsJson);
+          if (Array.isArray(historyIds) && historyIds.length > 0) {
+            const allPrompts = promptsData.flat();
+            const historyDetails = historyIds
+              .map(id => allPrompts.find(p => p.id === id))
+              .filter(prompt => prompt != null); // Filter out nulls if a prompt was deleted
+            setPracticeHistoryPrompts(historyDetails.slice(0, 10)); // Changed from 5 to 10
           }
+        } else if (isMounted) {
+            setPracticeHistoryPrompts([]);
         }
 
         // --- Load 5 Random Prompts for "Explore Prompts" ---
         if (isMounted && promptsData && promptsData.flat().length > 0) {
             const allPrompts = promptsData.flat();
-            // Shuffle all prompts and take the first 5
+            // Shuffle all prompts and take the first 15
             const shuffledPrompts = [...allPrompts].sort(() => 0.5 - Math.random());
-            setRecentPrompts(shuffledPrompts.slice(0, 5));
+            setRecentPrompts(shuffledPrompts.slice(0, 15)); // Changed from 5 to 15
         }
 
         // --- Select Featured Prompt ---
@@ -129,20 +80,10 @@ function HomeScreen() {
             setFeaturedPrompt(allPrompts[randomIndex]);
         }
 
-        // --- Load Total Practice Time ---
-        const timeStr = await AsyncStorage.getItem('@totalPracticeTimeSeconds');
-        if (isMounted && timeStr !== null) {
-             const timeSec = parseInt(timeStr, 10);
-             setTotalPracticeTime(isNaN(timeSec) ? 0 : timeSec);
-        } else if (isMounted) {
-            setTotalPracticeTime(0);
-        }
-
       } catch (error) {
         console.error('Error loading home screen data:', error);
          if (isMounted) {
              setImagesReady(true); // Still allow UI to render
-             setTotalPracticeTime(0); // Default time on error
          }
       }
     };
@@ -167,34 +108,6 @@ function HomeScreen() {
     // If WarmUpScreen doesn't exist, this navigation will fail.
     navigation.navigate('WarmUp', { 
       warmUpText: quickText
-    });
-  };
-
-  // <<< Implement Resume Practice Navigation (if you want to add the button back later) >>>
-  const handleResumePractice = () => {
-    if (!lastPromptId) return;
-    const prompt = promptsData.flat().find(p => p.id === lastPromptId);
-    if (!prompt) {
-      console.error('Could not find prompt data for ID:', lastPromptId);
-      Alert.alert("Error", "Could not load the last practiced prompt. It might have been removed.");
-      AsyncStorage.removeItem('@lastPromptId').then(() => {
-        setLastPromptId(null);
-        setLastPromptTitle('');
-      });
-      return;
-    }
-    const promptsInCategory = promptsData.flat().filter(p => p.category === prompt.category);
-    if (!promptsInCategory || promptsInCategory.length === 0) {
-        console.error('Could not find category prompts for prompt:', lastPromptId, 'category:', prompt.category);
-        Alert.alert("Error", "Could not find the category for the last practiced prompt.");
-        return;
-    }
-    navigation.navigate('PracticeTab', {
-      screen: 'Teleprompter',
-      params: {
-        selectedPromptId: lastPromptId,
-        categoryPrompts: promptsInCategory
-      }
     });
   };
 
@@ -259,32 +172,31 @@ function HomeScreen() {
   );
 
   const renderHeader = () => (
-    <View style={styles.header}>
-      <View style={styles.headerContent}>
-        <Text style={styles.greeting}>Welcome back, {username || 'Speaker'}!</Text>
-        {/* <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
-          <Ionicons name="person-circle-outline" size={30} color={colors.primary} />
-        </TouchableOpacity> */}
+    <View style={styles.headerContainer}>
+      <View style={styles.headerTopRow}>
+        <View>
+          <Text style={styles.greetingText}>Hello, {username || 'Guest'}!</Text>
+          <Text style={styles.subGreetingText}>Ready to practice?</Text>
+        </View>
+        <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
+          <Ionicons name="person-circle-outline" size={40} color={colors.primary} />
+        </TouchableOpacity>
       </View>
-      <View style={styles.statsOuterContainer}>
-        <View style={styles.statCard}>
-          <Ionicons name="flame-outline" size={28} color={colors.primary} style={styles.statIcon} />
-          <Text style={styles.statValue}>{currentStreak || 0}</Text>
-          <Text style={styles.statLabel}>Day Streak</Text>
-        </View>
-        <View style={styles.statCard}>
-          <Ionicons name="barbell-outline" size={28} color={colors.primary} style={styles.statIcon} />
-          <Text style={styles.statValue}>{formatSeconds(totalPracticeTime)}</Text>
-          <Text style={styles.statLabel}>Total Practice</Text>
-        </View>
-        <View style={styles.statCard}>
-          <Ionicons name="calendar-outline" size={28} color={colors.primary} style={styles.statIcon} />
-          <Text style={styles.statValue}>{formatTimestamp(lastPracticedTimestamp).split(' at ')[0]}</Text>
-          <Text style={styles.statLabel}>Last Practice</Text>
-          {lastPracticedTimestamp && formatTimestamp(lastPracticedTimestamp).includes('at') && (
-            <Text style={styles.statSubLabel}>{formatTimestamp(lastPracticedTimestamp).split(' at ')[1]}</Text>
-          )}
-        </View>
+      <View style={styles.quickActionsHeaderContainer}>
+        <TouchableOpacity
+          style={[styles.quickActionButton, styles.primaryAction]}
+          onPress={handleStartPractice}
+        >
+          <Ionicons name="mic" size={20} color="white" />
+          <Text style={styles.quickActionHeaderText}>Start Practice</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.quickActionButton, styles.secondaryAction]}
+          onPress={handleQuickPractice}
+        >
+          <Ionicons name="flash" size={20} color={colors.primary} />
+          <Text style={[styles.quickActionHeaderText, { color: colors.primary }]}>Quick Practice</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -318,25 +230,6 @@ function HomeScreen() {
     </View>
   );
 
-  const renderQuickActions = () => (
-    <View style={styles.quickActionsContainer}>
-      <TouchableOpacity
-        style={[styles.quickActionButton, styles.primaryAction]}
-        onPress={handleStartPractice}
-      >
-        <Ionicons name="mic" size={24} color="white" />
-        <Text style={styles.quickActionText}>Start Practice</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.quickActionButton, styles.secondaryAction]}
-        onPress={handleQuickPractice}
-      >
-        <Ionicons name="flash" size={24} color={colors.primary} />
-        <Text style={[styles.quickActionText, { color: colors.primary }]}>Quick Practice</Text>
-      </TouchableOpacity>
-    </View>
-  );
-
   const renderRecentPrompts = () => (
     <View style={styles.recentSection}>
       <View style={styles.sectionHeader}>
@@ -356,6 +249,43 @@ function HomeScreen() {
     </View>
   );
 
+  // <<< Function to render the Practice History Section >>>
+  const renderPracticeHistory = () => {
+    if (!practiceHistoryPrompts || practiceHistoryPrompts.length === 0) {
+      return null; // Don't render if there's no history
+    }
+
+    return (
+      <View style={styles.practiceHistorySectionContainer}>
+        <Text style={styles.practiceHistorySectionTitle}>Resume Last Practice</Text>
+        <FlatList
+          data={practiceHistoryPrompts}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.recentCard} // Reuse recentCard style for consistency
+              onPress={() => handleSelectRecentPrompt(item)}
+              activeOpacity={0.8}
+            >
+              <ImageBackground
+                  source={item.image || defaultImages.promptBackground}
+                  style={styles.recentCardBackground}
+                  imageStyle={styles.recentCardImageStyle}
+                  resizeMode="cover"
+               >
+                <View style={styles.recentCardOverlay} />
+                <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.id + '-history'} // Ensure unique keys
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.recentList} // Reuse recentList style for padding
+        />
+      </View>
+    );
+  };
+
   // --- Loading State ---
   if (!imagesReady || isUserLoading) {
     return (
@@ -374,9 +304,9 @@ function HomeScreen() {
         contentContainerStyle={styles.scrollContent}
       >
         {renderHeader()}
-        {renderQuickActions()}
         {renderFeaturedPrompt()}
         {renderRecentPrompts()}
+        {renderPracticeHistory()}
       </ScrollView>
     </SafeAreaView>
   );
@@ -394,98 +324,38 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 24,
   },
-  header: {
-    padding: 20,
+  headerContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 25,
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: '#E9ECEF',
   },
-  headerContent: {
+  headerTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    width: '100%',
+    marginBottom: 20,
   },
-  greeting: {
+  greetingText: {
     fontSize: 24,
     fontWeight: '700',
     color: '#212529',
   },
+  subGreetingText: {
+    fontSize: 16,
+    color: '#6C757D',
+    marginTop: 2,
+  },
   profileButton: {
     padding: 8,
   },
-  statsOuterContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 16,
-    gap: 10,
-  },
-  statCard: {
-    flex: 1,
-    backgroundColor: colors.white,
-    borderRadius: 12,
-    padding: 15,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.08,
-    shadowRadius: 3,
-    elevation: 2,
-    minHeight: 110,
-    justifyContent: 'center',
-  },
-  statIcon: {
-    marginBottom: 8,
-  },
-  statValue: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.primary,
-    marginBottom: 2,
-    textAlign: 'center',
-  },
-  statLabel: {
-    fontSize: 12,
-    color: '#6C757D',
-    textAlign: 'center',
-  },
-  statSubLabel: {
-    fontSize: 10,
-    color: '#888',
-    textAlign: 'center',
-    marginTop: 2,
-  },
-  quickActionsContainer: {
-    flexDirection: 'row',
-    padding: 20,
-    gap: 12,
-  },
-  quickActionButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-    borderRadius: 12,
-    gap: 8,
-  },
-  primaryAction: {
-    backgroundColor: colors.primary,
-  },
-  secondaryAction: {
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: colors.primary,
-  },
-  quickActionText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'white',
-  },
   featuredSectionContainer: {
-    marginHorizontal: 20,
-    marginTop: 10,
-    marginBottom: 20,
+    marginHorizontal: horizontalPadding,
+    marginTop: 20, // Adjusted marginTop for spacing
+    marginBottom: 25, // Adjusted marginBottom for spacing
   },
   featuredSectionTitle: {
     fontSize: 20,
@@ -494,7 +364,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   featuredCard: {
-    height: 300,
+    height: 350,
     borderRadius: 16,
     overflow: 'hidden',
     elevation: 4,
@@ -572,7 +442,7 @@ const styles = StyleSheet.create({
   },
   recentCardOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.3)', // Dark overlay for text visibility
+    backgroundColor: 'rgba(0,0,0,0.3)',
     borderRadius: 12,
   },
   recentCardTitle: {
@@ -580,13 +450,13 @@ const styles = StyleSheet.create({
     bottom: 10,
     left: 10,
     right: 10,
-    color: 'white', // White text color
+    color: 'white',
     fontSize: 14,
     fontWeight: '600',
   },
   safeArea: {
     flex: 1,
-    backgroundColor: colors.backgroundLight, // Use a light background
+    backgroundColor: colors.backgroundLight,
   },
   loadingContainer: {
     flex: 1,
@@ -596,6 +466,46 @@ const styles = StyleSheet.create({
   loadingText: {
     fontSize: 18,
     color: colors.primaryDark,
+  },
+  quickActionsHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  quickActionButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    gap: 8,
+  },
+  primaryAction: {
+    backgroundColor: colors.primary,
+  },
+  secondaryAction: {
+    backgroundColor: colors.backgroundLight,
+    borderWidth: 1,
+    borderColor: colors.primary,
+  },
+  quickActionHeaderText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: 'white',
+  },
+  // Styles for Practice History Section
+  practiceHistorySectionContainer: {
+    marginTop: 25,
+    paddingHorizontal: horizontalPadding,
+    marginBottom: 20,
+  },
+  practiceHistorySectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.textPrimary || '#212529',
+    marginBottom: 16,
   },
 });
 

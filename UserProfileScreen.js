@@ -19,6 +19,31 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import colors from './constants/colors';
 import { useNavigation } from '@react-navigation/native';
 
+// Date Formatting Helper - Copied from HomeScreen.js for now
+const isSameDay = (d1, d2) => {
+  if (!d1 || !d2) return false;
+  return d1.getFullYear() === d2.getFullYear() &&
+         d1.getMonth() === d2.getMonth() &&
+         d1.getDate() === d2.getDate();
+};
+
+const formatTimestamp = (timestamp) => {
+  if (!timestamp) return 'Never';
+  const date = new Date(timestamp);
+  const now = new Date();
+  if (isSameDay(date, now)) {
+    return `Today at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  if (isSameDay(date, yesterday)) {
+    return `Yesterday at ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+  return date.toLocaleDateString([], {
+    year: 'numeric', month: 'short', day: 'numeric'
+  });
+};
+
 function UserProfileScreen() {
   const navigation = useNavigation();
   const {
@@ -26,6 +51,7 @@ function UserProfileScreen() {
     avatarSource,
     currentStreak,
     totalPracticeTime,
+    lastPracticedTimestamp,
     isLoading: isContextLoading,
     updateUsername,
     updateAvatarUri,
@@ -157,9 +183,14 @@ function UserProfileScreen() {
                 <Text style={styles.statLabel}>Day Streak</Text>
               </View>
               <View style={styles.statItem}>
-                <Ionicons name="time-outline" size={28} color={colors.primary} />
+                <Ionicons name="stats-chart-outline" size={28} color={colors.primary} />
                 <Text style={styles.statValue}>{formatPracticeTime(totalPracticeTime)}</Text>
                 <Text style={styles.statLabel}>Total Practice</Text>
+              </View>
+              <View style={styles.statItem}>
+                <Ionicons name="calendar-outline" size={28} color={colors.primary} />
+                <Text style={styles.statValue}>{formatTimestamp(lastPracticedTimestamp)}</Text>
+                <Text style={styles.statLabel}>Last Practiced</Text>
               </View>
             </View>
           </View>
@@ -289,12 +320,25 @@ const styles = StyleSheet.create({
   },
   statsGrid: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginTop: 10,
   },
   statItem: {
+    backgroundColor: colors.white || 'white',
+    borderRadius: 12,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
     alignItems: 'center',
-    padding: 10,
-    flex: 1,
+    justifyContent: 'center',
+    width: '48%',
+    marginBottom: 15,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    minHeight: 110,
   },
   statValue: {
     fontSize: 20,

@@ -57,8 +57,8 @@ function CategorySelectionScreen() {
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.header}>
         <TouchableOpacity onPress={handleGoHome} style={styles.headerButton}>
-          <Ionicons name="arrow-back" size={28} color={colors.primary} />
-        </TouchableOpacity>
+        <Ionicons name="arrow-back" size={28} color={colors.primary} />
+      </TouchableOpacity>
         <Text style={styles.headerTitle}>Choose a Category</Text>
         <View style={styles.headerButton} />{/* Placeholder for balance */}
       </View>
@@ -84,7 +84,9 @@ function CategorySelectionScreen() {
                 colors={['transparent', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0.85)']} // Slightly stronger gradient at bottom
                 style={styles.gradientOverlay}
               >
-                <Text style={styles.cardTitle}>{category.name}</Text>
+                <Text style={styles.cardTitle}>
+                  {category.name.includes(' ') ? category.name.replace(' ', '\n') : category.name}
+                </Text>
               </LinearGradient>
             </ImageBackground>
           </TouchableOpacity>
@@ -148,20 +150,22 @@ const styles = StyleSheet.create({
      // borderRadius: 16, // ImageBackground itself handles clipping via overflow:hidden on parent
   },
   gradientOverlay: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-    paddingTop: 40,
+    paddingHorizontal: 10,
+    paddingBottom: 15,
+    paddingTop: 20,
     justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flex: 1,
   },
   cardTitle: {
     color: colors.textLight,
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
     textShadowColor: 'rgba(0, 0, 0, 0.7)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 3,
+    lineHeight: 24,
   },
 });
 
