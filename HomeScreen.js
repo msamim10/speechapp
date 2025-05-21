@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -28,6 +28,44 @@ const screenWidth = Dimensions.get('window').width;
 const horizontalPadding = 20; // Consistent padding for sections
 const featuredCardWidth = screenWidth - horizontalPadding * 2;
 const recentCardWidth = screenWidth * 0.48; // Increased from 0.4
+
+// <<< Define RecentPromptDisplayCard component >>>
+const RecentPromptDisplayCard = React.memo(({ item, onSelectPrompt }) => (
+  <TouchableOpacity
+    style={styles.recentCard}
+    onPress={() => onSelectPrompt(item)}
+    activeOpacity={0.8}
+  >
+    <ImageBackground
+        source={item.image || defaultImages.promptBackground}
+        style={styles.recentCardBackground}
+        imageStyle={styles.recentCardImageStyle}
+        resizeMode="cover"
+     >
+      <View style={styles.recentCardOverlay} />
+      <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
+    </ImageBackground>
+  </TouchableOpacity>
+));
+
+// <<< Define PracticeHistoryDisplayCard component >>>
+const PracticeHistoryDisplayCard = React.memo(({ item, onSelectPrompt }) => (
+  <TouchableOpacity
+    style={styles.recentCard} // Reuse recentCard style
+    onPress={() => onSelectPrompt(item)}
+    activeOpacity={0.8}
+  >
+    <ImageBackground
+        source={item.image || defaultImages.promptBackground}
+        style={styles.recentCardBackground}
+        imageStyle={styles.recentCardImageStyle}
+        resizeMode="cover"
+     >
+      <View style={styles.recentCardOverlay} />
+      <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
+    </ImageBackground>
+  </TouchableOpacity>
+));
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -114,7 +152,7 @@ function HomeScreen() {
   const handleGoToProfile = () => navigation.navigate('ProfileTab', { screen: 'UserProfile' });
 
   // <<< Implement Select Recent/Featured Prompt Navigation >>>
-  const handleSelectRecentPrompt = (prompt) => {
+  const handleSelectRecentPrompt = useCallback((prompt) => {
     if (!prompt || !prompt.id || !prompt.category) {
         console.error('Invalid prompt data for navigation:', prompt);
         Alert.alert("Error", "Could not load this prompt. Please try again.");
@@ -139,7 +177,7 @@ function HomeScreen() {
             categoryPrompts: promptsInCategory
         }
     });
-  };
+  }, [navigation]);
   
   // Featured prompt uses the same logic as selecting a recent one
   const handleSelectFeaturedPrompt = () => { 
@@ -150,26 +188,17 @@ function HomeScreen() {
       }
   }; 
 
+  // <<< Define renderHistoryItem at the top level of the component >>>
+  const renderHistoryItem = useCallback(({ item }) => (
+    <PracticeHistoryDisplayCard item={item} onSelectPrompt={handleSelectRecentPrompt} />
+  ), [handleSelectRecentPrompt]);
+
   // --- Render Functions ---
 
   // <<< Component to render each recent prompt card >>>
-  const renderRecentPromptCard = ({ item }) => (
-    <TouchableOpacity
-      style={styles.recentCard}
-      onPress={() => handleSelectRecentPrompt(item)}
-      activeOpacity={0.8}
-    >
-      <ImageBackground
-          source={item.image || defaultImages.promptBackground}
-          style={styles.recentCardBackground}
-          imageStyle={styles.recentCardImageStyle}
-          resizeMode="cover"
-       >
-        <View style={styles.recentCardOverlay} />
-        <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
-      </ImageBackground>
-    </TouchableOpacity>
-  );
+  const renderRecentPromptCard = useCallback(({ item }) => (
+    <RecentPromptDisplayCard item={item} onSelectPrompt={handleSelectRecentPrompt} />
+  ), [handleSelectRecentPrompt]);
 
   const renderHeader = () => (
     <View style={styles.headerContainer}>
@@ -260,23 +289,7 @@ function HomeScreen() {
         <Text style={styles.practiceHistorySectionTitle}>Resume Last Practice</Text>
         <FlatList
           data={practiceHistoryPrompts}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.recentCard} // Reuse recentCard style for consistency
-              onPress={() => handleSelectRecentPrompt(item)}
-              activeOpacity={0.8}
-            >
-              <ImageBackground
-                  source={item.image || defaultImages.promptBackground}
-                  style={styles.recentCardBackground}
-                  imageStyle={styles.recentCardImageStyle}
-                  resizeMode="cover"
-               >
-                <View style={styles.recentCardOverlay} />
-                <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
-              </ImageBackground>
-            </TouchableOpacity>
-          )}
+          renderItem={renderHistoryItem} // <<< Use memoized render function
           keyExtractor={(item) => item.id + '-history'} // Ensure unique keys
           horizontal
           showsHorizontalScrollIndicator={false}
