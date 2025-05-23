@@ -32,7 +32,7 @@ function TeleprompterScreen({ route, navigation }) {
   const directText = route.params?.directText;
   // Get regular params only if directText is not present
   const { selectedPromptId, categoryPrompts } = directText ? {} : route.params || {};
-  
+
   // Determine mode (Warm-up or Regular)
   const isWarmUpMode = !!directText;
 
@@ -41,13 +41,14 @@ function TeleprompterScreen({ route, navigation }) {
     if (isWarmUpMode) return null; // No prompt data needed for warm-up
     return categoryPrompts?.find(p => p.id === selectedPromptId);
   }, [categoryPrompts, selectedPromptId, isWarmUpMode]);
+  console.log("🚀 ~ currentPromptData ~ currentPromptData:", currentPromptData)
 
   // --- Determine Image Source ---
   const imageSource = isWarmUpMode ? null : (currentPromptData?.image || defaultImages.promptBackground);
-  
+
   // --- Determine Initial Text ---
   const initialPromptText = isWarmUpMode ? directText : (currentPromptData?.text || 'Prompt text not found.');
-  
+
   // --- Determine Layout Config (Not used in warm-up) ---
   const routeLayoutConfig = isWarmUpMode ? null : currentPromptData?.layout;
 
@@ -86,6 +87,9 @@ function TeleprompterScreen({ route, navigation }) {
     speech: false,
     interview: false,
     vc: false, // Add vc key
+    presentation: false, // Add presentation sound key
+    situational: false,
+    social: false,
   });
   const [soundsLoaded, setSoundsLoaded] = useState(false); // Add state to track if sounds are loaded
   const [practiceSessionStartTime, setPracticeSessionStartTime] = useState(null); // <<< Track start time of active scrolling
@@ -93,6 +97,9 @@ function TeleprompterScreen({ route, navigation }) {
   const { recordPracticeSession, updateUserStats } = useUser(); // Get the function from context and updateUserStats
   const practiceRecordedRef = useRef(false); // Ref to prevent multiple recordings per session
   const isUnmountingRef = useRef(false); // <<< Ref to track if component is unmounting
+  const [presentationSound, setPresentationSound] = useState();
+  const [situationalSound, setSituationalSound] = useState();
+  const [socialSound, setSocialSound] = useState();
 
   // --- ADD EFFECT TO SAVE LAST PROMPT ID ---
   useEffect(() => {
@@ -150,21 +157,42 @@ function TeleprompterScreen({ route, navigation }) {
         room: true, // Basic ambient sound
         speech: false,
         interview: false,
-        vc: false, // VC sound not needed for warm-up
+        vc: false,
+        presentation: false,
+        situational: false,
+        social: false,
       });
     } else if (currentPromptData) {
       // For regular prompts, determine based on category/id
-      const needsClapping = !!currentPromptData?.soundAsset; // NEW LOGIC: Check if soundAsset exists on the prompt data
       const category = currentPromptData.category || ''; // Get original category name
-      const categoryLower = category.toLowerCase(); // Use lowercase for broader checks if needed
+      console.log('Current prompt category:', category);
+
+      // Exact category matches
+      const isPresentation = category === 'Presentations';
+      const isSituational = category === 'Situational/Specific';
+      const isSocial = category === 'Social & Casual';
+      const isSpeech = category === 'Speeches';
+      const isInterview = category === 'Interviews';
+      const isVC = category === 'Virtual Communication';
+      const hasSoundAsset = !!currentPromptData?.soundAsset;
       
+      console.log('Sound requirements check:', {
+        category,
+        isVC,
+        hasSoundAsset,
+        soundAsset: currentPromptData?.soundAsset
+      });
+
       setSoundsNeeded({
-        clapping: needsClapping,
-        race: true, 
-        room: true, 
-        speech: categoryLower.includes('speech'), // Keep broader check for speech
-        interview: categoryLower.includes('interview'), // Keep broader check for interview
-        vc: category === 'Virtual Communication', // <<< Use exact case-sensitive check for VC
+        clapping: hasSoundAsset && !isPresentation && !isSituational && !isSocial,
+        race: true,
+        room: true,
+        speech: isSpeech && hasSoundAsset,
+        interview: isInterview && hasSoundAsset,
+        vc: isVC && hasSoundAsset,
+        presentation: isPresentation && hasSoundAsset,
+        situational: isSituational && hasSoundAsset,
+        social: isSocial && hasSoundAsset,
       });
     }
   }, [isWarmUpMode, currentPromptData, selectedPromptId]);
@@ -172,31 +200,52 @@ function TeleprompterScreen({ route, navigation }) {
   // --- Helper function to stop all sounds ---
   const stopAllSounds = useCallback(async () => {
     console.log("Stopping all sounds...");
-    if (sound && (await sound.getStatusAsync()).isPlaying) {
-      await sound.stopAsync();
-      console.log("Stopped Clapping Sound");
+    try {
+      // Stop common sounds
+      if (sound && (await sound.getStatusAsync()).isPlaying) {
+        await sound.stopAsync();
+        console.log("Stopped Sound Asset");
+      }
+      if (raceSound && (await raceSound.getStatusAsync()).isPlaying) {
+        await raceSound.stopAsync();
+        console.log("Stopped Race Sound");
+      }
+      if (roomSound && (await roomSound.getStatusAsync()).isPlaying) {
+        await roomSound.stopAsync();
+        console.log("Stopped Room Sound");
+      }
+
+      // Stop category-specific sounds
+      if (speechSound && (await speechSound.getStatusAsync()).isPlaying) {
+        await speechSound.stopAsync();
+        console.log("Stopped Speech Sound");
+      }
+      if (presentationSound && (await presentationSound.getStatusAsync()).isPlaying) {
+        await presentationSound.stopAsync();
+        console.log("Stopped Presentation Sound");
+      }
+      if (interviewSound && (await interviewSound.getStatusAsync()).isPlaying) {
+        await interviewSound.stopAsync();
+        console.log("Stopped Interview Sound");
+      }
+      if (vcSound && (await vcSound.getStatusAsync()).isPlaying) {
+        await vcSound.stopAsync();
+        console.log("Stopped VC Sound");
+      }
+      if (situationalSound && (await situationalSound.getStatusAsync()).isPlaying) {
+        await situationalSound.stopAsync();
+        console.log("Stopped Situational Sound");
+      }
+      if (socialSound && (await socialSound.getStatusAsync()).isPlaying) {
+        await socialSound.stopAsync();
+        console.log("Stopped Social Sound");
+      }
+
+      console.log("All sounds stopped successfully");
+    } catch (error) {
+      console.error("Error stopping sounds:", error);
     }
-    if (raceSound && (await raceSound.getStatusAsync()).isPlaying) {
-      await raceSound.stopAsync();
-      console.log("Stopped Race Sound");
-    }
-    if (roomSound && (await roomSound.getStatusAsync()).isPlaying) {
-      await roomSound.stopAsync();
-      console.log("Stopped Room Sound");
-    }
-    if (speechSound && (await speechSound.getStatusAsync()).isPlaying) {
-      await speechSound.stopAsync();
-      console.log("Stopped Speech Sound");
-    }
-    if (interviewSound && (await interviewSound.getStatusAsync()).isPlaying) {
-      await interviewSound.stopAsync();
-      console.log("Stopped Interview Sound");
-    }
-    if (vcSound && (await vcSound.getStatusAsync()).isPlaying) {
-      await vcSound.stopAsync();
-      console.log("Stopped VC Sound");
-    }
-  }, [sound, raceSound, roomSound, speechSound, interviewSound, vcSound]);
+  }, [sound, raceSound, roomSound, speechSound, presentationSound, interviewSound, vcSound, situationalSound, socialSound]);
 
   // --- Load Sound Effect ---
   useEffect(() => {
@@ -210,32 +259,105 @@ function TeleprompterScreen({ route, navigation }) {
     }).catch(error => {
       console.error('Failed to set audio mode', error);
     });
-    // --- End Audio Session Configuration ---
 
     async function loadSounds() {
       console.log('Loading Sounds (optimized)');
-      let allLoadedSuccessfully = true; // Flag to track success
+      let allLoadedSuccessfully = true;
       try {
-        // Only load sounds needed for this prompt type
-        if (soundsNeeded.clapping && currentPromptData && currentPromptData.soundAsset) { // Check currentPromptData and soundAsset
-          const soundAssetKey = currentPromptData.id + 'clapping'; // Unique key for cache based on prompt ID
+        // Load soundAsset first if available
+        if (currentPromptData?.soundAsset) {
+          const soundAssetKey = currentPromptData.id + 'soundAsset';
           if (!soundCache[soundAssetKey]) {
-            console.log('Loading clapping sound from currentPromptData.soundAsset', currentPromptData.soundAsset);
-            const { sound: loadedClapSound } = await Audio.Sound.createAsync(
-              currentPromptData.soundAsset // Use the asset from prompt data
+            console.log('Loading soundAsset from currentPromptData.soundAsset', currentPromptData.soundAsset);
+            const { sound: loadedSound } = await Audio.Sound.createAsync(
+              currentPromptData.soundAsset
             );
-            soundCache[soundAssetKey] = loadedClapSound;
-            setSound(loadedClapSound); // Set the sound state immediately after loading this specific sound
+            soundCache[soundAssetKey] = loadedSound;
+            setSound(loadedSound);
+            console.log('SoundAsset loaded successfully');
           } else {
             setSound(soundCache[soundAssetKey]);
+            console.log('Using cached soundAsset');
           }
-        } else if (soundsNeeded.clapping) {
-          // Fallback or legacy behavior if currentPromptData.soundAsset is not defined but clapping is needed
-          // This part might need adjustment based on whether you want a default clap sound
-          // For now, let's assume if soundAsset isn't there, no specific clap sound for this prompt.
-          console.warn('Clapping needed but no soundAsset found on currentPromptData');
         }
 
+        // Load category-specific sounds
+        if (soundsNeeded.speech) {
+          if (!soundCache.speech) {
+            const { sound: loadedSpeechSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforspeech.mp3')
+            );
+            soundCache.speech = loadedSpeechSound;
+          }
+          setSpeechSound(soundCache.speech);
+          console.log('Speech sound loaded successfully');
+        }
+
+        if (soundsNeeded.presentation) {
+          if (!soundCache.presentation) {
+            const { sound: loadedPresentationSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforpresentation.mp3')
+            );
+            soundCache.presentation = loadedPresentationSound;
+          }
+          setPresentationSound(soundCache.presentation);
+          console.log('Presentation sound loaded successfully');
+        }
+
+        if (soundsNeeded.interview) {
+          if (!soundCache.interview) {
+            const { sound: loadedInterviewSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforinterview.mp3')
+            );
+            soundCache.interview = loadedInterviewSound;
+          }
+          setInterviewSound(soundCache.interview);
+          console.log('Interview sound loaded successfully');
+        }
+
+        if (soundsNeeded.vc) {
+          console.log('Attempting to load VC sound...');
+          if (!soundCache.vc) {
+            try {
+              console.log('Loading VC sound from file...');
+              const { sound: loadedVcSound } = await Audio.Sound.createAsync(
+                require('./assets/sounds/soundforvc.mp3')
+              );
+              soundCache.vc = loadedVcSound;
+              console.log('VC sound loaded and cached successfully');
+            } catch (error) {
+              console.error('Error loading VC sound:', error);
+            }
+          } else {
+            console.log('Using cached VC sound');
+          }
+          setVcSound(soundCache.vc);
+          console.log('VC sound state updated');
+        }
+
+        if (soundsNeeded.situational) {
+          if (!soundCache.situational) {
+            const { sound: loadedSituationalSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforsituationalandSpecific.mp3')
+            );
+            soundCache.situational = loadedSituationalSound;
+          }
+          setSituationalSound(soundCache.situational);
+          console.log('Situational sound loaded successfully');
+        }
+
+        if (soundsNeeded.social) {
+          if (!soundCache.social) {
+            const { sound: loadedSocialSound } = await Audio.Sound.createAsync(
+              require('./assets/sounds/soundforsocialandcasual.mp3')
+            );
+            soundCache.social = loadedSocialSound;
+          }
+          setSocialSound(soundCache.social);
+          console.log('Social sound loaded successfully');
+        }
+
+        // Load common sounds
         if (soundsNeeded.race) {
           if (!soundCache.race) {
             const { sound: loadedRaceSound } = await Audio.Sound.createAsync(
@@ -245,8 +367,6 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setRaceSound(soundCache.race);
           console.log('Race noise loaded successfully');
-        } else {
-          setRaceSound(undefined);
         }
 
         if (soundsNeeded.room) {
@@ -259,80 +379,32 @@ function TeleprompterScreen({ route, navigation }) {
           }
           setRoomSound(soundCache.room);
           console.log('Room sound loaded successfully and set to loop');
-        } else {
-          setRoomSound(undefined);
-        }
-        
-        if (soundsNeeded.speech) {
-          if (!soundCache.speech) {
-            const { sound: loadedSpeechSound } = await Audio.Sound.createAsync(
-              require('./assets/sounds/soundforspeech.mp3')
-            );
-            soundCache.speech = loadedSpeechSound;
-          }
-          setSpeechSound(soundCache.speech);
-          console.log('Speech sound loaded successfully');
-        } else {
-          setSpeechSound(undefined);
-        }
-
-        if (soundsNeeded.interview) {
-          if (!soundCache.interview) {
-            const { sound: loadedInterviewSound } = await Audio.Sound.createAsync(
-              require('./assets/sounds/soundforinterview.mp3')
-            );
-            soundCache.interview = loadedInterviewSound;
-          }
-          setInterviewSound(soundCache.interview);
-          console.log('Interview sound loaded successfully');
-        } else {
-          setInterviewSound(undefined);
-        }
-
-        if (soundsNeeded.vc) {
-          if (!soundCache.vc) {
-            console.log('Attempting to load VC sound...');
-            const { sound: loadedVcSound } = await Audio.Sound.createAsync(
-              require('./assets/sounds/soundforvc.mp3')
-            );
-            soundCache.vc = loadedVcSound;
-            console.log('Loaded VC sound into cache.');
-          }
-          setVcSound(soundCache.vc);
-          console.log('VC sound set successfully');
-        } else {
-          setVcSound(undefined);
         }
 
       } catch (error) {
         console.error('Failed to load sound(s)', error);
-        allLoadedSuccessfully = false; // Mark as failed
-        // Optionally, reset specific sound states that might have partially loaded
+        allLoadedSuccessfully = false;
         setSound(undefined);
         setRaceSound(undefined);
         setRoomSound(undefined);
         setSpeechSound(undefined);
         setInterviewSound(undefined);
         setVcSound(undefined);
-        // DO NOT set soundsLoaded to true here anymore
-        // Maybe show an error message to the user?
-        // Alert.alert("Sound Error", "Could not load all required sounds. Some features might be affected.");
+        setPresentationSound(undefined);
+        setSituationalSound(undefined);
+        setSocialSound(undefined);
       } finally {
-        // Only set soundsLoaded to true if everything loaded without errors
         if (allLoadedSuccessfully) {
           console.log("All required sounds loaded successfully.");
           setSoundsLoaded(true);
         } else {
           console.error("Sound loading failed, soundsLoaded remains false.");
-          // Consider showing an error message or disabling sound-related features
         }
       }
     }
     loadSounds();
 
-    // No need to unload cached sounds - they're reused between screens
     return () => {
-      // Just stop any actively playing sounds
       stopAllSounds();
     };
   }, [soundsNeeded, stopAllSounds]);
@@ -358,45 +430,22 @@ function TeleprompterScreen({ route, navigation }) {
     // --- Start Race Noise Immediately with proper error handling ---
     if (countdown === 4 && raceSound) {
       console.log('Attempting to play Race Noise (during countdown)');
-      
-      // Make sure the sound is properly loaded before playing
+
       const playRaceSound = async () => {
         try {
-          // Check if sound is loaded
           const status = await raceSound.getStatusAsync();
           console.log('Race sound status:', status);
-          
-          // Reset sound position to beginning to ensure it plays from start
+
           await raceSound.setPositionAsync(0);
-          
-          // Play the sound
           await raceSound.playAsync();
           console.log('Race Noise playing successfully');
-          
         } catch (error) {
           console.error('Failed to play race noise:', error);
-          // Try to reload the sound if there was an error
-          try {
-            if (!soundCache.race) {
-              const { sound: newRaceSound } = await Audio.Sound.createAsync(
-                require('./assets/sounds/racenoise.mp3')
-              );
-              soundCache.race = newRaceSound;
-              setRaceSound(newRaceSound);
-              console.log('Race noise reloaded successfully');
-              
-              // Try playing again
-              await newRaceSound.playAsync();
-            }
-          } catch (reloadError) {
-            console.error('Failed to reload race noise:', reloadError);
-          }
         }
       };
-      
+
       playRaceSound();
     }
-    // --- End Start Race Noise ---
 
     // --- Handle Countdown Logic ---
     if (countdown > 0) {
@@ -407,83 +456,61 @@ function TeleprompterScreen({ route, navigation }) {
       setShowCountdown(false);
       setIsScrolling(true);
 
-      // --- Play Speech Sound (Speeches Category Only, Once) ---
-      if (speechSound && !isWarmUpMode && currentPromptData && 
-          currentPromptData.category === 'Speeches') {
+      // Play all required sounds after countdown
+      const playSoundsAfterCountdown = async () => {
         try {
-          console.log('Playing Speech Sound (Once) for Speeches category');
-          speechSound.replayAsync(); // Plays once as looping is disabled
-        } catch (error) {
-          console.error('Failed to play speech sound', error);
-        }
-      } else if (speechSound) {
-         // Log if not played
-      } else {
-         // Log if not loaded
-      }
-      
-      // --- Play Interview Sound (Interviews Category Only, Once) ---
-      if (interviewSound && !isWarmUpMode && currentPromptData && 
-          currentPromptData.category === 'Interviews') {
-        try {
-          console.log('Playing Interview Sound (Once) for Interviews category');
-          interviewSound.replayAsync(); // Play once
-        } catch (error) {
-          console.error('Failed to play interview sound', error);
-        }
-      } else if (interviewSound) {
-         // Log if not played (wrong mode/category)
-      } else {
-         // Log if not loaded
-      }
+          // Stop race sound first
+          if (raceSound) {
+            const status = await raceSound.getStatusAsync();
+            if (status.isPlaying) {
+              await raceSound.stopAsync();
+              console.log('Stopped race sound after countdown');
+            }
+          }
 
-      // --- Play VC Sound (Virtual Communication Category Only, Once, at Start) ---
-      if (vcSound && !isWarmUpMode && currentPromptData?.category === 'Virtual Communication') {
-        try {
-          console.log('Playing VC Sound (Once, at start) for Virtual Communication category');
-          vcSound.replayAsync(); // Play once
-        } catch (error) {
-          console.error('Failed to play VC sound', error);
-        }
-      } else if (vcSound) {
-         // Log if not played (wrong mode/category)
-      } else {
-         // Log if not loaded
-      }
+          // Play soundAsset if available
+          if (currentPromptData?.soundAsset && sound) {
+            console.log('Playing soundAsset after countdown');
+            await sound.setPositionAsync(0);
+            await sound.playAsync();
+          }
 
-      // --- Play Room Sound (All Categories except Warm-up AND Virtual Communication, Looping) ---
-      if (roomSound && !isWarmUpMode && currentPromptData?.category !== 'Virtual Communication') {
-        try {
-          console.log(`Playing Room Sound (Looping) for category: ${currentPromptData?.category || 'Unknown'}`);
-          roomSound.replayAsync(); // Plays and loops as looping is enabled
-        } catch (error) {
-          console.error('Failed to play room sound', error);
-        }
-      } else if (roomSound) {
-        // Log why it wasn't played if the sound exists
-        console.log('Room sound exists but not playing (Warm-up mode).');
-      } else {
-        console.log('Room sound object not loaded, cannot play.');
-      }
+          // Play category-specific sounds
+          if (soundsNeeded.speech && speechSound) {
+            console.log('Playing Speech Sound');
+            await speechSound.setPositionAsync(0);
+            await speechSound.playAsync();
+          }
 
-      // --- Play Clapping Sound (Conditionally and NOT in warm-up) ---
-      if (!isWarmUpMode && soundsNeeded.clapping && sound) {
-        try {
-          console.log('Playing Clapping Sound (conditional from soundAsset)');
-          sound.replayAsync().then(() => {
-            clapSoundTimeoutId = setTimeout(() => {
-              sound.stopAsync();
-            }, 3000);
-          });
+          if (soundsNeeded.interview && interviewSound) {
+            console.log('Playing Interview Sound');
+            await interviewSound.setPositionAsync(0);
+            await interviewSound.playAsync();
+          }
+
+          if (soundsNeeded.vc && vcSound) {
+            console.log('Attempting to play VC Sound...');
+            const status = await vcSound.getStatusAsync();
+            console.log('VC sound status before playing:', status);
+            await vcSound.setPositionAsync(0);
+            await vcSound.playAsync();
+            console.log('VC sound playing started');
+          }
+
+          // Play room sound (looping)
+          if (soundsNeeded.room && roomSound) {
+            console.log('Playing Room Sound (Looping)');
+            await roomSound.setPositionAsync(0);
+            await roomSound.setIsLoopingAsync(true);
+            await roomSound.playAsync();
+          }
         } catch (error) {
-          console.error('Failed to play clapping sound', error);
+          console.error('Error playing sounds after countdown:', error);
         }
-      } else if (!isWarmUpMode && soundsNeeded.clapping) {
-           console.log('Clapping appropriate (from soundAsset), but sound object not loaded.');
-      }
-      // --- End Play Clapping Sound ---
+      };
+
+      playSoundsAfterCountdown();
     }
-    // --- End Handle Countdown Logic ---
 
     // Cleanup function
     return () => {
@@ -491,60 +518,74 @@ function TeleprompterScreen({ route, navigation }) {
       clearTimeout(clapSoundTimeoutId);
 
       // Stop looping/playing sounds on cleanup (if countdown finished)
-      if (!showCountdown) { 
-        if (roomSound) { 
-          roomSound.getStatusAsync().then(status => {
-            if (status.isPlaying) {
-              console.log('Stopping looping room sound on cleanup');
-              roomSound.stopAsync();
+      if (!showCountdown) {
+        const stopAllPlayingSounds = async () => {
+          try {
+            if (roomSound) {
+              const status = await roomSound.getStatusAsync();
+              if (status.isPlaying) {
+                console.log('Stopping looping room sound on cleanup');
+                await roomSound.stopAsync();
+              }
             }
-          }).catch(error => console.error("Error checking room sound status on cleanup", error));
-        }
-        // Add speechSound stop to cleanup
-        if (speechSound) { 
-          speechSound.getStatusAsync().then(status => {
-            if (status.isPlaying) {
-              console.log('Stopping speech sound on cleanup'); // Updated log
-              speechSound.stopAsync();
+            if (speechSound) {
+              const status = await speechSound.getStatusAsync();
+              if (status.isPlaying) {
+                console.log('Stopping speech sound on cleanup');
+                await speechSound.stopAsync();
+              }
             }
-          }).catch(error => console.error("Error checking speech sound status on cleanup", error));
-        }
-        // Add interviewSound stop to cleanup
-        if (interviewSound) { 
-          interviewSound.getStatusAsync().then(status => {
-            if (status.isPlaying) {
-              console.log('Stopping interview sound on cleanup');
-              interviewSound.stopAsync();
+            if (interviewSound) {
+              const status = await interviewSound.getStatusAsync();
+              if (status.isPlaying) {
+                console.log('Stopping interview sound on cleanup');
+                await interviewSound.stopAsync();
+              }
             }
-          }).catch(error => console.error("Error checking interview sound status on cleanup", error));
-        }
-        // Add vcSound stop to cleanup
-        if (vcSound) {
-          vcSound.getStatusAsync().then(status => {
-            if (status.isPlaying) {
-              console.log('Stopping VC sound on cleanup');
-              vcSound.stopAsync();
+            if (vcSound) {
+              const status = await vcSound.getStatusAsync();
+              if (status.isPlaying) {
+                console.log('Stopping VC sound on cleanup');
+                await vcSound.stopAsync();
+              }
             }
-          }).catch(error => console.error("Error checking VC sound status on cleanup", error));
-        }
+            if (sound) {
+              const status = await sound.getStatusAsync();
+              if (status.isPlaying) {
+                console.log('Stopping soundAsset on cleanup');
+                await sound.stopAsync();
+              }
+            }
+            if (raceSound) {
+              const status = await raceSound.getStatusAsync();
+              if (status.isPlaying) {
+                console.log('Stopping race sound on cleanup');
+                await raceSound.stopAsync();
+              }
+            }
+          } catch (error) {
+            console.error('Error stopping sounds during cleanup:', error);
+          }
+        };
+
+        stopAllPlayingSounds();
       }
     };
-
-  }, [countdown, showCountdown, sound, raceSound, roomSound, speechSound, interviewSound, vcSound, selectedPromptId, isWarmUpMode, currentPromptData]); // <<< Added vcSound dependency here too
+  }, [countdown, showCountdown, sound, raceSound, roomSound, speechSound, interviewSound, vcSound, selectedPromptId, isWarmUpMode, currentPromptData, soundsNeeded]);
 
   // --- Get fixed paddingBottom from styles --- (Helper)
   const getPaddingBottom = () => {
-      // Use the value set in styles, ensure it's a number
-      return typeof styles.scrollViewContent.paddingBottom === 'number' 
-             ? styles.scrollViewContent.paddingBottom 
-             : screenHeight; // Fallback to screenHeight if style is dynamic/unavailable
+    // Use the value set in styles, ensure it's a number
+    return typeof styles.scrollViewContent.paddingBottom === 'number'
+      ? styles.scrollViewContent.paddingBottom
+      : screenHeight; // Fallback to screenHeight if style is dynamic/unavailable
   };
 
   // --- Calculate Initial Scroll Position --- (Helper - Start at Top)
   const calculateInitialScrollPos = () => {
-      // For normal scrolling, start at the top (0)
-      console.log("CALC Initial Scroll (Normal View): Returning 0.");
-      return 0;
+    // For normal scrolling, start at the top (0)
+    console.log("CALC Initial Scroll (Normal View): Returning 0.");
+    return 0;
   }
 
   // --- Effect to Set Initial Scroll Position Once Dimensions Known ---
@@ -556,7 +597,7 @@ function TeleprompterScreen({ route, navigation }) {
     scrollY.setValue(initialPos);
     // Ensure ScrollView is also manually set initially
     if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ y: initialPos, animated: false });
+      scrollViewRef.current.scrollTo({ y: initialPos, animated: false });
     }
     // Dependencies are still needed to trigger this *once* dimensions are known,
     // even though the value set is constant.
@@ -575,6 +616,11 @@ function TeleprompterScreen({ route, navigation }) {
       if (currentScrollY >= targetScrollY - 1) { // Small threshold
         console.log("Animation already at or past target end. Stopping.");
         setIsScrolling(false);
+        // Play completion sound when presentation ends
+        if (soundsNeeded.presentation && sound) {
+          console.log('Playing presentation completion sound');
+          playCompletionSounds();
+        }
         return;
       }
 
@@ -598,18 +644,26 @@ function TeleprompterScreen({ route, navigation }) {
         easing: Easing.linear,
       });
       animationRef.current = animation;
-      animation.start(({ finished }) => {
-        animationRef.current = null;
+      animationRef.current.start(async ({ finished }) => {
+        console.log("🚀 ~ animationRef.current.start ~ finished:", finished);
+        animationRef.current = null; // Clear ref after animation finishes or stops
+
+        // Check if animation was stopped or finished naturally
         if (finished) {
           console.log("Animation finished naturally.");
           setIsScrolling(false);
+          // Stop all sounds when animation finishes naturally
+          await stopAllSounds();
           // Record practice session completion
           if (!practiceRecordedRef.current) {
             recordPracticeSession();
-            practiceRecordedRef.current = true; // Mark as recorded for this mount
+            practiceRecordedRef.current = true;
           }
         } else {
-          console.log("Animation stopped/interrupted.");
+          console.log("Animation stopped/interrupted before finishing.");
+          // Stop sounds when animation is interrupted
+          await stopAllSounds();
+          // Don't set isScrolling false here, pause button/stop button handles that
         }
       });
 
@@ -667,23 +721,23 @@ function TeleprompterScreen({ route, navigation }) {
 
   // --- Save accumulated time on unmount or navigation --- 
   const savePracticeTime = useCallback(async (sessionDurationMs) => {
-      if (sessionDurationMs <= 0) return; // Don't save if no time tracked
-      try {
-          const existingTimeStr = await AsyncStorage.getItem('@totalPracticeTimeSeconds');
-          const existingTimeSec = existingTimeStr ? parseInt(existingTimeStr, 10) : 0;
-          const sessionTimeSec = Math.round(sessionDurationMs / 1000);
-          const newTotalTimeSec = existingTimeSec + sessionTimeSec;
-          await AsyncStorage.setItem('@totalPracticeTimeSeconds', newTotalTimeSec.toString());
-          console.log(`Saved practice time. Session: ${sessionTimeSec}s, New Total: ${newTotalTimeSec}s`);
-          
-          // Optionally update context/backend immediately (if updateUserStats exists)
-          if (updateUserStats) {
-             updateUserStats({ totalPracticeTime: newTotalTimeSec }); 
-          }
+    if (sessionDurationMs <= 0) return; // Don't save if no time tracked
+    try {
+      const existingTimeStr = await AsyncStorage.getItem('@totalPracticeTimeSeconds');
+      const existingTimeSec = existingTimeStr ? parseInt(existingTimeStr, 10) : 0;
+      const sessionTimeSec = Math.round(sessionDurationMs / 1000);
+      const newTotalTimeSec = existingTimeSec + sessionTimeSec;
+      await AsyncStorage.setItem('@totalPracticeTimeSeconds', newTotalTimeSec.toString());
+      console.log(`Saved practice time. Session: ${sessionTimeSec}s, New Total: ${newTotalTimeSec}s`);
 
-      } catch (e) {
-          console.error('Failed to save total practice time.', e);
+      // Optionally update context/backend immediately (if updateUserStats exists)
+      if (updateUserStats) {
+        updateUserStats({ totalPracticeTime: newTotalTimeSec });
       }
+
+    } catch (e) {
+      console.error('Failed to save total practice time.', e);
+    }
   }, [updateUserStats]);
 
   // --- Cleanup effect for unmounting ---
@@ -696,7 +750,7 @@ function TeleprompterScreen({ route, navigation }) {
       // Save any accumulated time from the final session segment
       let finalDuration = accumulatedPracticeTime;
       if (practiceSessionStartTime) { // If scroll was active when unmounted
-          finalDuration += Date.now() - practiceSessionStartTime;
+        finalDuration += Date.now() - practiceSessionStartTime;
       }
       savePracticeTime(finalDuration);
       // Unload sounds from cache if appropriate (might need more complex cache management)
@@ -707,14 +761,14 @@ function TeleprompterScreen({ route, navigation }) {
   const startScrolling = useCallback((fromPosition = 0) => {
     // Calculate target scroll position (end of content)
     const targetScrollY = Math.max(0, contentHeight - containerHeight);
-    
+
     // If already at or past the target, don't scroll
     if (fromPosition >= targetScrollY - 1) { // Small threshold
       console.log("StartScroll: Already at or past target end. No scroll needed.");
       // Still start the timer if it wasn't already running
       if (!practiceSessionStartTime) {
-           setPracticeSessionStartTime(Date.now());
-           console.log("Practice timer started (no scroll needed)");
+        setPracticeSessionStartTime(Date.now());
+        console.log("Practice timer started (no scroll needed)");
       }
       return; // Exit the function
     }
@@ -723,62 +777,63 @@ function TeleprompterScreen({ route, navigation }) {
     const remainingDistance = targetScrollY - fromPosition;
     const pixelsPerSecond = scrollSpeed * 50; // Base speed (pixels/sec) - Adjust multiplier as needed
     const duration = Math.max((remainingDistance / pixelsPerSecond) * 1000, 1); // Duration in ms, ensure positive
-    
+
     console.log(`StartScroll: From=${fromPosition.toFixed(2)}, Target=${targetScrollY.toFixed(2)}, Remaining=${remainingDistance.toFixed(2)}, Duration=${duration.toFixed(0)}ms`);
 
     // Check if duration is valid before starting animation
     if (duration > 0) {
-        // Clear previous animation if any
-        if (animationRef.current) {
-            animationRef.current.stop();
-            console.log("StartScroll: Stopped previous animation.");
-        }
-        
-        // <<< START tracking time when scrolling starts >>>
-        if (!practiceSessionStartTime) { // Only set start time if not already running
-             setPracticeSessionStartTime(Date.now());
-             console.log("Practice timer started");
-        }
-        // <<< END tracking time >>>
+      // Clear previous animation if any
+      if (animationRef.current) {
+        animationRef.current.stop();
+        console.log("StartScroll: Stopped previous animation.");
+      }
 
-        // Create and start the timing animation
-       const animation = Animated.timing(scrollY, { 
-           toValue: targetScrollY,
-           duration: duration, // Use the calculated duration
-           useNativeDriver: false,
-           easing: Easing.linear,
-       });
-       animationRef.current = animation;
-       animationRef.current.start(({ finished }) => {
-           animationRef.current = null; // Clear ref after animation finishes or stops
-           if (finished) {
-               console.log("Animation finished naturally.");
-               setIsScrolling(false); // Update state when finished
-               // Record practice session completion
-               if (!practiceRecordedRef.current) {
-                   recordPracticeSession();
-                   practiceRecordedRef.current = true; // Mark as recorded
-               }
-           } else {
-               console.log("Animation stopped/interrupted before finishing.");
-               // Don't set isScrolling false here, pause button/stop button handles that
-           }
-       });
+      // <<< START tracking time when scrolling starts >>>
+      if (!practiceSessionStartTime) { // Only set start time if not already running
+        setPracticeSessionStartTime(Date.now());
+        console.log("Practice timer started");
+      }
+      // <<< END tracking time >>>
+
+      // Create and start the timing animation
+      const animation = Animated.timing(scrollY, {
+        toValue: targetScrollY,
+        duration: duration, // Use the calculated duration
+        useNativeDriver: false,
+        easing: Easing.linear,
+      });
+      animationRef.current = animation;
+      animationRef.current.start(async ({ finished }) => {
+        animationRef.current = null; // Clear ref after animation finishes or stops
+        if (finished) {
+          console.log("Animation finished naturally.");
+          setIsScrolling(false); // Update state when finished.
+          stopAllSounds();
+          // Record practice session completion
+          if (!practiceRecordedRef.current) {
+            recordPracticeSession();
+            practiceRecordedRef.current = true; // Mark as recorded
+          }
+        } else {
+          console.log("Animation stopped/interrupted before finishing.");
+          // Don't set isScrolling false here, pause button/stop button handles that
+        }
+      });
     } else {
-         console.log("StartScroll: Calculated duration is zero or negative. No scroll started.");
-         // Even if no scroll, mark practice session as started if button pressed
-         if (!practiceSessionStartTime) { 
-             setPracticeSessionStartTime(Date.now());
-             console.log("Practice timer started (no scroll needed)");
-         }
+      console.log("StartScroll: Calculated duration is zero or negative. No scroll started.");
+      // Even if no scroll, mark practice session as started if button pressed
+      if (!practiceSessionStartTime) {
+        setPracticeSessionStartTime(Date.now());
+        console.log("Practice timer started (no scroll needed)");
+      }
     }
-  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession]); // Added dependencies
+  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession, animationRef]); // Added dependencies
 
   const pauseScrolling = useCallback(() => {
     if (animationRef.current) {
       animationRef.current.stop();
       animationRef.current = null; // Clear the animation ref
-       // <<< PAUSE tracking time >>>
+      // <<< PAUSE tracking time >>>
       if (practiceSessionStartTime) {
         const duration = Date.now() - practiceSessionStartTime;
         setAccumulatedPracticeTime(prev => prev + duration);
@@ -792,27 +847,27 @@ function TeleprompterScreen({ route, navigation }) {
   const stopScrolling = useCallback(async () => {
     console.log("Stopping scroll and saving time...");
     // Set isScrolling to false FIRST to trigger the useEffect cleanup/pause
-    setIsScrolling(false); 
-    
+    setIsScrolling(false);
+
     // Stop animation with error handling
     try {
       if (animationRef.current) {
-          animationRef.current.stop();
-          animationRef.current = null;
-          console.log("Animation stopped successfully.");
+        animationRef.current.stop();
+        animationRef.current = null;
+        console.log("Animation stopped successfully.");
       } else {
-          console.log("No active animation to stop.");
+        console.log("No active animation to stop.");
       }
     } catch (error) {
       console.error("Error stopping animation:", error);
       animationRef.current = null; // Ensure ref is cleared even if stop fails
     }
-    
+
     // <<< STOP tracking time and SAVE >>>
     let finalDuration = accumulatedPracticeTime;
     if (practiceSessionStartTime) {
-        finalDuration += Date.now() - practiceSessionStartTime;
-        console.log(`Practice timer stopped. Added ${Date.now() - practiceSessionStartTime}ms.`);
+      finalDuration += Date.now() - practiceSessionStartTime;
+      console.log(`Practice timer stopped. Added ${Date.now() - practiceSessionStartTime}ms.`);
     }
     console.log(`Total session duration: ${finalDuration}ms`);
     setAccumulatedPracticeTime(0); // Reset accumulator for this screen instance
@@ -823,23 +878,23 @@ function TeleprompterScreen({ route, navigation }) {
 
     scrollY.setValue(0); // Reset scroll position
     if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ y: 0, animated: false });
+      scrollViewRef.current.scrollTo({ y: 0, animated: false });
     }
     // Potentially trigger recording practice session here too? 
     // Or rely on leaving the screen?
-     if (!isWarmUpMode && !practiceRecordedRef.current) {
-        recordPracticeSession(); // Record the practice
-        practiceRecordedRef.current = true;
+    if (!isWarmUpMode && !practiceRecordedRef.current) {
+      recordPracticeSession(); // Record the practice
+      practiceRecordedRef.current = true;
     }
 
     // Stop sounds with error handling
     try {
-      await stopAllSounds(); 
+      await stopAllSounds();
       console.log("Sounds stopped successfully.");
     } catch (error) {
       console.error("Error stopping sounds:", error);
     }
-    
+
     setShowCountdown(false); // Hide countdown after stop
     setCountdown(4); // Reset countdown
     setSoundsLoaded(false); // Reset sounds loaded flag to reload on next start
@@ -847,73 +902,74 @@ function TeleprompterScreen({ route, navigation }) {
   }, [scrollY, recordPracticeSession, isWarmUpMode, stopAllSounds, accumulatedPracticeTime, practiceSessionStartTime, savePracticeTime]); // Added dependencies
 
   // --- Button Handlers --- 
-  const handleStartPause = () => {
-     if (!soundsLoaded) {
-        console.warn("Attempted to start/pause toggle before sounds loaded.");
-        return; // Prevent action if sounds aren't ready
+  const handleStartPause = async () => {
+    if (!soundsLoaded) {
+      console.warn("Attempted to start/pause toggle before sounds loaded.");
+      return; // Prevent action if sounds aren't ready
     }
-    // Simply toggle the state. The useEffect will handle the action.
+
+    // Stop all sounds when pausing
+    if (isScrolling) {
+      await stopAllSounds();
+    }
+
+    // Toggle scrolling state
     setIsScrolling(prevIsScrolling => !prevIsScrolling);
   };
-  
+
   // Modify handleStop to use the new stopScrolling function
   const handleStop = async () => {
-      await stopScrolling();
+    await stopScrolling();
   };
 
   // Modify navigation handlers to use stopScrolling (saves time)
   const handleNextPrompt = async () => {
-      console.log("Next Prompt requested");
-      await stopScrolling(); // Stop scroll, save time, stop sounds
+    console.log("Next Prompt requested");
+    await stopAllSounds(); // Stop all sounds before navigation
+    await stopScrolling(); // Stop scroll, save time
 
-      if (isWarmUpMode || !categoryPrompts || categoryPrompts.length === 0) {
-        console.log("Cannot navigate to next prompt: Not in regular mode or no category prompts.");
-        return;
-      }
+    if (isWarmUpMode || !categoryPrompts || categoryPrompts.length === 0) {
+      console.log("Cannot navigate to next prompt: Not in regular mode or no category prompts.");
+      return;
+    }
 
-      const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
-      if (currentIndex === -1) {
-        console.error("Could not find current prompt in category. Navigating to first.");
-        navigation.replace('Teleprompter', { 
-            selectedPromptId: categoryPrompts[0].id, 
-            categoryPrompts 
-        });
-        return;
-      }
+    const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
+    if (currentIndex === -1) {
+      console.error("Could not find current prompt in category. Navigating to first.");
+      navigation.replace('Teleprompter', {
+        selectedPromptId: categoryPrompts[0].id,
+        categoryPrompts
+      });
+      return;
+    }
 
-      const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Loop back to start
-      const nextPrompt = categoryPrompts[nextIndex];
+    const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Loop back to start
+    const nextPrompt = categoryPrompts[nextIndex];
 
-      if (nextPrompt && nextPrompt.id) {
-        console.log(`Navigating to next prompt: ${nextPrompt.id}`);
-        navigation.replace('Teleprompter', { 
-            selectedPromptId: nextPrompt.id, 
-            categoryPrompts 
-        });
-      } else {
-        console.error("Could not find next prompt or next prompt ID is invalid.");
-        // Optionally, navigate back to category selection or show an error
-      }
+    if (nextPrompt && nextPrompt.id) {
+      console.log(`Navigating to next prompt: ${nextPrompt.id}`);
+      navigation.replace('Teleprompter', {
+        selectedPromptId: nextPrompt.id,
+        categoryPrompts
+      });
+    } else {
+      console.error("Could not find next prompt or next prompt ID is invalid.");
+    }
   };
 
   const handleGoBack = async () => {
-      console.log("Go Back requested from TeleprompterScreen");
-      // Log current navigation state for diagnostics
-      console.log("Current Navigation State:", JSON.stringify(navigation.getState(), null, 2));
-      
-      // Ensure scrolling and associated sounds/timers are stopped before going back
-      await stopScrolling(); // <<< ADDED THIS LINE
-
-      navigation.goBack();
+    console.log("Go Back requested from TeleprompterScreen");
+    await stopAllSounds(); // Stop all sounds before navigation
+    await stopScrolling(); // Stop scroll, save time
+    navigation.goBack();
   };
 
   const handleGoToCategories = async () => {
-      console.log("Go To Categories requested");
-       // Time saving now handled by the unmount effect
-      // await stopScrolling(); // No longer needed here, unmount effect handles it
-      navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
+    console.log("Go To Categories requested");
+    await stopAllSounds(); // Stop all sounds before navigation
+    await stopScrolling(); // Stop scroll, save time
+    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
   };
-  // ... (rest of functions: playCompletionSounds, getPaddingBottom, etc.) ...
 
   // --- Determine Text Overlay Style ---
   // Use default or dynamic style, but ensure background is appropriate for warm-up
@@ -923,9 +979,9 @@ function TeleprompterScreen({ route, navigation }) {
     // Override background for warm-up mode to ensure visibility
     backgroundColor: isWarmUpMode ? 'rgba(0,0,0,0.8)' : (routeLayoutConfig?.backgroundColor || defaultLayoutConfig.backgroundColor),
   };
-  
+
   // Determine text color for warm-up
-  const dynamicTextStyle = isWarmUpMode 
+  const dynamicTextStyle = isWarmUpMode
     ? styles.promptTextWhite // Always white for warm-up on dark overlay
     : (currentPromptData?.textColor === 'white' ? styles.promptTextWhite : styles.promptTextDefault);
 
@@ -944,11 +1000,11 @@ function TeleprompterScreen({ route, navigation }) {
       console.log('Playing clapping sound');
       await sound.replayAsync();
     }
-    // // Play VC sound if needed
-    // if (soundsNeeded.vc && vcSound) { 
-    //   console.log('Playing Virtual Communication sound');
-    //   await vcSound.replayAsync();
-    // }
+    // Play presentation sound if needed
+    if (soundsNeeded.presentation && sound) {
+      console.log('Playing presentation sound');
+      await sound.replayAsync();
+    }
   };
 
   return (
@@ -977,7 +1033,7 @@ function TeleprompterScreen({ route, navigation }) {
           </ScrollView>
         </View>
 
-        {/* Countdown Timer Overlay */} 
+        {/* Countdown Timer Overlay */}
         {showCountdown && (
           <View style={styles.countdownOverlay}>
             <Text style={styles.countdownText}>{countdown}</Text>
@@ -1044,7 +1100,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   scrollViewContent: {
-    paddingBottom: 50, 
+    paddingBottom: 50,
     paddingHorizontal: 10, // Added horizontal padding for text
   },
   promptTextDefault: {
