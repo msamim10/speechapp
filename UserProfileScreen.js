@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -18,6 +18,9 @@ import * as ImagePicker from 'expo-image-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import colors from './constants/colors';
 import { useNavigation } from '@react-navigation/native';
+import { doc, getDoc, updateDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { signOut as firebaseSignOut } from 'firebase/auth';
+import { auth, db } from './firebase';
 
 // Date Formatting Helper - Copied from HomeScreen.js for now
 const isSameDay = (d1, d2) => {
@@ -49,22 +52,57 @@ function UserProfileScreen() {
   const {
     username: currentUsername,
     avatarSource,
-    currentStreak,
-    totalPracticeTime,
-    lastPracticedTimestamp,
     isLoading: isContextLoading,
-    updateUsername,
+    updateUsername: updateUsernameInContext,
     updateAvatarUri,
-    signOut,
+    signOut: signOutFromContext,
   } = useUser();
 
   const [editingUsername, setEditingUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [isFetchingSettings, setIsFetchingSettings] = useState(true);
+  const [isSavingName, setIsSavingName] = useState(false);
+  const [joinedDate, setJoinedDate] = useState(null);
+  const [feedbackText, setFeedbackText] = useState('');
+  const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
+
+  const userId = auth.currentUser?.uid;
+
+  const fetchUserSettings = useCallback(async () => {
+    if (!userId) {
+      Alert.alert('Error', 'User not found for settings.');
+      setIsFetchingSettings(false);
+      return;
+    }
+    setIsFetchingSettings(true);
+    try {
+      const userDocRef = doc(db, 'users', userId);
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        setEmail(userData.email || 'No email found');
+        if (userData.createdAt) {
+          setJoinedDate(userData.createdAt);
+        }
+      } else {
+        Alert.alert('Error', 'User data not found in Firestore for settings.');
+      }
+    } catch (error) {
+      console.error('Error fetching user settings:', error);
+      Alert.alert('Error', 'Could not fetch user settings.');
+    } finally {
+      setIsFetchingSettings(false);
+    }
+  }, [userId]);
 
   useEffect(() => {
     if (!isContextLoading && currentUsername) {
       setEditingUsername(currentUsername);
     }
-  }, [currentUsername, isContextLoading]);
+    if (userId) {
+      fetchUserSettings();
+    }
+  }, [currentUsername, isContextLoading, userId, fetchUserSettings]);
 
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -84,29 +122,66 @@ function UserProfileScreen() {
     }
   };
 
-  const handleSaveUsername = async () => {
+  const handleSaveUsernameAndName = async () => {
     if (editingUsername.trim() === '') {
       Alert.alert('Invalid Input', 'Username cannot be empty.');
       return;
     }
     if (editingUsername.trim() === currentUsername) {
+      Alert.alert('No Changes', 'The new name is the same as the current name.');
       return;
     }
+    setIsSavingName(true);
     try {
-      await updateUsername(editingUsername.trim());
+      const userDocRef = doc(db, 'users', userId);
+      await updateDoc(userDocRef, { name: editingUsername.trim() });
+      await updateUsernameInContext(editingUsername.trim());
       Alert.alert('Success', 'Username updated successfully.');
     } catch (e) {
-      console.error('Failed to save username via context.', e);
+      console.error('Failed to save username/name:', e);
       Alert.alert('Error', 'Could not save profile data.');
+    } finally {
+      setIsSavingName(false);
     }
   };
 
-  const handleLogout = async () => {
+  const handleLogoutCombined = async () => {
     try {
-      await signOut();
+      await firebaseSignOut(auth);
+      console.log('User signed out successfully via Firebase.');
     } catch (e) {
       console.error('Failed to logout:', e);
       Alert.alert('Error', 'Failed to logout. Please try again.');
+    }
+  };
+
+  const handleFeedbackSubmit = async () => {
+    if (feedbackText.trim() === '') {
+      Alert.alert('Empty Feedback', 'Please write your feedback before submitting.');
+      return;
+    }
+    if (!userId) {
+      Alert.alert('Error', 'You must be logged in to submit feedback.');
+      return;
+    }
+
+    setIsSubmittingFeedback(true);
+    try {
+      const feedbackCollectionRef = collection(db, 'feedback');
+      await addDoc(feedbackCollectionRef, {
+        userId: userId,
+        username: currentUsername,
+        feedbackText: feedbackText.trim(),
+        submittedAt: serverTimestamp(),
+        status: 'new',
+      });
+      Alert.alert('Feedback Sent', 'Thank you for your feedback!');
+      setFeedbackText('');
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      Alert.alert('Submission Error', 'Could not send your feedback. Please try again.');
+    } finally {
+      setIsSubmittingFeedback(false);
     }
   };
 
@@ -119,7 +194,7 @@ function UserProfileScreen() {
     return `${h > 0 ? h + 'h ' : ''}${m > 0 ? m + 'm ' : ''}${s}s`;
   };
 
-  if (isContextLoading) {
+  if (isContextLoading || isFetchingSettings) {
     return (
       <SafeAreaView style={styles.loadingContainerSafeArea}>
         <ActivityIndicator size="large" color={colors.primary} />
@@ -135,9 +210,7 @@ function UserProfileScreen() {
           <Ionicons name="arrow-back" size={28} color={colors.primary} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Profile</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Settings')} style={styles.headerButton}>
-          <Ionicons name="settings-outline" size={24} color={colors.primary} />
-        </TouchableOpacity>
+        <View style={styles.headerButton} />
       </View>
 
       <KeyboardAvoidingView
@@ -149,10 +222,14 @@ function UserProfileScreen() {
             <TouchableOpacity onPress={pickImage} style={styles.avatarTouchable}>
               <Image source={avatarSource} style={styles.avatar} />
               <View style={styles.avatarEditIconContainer}>
-                <Ionicons name="camera-reverse-outline" size={20} color={colors.white} />
+                <Ionicons name="camera-reverse-outline" size={18} color={colors.cardBackground} />
               </View>
             </TouchableOpacity>
             <Text style={styles.usernameDisplay}>{currentUsername}</Text>
+            <TouchableOpacity onPress={handleLogoutCombined} style={styles.inlineLogoutButton}>
+              <Ionicons name="log-out-outline" size={18} color={colors.textSecondary} style={styles.inlineLogoutIcon} />
+              <Text style={styles.inlineLogoutButtonText}>Logout</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.sectionContainer}>
@@ -167,38 +244,65 @@ function UserProfileScreen() {
                 placeholderTextColor={colors.textPlaceholder}
               />
               {(editingUsername.trim() !== currentUsername && editingUsername.trim() !== '') && (
-                <TouchableOpacity onPress={handleSaveUsername} style={styles.saveButton}>
-                  <Ionicons name="checkmark-done-outline" size={24} color={colors.primary} />
+                <TouchableOpacity onPress={handleSaveUsernameAndName} style={styles.updateUsernameButton}>
+                  <Text style={styles.updateUsernameButtonText}>Update</Text>
                 </TouchableOpacity>
               )}
             </View>
           </View>
           
           <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Statistics</Text>
-            <View style={styles.statsGrid}>
-              <View style={styles.statItem}>
-                <Ionicons name="flame-outline" size={28} color={colors.primary} />
-                <Text style={styles.statValue}>{currentStreak || 0}</Text>
-                <Text style={styles.statLabel}>Day Streak</Text>
-              </View>
-              <View style={styles.statItem}>
-                <Ionicons name="stats-chart-outline" size={28} color={colors.primary} />
-                <Text style={styles.statValue}>{formatPracticeTime(totalPracticeTime)}</Text>
-                <Text style={styles.statLabel}>Total Practice</Text>
-              </View>
-              <View style={styles.statItem}>
-                <Ionicons name="calendar-outline" size={28} color={colors.primary} />
-                <Text style={styles.statValue}>{formatTimestamp(lastPracticedTimestamp)}</Text>
-                <Text style={styles.statLabel}>Last Practiced</Text>
-              </View>
+            <Text style={styles.sectionTitle}>Account Information</Text>
+            <View style={styles.infoRow}>
+              <Ionicons name="mail-outline" size={20} color={colors.textSecondary} style={styles.inputIcon} />
+              <Text style={styles.infoLabel}>Email:</Text>
+              <Text style={styles.infoText}>{email}</Text>
             </View>
+            {userId && (
+              <View style={styles.infoRow}>
+                <Ionicons name="finger-print-outline" size={20} color={colors.textSecondary} style={styles.inputIcon} />
+                <Text style={styles.infoLabel}>User ID:</Text>
+                <Text style={styles.infoTextSmall} numberOfLines={1} ellipsizeMode="middle">{userId}</Text>
+              </View>
+            )}
+            {joinedDate && (
+              <View style={styles.infoRow}>
+                <Ionicons name="calendar-outline" size={20} color={colors.textSecondary} style={styles.inputIcon} />
+                <Text style={styles.infoLabel}>Joined:</Text>
+                <Text style={styles.infoText}>{formatTimestamp(joinedDate)}</Text>
+              </View>
+            )}
           </View>
 
-          <TouchableOpacity onPress={handleLogout} style={[styles.button, styles.logoutButton]}>
-            <Ionicons name="log-out-outline" size={22} color={colors.white} style={styles.buttonIcon} />
-            <Text style={styles.buttonText}>Logout</Text>
-          </TouchableOpacity>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Help & Feedback</Text>
+            <Text style={styles.subtleText}>Have a question, found a bug, or have a suggestion? Let us know!</Text>
+            <TextInput
+              style={styles.feedbackInput}
+              value={feedbackText}
+              onChangeText={setFeedbackText}
+              placeholder="Write your thoughts here..."
+              placeholderTextColor={colors.textSubtle}
+              multiline
+              numberOfLines={4}
+              editable={!isSubmittingFeedback}
+            />
+            <TouchableOpacity
+              style={[
+                styles.button,
+                styles.submitFeedbackButton,
+                isSubmittingFeedback && styles.disabledButton,
+              ]}
+              onPress={handleFeedbackSubmit}
+              disabled={isSubmittingFeedback}
+            >
+              {isSubmittingFeedback ? (
+                <ActivityIndicator size="small" color={colors.textLight} />
+              ) : (
+                <Text style={styles.buttonText}>Submit Feedback</Text>
+              )}
+            </TouchableOpacity>
+          </View>
 
         </ScrollView>
       </KeyboardAvoidingView>
@@ -209,14 +313,14 @@ function UserProfileScreen() {
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: colors.backgroundLight || '#F8F9FA',
+    backgroundColor: colors.backgroundLight,
     paddingTop: Platform.OS === 'android' ? 25 : 0,
   },
   loadingContainerSafeArea: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.backgroundLight || '#F8F9FA',
+    backgroundColor: colors.backgroundLight,
   },
   loadingText: {
     marginTop: 10,
@@ -227,155 +331,214 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: colors.borderLight || '#E9ECEF',
-    backgroundColor: colors.white || 'white',
+    borderBottomColor: colors.shadowColor,
+    backgroundColor: colors.cardBackground,
   },
   headerButton: {
-    padding: 5,
-    width: 38,
+    padding: 8,
+    width: 42,
     alignItems: 'center',
   },
   headerTitle: {
     fontSize: 20,
-    fontWeight: '600',
-    color: colors.textPrimary || '#212529',
+    fontWeight: 'bold',
+    color: colors.primaryDark,
   },
   scrollContentContainer: {
     padding: 20,
+    paddingBottom: 40,
     alignItems: 'center',
   },
   profileSection: {
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 20,
+    width: '100%',
   },
   avatarTouchable: {
     position: 'relative',
-    marginBottom: 15,
+    marginBottom: 12,
+    shadowColor: colors.shadowColor,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 6,
+    borderRadius: 55,
   },
   avatar: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    borderWidth: 4,
-    borderColor: colors.primary,
-    backgroundColor: colors.borderLight,
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    borderWidth: 3,
+    borderColor: colors.accentTeal,
+    backgroundColor: colors.backgroundLight,
   },
   avatarEditIconContainer: {
     position: 'absolute',
     bottom: 5,
     right: 5,
-    backgroundColor: colors.primary,
-    borderRadius: 20,
-    padding: 8,
+    backgroundColor: colors.accentTeal,
+    borderRadius: 18,
+    padding: 7,
     borderWidth: 2,
-    borderColor: colors.white,
+    borderColor: colors.cardBackground,
+    elevation: 8,
   },
   usernameDisplay: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: colors.textPrimary || '#212529',
+    color: colors.primaryDark,
+    marginTop: 5,
   },
   sectionContainer: {
     width: '100%',
     marginBottom: 25,
-    backgroundColor: colors.white,
-    borderRadius: 12,
+    backgroundColor: colors.cardBackground,
+    borderRadius: 16,
     padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 2,
+    shadowColor: colors.shadowColor,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.textPrimary || '#343A40',
-    marginBottom: 15,
+    color: colors.primaryDark,
+    marginBottom: 20,
   },
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.backgroundLight || '#F8F9FA',
-    borderRadius: 8,
-    paddingHorizontal: 10,
+    backgroundColor: colors.backgroundLight,
+    borderRadius: 12,
+    paddingHorizontal: 15,
     borderWidth: 1,
-    borderColor: colors.borderLight || '#DEE2E6',
+    borderColor: colors.shadowColor,
+    marginBottom: 10,
   },
   inputIcon: {
-    marginRight: 10,
+    marginRight: 12,
   },
   input: {
     flex: 1,
-    paddingVertical: Platform.OS === 'ios' ? 14 : 10,
+    paddingVertical: Platform.OS === 'ios' ? 16 : 12,
     fontSize: 16,
-    color: colors.textPrimary || '#343A40',
+    color: colors.textPrimary,
+    marginRight: 10,
   },
   saveButton: {
-    padding: 8, 
+    padding: 10,
+    marginLeft: 10,
+  },
+  updateUsernameButton: {
+    backgroundColor: colors.primary,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 8,
   },
-  statsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginTop: 10,
-  },
-  statItem: {
-    backgroundColor: colors.white || 'white',
-    borderRadius: 12,
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '48%',
-    marginBottom: 15,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    minHeight: 110,
-  },
-  statValue: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.primary,
-    marginTop: 5,
-    marginBottom: 3,
-  },
-  statLabel: {
+  updateUsernameButtonText: {
+    color: colors.textLight,
     fontSize: 14,
-    color: colors.textSecondary,
+    fontWeight: '600',
   },
   button: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 15,
+    paddingVertical: 16,
     paddingHorizontal: 30,
     borderRadius: 30,
     width: '100%',
-    marginTop: 10,
-    shadowColor: '#000',
+    marginTop: 15,
+    shadowColor: colors.shadowColor,
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOpacity: 0.15,
+    shadowRadius: 5,
+    elevation: 4,
   },
   buttonIcon: {
     marginRight: 10,
   },
   logoutButton: {
-    backgroundColor: colors.danger || '#DC3545',
+    backgroundColor: colors.accentTeal,
+    marginBottom: 20,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.white || 'white',
+    color: colors.textLight,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    paddingVertical: 8,
+  },
+  infoLabel: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    fontWeight: '500',
+    marginRight: 8,
+    minWidth: 80,
+  },
+  infoText: {
+    fontSize: 16,
+    color: colors.textPrimary,
+    flexShrink: 1,
+  },
+  infoTextSmall: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    flexShrink: 1,
+  },
+  feedbackInput: {
+    backgroundColor: colors.backgroundLight,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.shadowColor,
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+    fontSize: 16,
+    color: colors.textPrimary,
+    minHeight: 100,
+    textAlignVertical: 'top',
+    marginBottom: 15,
+  },
+  submitFeedbackButton: {
+    backgroundColor: colors.primary,
+  },
+  disabledButton: {
+    opacity: 0.7,
+  },
+  subtleText: {
+    fontSize: 14,
+    color: colors.textSubtle,
+    marginBottom: 15,
+    textAlign: 'center',
+    lineHeight: 20,
+  },
+  inlineLogoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  inlineLogoutIcon: {
+    marginRight: 6,
+  },
+  inlineLogoutButtonText: {
+    fontSize: 15,
+    color: colors.textSecondary,
+    fontWeight: '600',
   },
 });
 

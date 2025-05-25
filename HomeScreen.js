@@ -51,7 +51,7 @@ const RecentPromptDisplayCard = React.memo(({ item, onSelectPrompt }) => (
 // <<< Define PracticeHistoryDisplayCard component >>>
 const PracticeHistoryDisplayCard = React.memo(({ item, onSelectPrompt }) => (
   <TouchableOpacity
-    style={styles.recentCard} // Reuse recentCard style
+    style={styles.recentCard}
     onPress={() => onSelectPrompt(item)}
     activeOpacity={0.8}
   >
@@ -159,21 +159,18 @@ function HomeScreen() {
         return;
     }
     
-    // Find all prompts in that category to pass to TeleprompterScreen
     const promptsInCategory = promptsData.flat().filter(p => p.category === prompt.category);
     if (!promptsInCategory || promptsInCategory.length === 0) {
         console.error('Could not find category prompts for selected prompt:', prompt.id, 'category:', prompt.category);
-        // Attempt to find *any* prompts if category match fails, as a fallback?
-        // For now, show an error.
         Alert.alert("Error", "Could not find related prompts in this category.");
         return;
     }
 
-    console.log(`Navigating to prompt: ${prompt.id} (${prompt.title}) in category: ${prompt.category}`);
+    console.log(`Navigating to PrePractice screen for prompt: ${prompt.id} (${prompt.title}) in category: ${prompt.category}`);
     navigation.navigate('PracticeTab', {
-        screen: 'Teleprompter',
+        screen: 'PrePractice', // Navigate to PrePractice first
         params: {
-            selectedPromptId: prompt.id,
+            selectedPrompt: prompt, // Pass the whole prompt object
             categoryPrompts: promptsInCategory
         }
     });
@@ -203,28 +200,46 @@ function HomeScreen() {
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <View style={styles.headerTopRow}>
-        <View>
+        <View style={styles.greetingAndStreakContainer}> 
           <Text style={styles.greetingText}>Hello, {username || 'Guest'}!</Text>
+          {/* Streak Display */}
+          <View style={styles.streakContainer}>
+            <Ionicons name="flame" size={20} color={colors.playfulYellow} /> 
+            <Text style={styles.streakText}>{currentStreak || 0} Day Streak</Text>
+          </View>
           <Text style={styles.subGreetingText}>Ready to practice?</Text>
         </View>
         <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
-          <Ionicons name="person-circle-outline" size={40} color={colors.primary} />
+          <Ionicons name="person-circle-outline" size={40} color={colors.accentTeal} />
         </TouchableOpacity>
       </View>
+      {/* Gamification/Stats Row - Can be expanded */}
+      {/* 
+      <View style={styles.statsRowContainer}>
+        <View style={styles.statItem}>
+          <Ionicons name="star-outline" size={20} color={colors.accentTeal} />
+          <Text style={styles.statText}>Points: 0</Text> 
+        </View>
+        <View style={styles.statItem}>
+          <Ionicons name="trophy-outline" size={20} color={colors.playfulPink} />
+          <Text style={styles.statText}>Level: 1</Text> 
+        </View>
+      </View>
+      */}
       <View style={styles.quickActionsHeaderContainer}>
         <TouchableOpacity
           style={[styles.quickActionButton, styles.primaryAction]}
           onPress={handleStartPractice}
         >
-          <Ionicons name="mic" size={20} color="white" />
-          <Text style={styles.quickActionHeaderText}>Start Practice</Text>
+          <Ionicons name="mic" size={20} color={colors.textLight} />
+          <Text style={[styles.quickActionHeaderText, {color: colors.textLight}]}>Start Practice</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.quickActionButton, styles.secondaryAction]}
           onPress={handleQuickPractice}
         >
-          <Ionicons name="flash" size={20} color={colors.primary} />
-          <Text style={[styles.quickActionHeaderText, { color: colors.primary }]}>Quick Practice</Text>
+          <Ionicons name="flash" size={20} color={colors.accentTeal} />
+          <Text style={[styles.quickActionHeaderText, { color: colors.accentTeal }]}>Quick Practice</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -329,7 +344,7 @@ function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: colors.backgroundLight,
   },
   scrollView: {
     flex: 1,
@@ -339,27 +354,48 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 25,
-    backgroundColor: 'white',
+    paddingTop: Platform.OS === 'ios' ? 20 : 25,
+    paddingBottom: 20,
+    backgroundColor: colors.cardBackground,
     borderBottomWidth: 1,
-    borderBottomColor: '#E9ECEF',
+    borderBottomColor: colors.shadowColor,
   },
   headerTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: '100%',
-    marginBottom: 20,
+    marginBottom: 15,
+  },
+  greetingAndStreakContainer: {
+    flex: 1,
+    marginRight: 10,
   },
   greetingText: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#212529',
+    color: colors.textPrimary,
+    marginBottom: 4,
+  },
+  streakContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+    backgroundColor: colors.playfulLime,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 20,
+    alignSelf: 'flex-start',
+  },
+  streakText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: colors.primaryDark,
+    marginLeft: 6,
   },
   subGreetingText: {
     fontSize: 16,
-    color: '#6C757D',
+    color: colors.textSubtle,
     marginTop: 2,
   },
   profileButton: {
@@ -367,21 +403,22 @@ const styles = StyleSheet.create({
   },
   featuredSectionContainer: {
     marginHorizontal: horizontalPadding,
-    marginTop: 20, // Adjusted marginTop for spacing
-    marginBottom: 25, // Adjusted marginBottom for spacing
+    marginTop: 20,
+    marginBottom: 25,
   },
   featuredSectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#212529',
+    color: colors.textPrimary,
     marginBottom: 12,
   },
   featuredCard: {
     height: 350,
     borderRadius: 16,
     overflow: 'hidden',
+    backgroundColor: colors.cardBackground,
     elevation: 4,
-    shadowColor: '#000',
+    shadowColor: colors.shadowColor,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
@@ -402,12 +439,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   featuredTitle: {
-    color: 'white',
+    color: colors.textLight,
     fontSize: 24,
     fontWeight: '700',
   },
   featuredDescription: {
-    color: 'white',
+    color: colors.textLight,
     fontSize: 16,
     opacity: 0.9,
   },
@@ -423,11 +460,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#212529',
+    color: colors.textPrimary,
   },
   seeAllButton: {
     fontSize: 14,
-    color: colors.primary,
+    color: colors.accentTeal,
     fontWeight: '600',
   },
   recentList: {
@@ -440,10 +477,11 @@ const styles = StyleSheet.create({
     marginRight: 12,
     borderRadius: 12,
     overflow: 'hidden',
+    backgroundColor: colors.cardBackground,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: colors.shadowColor,
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.08,
     shadowRadius: 4,
   },
   recentCardBackground: {
@@ -463,7 +501,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     left: 10,
     right: 10,
-    color: 'white',
+    color: colors.textLight,
     fontSize: 14,
     fontWeight: '600',
   },
@@ -478,37 +516,36 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 18,
-    color: colors.primaryDark,
+    color: colors.textPrimary,
   },
   quickActionsHeaderContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 12,
+    marginTop: 10,
   },
   quickActionButton: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 12,
+    paddingVertical: 14,
     paddingHorizontal: 10,
     borderRadius: 10,
     gap: 8,
   },
   primaryAction: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.accentTeal,
   },
   secondaryAction: {
-    backgroundColor: colors.backgroundLight,
-    borderWidth: 1,
-    borderColor: colors.primary,
+    backgroundColor: colors.cardBackground,
+    borderWidth: 1.5,
+    borderColor: colors.accentTeal,
   },
   quickActionHeaderText: {
     fontSize: 14,
     fontWeight: '600',
-    color: 'white',
   },
-  // Styles for Practice History Section
   practiceHistorySectionContainer: {
     marginTop: 25,
     paddingHorizontal: horizontalPadding,
@@ -517,7 +554,7 @@ const styles = StyleSheet.create({
   practiceHistorySectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.textPrimary || '#212529',
+    color: colors.textPrimary,
     marginBottom: 16,
   },
 });

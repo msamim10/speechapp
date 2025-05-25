@@ -64,9 +64,11 @@ export const categoryImageSources = [
   { imageKey: 'presentations', image: require('../assets/presentationpics/pic1.png') },
   { imageKey: 'social', image: require('../assets/socialpics/pic4002.png') },
   { imageKey: 'interview', image: require('../assets/interviewpics/pic3921.png') },
-  { imageKey: 'fundamentals', image: require('../assets/presentationpics/pic1.png') }, 
-  { imageKey: 'virtual', image: require('../assets/interviewpics/pic3921.png') },
-  { imageKey: 'random', image: require('../assets/speechpics/pic2003.png') },
+  { imageKey: 'fundamentals', image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_06_20 AM.png') }, 
+  { imageKey: 'virtual', image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_42_17 AM.png') },
+  { imageKey: 'random', image: require('../assets/speechpics/pic8581.png') },
+  // New image for Situational/Specific Category
+  { imageKey: 'situationalSpecificCover', image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_03_51 PM.png') },
   // Added/mapped keys for onboarding screens:
   { imageKey: 'keynote_speech_stage_audience', image: require('../assets/speechpics/pic2003.png') },
   { imageKey: 'man_in_suit_speaking_on_stage_side_view', image: require('../assets/presentationpics/pic1.png') }, 

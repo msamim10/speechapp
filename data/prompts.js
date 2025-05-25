@@ -24,6 +24,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/ted.png'),
     text: `Good morning everyone.\n\nToday, I want to talk about the future of creativity in an AI-driven world. We stand at a fascinating crossroads where technology offers incredible tools, but also raises questions about originality and human expression.\n\nConsider this: AI can now compose music, write stories, and create art. But what does this mean for human creativity? I believe we're entering a new renaissance, where AI becomes our collaborator rather than our competitor.\n\nLet me share a personal story. Last year, I collaborated with an AI to compose a piece of music. The AI suggested chord progressions I would never have considered, but it was my human touch that gave the piece its soul and emotional depth.\n\nThis partnership between human and machine is the future. AI can help us break through creative blocks, explore new possibilities, and push the boundaries of what we thought was possible.\n\nBut remember: the heart of creativity remains human. Our experiences, emotions, and unique perspectives are what make art meaningful. Let's embrace AI as a tool that enhances, rather than replaces, human creativity.\n\nThank you.`,
+    summary: "A sample TED Talk script discussing AI’s role in enhancing human creativity, using a personal story of collaborating with AI to compose music. It emphasizes AI as a creative partner and encourages embracing technology.",
     layout: {
       position: 'absolute',
       width: '45%',
@@ -41,6 +42,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/flight.png'),
     text: `Good afternoon ladies and gentlemen, and welcome aboard Flight 123 to New York.\n\nPlease direct your attention to the cabin crew as we demonstrate the safety features of this Boeing 787 Dreamliner.\n\nEnsure your seat belts are fastened securely whenever the seatbelt sign is illuminated. To fasten, insert the metal fitting into the buckle and pull the loose end to tighten. To release, lift the top of the buckle.\n\nThere are eight emergency exits located throughout the cabin. Please take a moment now to locate your nearest exit, keeping in mind it may be behind you. The exits are clearly marked with illuminated signs and are equipped with inflatable slides.\n\nIn the unlikely event of a water landing, life vests are located under your seats. To put on your life vest, slip it over your head, fasten the waist straps, and pull the red tabs to inflate. Please do not inflate your life vest inside the aircraft.\n\nOxygen masks will drop automatically in case of cabin depressurization. Pull the mask toward you to start the flow of oxygen, place it over your nose and mouth, and breathe normally.\n\nThank you for your attention. We wish you a pleasant flight.`,
+    summary: "A mock airline safety announcement for a flight, detailing seatbelt use, emergency exits, life vests, and oxygen masks. It’s designed for practicing clear, professional delivery in a high-stakes context.",
     layout: {
       position: 'absolute',
       width: '55%',
@@ -58,6 +60,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/university-graduation.png'),
     text: `Good afternoon distinguished faculty, proud parents, and most importantly, the graduating class of 2024.\n\nToday marks a significant milestone in your academic journey. As you stand on the threshold of new beginnings, remember that your education has equipped you with more than just knowledge - it has given you the tools to think critically, solve complex problems, and make meaningful contributions to society.\n\nEach of you has overcome unique challenges to reach this moment. Whether it was late-night study sessions in the library, balancing work and academics, or navigating the complexities of remote learning during unprecedented times, you've demonstrated resilience and determination.\n\nAs you move forward, carry with you the lessons learned within these walls. Remember that success is not just about individual achievement, but about lifting others as you climb. The world needs your fresh perspectives, innovative ideas, and compassionate leadership.\n\nClass of 2024, you are the architects of tomorrow. Go forth with confidence, curiosity, and the courage to make a difference. Congratulations on this remarkable achievement!`,
+    summary: "A commencement address celebrating graduates' resilience and critical thinking, urging them to contribute to society and lead with compassion. It highlights overcoming challenges like remote learning.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -75,6 +78,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/courtroom.png'),
     text: `Ladies and gentlemen of the jury, today we are here to seek justice in a case that has deeply affected our community.\n\nOver the course of this trial, you will hear evidence that clearly demonstrates my client's innocence. The prosecution's case is built on circumstantial evidence and assumptions, not facts.\n\nYou will learn that the timeline presented by the prosecution simply doesn't add up. You will see that key witnesses have changed their stories multiple times. Most importantly, you will discover that the physical evidence contradicts the prosecution's narrative.\n\nAs you listen to the testimony and examine the evidence, I ask you to keep an open mind. Remember that in our justice system, the burden of proof lies with the prosecution. They must prove their case beyond a reasonable doubt.\n\nBy the end of this trial, I am confident that you will see the truth: my client is innocent, and the real perpetrator remains at large. Thank you for your attention and your service to justice.`,
+    summary: "A defense attorney's opening statement asserting the client's innocence, challenging the prosecution's circumstantial evidence, and urging the jury to focus on facts. It's for practicing persuasive legal oratory.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -92,6 +96,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/courtroom2.png'),
     text: `Ladies and gentlemen of the jury, we have reached the end of this trial, and the evidence has spoken clearly.\n\nOver the past three weeks, you have heard testimony from multiple witnesses, examined physical evidence, and listened to expert analysis. What has become abundantly clear is that the prosecution has failed to meet their burden of proof.\n\nLet's review the key points: First, the DNA evidence found at the scene does not match my client. Second, the security camera footage shows someone else entering the building at the time of the incident. Third, the main witness's testimony has changed three times during the investigation.\n\nIn our justice system, we do not convict based on suspicion or probability. We require proof beyond a reasonable doubt. The prosecution has presented a theory, but they have not proven it.\n\nI ask you to return a verdict of not guilty. Not because we don't want justice, but because justice demands certainty. Thank you for your careful consideration.`,
+    summary: "A defense attorney's closing statement reinforcing the client's innocence by highlighting inconsistencies in the prosecution's case and lack of conclusive evidence. It emphasizes reasonable doubt and justice.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -109,6 +114,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/wedding2.png'),
     text: `Good evening everyone! For those who don't know me, I'm Michael, and I have the honor of being the best man today.\n\nI've known James for fifteen years, and I can honestly say that I've never seen him as happy as he is with Sarah. From the moment they met at that coffee shop on Main Street, it was clear they were meant for each other.\n\nJames, you've found someone who challenges you, supports you, and brings out the best in you. Sarah, you've found someone who will always be your biggest fan and your strongest ally.\n\nAs you begin this new chapter together, remember that marriage isn't about finding the perfect person, but about loving an imperfect person perfectly. It's about growing together, facing challenges together, and creating a lifetime of memories together.\n\nTo Sarah and James - may your love continue to grow stronger with each passing year. May you always find joy in the little things, strength in difficult times, and laughter in everyday moments. Cheers to your beautiful future together!`,
+    summary: "A best man's speech celebrating the couple's love story, offering heartfelt advice on marriage, and toasting their future. It's designed for practicing emotional and engaging delivery.",
     textColor: 'white',
     layout: {
       position: 'absolute',
@@ -127,6 +133,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/public1.png'),
     text: `Welcome to our Public Speaking Workshop!\n\nToday, we're going to transform your speaking skills and help you become a more confident, effective communicator. Whether you're speaking to a small team or a large audience, the principles we'll cover will help you make a lasting impact.\n\nWe'll start by addressing the most common fear: public speaking anxiety. Remember, even the most experienced speakers feel nervous. The key is to channel that energy into enthusiasm and connection with your audience.\n\nThroughout this workshop, you'll learn essential techniques:\n- How to structure your message for maximum impact\n- The power of body language and vocal variety\n- Strategies for engaging your audience\n- Tips for handling questions and unexpected situations\n\nMost importantly, you'll have multiple opportunities to practice and receive constructive feedback. Growth happens when we step outside our comfort zones.\n\nLet's begin this journey to becoming more powerful communicators!`,
+    summary: "An introduction to a workshop teaching techniques to overcome public speaking anxiety, structure messages, and engage audiences. It includes practice opportunities and feedback.",
     textColor: 'white',
     layout: {
       position: 'absolute',
@@ -146,6 +153,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/flight-pilot.png'),
     text: `Good morning passengers, this is your captain speaking.\n\nWelcome aboard Flight 456 to London Heathrow. We're currently at an altitude of 35,000 feet, cruising at a speed of 560 miles per hour. The weather in London is currently 18 degrees Celsius with light showers expected upon arrival.\n\nOur estimated flight time is 7 hours and 15 minutes. We expect some turbulence as we cross the Atlantic, but it should be mild. Please keep your seatbelts fastened whenever you're seated.\n\nOur cabin crew will be serving breakfast shortly, followed by a selection of movies and entertainment options. You can access our in-flight entertainment system through the screen in front of you.\n\nIf you need anything during the flight, please don't hesitate to ask our cabin crew. They're here to ensure your comfort and safety.\n\nThank you for choosing to fly with us today. We wish you a pleasant journey.`,
+    summary: "A captain's in-flight announcement providing flight details, weather updates, and service information. It's for practicing calm, authoritative communication in a professional setting.",
     layout: {
       position: 'absolute',
       width: '50%',
@@ -163,6 +171,7 @@ export const promptsData = [
     category: 'Public Speech',
     image: require('../assets/prompt-backgrounds/funeral.png'),
     text: `Good afternoon everyone. Thank you for being here today to celebrate the life of Margaret Thompson.\n\nMargaret was more than just a beloved mother, grandmother, and friend. She was a force of nature - someone who brought light and warmth wherever she went. Whether it was through her volunteer work at the local hospital or her famous apple pie that she shared with neighbors, Margaret touched countless lives.\n\nI remember one particular story that captures her spirit perfectly. When the local food bank was struggling during the pandemic, Margaret organized a community drive that collected over 5,000 pounds of food. That was Margaret - always thinking of others, always finding a way to help.\n\nWhile we mourn her passing, let's also celebrate the incredible legacy she leaves behind. Her kindness, her strength, and her unwavering optimism will continue to inspire us all.\n\nTo Margaret - thank you for the love, the laughter, and the lessons. You may be gone, but your spirit will live on in all of us. Rest in peace.`,
+    summary: "A eulogy honoring a community member's kindness and legacy, sharing a story of their impact, and encouraging attendees to carry forward her spirit. It focuses on emotional resonance.",
     layout: {
       position: 'absolute',
       width: '58%',
@@ -183,6 +192,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/34f.png'),
     text: `Welcome to your speaking practice journey! Today, we'll start with a simple but powerful exercise. Take a deep breath, stand naturally, and introduce yourself to your imaginary audience. Tell them who you are, what you're passionate about, and one interesting fact about yourself. For example: "Hello everyone, I'm Alex, and I'm passionate about using technology to solve everyday problems. One interesting fact about me is that I once coded an entire app while traveling across Europe by train." Remember, this isn't about perfection – it's about finding your authentic voice. Focus on speaking clearly, maintaining a steady pace, and letting your personality shine through. This basic introduction helps build the foundation for more complex speaking scenarios.`,
+    summary: "A simple exercise to practice introducing yourself, focusing on clarity, pace, and personality. It's a foundation for more complex speaking scenarios.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -200,6 +210,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/er3.png'),
     text: `Look at the image above. You have 30 seconds to describe what you see. Start with "In this image..." and speak naturally. Focus on the main elements and key details. Practice keeping your speech within the time limit. Try to include: 1) What catches your eye first, 2) The mood or feeling it creates, and 3) One interesting detail that others might miss. Remember to breathe and speak at a comfortable pace. If you finish early, you can add more observations. If you're running out of time, practice wrapping up smoothly.`,
+    summary: "A 30-second speech exercise focusing on describing an image, including key details and a natural flow. It's designed for practicing quick thinking and delivery.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -217,6 +228,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/mdk.png'),
     text: `Thank you for that question, Sarah. The future of remote work isn't just about where we work, but how we work. Let me share a perspective from our recent research at TechForward. We found that 78% of companies are now adopting hybrid models, but the real innovation is in how we're redefining productivity. For example, at our company, we've moved from measuring hours to measuring outcomes. This shift has led to a 32% increase in employee satisfaction while maintaining or improving productivity metrics. However, we can't ignore the challenges - particularly in maintaining company culture and spontaneous collaboration. That's why we're investing in virtual watercooler moments and AI-powered collaboration tools. The key isn't just remote work; it's creating a work environment that adapts to human needs rather than forcing humans to adapt to outdated office structures.`,
+    summary: "A panel discussion response discussing the future of remote work, focusing on productivity, company culture, and the role of AI. It's designed for practicing structured, professional delivery.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -234,6 +246,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 28, 2025, 11_49_54 PM.png'),
     text: `Effective eye contact is crucial for connecting with your audience, conveying confidence, and building trust. It transforms a monologue into a conversation. Avoid common pitfalls like staring intensely at one person (making them uncomfortable), scanning the room too rapidly (appearing nervous or disengaged), or looking only at your notes or the back wall. Instead, practice making genuine, deliberate eye contact with different individuals or small sections of your imaginary audience. Aim to hold contact for about 3-5 seconds per person or section – long enough to establish a connection and acknowledge them, but not so long it becomes awkward. Think of it as having a series of brief, individual conversations across the room. While the teleprompter is a useful guide, make a conscious effort to look up frequently and engage directly with your audience. Record yourself: analyze where your eyes naturally go. Are you mostly looking down, or are you actively connecting with different parts of the room? Practice will make this feel more natural.`,
+    summary: "A guide to practicing effective eye contact, avoiding common pitfalls, and making genuine connections with your audience. It emphasizes the importance of eye contact and how to practice it.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -251,7 +264,8 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 28, 2025, 11_54_41 PM.png'),
     text: `Gestures should enhance and emphasize your message, adding visual interest and energy without becoming a distraction. The goal is natural, purposeful movement. Avoid common habits like keeping hands rigidly locked in pockets or behind your back, or nervous fidgeting (playing with pens, adjusting clothes). Practice incorporating a variety of gestures. Use open-palm gestures to appear welcoming and inclusive. Use hand movements to illustrate points – showing size, direction, steps in a process, or comparisons. Employ stronger, more definitive gestures to emphasize key takeaways. Record yourself to assess your natural tendencies. Do your gestures look authentic or rehearsed and stiff? Are they varied, or do you repeat the same motion? Effective gestures typically originate from the shoulders, involving the entire arm, rather than just small wrist movements. Ensure your gestures align with the energy and content of your message – bigger gestures for excitement, smaller ones for calmer points.`,
-    layout: {
+    summary: "A guide to using gestures effectively, avoiding common pitfalls, and ensuring they enhance your message. It emphasizes natural, purposeful movement and the importance of variety.",
+    layout: { 
       position: 'absolute',
       width: '60%',
       height: '42%',
@@ -269,6 +283,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_01_19 AM.png'),
     text: `Filler words – those unconscious sounds and phrases like "um," "uh," "like," "so," "actually," and "you know" – can significantly undermine your credibility and distract your listeners from your core message. The crucial first step is developing awareness. Record yourself speaking naturally or practicing this very text. Listen back specifically, perhaps even tallying each instance of a filler word. You might be surprised! Once aware, you can actively work to replace them. The most effective replacement is often a purposeful pause. When you feel the urge to use a filler while searching for the next word or thought, train yourself to simply pause briefly instead. A short silence is far more professional and powerful than an "um." Additionally, consciously slowing down your overall speaking pace slightly can help, giving your brain more time to formulate thoughts and reducing the perceived need for fillers. Consistent practice in low-stakes situations is key to breaking the habit and replacing fillers with confident pauses.`,
+    summary: "A guide to managing filler words, developing awareness, and replacing them with confident pauses. It emphasizes the importance of conscious speech and the impact of filler words.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -286,6 +301,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_04_47 AM.png'),
     text: `Effective vocal projection ensures that everyone in your audience, even those in the back row, can hear you clearly and comfortably without you needing to shout or strain your voice. It's about utilizing proper breath support and resonance, not simply increasing volume from the throat. Practice breathing deeply from your diaphragm – feel your stomach expand as you inhale. Stand tall with good posture, as this opens up your airways. As you exhale and speak, focus on sending your voice forward, aiming for a point beyond your audience. Imagine your voice filling the entire space. Experiment with speaking the same phrase at different projection levels – conversational, slightly elevated for a small group, and fully projected for a large room. Record yourself from a distance or have someone listen from the back to gauge clarity and volume. Ensure your voice maintains energy and doesn't trail off at the end of sentences. Strong projection conveys confidence and authority.`,
+    summary: "A guide to improving vocal projection, utilizing proper breath support, and ensuring clarity for your entire audience. It emphasizes the importance of proper breathing and projection techniques.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -303,6 +319,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_06_20 AM.png'),
     text: `A logically structured speech acts like a roadmap for your audience, making your message easier to follow, understand, and remember. Practice consciously organizing your content. Every effective speech typically needs: 1) A compelling opening that grabs attention, introduces the topic, and previews the main points. 2) A well-organized body where each main point is presented clearly, supported by evidence, examples, or stories, and logically connected to the next. 3) A memorable closing that summarizes the key takeaways, reinforces the main message, and provides a clear call to action or concluding thought. Practice outlining your speeches beforehand. Pay attention to transitions – use signposting words and phrases (e.g., "First, let's consider...", "Another important aspect is...", "In conclusion...") to clearly signal shifts between sections and ideas. Read this text aloud – can you identify the distinct parts? Does the argument flow logically? Mastering structure provides clarity for both you and your audience.`,
+    summary: "A guide to improving speech structure, organizing content logically, and using transitions effectively. It emphasizes the importance of a clear, well-structured speech.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -320,6 +337,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_08_41 AM.png'),
     text: `Your tone of voice conveys your attitude, emotions, and level of conviction about the topic, often more powerfully than the words themselves. Is your intended tone engaging, informative, serious, enthusiastic, persuasive, or empathetic? Practice deliberate tone modulation. Read the same sentence or paragraph aloud multiple times, consciously adopting a different tone each time (e.g., excited, then concerned, then objective). Observe how the perceived meaning and impact change significantly. Critically, ensure your tone authentically matches your message content. Delivering exciting news in a flat, monotone voice, or discussing a sensitive topic with inappropriate levity, will confuse or alienate your audience. Record yourself speaking. Does your tone sound genuine and varied? Does it accurately reflect the nuances of your content? Does it help maintain listener interest? Mastering tone allows you to connect emotionally and intellectually with your listeners.`,
+    summary: "A guide to practicing tone modulation, understanding the impact of tone on message delivery, and ensuring it matches the content. It emphasizes the importance of authentic tone and how to practice it.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -337,6 +355,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_11_38 AM.png'),
     text: `Your face is a primary tool for nonverbal communication, conveying emotion and reinforcing your verbal message. Aim for facial expressions that are congruent with your words and tone. A genuine smile can convey warmth, build rapport, and signal positivity. A more serious or focused expression can emphasize importance or gravity. Be mindful of avoiding a completely blank, static expression (poker face) or expressions that signal nervousness (like excessive frowning or a tense jaw). Practice delivering key lines while looking in a mirror or, even better, recording yourself. Observe your natural expressions. Are you inadvertently sending unintended signals? Are your expressions authentic and varied? Ensure your face actively participates in telling your story, reflecting the appropriate emotion and intent behind your words. This congruence helps the audience connect with you and believe your message more deeply.`,
+    summary: "A guide to practicing facial expressions, ensuring they are congruent with your words and tone. It emphasizes the importance of authentic facial expressions and how to practice them.",
     layout: {
       position: 'absolute',
       width: '55%',
@@ -354,6 +373,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_14_24 AM.png'),
     text: `Strategic silence, or the effective use of pauses, is one of the most potent yet underutilized tools in public speaking. Pauses serve multiple crucial functions: they give the audience essential time to process information, especially complex ideas; they create emphasis when placed just before or after a key point; they can build suspense or anticipation; and they clearly signal transitions between different sections or ideas. Don't fear brief moments of silence – they demonstrate control and thoughtfulness. Practice reading this text aloud, intentionally inserting brief pauses (1-2 seconds) at natural thought breaks, after important sentences, or before revealing a significant idea. Notice how these pauses change the rhythm, add weight to certain words, and improve overall clarity. Record yourself. Are your pauses deliberate and confident, or do they sound like hesitant searching for words? Are you rushing through sentences without allowing breathing room? Learn to wield silence strategically to make your speaking more dynamic, engaging, and impactful.`,
+    summary: "A guide to practicing strategic silence, understanding the importance of pauses, and how to use them effectively. It emphasizes the importance of strategic silence and how to practice it.",
     layout: {
       position: 'absolute',
       width: '63%',
@@ -371,6 +391,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_18_14 AM.png'),
     text: `In any sentence, certain words carry more weight and meaning than others. Learning to emphasize these key words effectively helps guide your audience's focus, clarifies your meaning, and makes your delivery more engaging and memorable. Practice identifying the core message in each sentence you speak. Which words are essential to conveying that message? Practice reading sentences aloud multiple times, consciously stressing different words each time, and observe how the meaning and implication shift dramatically. For example, contrast: "*We* need to finish this report today" versus "We need to finish *this* report today" versus "We need to finish this report *today*." Use subtle changes in pitch (higher or lower), volume (louder), or even slightly slowing down on the emphasized word. Avoid over-emphasizing every other word, which sounds unnatural, but ensure your truly key points and contrastive ideas stand out clearly through deliberate vocal stress.`,
+    summary: "A guide to enhancing word emphasis, identifying key words, and using subtle vocal techniques to make your delivery more engaging and memorable. It emphasizes the importance of identifying key words and using subtle vocal techniques to make your delivery more engaging and memorable.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -388,6 +409,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 29, 2025, 12_23_50 AM.png'),
     text: `Genuine speaking confidence rarely appears magically; it's typically the result of thorough preparation and consistent, deliberate practice. The more familiar and comfortable you become with your material and your delivery mechanics, the more confident you will naturally feel and appear to your audience. Use tools like this app regularly to rehearse – don't just skim your notes silently. Practice speaking aloud, ideally simulating the conditions as much as possible (e.g., standing up). Focus your practice sessions; perhaps work on one specific fundamental skill (like reducing filler words or improving vocal variety) each time. Record yourself and review it constructively. Don't aim for unattainable perfection, but identify specific areas for improvement. Before important speaking engagements, visualize yourself delivering successfully. Recall past instances where you spoke well. Each dedicated practice session builds crucial muscle memory, reduces performance anxiety, and incrementally strengthens the foundation for a confident, controlled, and effective delivery.`,
+    summary: "A guide to building confidence through practice, identifying specific areas for improvement, and visualizing successful delivery. It emphasizes the importance of consistent practice and the role of visualization in building confidence.",
     layout: {
       position: 'absolute',
       width: '55%',
@@ -406,6 +428,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_28_13 PM.png'),
     text: `Wow, Los Angeles! You've been absolutely incredible tonight! This energy, this passion - it's what makes live music so magical. I need to take a moment to thank some amazing people: our incredible sound team who've worked tirelessly to make every note perfect, the lighting crew who've created this spectacular visual experience, and especially you - our fans who've been with us through every album, every tour, every high and low. Without your unwavering support, none of this would be possible. To my band - Tom on drums with his thunderous beats, Lisa with those killer guitar solos that leave us all in awe, Marcus on bass keeping us grounded - you guys are more than just bandmates, you're family. This tour has been an unforgettable journey, filled with challenges and triumphs, and tonight, you've made it even more special. This last song is dedicated to everyone who's ever believed in a dream, who's ever stayed up late practicing their craft, who's ever faced rejection but kept going. Because that's what music is about - it's about the journey, the passion, and the connection we share right here, right now.`,
+    summary: "A thank you speech for a music concert, thanking the sound team, lighting crew, and fans. It emphasizes the importance of live music and the connection between musicians and their audience.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -423,6 +446,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_29_53 PM.png'),
     text: `Hey everyone, welcome back to 'Future Forward.' I'm your host Sarah Chen, and today we're diving into something truly fascinating - the intersection of artificial intelligence and creative arts. Our guest is Dr. James Morrison, whose groundbreaking work in AI-generated music is challenging everything we thought we knew about creativity and technology. Before we jump in, here's a mind-blowing fact: last month, an AI-composed symphony was performed at Carnegie Hall, and most audience members couldn't tell it wasn't written by a human. This raises profound questions about the nature of creativity and the role of technology in artistic expression. Dr. Morrison's research explores how AI can enhance human creativity rather than replace it, creating new possibilities for artistic collaboration. His team's latest project involves training AI systems to understand emotional context in music, allowing them to compose pieces that resonate deeply with human listeners. Dr. Morrison, welcome to the show, and thank you for joining us to discuss these fascinating developments.`,
+    summary: "A podcast episode discussing the intersection of artificial intelligence and creative arts, featuring Dr. James Morrison. It highlights the groundbreaking work of Dr. Morrison and the potential of AI in enhancing human creativity.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -440,6 +464,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_32_10 PM.png'),
     text: `Good morning, future leaders! Today, we're going to transform the way you think about public speaking. Forget everything you've been told about imagining the audience in their underwear - that's outdated advice that doesn't work. Instead, I'm going to share three powerful techniques that helped me overcome my own fear of public speaking and go on to deliver keynotes to audiences of thousands. These aren't just theories - they're battle-tested strategies that have helped executives, politicians, and thought leaders captivate their audiences. The first technique involves mastering your breathing and body language to project confidence even when you're nervous. The second focuses on structuring your content in a way that naturally engages your audience and keeps them hooked. And the third, perhaps most importantly, teaches you how to connect authentically with your listeners, making your message resonate on a deeper level. Together, these techniques will transform you from a nervous speaker into a confident communicator who can inspire and influence others.`,
+    summary: "A speech encouraging public speaking, emphasizing the importance of mastering breathing and body language, structuring content effectively, and connecting authentically with your audience. It's designed to inspire confidence and effectiveness.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -457,6 +482,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_33_14 PM.png'),
     text: `Looking around this locker room, I see more than just teammates - I see warriors, brothers, and champions at heart. This season tested us in ways we never expected. We faced injuries that would have ended lesser teams' seasons, tough losses that could have broken our spirit, and moments that demanded everything we had. But what defines us isn't our record - it's how we responded to adversity, how we lifted each other up when the going got tough. Marcus, your leadership during that seven-game road stretch was nothing short of legendary. You kept us focused, motivated, and believing in ourselves even when the odds were against us. Jake, coming back from that injury ahead of schedule showed everyone what true dedication means - your work ethic inspired the entire team. And to every player in this room, your commitment to excellence, your willingness to put the team first, and your relentless pursuit of greatness have made this season unforgettable. Next season starts now. Our goal remains the same: championship or nothing. But more than that, we're building a legacy of excellence, teamwork, and resilience that will inspire future generations of players.`,
+    summary: "A speech encouraging the team to build a legacy of excellence, teamwork, and resilience. It emphasizes the importance of resilience, teamwork, and the pursuit of greatness.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -474,7 +500,8 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_36_33 PM.png'),
     text: `The future of human-AI interaction isn't about replacement - it's about enhancement. When we look at the latest developments in neural networks and machine learning, we're not just seeing improvements in processing power; we're witnessing the emergence of systems that can understand context, emotion, and nuance. This raises fascinating questions about consciousness, creativity, and the very nature of intelligence. As we develop these technologies, we must ensure they align with human values and enhance rather than diminish human potential. The key lies in creating AI systems that complement human abilities rather than compete with them. We're seeing this in fields like healthcare, where AI assists doctors in diagnosis while preserving the crucial human element of patient care. In education, AI tutors provide personalized learning experiences while teachers focus on mentorship and emotional support. The challenge ahead is to design AI systems that understand and respect human values, that can collaborate with us in ways that amplify our strengths and compensate for our limitations. This requires not just technical expertise, but deep philosophical consideration of what it means to be human in an age of artificial intelligence.`,
-    layout: {
+    summary: "A speech discussing the future of human-AI interaction, emphasizing the importance of enhancing human potential rather than replacing it. It emphasizes the importance of creating AI systems that complement human abilities and respect human values.",
+    layout: { 
       position: 'absolute',
       width: '60%',
       height: '38%',
@@ -491,6 +518,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_38_20 PM.png'),
     text: `Thank you all for being here today. Our Q3 results tell an exciting story of growth and innovation. Looking at this graph, you can see our market share has increased by 27% year-over-year, driven primarily by our new digital initiatives. But numbers only tell part of the story. Behind these figures are real people - our dedicated team members who've embraced change, our loyal customers who've evolved with us, and our partners who've supported our vision. Let me walk you through how we achieved this transformation and, more importantly, where we're headed next. Our success stems from three key strategic initiatives: first, our investment in cutting-edge technology that has revolutionized our production processes; second, our commitment to sustainability that has not only reduced our environmental impact but also created new market opportunities; and third, our focus on customer experience that has transformed how we engage with our clients. These initiatives have positioned us as industry leaders, but we're not stopping here. The next phase of our journey will focus on expanding into emerging markets, developing new product lines, and continuing to push the boundaries of innovation.`,
+    summary: "A presentation discussing the Q3 results, emphasizing the importance of innovation, sustainability, and customer experience. It emphasizes the importance of these initiatives and the future of the company.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -508,6 +536,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_40_02 PM.png'),
     text: `Good morning everyone, and thank you for joining from across our global offices. I see we have team members from Singapore, London, New York, and São Paulo - welcome all. Today's agenda focuses on our digital transformation initiative and its impact on our Q4 targets. Before we dive in, I want to acknowledge the outstanding work from our Asia-Pacific team, who've exceeded their implementation goals by 40%. Let's start with a quick overview of where we stand, and then we'll open the floor for questions and insights from each region. Our digital transformation journey has been remarkable, with significant improvements in operational efficiency, customer satisfaction, and employee engagement. The Asia-Pacific team's success demonstrates what's possible when we combine innovative technology with strong leadership and team collaboration. As we move forward, we'll be implementing similar strategies across all regions, tailored to local market conditions and business needs. This meeting is an opportunity to share best practices, address challenges, and align our global strategy for the coming quarter.`,
+    summary: "A virtual meeting discussing the digital transformation initiative and its impact on our Q4 targets. It emphasizes the importance of innovation, sustainability, and customer experience. It emphasizes the importance of these initiatives and the future of the company.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -525,6 +554,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_40_58 PM.png'),
     text: `Ladies and gentlemen, tonight's performance of 'La Traviata' represents the culmination of countless hours of dedication and passion. From our magnificent orchestra under Maestro Ricci's direction to our stellar cast led by Maria Soprano's breathtaking Violetta, every person has contributed to this magical evening. I must especially thank our technical crew, costume department, and volunteers - the unsung heroes who make such performances possible. Your continued support of the arts, your presence here tonight, ensures that these timeless stories will continue to move and inspire future generations. This production has been particularly special, as we've incorporated innovative staging techniques while staying true to Verdi's original vision. The collaboration between our creative team, musicians, and performers has resulted in a performance that honors tradition while embracing innovation. We're also proud to announce that tonight's performance will help fund our youth outreach program, bringing the magic of opera to the next generation of artists and audiences.`,
+    summary: "A thank you speech for an opera performance, thanking the orchestra, cast, technical crew, costume department, and volunteers. It emphasizes the importance of the arts and the importance of supporting the arts.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -543,6 +573,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_42_34 PM.png'),
     text: `Standing here among these ancient redwoods, we're reminded of nature's timeless wisdom. These trees have stood witness to centuries of change, yet remain unshaken. Their resilience teaches us about adaptation and perseverance. As environmental stewards, we face unprecedented challenges - climate change, habitat loss, and species extinction. But like these mighty trees, we must stand firm in our commitment to preservation. Each of us has the power to make a difference, to ensure these natural wonders survive for future generations. Let the strength of these ancient giants inspire us to act with courage and conviction. The redwoods' ability to thrive for millennia demonstrates nature's remarkable capacity for resilience and renewal. Their towering presence reminds us of our responsibility to protect and preserve our planet's biodiversity. Through sustainable practices, conservation efforts, and environmental education, we can ensure that these magnificent forests continue to thrive. The lessons we learn from these ancient trees - about cooperation, adaptation, and long-term thinking - are more relevant than ever as we face the environmental challenges of our time.`,
+    summary: "A speech discussing the importance of nature's resilience and the importance of preserving our planet's biodiversity. It emphasizes the importance of cooperation, adaptation, and long-term thinking.",
     layout: {
       position: 'absolute',
       width: '55%',
@@ -561,6 +592,7 @@ export const promptsData = [
     category: 'Practice Fundamentals',
     image: require('../assets/Practicefundamentalpics/ChatGPT Image Apr 30, 2025, 05_26_22 PM.png'),
     text: `My fellow Americans, as we gather in this historic office, I want to address the critical infrastructure bill before Congress. This legislation represents more than just roads and bridges - it's about American jobs, our economic future, and our position as a global leader. The challenges we face require bipartisan solutions. I've met with leaders from both parties, and while we may differ on methods, we share common goals: strengthening our economy, creating sustainable jobs, and securing America's future. Let's discuss how we can move forward together, putting the American people first. This infrastructure plan will create millions of good-paying jobs while modernizing our transportation systems, expanding broadband access to rural communities, and investing in clean energy technologies. It's not just about building physical infrastructure - it's about building the foundation for America's next century of prosperity. We have an opportunity to demonstrate that democracy can deliver results, that we can come together to solve big problems, and that America's best days are still ahead of us.`,
+    summary: "A speech discussing the importance of infrastructure and the importance of bipartisan solutions. It emphasizes the importance of infrastructure and the importance of bipartisan solutions.",
     layout: {
       position: 'absolute',
       width: '60%',
@@ -584,6 +616,7 @@ export const promptsData = [
     title: 'Google Cloud Keynote',
     category: 'Speeches',
     image: require('../assets/speechpics/pic8222.png'),
+    summary: "A speech discussing the future of cloud computing, emphasizing the importance of AI, security, and infrastructure. It emphasizes the importance of these technologies and the importance of innovation.",
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ADD THIS LINE
     text: `Good morning everyone, and welcome to Google Cloud Next '24!\n\nToday, we're going to take you on a journey through the future of cloud computing. Over the next hour, you'll see how we're pushing the boundaries of what's possible with AI, security, and infrastructure.\n\nLet me start by sharing some exciting numbers: Google Cloud now serves over 1.5 billion users daily, with our infrastructure processing more than 100,000 queries per second. But what's truly remarkable is how our customers are using this power to transform their businesses.\n\nI want to share a story about one of our customers, a healthcare provider that's using our AI tools to analyze medical images. What used to take hours now takes minutes, helping doctors make faster, more accurate diagnoses.\n\nToday, we're announcing several groundbreaking innovations that will help you build, deploy, and scale your applications faster than ever before. From our new AI-powered development tools to enhanced security features, we're making cloud computing more accessible and powerful for everyone.\n\nBut before we dive into the details, let me introduce our amazing team who have worked tirelessly to bring these innovations to life.`,
     layout: { position: 'absolute', width: '80%', height: '35%', top: '62%', left: '10%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -593,6 +626,7 @@ export const promptsData = [
     title: 'Stock Market Presentation',
     category: 'Speeches',
     image: require('../assets/speechpics/pic2003.png'),
+    summary: "A speech discussing the Q4 earnings call, emphasizing the importance of strategic investments, revenue growth, and efficiency initiatives. It emphasizes the importance of these initiatives and the future of the company.",
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ADD THIS LINE
     text: `Ladies and gentlemen, thank you for joining us for our Q4 earnings call.\n\nI'm pleased to report that we've achieved record-breaking results this quarter, with revenue growth of 23% year-over-year. Our strategic investments in digital transformation and AI integration have paid off significantly.\n\nLet's look at the numbers: Our cloud services division grew by 45%, while our consumer products segment maintained steady growth at 12%. We've also successfully reduced operational costs by 8% through our efficiency initiatives.\n\nLooking ahead, we're seeing strong indicators for continued growth in the coming quarters. Our pipeline of new projects is the strongest it's ever been, and we're well-positioned to capitalize on emerging market opportunities.\n\nI'd like to take a moment to thank our incredible team whose hard work and dedication have made these results possible. Their innovative spirit and commitment to excellence continue to drive our success.\n\nNow, let's open the floor for questions.`,
     layout: { position: 'absolute', width: '70%', height: '30%', top: '68%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -602,6 +636,7 @@ export const promptsData = [
     title: 'Y Combinator Pitch',
     category: 'Speeches',
     image: require('../assets/speechpics/pic8401.png'),
+    summary: "A speech discussing the startup EcoCharge, emphasizing the importance of solving a critical problem, securing partnerships, and raising funding. It emphasizes the importance of these initiatives and the future of the company.",
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ADD THIS LINE
     text: `Hi everyone, I'm Sarah, and I'm here to introduce you to our startup, EcoCharge.\n\nWe're solving a critical problem: the lack of reliable charging infrastructure for electric vehicles in urban areas. Our solution? A network of smart, solar-powered charging stations that can be installed in any parking space.\n\nHere's why this matters: By 2030, there will be 145 million EVs on the road, but current charging infrastructure can only support about 30% of that demand. We're bridging this gap with our innovative technology.\n\nOur traction speaks for itself: We've secured partnerships with three major cities, have 500 pre-orders for our stations, and have raised $2 million in seed funding. Our unit economics show a 60% margin, with payback in just 18 months.\n\nWe're seeking $1.5 million to scale our manufacturing and expand to five new cities. With your support, we can accelerate the transition to sustainable transportation.\n\nThank you for your time. I'd be happy to answer any questions.`,
     textColor: 'white',
@@ -612,6 +647,7 @@ export const promptsData = [
     title: 'Apple Keynote',
     category: 'Speeches',
     image: require('../assets/speechpics/pic6000.png'),
+    summary: "A speech discussing the new products from Apple, emphasizing the importance of performance, sustainability, and user experience. It emphasizes the importance of these technologies and the importance of innovation.",
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ADD THIS LINE
     text: `Good morning, and welcome to Apple's September event!\n\nToday, we're going to show you some incredible new products that push the boundaries of what's possible. But first, let me share some exciting news: We've just reached a new milestone with over 2 billion active Apple devices worldwide.\n\nOur focus this year has been on three key areas: performance, sustainability, and user experience. Every product we're announcing today reflects these priorities.\n\nLet's start with our new iPhone lineup. We've completely redesigned the camera system, introducing revolutionary computational photography features. The new A17 chip delivers unprecedented performance while being more energy efficient than ever.\n\nBut what I'm most excited about is our commitment to the environment. Every product we're announcing today is made with 100% recycled materials, and we're on track to be carbon neutral by 2030.\n\nNow, let me show you what we've been working on.`,
     layout: { position: 'absolute', width: '70%', height: '35%', top: '62%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -621,8 +657,8 @@ export const promptsData = [
     title: 'Church Sermon',
     category: 'Speeches',
     image: require('../assets/speechpics/pic239.png'),
+    summary: "A speech discussing the power of faith in challenging times, emphasizing the importance of faith, hope, and love. It emphasizes the importance of faith and the importance of hope.",
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ADD THIS LINE
-
     text: `Good morning, my dear brothers and sisters in Christ.\n\nToday, I want to talk about the power of faith in challenging times. In our reading from Matthew 17:20, Jesus tells us that faith as small as a mustard seed can move mountains.\n\nThink about that for a moment. A mustard seed is tiny, almost insignificant. Yet, with faith, it can grow into something powerful and transformative. This is the message we need to hear today.\n\nIn our daily lives, we face many challenges - health issues, financial struggles, relationship problems. But through faith, we find strength. Through faith, we find hope. Through faith, we find the courage to keep moving forward.\n\nLet me share a story about one of our parishioners who faced a difficult diagnosis. Through prayer and faith, they found not only healing but also a deeper connection with God and their community.\n\nAs we go forth today, remember that your faith, no matter how small it may seem, has the power to transform your life and the lives of those around you.`,
     layout: { position: 'absolute', width: '75%', height: '32%', top: '55%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '9deg' }] }
   },
@@ -631,8 +667,8 @@ export const promptsData = [
     title: 'TEDx Talk',
     category: 'Speeches',
     image: require('../assets/speechpics/pic992.png'),
+    summary: "A speech discussing the power of resilience, emphasizing the importance of resilience, failure, and the importance of learning from failure. It emphasizes the importance of resilience and the importance of learning from failure.",
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ADD THIS LINE
-
     text: `Have you ever wondered why some people seem to bounce back from failure while others get stuck?\n\nI spent the last decade studying resilience, and what I discovered might surprise you. It's not about being born with special abilities or having a perfect life. It's about how we think about our challenges.\n\nLet me tell you about a study we conducted with 1,000 participants. We found that people who viewed their failures as learning opportunities were 40% more likely to achieve their goals. That's a significant difference!\n\nBut here's the really interesting part: resilience isn't just about bouncing back. It's about bouncing forward. Every setback contains within it the seeds of growth and transformation.\n\nI want to share three simple practices that can help anyone develop greater resilience. These aren't complicated theories - they're practical tools you can start using today.\n\nRemember, the most successful people aren't those who never fail. They're the ones who learn to fail better.`,
     layout: { position: 'absolute', width: '60%', height: '38%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
   },
@@ -641,6 +677,7 @@ export const promptsData = [
     title: 'United Nations Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/pic8581.png'),
+    summary: "A speech discussing the importance of climate change, emphasizing the importance of climate change, global inequality, and the threat of conflict. It emphasizes the importance of climate change and the importance of global inequality.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Mr. Secretary-General, distinguished delegates, ladies and gentlemen,\n\nToday, we gather at a critical moment in human history. The challenges we face - climate change, global inequality, and the threat of conflict - require unprecedented cooperation and commitment.\n\nLet me be clear: the time for incremental change has passed. We need bold, decisive action. The science is clear, the evidence is overwhelming, and the cost of inaction is too great to bear.\n\nI stand before you today to announce my country's commitment to reduce carbon emissions by 50% by 2030. But this is not enough. We need every nation to step up and do their part.\n\nThe good news is that we have the technology, the resources, and the knowledge to address these challenges. What we need now is the political will and collective action to make it happen.\n\nLet us remember that we are not just representatives of our nations, but stewards of our planet and guardians of future generations. The time to act is now.`,
     layout: { position: 'absolute', width: '60%', height: '36%', top: '58%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -650,6 +687,7 @@ export const promptsData = [
     title: 'Election Campaign Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/pic092.png'),
+    summary: "A speech discussing the importance of community, emphasizing the importance of community, the importance of education, and the importance of healthcare. It emphasizes the importance of community and the importance of education.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `My fellow citizens,\n\nToday, I stand before you not just as a candidate, but as someone who shares your hopes, your dreams, and your concerns for our community's future.\n\nOver the past year, I've traveled across our district, listening to your stories. I've heard about the struggles of small business owners, the challenges facing our schools, and the need for better healthcare access.\n\nMy vision for our community is simple: a place where every child has access to quality education, where businesses can thrive, and where our seniors can retire with dignity. A place where we invest in infrastructure, create good-paying jobs, and protect our environment.\n\nBut this isn't just about me. It's about us - about what we can achieve together. I'm asking for your vote not just to represent you, but to work with you to build a better future for all of us.\n\nTogether, we can make our community stronger, more prosperous, and more united than ever before.`,
     layout: { position: 'absolute', width: '65%', height: '45%', top: '45%', left: '18%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -659,6 +697,7 @@ export const promptsData = [
     title: 'Church Communion',
     category: 'Speeches',
     image: require('../assets/speechpics/pic893.png'),
+    summary: "A speech discussing the importance of communion, emphasizing the importance of communion, the importance of Christ's sacrifice, and the importance of the body of Christ. It emphasizes the importance of communion and the importance of the body of Christ.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Beloved brothers and sisters in Christ,\n\nAs we gather around this table today, we remember the Last Supper, when Jesus shared bread and wine with his disciples. This simple meal represents the greatest gift ever given - the gift of salvation through Christ's sacrifice.\n\nIn 1 Corinthians 11:24, we read: "This is my body, which is for you. Do this in remembrance of me." These words remind us that communion is not just a ritual, but a sacred moment of connection with our Savior.\n\nAs you come forward today, remember that you are part of something much larger than yourself. You are part of the body of Christ, united with believers across time and space.\n\nLet us prepare our hearts as we come to the table. Let us examine ourselves, confess our sins, and receive God's grace with thankful hearts.\n\nMay this communion strengthen our faith, renew our commitment to Christ, and deepen our love for one another.`,
     layout: { position: 'absolute', width: '60%', height: '42%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -668,6 +707,7 @@ export const promptsData = [
     title: 'Art Exhibition Opening',
     category: 'Speeches',
     image: require('../assets/speechpics/pic805.png'),
+    summary: "A speech discussing the importance of art, emphasizing the importance of art, the importance of technology, and the importance of the intersection of art and technology. It emphasizes the importance of art and the importance of technology.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Welcome, everyone, to the opening of "Reflections of Light" - an extraordinary exhibition that explores the intersection of art and technology.\n\nTonight, we celebrate the work of 12 visionary artists who have pushed the boundaries of what's possible in contemporary art. Each piece in this exhibition tells a unique story about our relationship with light, space, and perception.\n\nI want to draw your attention to the centerpiece of our exhibition - a stunning installation that uses AI to create an ever-changing light sculpture. This work represents the perfect marriage of traditional artistic vision and cutting-edge technology.\n\nWhat makes this exhibition particularly special is how it invites us to question our perceptions. As you move through the space, you'll notice how the artworks transform based on your perspective and movement.\n\nI encourage you to take your time, engage with the pieces, and let yourself be transported by the artists' visions. Thank you for joining us on this journey through light and imagination.`,
     layout: { position: 'absolute', width: '60%', height: '38%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -677,6 +717,7 @@ export const promptsData = [
     title: 'Library Book Launch',
     category: 'Speeches',
     image: require('../assets/speechpics/pic6712.png'),
+    summary: "A speech discussing the importance of books, emphasizing the importance of books, the importance of reading, and the importance of the written word. It emphasizes the importance of books and the importance of reading.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Good evening, book lovers!\n\nIt's an absolute pleasure to be here tonight to celebrate the launch of "The Last Chapter" - a novel that has already captured the hearts of readers around the world.\n\nThis book represents three years of research, writing, and countless cups of coffee. It's a story about resilience, about finding hope in the darkest of times, and about the power of human connection.\n\nI want to share a little secret with you: The main character, Sarah, was inspired by a real person I met in this very library five years ago. Her story of overcoming adversity touched me deeply, and I knew I had to share it with the world.\n\nTonight, as we celebrate the written word, let's remember the power of stories to connect us, to teach us, and to help us understand ourselves and others better.\n\nThank you all for being here. I'm looking forward to signing your copies and hearing your thoughts about the book.`,
     layout: { position: 'absolute', width: '60%', height: '38%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -684,8 +725,9 @@ export const promptsData = [
   {
     id: 'speech12',
     title: 'Basketball Coach Speech',
-    category: 'Speeches',
+    category: 'Speeches', 
     image: require('../assets/speechpics/pic776.png'),
+    summary: "A speech discussing the importance of teamwork, emphasizing the importance of teamwork, the importance of discipline, and the importance of determination. It emphasizes the importance of teamwork and the importance of discipline.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Listen up, team!\n\nWe've worked hard all season for this moment. Tonight's game isn't just about winning or losing - it's about playing with heart, playing as a team, and leaving everything we've got on that court.\n\nRemember our core values: Discipline. Determination. Teamwork. These aren't just words - they're what got us here. When we're down, we don't quit. When we're up, we don't let up.\n\nI want you to focus on three things tonight: Defense wins championships, so let's lock them down. Move the ball - find the open man. And most importantly, trust each other.\n\nEach of you has a role to play. Whether you're starting or coming off the bench, your contribution matters. This is our time to shine.\n\nNow, let's get out there and show them what we're made of!`,
     layout: { position: 'absolute', width: '60%', height: '45%', top: '45%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }

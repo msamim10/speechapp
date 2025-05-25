@@ -12,7 +12,7 @@ const AppCategories = [
   { id: 'speeches', name: 'Speeches', icon: 'megaphone-outline', imageKey: 'speeches' }, 
   { id: 'interviews', name: 'Interviews', icon: 'people-outline', imageKey: 'interview' }, 
   { id: 'presentations', name: 'Presentations', icon: 'easel-outline', imageKey: 'presentations' }, 
-  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline', imageKey: 'social' }, // Can reuse or add more specific keys
+  { id: 'social', name: 'Situational/Specific', icon: 'chatbubbles-outline', imageKey: 'situationalSpecificCover' }, // Updated imageKey
   { id: 'fundamentals', name: 'Practice Fundamentals', icon: 'school-outline', imageKey: 'fundamentals' }, // No specific image, will use default
   { id: 'virtual', name: 'Virtual Communication', icon: 'laptop-outline', imageKey: 'virtual' }, // No specific image, will use default
   { id: 'random', name: 'Random', icon: 'shuffle-outline', imageKey: 'random' }, // Will use a default or cycle
@@ -62,6 +62,11 @@ function CategorySelectionScreen() {
         <Text style={styles.headerTitle}>Choose a Category</Text>
         <View style={styles.headerButton} />{/* Placeholder for balance */}
       </View>
+
+      {/* Daily update message removed from here */}
+      {/* <Text style={styles.dailyUpdateText}>
+        New prompts and images are updated daily!
+      </Text> */}
     
       <ScrollView 
         contentContainerStyle={styles.scrollContentContainer}
@@ -91,6 +96,11 @@ function CategorySelectionScreen() {
             </ImageBackground>
           </TouchableOpacity>
         ))}
+
+        {/* Daily update message - moved to the end of ScrollView content */}
+        <Text style={styles.dailyUpdateText}>
+          New prompts and images are updated daily!
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -122,9 +132,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.textPrimary || '#212529',
   },
+  dailyUpdateText: { 
+    fontSize: 14,
+    color: colors.textSubtle || colors.textSecondary, 
+    textAlign: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 15, // Ensure enough padding
+    backgroundColor: colors.backgroundLight, 
+    width: '100%', // Ensure it takes full width if it's the last item
+    marginTop: 10, // Add some margin above it if categories end abruptly
+  },
   scrollContentContainer: {
     paddingHorizontal: 16,
-    paddingVertical: 20,
+    paddingBottom: 10, // Reduced paddingBottom as the text below will have its own padding
+    paddingTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

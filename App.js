@@ -19,11 +19,11 @@ import TeleprompterScreen from './TeleprompterScreen';
 import ComingSoonScreen from './ComingSoonScreen'; 
 import WarmUpScreen from './WarmUpScreen'; 
 import UserProfileScreen from './UserProfileScreen'; 
-import SettingsScreen from './SettingsScreen'; 
 import GetStartedScreen from './GetStartedScreen';
 import SignInScreen from './SignInScreen';
 import SignUpScreen from './SignUpScreen';
 import OnboardingFlowScreen from './screens/OnboardingFlowScreen';
+import PrePracticeScreen from './PrePracticeScreen';
 
 const PracticeStackNav = createNativeStackNavigator(); 
 const Tab = createBottomTabNavigator();
@@ -39,6 +39,7 @@ function PracticeStack() {
     >
       <PracticeStackNav.Screen name="CategorySelection" component={CategorySelectionScreen} />
       <PracticeStackNav.Screen name="PromptSelection" component={PromptSelectionScreen} />
+      <PracticeStackNav.Screen name="PrePractice" component={PrePracticeScreen} />
       <PracticeStackNav.Screen name="Teleprompter" component={TeleprompterScreen} />
       <PracticeStackNav.Screen name="ComingSoonScreen" component={ComingSoonScreen} />
     </PracticeStackNav.Navigator>
@@ -52,7 +53,6 @@ function ProfileStack() {
       screenOptions={{ headerShown: false }}
     >
       <ProfileStackNav.Screen name="UserProfile" component={UserProfileScreen} />
-      <ProfileStackNav.Screen name="Settings" component={SettingsScreen} />
     </ProfileStackNav.Navigator>
   );
 }
@@ -171,7 +171,7 @@ function App() {
 
 const getTabBarVisibility = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? 'CategorySelection'; 
-  const hiddenScreens = ['Teleprompter'];
+  const hiddenScreens = ['Teleprompter', 'PrePractice'];
   return hiddenScreens.includes(routeName) ? 'none' : 'flex';
 };
 

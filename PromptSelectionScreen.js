@@ -28,9 +28,9 @@ function PromptSelectionScreen({ route, navigation }) {
   const headerText = category === 'All' ? 'All Prompts' : `${category} Prompts`;
 
   const handleSelectPrompt = (item) => {
-    // Navigate to Teleprompter, passing the selected ID and the appropriate list
-    navigation.navigate('Teleprompter', {
-      selectedPromptId: item.id,
+    // Navigate to PrePracticeScreen first, passing the selected item and the appropriate list
+    navigation.navigate('PrePractice', { // Changed from 'Teleprompter'
+      selectedPrompt: item,       // Pass the whole prompt object
       categoryPrompts: displayPrompts, // Pass the list being displayed
     });
   };
