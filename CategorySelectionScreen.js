@@ -56,11 +56,11 @@ function CategorySelectionScreen() {
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={handleGoHome} style={styles.headerButton}>
-        <Ionicons name="arrow-back" size={28} color={colors.primary} />
+        <TouchableOpacity onPress={handleGoHome} style={styles.headerButtonLeft}>
+        <Ionicons name="arrow-back-outline" size={28} color={colors.textPrimary} />
       </TouchableOpacity>
         <Text style={styles.headerTitle}>Choose a Category</Text>
-        <View style={styles.headerButton} />{/* Placeholder for balance */}
+        <View style={styles.headerButtonRight} />{/* Placeholder for balance */}
       </View>
 
       {/* Daily update message removed from here */}
@@ -86,7 +86,7 @@ function CategorySelectionScreen() {
               resizeMode="cover"
             >
               <LinearGradient
-                colors={['transparent', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0.85)']} // Slightly stronger gradient at bottom
+                colors={['transparent', 'rgba(0,0,0,0.4)', 'rgba(0,0,0,0.9)']} // Adjusted gradient for better readability
                 style={styles.gradientOverlay}
               >
                 <Text style={styles.cardTitle}>
@@ -110,26 +110,28 @@ const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
     backgroundColor: colors.backgroundLight || '#F8F9FA',
-    paddingTop: Platform.OS === 'android' ? 25 : 0,
+    // paddingTop: Platform.OS === 'android' ? 25 : 0, // Removed, handled by SafeAreaView
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingTop: Platform.OS === 'ios' ? 10 : 20, // Adjusted padding for platform
+    paddingBottom: 15, // Increased bottom padding
     borderBottomWidth: 1,
     borderBottomColor: colors.borderLight || '#E9ECEF',
     backgroundColor: colors.white || 'white',
   },
-  headerButton: {
+  headerButtonLeft: { // Specific style for left button
     padding: 5,
-    width: 38, // for balance
-    alignItems: 'center',
+  },
+  headerButtonRight: { // Specific style for right placeholder
+    width: 33, // Match approx. width of an icon button (padding + icon size)
   },
   headerTitle: {
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: 22, // Slightly larger title
+    fontWeight: '700', // Bolder
     color: colors.textPrimary || '#212529',
   },
   dailyUpdateText: { 
@@ -138,9 +140,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 20,
     paddingVertical: 15, // Ensure enough padding
-    backgroundColor: colors.backgroundLight, 
+    backgroundColor: colors.borderLight, // Changed to a light gray background
     width: '100%', // Ensure it takes full width if it's the last item
     marginTop: 10, // Add some margin above it if categories end abruptly
+    // Adding a subtle top border for separation if desired
+    // borderTopWidth: 1,
+    // borderTopColor: colors.shadowColor || '#E0E0E0',
   },
   scrollContentContainer: {
     paddingHorizontal: 16,
@@ -152,16 +157,16 @@ const styles = StyleSheet.create({
   },
   categoryCard: {
     width: '48%',
-    height: 250,
-    marginBottom: 24,
-    borderRadius: 16,
+    height: 220, // Reduced height for a more compact look
+    marginBottom: 20, // Slightly reduced margin
+    borderRadius: 18, // Slightly increased border radius
     overflow: 'hidden',
     backgroundColor: colors.borderLight,
-    elevation: 6,
+    elevation: 5, // Adjusted elevation
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.20, 
-    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 }, // Softer shadow
+    shadowOpacity: 0.15, 
+    shadowRadius: 4,
   },
   cardImageBackground: {
     flex: 1,
@@ -180,13 +185,13 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     color: colors.textLight,
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 19, // Slightly adjusted font size
+    fontWeight: '700', // Bolder title on card
     textAlign: 'center',
-    textShadowColor: 'rgba(0, 0, 0, 0.7)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 3,
-    lineHeight: 24,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)', // Slightly stronger text shadow
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 4,
+    lineHeight: 23, // Adjusted line height
   },
 });
 

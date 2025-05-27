@@ -69,7 +69,7 @@ const PracticeHistoryDisplayCard = React.memo(({ item, onSelectPrompt }) => (
 
 function HomeScreen() {
   const navigation = useNavigation();
-  const { username, currentStreak, isLoading: isUserLoading } = useUser();
+  const { username, currentStreak, isLoading: isUserLoading, points } = useUser();
   const [imagesReady, setImagesReady] = useState(false);
   const [practiceHistoryPrompts, setPracticeHistoryPrompts] = useState([]);
   const [recentPrompts, setRecentPrompts] = useState([]);
@@ -202,16 +202,22 @@ function HomeScreen() {
       <View style={styles.headerTopRow}>
         <View style={styles.greetingAndStreakContainer}> 
           <Text style={styles.greetingText}>Hello, {username || 'Guest'}!</Text>
-          {/* Streak Display */}
-          <View style={styles.streakContainer}>
-            <Ionicons name="flame" size={20} color={colors.playfulYellow} /> 
-            <Text style={styles.streakText}>{currentStreak || 0} Day Streak</Text>
+          {/* Gamification Row: Streak and Points */}
+          <View style={styles.gamificationRow}>
+            <View style={styles.streakContainer}>
+              <Ionicons name="flame" size={20} color={colors.playfulYellow} /> 
+              <Text style={styles.streakText}>{currentStreak || 0} Day Streak</Text>
+            </View>
+            <View style={styles.headerStatItem}>
+              <Ionicons name="star-outline" size={20} color={colors.accentTeal} />
+              <Text style={styles.headerStatText}>Points: {points}</Text>
+            </View>
           </View>
           <Text style={styles.subGreetingText}>Ready to practice?</Text>
         </View>
-        <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
+        {/* <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
           <Ionicons name="person-circle-outline" size={40} color={colors.accentTeal} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       {/* Gamification/Stats Row - Can be expanded */}
       {/* 
@@ -355,7 +361,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     paddingHorizontal: 20,
     paddingTop: Platform.OS === 'ios' ? 20 : 25,
-    paddingBottom: 20,
+    paddingBottom: 25,
     backgroundColor: colors.cardBackground,
     borderBottomWidth: 1,
     borderBottomColor: colors.shadowColor,
@@ -365,7 +371,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     width: '100%',
-    marginBottom: 15,
+    marginBottom: 20,
+  },
+  gamificationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginBottom: 6,
   },
   greetingAndStreakContainer: {
     flex: 1,
@@ -375,17 +387,33 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: colors.textPrimary,
-    marginBottom: 4,
+    marginBottom: 8,
   },
   streakContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 6,
     backgroundColor: colors.playfulLime,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 20,
     alignSelf: 'flex-start',
+    marginBottom: 10,
+  },
+  headerStatItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+    backgroundColor: colors.playfulLime,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 20,
+    alignSelf: 'flex-start',
+  },
+  headerStatText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: colors.primaryDark,
+    marginLeft: 6,
   },
   streakText: {
     fontSize: 15,
@@ -396,7 +424,7 @@ const styles = StyleSheet.create({
   subGreetingText: {
     fontSize: 16,
     color: colors.textSubtle,
-    marginTop: 2,
+    marginTop: 8,
   },
   profileButton: {
     padding: 8,
@@ -450,6 +478,9 @@ const styles = StyleSheet.create({
   },
   recentSection: {
     paddingHorizontal: 20,
+    backgroundColor: colors.cardBackground,
+    paddingVertical: 16,
+    marginBottom: 10,
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -503,7 +534,7 @@ const styles = StyleSheet.create({
     right: 10,
     color: colors.textLight,
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   safeArea: {
     flex: 1,
@@ -522,7 +553,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 12,
-    marginTop: 10,
   },
   quickActionButton: {
     flex: 1,
@@ -547,9 +577,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   practiceHistorySectionContainer: {
-    marginTop: 25,
     paddingHorizontal: horizontalPadding,
     marginBottom: 20,
+    backgroundColor: colors.borderLight,
+    paddingVertical: 16,
+    borderRadius: 12,
   },
   practiceHistorySectionTitle: {
     fontSize: 20,

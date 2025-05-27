@@ -46,7 +46,7 @@ function TeleprompterScreen({ route, navigation }) {
   const animationRef = useRef(null);
   const [practiceSessionStartTime, setPracticeSessionStartTime] = useState(null); // <<< Track start time of active scrolling
   const [accumulatedPracticeTime, setAccumulatedPracticeTime] = useState(0); // <<< Track session duration in ms
-  const { recordPracticeSession, updateUserStats } = useUser(); // Get the function from context and updateUserStats
+  const { recordPracticeSession, updateUserStats, incrementPoints } = useUser(); // Get the function from context and updateUserStats
   const practiceRecordedRef = useRef(false); // Ref to prevent multiple recordings per session
   const [reachedEnd, setReachedEnd] = useState(false)
 
@@ -197,9 +197,11 @@ function TeleprompterScreen({ route, navigation }) {
           setReachedEnd(true);
           // Stop all sounds when animation finishes naturally
           stopAllSounds();
+          
           // Record practice session completion
           if (!practiceRecordedRef.current) {
             recordPracticeSession();
+            incrementPoints();
             practiceRecordedRef.current = true;
           }
         }
@@ -221,7 +223,7 @@ function TeleprompterScreen({ route, navigation }) {
         animationRef.current = null;
       }
     };
-  }, [isScrolling, scrollSpeed, contentHeight, containerHeight, recordPracticeSession]); // Add recordPracticeSession dependency
+  }, [isScrolling, scrollSpeed, contentHeight, containerHeight, recordPracticeSession, incrementPoints]); // Add recordPracticeSession dependency
 
   // --- NEW useEffect to handle scrolling based on isScrolling state ---
   useEffect(() => {
@@ -323,10 +325,11 @@ function TeleprompterScreen({ route, navigation }) {
           setIsScrolling(false); // Update state when finished.
           setReachedEnd(true);
           stopAllSounds();
-          // Record practice session completion
-          if (!practiceRecordedRef.current) {
+          // Record practice session completion and increment points
+          if (!practiceRecordedRef.current && !isWarmUpMode) {
             recordPracticeSession();
-            practiceRecordedRef.current = true; // Mark as recorded
+            incrementPoints();
+            practiceRecordedRef.current = true;
           }
         } else {
           console.log("Animation stopped/interrupted before finishing.");
@@ -341,7 +344,7 @@ function TeleprompterScreen({ route, navigation }) {
         console.log("Practice timer started (no scroll needed)");
       }
     }
-  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession, animationRef]); // Added dependencies
+  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession, animationRef, incrementPoints]); // Added dependencies
 
   const pauseScrolling = useCallback(() => {
     if (animationRef.current) {
@@ -396,6 +399,7 @@ function TeleprompterScreen({ route, navigation }) {
     // Or rely on leaving the screen?
     if (!isWarmUpMode && !practiceRecordedRef.current) {
       recordPracticeSession(); // Record the practice
+      incrementPoints(); // Call incrementPoints here as well
       practiceRecordedRef.current = true;
     }
   }, [scrollY, recordPracticeSession, isWarmUpMode, accumulatedPracticeTime, practiceSessionStartTime, savePracticeTime]); // Added dependencies
