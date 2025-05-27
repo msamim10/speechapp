@@ -1,6 +1,6 @@
 // PrePracticeScreen.js (New File)
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import colors from './constants/colors'; // Assuming you have this
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -14,6 +14,19 @@ function PrePracticeScreen() {
 
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
   const timerRef = useRef(null);
+
+  const handleSkip = () => {
+    clearInterval(timerRef.current);
+    if (selectedPrompt && categoryPrompts) {
+      navigation.replace('Teleprompter', {
+        selectedPromptId: selectedPrompt.id,
+        categoryPrompts: categoryPrompts,
+      });
+    } else {
+      console.error("PrePracticeScreen: Skip pressed but prompt data missing for navigation.");
+      navigation.goBack();
+    }
+  };
 
   useEffect(() => {
     if (!selectedPrompt) {
@@ -74,8 +87,13 @@ function PrePracticeScreen() {
         </View>
 
         <View style={styles.countdownContainer}>
-          <Text style={styles.countdownText}>{countdown}</Text>
-          <Ionicons name="hourglass-outline" size={30} color={colors.accentTeal} style={styles.iconStyle}/>
+          <View style={styles.timerRow}> 
+            <Text style={styles.countdownText}>{countdown}</Text>
+            <Ionicons name="hourglass-outline" size={30} color={colors.accentTeal} style={styles.iconStyle}/>
+          </View>
+          <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
+            <Text style={styles.skipButtonText}>Skip</Text>
+          </TouchableOpacity>
         </View>
         
         <Text style={styles.footerText}>Focus and prepare to speak.</Text>
@@ -150,14 +168,19 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   countdownContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 30,
     backgroundColor: colors.playfulLime,
-    paddingHorizontal:30,
-    paddingVertical:15,
-    borderRadius: 50,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: 20,
+  },
+  timerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
   },
   countdownText: {
     fontSize: 60,
@@ -166,6 +189,19 @@ const styles = StyleSheet.create({
   },
   iconStyle: {
       marginLeft: 15,
+  },
+  skipButton: {
+    marginTop: 5,
+    backgroundColor: 'transparent',
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+  },
+  skipButtonText: {
+    color: colors.primaryDark,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   footerText: {
     fontSize: 16,
