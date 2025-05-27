@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import {
   ScrollView,
   FlatList,
   StatusBar,
+  Animated,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import colors from './constants/colors';
@@ -22,6 +23,8 @@ import { useUser } from './context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { promptsData } from './data/prompts';
 import { LinearGradient } from 'expo-linear-gradient';
+
+const appLogo = require('./assets/applogo.png');
 
 // Calculate card widths based on screen dimensions
 const screenWidth = Dimensions.get('window').width;
@@ -74,6 +77,25 @@ function HomeScreen() {
   const [practiceHistoryPrompts, setPracticeHistoryPrompts] = useState([]);
   const [recentPrompts, setRecentPrompts] = useState([]);
   const [featuredPrompt, setFeaturedPrompt] = useState(null);
+
+  // Animation for the logo
+  const logoScale = useRef(new Animated.Value(1)).current;
+
+  const handleLogoPressIn = () => {
+    Animated.spring(logoScale, {
+      toValue: 0.9,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handleLogoPressOut = () => {
+    Animated.spring(logoScale, {
+      toValue: 1,
+      friction: 3, // Controls "bounciness"
+      tension: 60, // Controls speed
+      useNativeDriver: true,
+    }).start();
+  };
 
   useEffect(() => {
     console.log("--- HomeScreen Rendering --- Username:", username);
@@ -215,9 +237,16 @@ function HomeScreen() {
           </View>
           <Text style={styles.subGreetingText}>Ready to practice?</Text>
         </View>
-        {/* <TouchableOpacity onPress={handleGoToProfile} style={styles.profileButton}>
-          <Ionicons name="person-circle-outline" size={40} color={colors.accentTeal} />
-        </TouchableOpacity> */}
+        <TouchableOpacity 
+          activeOpacity={0.9} // To make the press feel responsive
+          onPressIn={handleLogoPressIn}
+          onPressOut={handleLogoPressOut}
+          // onPress={() => console.log("Logo pressed!")} // Optional: for other actions
+        >
+          <Animated.View style={{ transform: [{ scale: logoScale }] }}>
+            <Image source={appLogo} style={styles.headerLogo} />
+          </Animated.View>
+        </TouchableOpacity>
       </View>
       {/* Gamification/Stats Row - Can be expanded */}
       {/* 
@@ -427,7 +456,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   profileButton: {
-    padding: 8,
+    padding: 5,
   },
   featuredSectionContainer: {
     marginHorizontal: horizontalPadding,
@@ -588,6 +617,26 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.textPrimary,
     marginBottom: 16,
+  },
+  headerLogo: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
 
