@@ -53,7 +53,16 @@ function TeleprompterScreen({ route, navigation }) {
   const soundRef = useRef(new Audio.Sound());
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
-  useEffect(() => {
+  // Reset scroll position to top whenever promptText changes
+useEffect(() => {
+  if (scrollViewRef.current && typeof scrollViewRef.current.scrollTo === 'function') {
+    scrollViewRef.current.scrollTo({ y: 0, animated: false });
+  }
+  setIsScrolling(false);
+  setReachedEnd(false);
+}, [promptText]);
+
+useEffect(() => {
     let isMounted = true
     async function loadSounds() {
       if (currentPromptData?.soundAsset) {
@@ -405,59 +414,63 @@ function TeleprompterScreen({ route, navigation }) {
   }, [scrollY, recordPracticeSession, isWarmUpMode, accumulatedPracticeTime, practiceSessionStartTime, savePracticeTime]); // Added dependencies
 
   const handleStartPause = async () => {
-    const status = await soundRef.current?.getStatusAsync();
-    if (!status.isLoaded) {
-      console.warn('Audio not loaded yet');
-      return;
+  const status = await soundRef.current?.getStatusAsync();
+  if (!status.isLoaded) {
+    console.warn('Audio not loaded yet');
+    return;
+  }
+  if (status.isPlaying) {
+    await soundRef.current?.pauseAsync();
+  } else {
+    if (reachedEnd) {
+      await soundRef.current?.setPositionAsync(0);
+      setReachedEnd(false);
+      scrollY.setValue(0);
     }
-    if (status.isPlaying) {
-      await soundRef.current?.pauseAsync()
-    } else {
-      if (reachedEnd) {
-        await soundRef.current?.setPositionAsync(0)
-        setReachedEnd(false)
-        scrollY.setValue(0)
-      }
-      await soundRef.current?.playAsync()
-    }
-    setIsScrolling(prevIsScrolling => !prevIsScrolling);
-  };
+    await soundRef.current?.playAsync();
+  }
+};
 
-  // Modify navigation handlers to use stopScrolling (saves time)
-  const handleNextPrompt = async () => {
-    stopAllSounds(); 
+// Refactored: Instantly reset scroll position and animation before navigating to next prompt
+const handleNextPrompt = React.useCallback(async () => {
+  stopAllSounds();
+  // Instantly reset scroll position and cancel animation
+  if (scrollViewRef.current && typeof scrollViewRef.current.scrollTo === 'function') {
+    scrollViewRef.current.scrollTo({ y: 0, animated: false });
+  }
+  if (animationRef.current && animationRef.current.stop) {
+    animationRef.current.stop();
+  }
+  setIsScrolling(false);
+  setReachedEnd(false);
+  practiceRecordedRef.current = false;
+  setAccumulatedPracticeTime(0);
+  setPracticeSessionStartTime(null);
 
-    practiceRecordedRef.current = false; 
-    setAccumulatedPracticeTime(0); 
-    setPracticeSessionStartTime(null); 
+  if (isWarmUpMode || !categoryPrompts || categoryPrompts.length === 0) {
+    console.log("Cannot go to next prompt in warm-up mode or if no category prompts.");
+    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
+    return;
+  }
 
-    if (isWarmUpMode || !categoryPrompts || categoryPrompts.length === 0) {
-      console.log("Cannot go to next prompt in warm-up mode or if no category prompts.");
-      // Optionally, navigate back to category selection or show a message
-      navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
-      return;
-    }
+  const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
+  const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Loop back to the start
+  const nextPrompt = categoryPrompts[nextIndex];
 
-    const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
-    const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Loop back to the start
-    const nextPrompt = categoryPrompts[nextIndex];
-
-    if (nextPrompt && nextPrompt.id !== selectedPromptId) {
-      console.log(`Navigating to PrePractice for next prompt: ${nextPrompt.title}`);
-      // Navigate to PrePracticeScreen with the next prompt
-      navigation.replace('PrePractice', {
-        selectedPrompt: nextPrompt,
-        categoryPrompts: categoryPrompts,
-      });
-    } else if (nextPrompt && nextPrompt.id === selectedPromptId && categoryPrompts.length === 1) {
-      console.log("Only one prompt in category, cannot go to next. Returning to category selection.");
-      // If only one prompt, or looped back to the same, go to category selection
-      navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
-    } else {
-      console.log("Could not determine next prompt or no other prompts available.");
-      navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
-    }
-  };
+  if (nextPrompt && nextPrompt.id !== selectedPromptId) {
+    console.log(`Navigating to PrePractice for next prompt: ${nextPrompt.title}`);
+    navigation.replace('PrePractice', {
+      selectedPrompt: nextPrompt,
+      categoryPrompts: categoryPrompts,
+    });
+  } else if (nextPrompt && nextPrompt.id === selectedPromptId && categoryPrompts.length === 1) {
+    console.log("Only one prompt in category, cannot go to next. Returning to category selection.");
+    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
+  } else {
+    console.log("Could not determine next prompt or no other prompts available.");
+    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
+  }
+}, [stopAllSounds, scrollViewRef, animationRef, setIsScrolling, setReachedEnd, practiceRecordedRef, setAccumulatedPracticeTime, setPracticeSessionStartTime, isWarmUpMode, categoryPrompts, selectedPromptId, navigation]);
 
   const handleGoBack = async () => {
     stopAllSounds(); // Stop all sounds before navigation
@@ -498,23 +511,24 @@ function TeleprompterScreen({ route, navigation }) {
       {imageSource && <Image source={imageSource} style={styles.backgroundImageElement} />}
       <View style={styles.contentWrapper}>
         <View style={textOverlayStyle}>
-          <ScrollView
-            ref={scrollViewRef}
-            scrollEnabled={true}
-            showsVerticalScrollIndicator={false}
-            style={styles.scrollView} // Use base style
-            contentContainerStyle={styles.scrollViewContent}
-            onLayout={e => {
-              setContainerHeight(e.nativeEvent.layout.height);
-            }}
-            onContentSizeChange={(width, height) => {
-              setContentHeight(height);
-            }}
-          >
-            <Text style={dynamicTextStyle}>
-              {promptText}
-            </Text>
-          </ScrollView>
+          <Animated.ScrollView
+  ref={scrollViewRef}
+  scrollEnabled={true}
+  showsVerticalScrollIndicator={false}
+  style={styles.scrollView}
+  contentContainerStyle={styles.scrollViewContent}
+  onLayout={e => setContainerHeight(e.nativeEvent.layout.height)}
+  onContentSizeChange={(width, height) => setContentHeight(height)}
+  scrollEventThrottle={16}
+  overScrollMode="never"
+>
+  <View style={styles.gradientOverlay} pointerEvents="none">
+    {/* Gradient for readability */}
+  </View>
+  <Text style={dynamicTextStyle}>
+    {promptText}
+  </Text>
+</Animated.ScrollView>
         </View>
 
         <View style={controlsStyle}>
@@ -549,6 +563,14 @@ function TeleprompterScreen({ route, navigation }) {
 
 // --- Styles ---
 const styles = StyleSheet.create({
+  gradientOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 1,
+    pointerEvents: 'none',
+    backgroundColor: 'transparent',
+    // You can use expo-linear-gradient for a real gradient
+  },
+
   container: {
     flex: 1,
     backgroundColor: '#000000',
@@ -587,22 +609,30 @@ const styles = StyleSheet.create({
   },
   promptTextDefault: {
     color: '#000000',
-    fontSize: 14,
-    lineHeight: 14 * 1.5,
+    fontSize: 20,
+    lineHeight: 30,
     textAlign: 'center',
+    fontFamily: 'System',
+    fontWeight: '500',
+    letterSpacing: 0.2,
+    zIndex: 2,
   },
   promptTextWhite: {
     color: '#FFFFFF',
-    fontSize: 14,
-    lineHeight: 14 * 1.5,
+    fontSize: 20,
+    lineHeight: 30,
     textAlign: 'center',
+    fontFamily: 'System',
+    fontWeight: '500',
+    letterSpacing: 0.2,
+    zIndex: 2,
   },
   controlsContainer: {
     width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     borderRadius: 10,
-    paddingVertical: 15,
     paddingHorizontal: 20,
+    paddingVertical: 15,
     alignItems: 'center',
   },
   controlLabel: {
@@ -634,21 +664,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: 'rgba(0, 122, 255, 0.8)',
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: 'rgba(0, 122, 255, 0.92)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 12,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.22,
+    shadowRadius: 6.22,
+    elevation: 8,
+    transform: [{ scale: 1 }], // For animation
   },
   // End Countdown Timer Styles
   iconButtonPlaceholder: { // Style to maintain layout spacing when next button is hidden
