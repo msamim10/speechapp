@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import {
   View,
   Text,
@@ -8,12 +14,12 @@ import {
   Animated,
   Image,
   Easing,
-} from 'react-native';
-import { Audio } from 'expo-av';
-import { Ionicons } from '@expo/vector-icons';
-import { defaultImages } from './constants/imageUtils';
-import { useUser } from './context/UserContext'; // Import useUser
-import AsyncStorage from '@react-native-async-storage/async-storage';
+} from "react-native";
+import { Audio } from "expo-av";
+import { Ionicons } from "@expo/vector-icons";
+import { defaultImages } from "./constants/imageUtils";
+import { useUser } from "./context/UserContext"; // Import useUser
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Get screen height for calculations
 const sampleText = `Welcome to the Public Speaking Practice App!\n\nThis is your teleprompter screen. The text you see here will scroll automatically based on the speed you set.\n\nYou can adjust the scrolling speed using the slider below. Faster speeds mean the text moves quicker, while slower speeds give you more time to read.\n\nFont size can also be adjusted using the 'A-' and 'A+' buttons. Find a size that's comfortable for you to read from a distance.\n\nThe 'Start' button begins the scrolling animation. Once started, it changes to 'Pause', allowing you to temporarily halt the text movement.\n\nThe 'Stop' button will cease the scrolling entirely and reset the text position back to the very beginning.\n\nPractice delivering your speech smoothly and confidently. Remember to maintain eye contact with your imaginary audience and use appropriate gestures.\n\nEffective public speaking is a skill that improves with practice. Use this tool regularly to rehearse your presentations, speeches, or even just talking points for meetings.\n\nTry varying the speed and font size to simulate different conditions or preferences. Good luck with your practice session!\n\nHere is some more text just to ensure the content is long enough to properly test the scrolling functionality across different device heights and font sizes. Keep going, you are doing great! Public speaking can be challenging, but preparation makes a huge difference.\n\nFinal paragraph to fill things out. Focus on clarity, pace, and engagement during your delivery.`;
@@ -21,7 +27,9 @@ const sampleText = `Welcome to the Public Speaking Practice App!\n\nThis is your
 function TeleprompterScreen({ route, navigation }) {
   const directText = route.params?.directText;
   // Get regular params only if directText is not present
-  const { selectedPromptId, categoryPrompts } = directText ? {} : route.params || {};
+  const { selectedPromptId, categoryPrompts } = directText
+    ? {}
+    : route.params || {};
 
   // Determine mode (Warm-up or Regular)
   const isWarmUpMode = !!directText;
@@ -29,11 +37,15 @@ function TeleprompterScreen({ route, navigation }) {
   // --- Find the current prompt's data (only if NOT warm-up mode) ---
   const currentPromptData = useMemo(() => {
     if (isWarmUpMode) return null; // No prompt data needed for warm-up
-    return categoryPrompts?.find(p => p.id === selectedPromptId);
+    return categoryPrompts?.find((p) => p.id === selectedPromptId);
   }, [categoryPrompts, selectedPromptId, isWarmUpMode]);
 
-  const imageSource = isWarmUpMode ? null : (currentPromptData?.image || defaultImages.promptBackground);
-  const initialPromptText = isWarmUpMode ? directText : (currentPromptData?.text || 'Prompt text not found.');
+  const imageSource = isWarmUpMode
+    ? null
+    : currentPromptData?.image || defaultImages.promptBackground;
+  const initialPromptText = isWarmUpMode
+    ? directText
+    : currentPromptData?.text || "Prompt text not found.";
   const routeLayoutConfig = isWarmUpMode ? null : currentPromptData?.layout;
 
   const [promptText] = useState(initialPromptText || sampleText); // Use selected or fallback
@@ -44,26 +56,30 @@ function TeleprompterScreen({ route, navigation }) {
   const [containerHeight, setContainerHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   const animationRef = useRef(null);
-  const [practiceSessionStartTime, setPracticeSessionStartTime] = useState(null); // <<< Track start time of active scrolling
+  const [practiceSessionStartTime, setPracticeSessionStartTime] =
+    useState(null); // <<< Track start time of active scrolling
   const [accumulatedPracticeTime, setAccumulatedPracticeTime] = useState(0); // <<< Track session duration in ms
   const { recordPracticeSession, updateUserStats, incrementPoints } = useUser(); // Get the function from context and updateUserStats
   const practiceRecordedRef = useRef(false); // Ref to prevent multiple recordings per session
-  const [reachedEnd, setReachedEnd] = useState(false)
+  const [reachedEnd, setReachedEnd] = useState(false);
 
   const soundRef = useRef(new Audio.Sound());
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
   // Reset scroll position to top whenever promptText changes
-useEffect(() => {
-  if (scrollViewRef.current && typeof scrollViewRef.current.scrollTo === 'function') {
-    scrollViewRef.current.scrollTo({ y: 0, animated: false });
-  }
-  setIsScrolling(false);
-  setReachedEnd(false);
-}, [promptText]);
+  useEffect(() => {
+    if (
+      scrollViewRef.current &&
+      typeof scrollViewRef.current.scrollTo === "function"
+    ) {
+      scrollViewRef.current.scrollTo({ y: 0, animated: false });
+    }
+    setIsScrolling(false);
+    setReachedEnd(false);
+  }, [promptText]);
 
-useEffect(() => {
-    let isMounted = true
+  useEffect(() => {
+    let isMounted = true;
     async function loadSounds() {
       if (currentPromptData?.soundAsset) {
         const { sound } = await Audio.Sound.createAsync(
@@ -72,19 +88,22 @@ useEffect(() => {
           (playbackStatus) => {
             if (!playbackStatus.isLoaded) {
               if (playbackStatus.error) {
-                console.log(`Encountered a fatal error during playback: ${playbackStatus.error}`);
+                console.log(
+                  `Encountered a fatal error during playback: ${playbackStatus.error}`
+                );
               }
               return;
-            } 
-            if (playbackStatus.isPlaying && !hasStartedPlaying && isMounted) {
-              setHasStartedPlaying(true)
-              setTimeout(() => {
-                setIsScrolling(true)
-              }, 1000)             
             }
-        
+            if (playbackStatus.isPlaying && !hasStartedPlaying && isMounted) {
+              setHasStartedPlaying(true);
+              if (!isScrolling) setIsScrolling(true); // Ensure text scroll and button are in play state on first open
+            }
+
             if (playbackStatus.didJustFinish && !playbackStatus.isLooping) {
-              console.log('finished audio')
+              if (!reachedEnd) {
+                setReachedEnd(true);
+                console.log("finished audio");
+              }
             }
           }
         );
@@ -92,14 +111,12 @@ useEffect(() => {
       }
     }
 
-
-    loadSounds()
+    loadSounds();
 
     return () => {
-      isMounted = false
+      isMounted = false;
       stopAllSounds();
-      soundRef.current?.unloadAsync()
-      
+      soundRef.current?.unloadAsync();
 
       // Save any accumulated time from the final session segment
       let finalDuration = accumulatedPracticeTime;
@@ -108,11 +125,11 @@ useEffect(() => {
       }
       savePracticeTime(finalDuration);
     };
-  }, [])
+  }, []);
 
   const stopAllSounds = async () => {
-    await soundRef.current?.stopAsync()
-  }
+    await soundRef.current?.stopAsync();
+  };
 
   // --- ADD EFFECT TO SAVE LAST PROMPT ID ---
   useEffect(() => {
@@ -120,21 +137,24 @@ useEffect(() => {
       // Only save if it's a regular prompt (not warm-up) and we have an ID
       if (!isWarmUpMode && selectedPromptId) {
         try {
-          await AsyncStorage.setItem('@lastPromptId', selectedPromptId);
+          await AsyncStorage.setItem("@lastPromptId", selectedPromptId);
         } catch (e) {
-          console.error('Failed to save last prompt ID to AsyncStorage.', e);
+          console.error("Failed to save last prompt ID to AsyncStorage.", e);
         }
 
         // <<< Logic to update Practice History List >>>
-        if (selectedPromptId) { // Check again to be safe
+        if (selectedPromptId) {
+          // Check again to be safe
           try {
             const MAX_HISTORY_ITEMS = 10; // Changed from 5 to 10
             // Get current list
-            const historyJson = await AsyncStorage.getItem('@practiceHistoryIds'); // Changed key
+            const historyJson = await AsyncStorage.getItem(
+              "@practiceHistoryIds"
+            ); // Changed key
             let historyIds = historyJson ? JSON.parse(historyJson) : [];
 
             // Remove the current prompt if it already exists to avoid duplicates and move it to the front
-            historyIds = historyIds.filter(id => id !== selectedPromptId);
+            historyIds = historyIds.filter((id) => id !== selectedPromptId);
 
             // Add the current prompt ID to the beginning of the list
             historyIds.unshift(selectedPromptId);
@@ -145,11 +165,16 @@ useEffect(() => {
             }
 
             // Save the updated list
-            await AsyncStorage.setItem('@practiceHistoryIds', JSON.stringify(historyIds)); // Changed key
-            console.log('Updated practice history list in AsyncStorage:', historyIds);
-
+            await AsyncStorage.setItem(
+              "@practiceHistoryIds",
+              JSON.stringify(historyIds)
+            ); // Changed key
+            console.log(
+              "Updated practice history list in AsyncStorage:",
+              historyIds
+            );
           } catch (e) {
-            console.error('Failed to update practice history list.', e);
+            console.error("Failed to update practice history list.", e);
           }
         }
         // <<< END Practice History List Update >>>
@@ -167,12 +192,18 @@ useEffect(() => {
   }, [contentHeight, containerHeight]);
 
   useEffect(() => {
-    if (isScrolling && contentHeight > 0 && containerHeight > 0 && contentHeight > containerHeight) {
+    if (
+      isScrolling &&
+      contentHeight > 0 &&
+      containerHeight > 0 &&
+      contentHeight > containerHeight
+    ) {
       const currentScrollY = scrollY._value;
       const targetScrollY = Math.max(0, contentHeight - containerHeight);
 
       // If we are already at or past the target end, stop
-      if (currentScrollY >= targetScrollY - 1) { // Small threshold
+      if (currentScrollY >= targetScrollY - 1) {
+        // Small threshold
         console.log("Animation already at or past target end. Stopping.");
         setIsScrolling(false);
         return;
@@ -181,7 +212,10 @@ useEffect(() => {
       // Calculate remaining distance
       const remainingDistance = targetScrollY - currentScrollY;
       const pixelsPerSecond = scrollSpeed * 50; // Adjust base speed (pixels/sec) if needed
-      const duration = Math.max((remainingDistance / pixelsPerSecond) * 1000, 1); // Ensure duration is positive
+      const duration = Math.max(
+        (remainingDistance / pixelsPerSecond) * 1000,
+        1
+      ); // Ensure duration is positive
 
       // Stop previous animation if any
       if (animationRef.current) {
@@ -206,7 +240,7 @@ useEffect(() => {
           setReachedEnd(true);
           // Stop all sounds when animation finishes naturally
           stopAllSounds();
-          
+
           // Record practice session completion
           if (!practiceRecordedRef.current) {
             recordPracticeSession();
@@ -215,7 +249,6 @@ useEffect(() => {
           }
         }
       });
-
     } else if (!isScrolling && animationRef.current) {
       console.log("Pausing/Stopping animation via isScrolling=false.");
       animationRef.current.stop();
@@ -232,7 +265,14 @@ useEffect(() => {
         animationRef.current = null;
       }
     };
-  }, [isScrolling, scrollSpeed, contentHeight, containerHeight, recordPracticeSession, incrementPoints]); // Add recordPracticeSession dependency
+  }, [
+    isScrolling,
+    scrollSpeed,
+    contentHeight,
+    containerHeight,
+    recordPracticeSession,
+    incrementPoints,
+  ]); // Add recordPracticeSession dependency
 
   // --- NEW useEffect to handle scrolling based on isScrolling state ---
   useEffect(() => {
@@ -260,100 +300,140 @@ useEffect(() => {
   }, [scrollY]);
   /* */
 
-  // --- Save accumulated time on unmount or navigation --- 
-  const savePracticeTime = useCallback(async (sessionDurationMs) => {
-    if (sessionDurationMs <= 0) return; // Don't save if no time tracked
-    try {
-      const existingTimeStr = await AsyncStorage.getItem('@totalPracticeTimeSeconds');
-      const existingTimeSec = existingTimeStr ? parseInt(existingTimeStr, 10) : 0;
-      const sessionTimeSec = Math.round(sessionDurationMs / 1000);
-      const newTotalTimeSec = existingTimeSec + sessionTimeSec;
-      await AsyncStorage.setItem('@totalPracticeTimeSeconds', newTotalTimeSec.toString());
-      console.log(`Saved practice time. Session: ${sessionTimeSec}s, New Total: ${newTotalTimeSec}s`);
+  // --- Save accumulated time on unmount or navigation ---
+  const savePracticeTime = useCallback(
+    async (sessionDurationMs) => {
+      if (sessionDurationMs <= 0) return; // Don't save if no time tracked
+      try {
+        const existingTimeStr = await AsyncStorage.getItem(
+          "@totalPracticeTimeSeconds"
+        );
+        const existingTimeSec = existingTimeStr
+          ? parseInt(existingTimeStr, 10)
+          : 0;
+        const sessionTimeSec = Math.round(sessionDurationMs / 1000);
+        const newTotalTimeSec = existingTimeSec + sessionTimeSec;
+        await AsyncStorage.setItem(
+          "@totalPracticeTimeSeconds",
+          newTotalTimeSec.toString()
+        );
+        console.log(
+          `Saved practice time. Session: ${sessionTimeSec}s, New Total: ${newTotalTimeSec}s`
+        );
 
-      // Optionally update context/backend immediately (if updateUserStats exists)
-      if (updateUserStats) {
-        updateUserStats({ totalPracticeTime: newTotalTimeSec });
-      }
-
-    } catch (e) {
-      console.error('Failed to save total practice time.', e);
-    }
-  }, [updateUserStats]);
-
-  // --- Scroll Logic --- 
-  const startScrolling = useCallback((fromPosition = 0) => {
-    // Calculate target scroll position (end of content)
-    const targetScrollY = Math.max(0, contentHeight - containerHeight);
-
-    // If already at or past the target, don't scroll
-    if (fromPosition >= targetScrollY - 1) { // Small threshold
-      console.log("StartScroll: Already at or past target end. No scroll needed.");
-      // Still start the timer if it wasn't already running
-      if (!practiceSessionStartTime) {
-        setPracticeSessionStartTime(Date.now());
-        console.log("Practice timer started (no scroll needed)");
-      }
-      return; // Exit the function
-    }
-
-    // Calculate remaining distance
-    const remainingDistance = targetScrollY - fromPosition;
-    const pixelsPerSecond = scrollSpeed * 50; // Base speed (pixels/sec) - Adjust multiplier as needed
-    const duration = Math.max((remainingDistance / pixelsPerSecond) * 1000, 1); // Duration in ms, ensure positive
-
-    console.log(`StartScroll: From=${fromPosition.toFixed(2)}, Target=${targetScrollY.toFixed(2)}, Remaining=${remainingDistance.toFixed(2)}, Duration=${duration.toFixed(0)}ms`);
-
-    // Check if duration is valid before starting animation
-    if (duration > 0) {
-      // Clear previous animation if any
-      if (animationRef.current) {
-        animationRef.current.stop();
-        console.log("StartScroll: Stopped previous animation.");
-      }
-
-      // <<< START tracking time when scrolling starts >>>
-      if (!practiceSessionStartTime) { // Only set start time if not already running
-        setPracticeSessionStartTime(Date.now());
-        console.log("Practice timer started");
-      }
-      // <<< END tracking time >>>
-
-      // Create and start the timing animation
-      const animation = Animated.timing(scrollY, {
-        toValue: targetScrollY,
-        duration: duration, // Use the calculated duration
-        useNativeDriver: false,
-        easing: Easing.linear,
-      });
-      animationRef.current = animation;
-      animationRef.current.start(async ({ finished }) => {
-        animationRef.current = null; // Clear ref after animation finishes or stops
-        if (finished) {
-          console.log("Animation finished naturally.");
-          setIsScrolling(false); // Update state when finished.
-          setReachedEnd(true);
-          stopAllSounds();
-          // Record practice session completion and increment points
-          if (!practiceRecordedRef.current && !isWarmUpMode) {
-            recordPracticeSession();
-            incrementPoints();
-            practiceRecordedRef.current = true;
-          }
-        } else {
-          console.log("Animation stopped/interrupted before finishing.");
-          // Don't set isScrolling false here, pause button/stop button handles that
+        // Optionally update context/backend immediately (if updateUserStats exists)
+        if (updateUserStats) {
+          updateUserStats({ totalPracticeTime: newTotalTimeSec });
         }
-      });
-    } else {
-      console.log("StartScroll: Calculated duration is zero or negative. No scroll started.");
-      // Even if no scroll, mark practice session as started if button pressed
-      if (!practiceSessionStartTime) {
-        setPracticeSessionStartTime(Date.now());
-        console.log("Practice timer started (no scroll needed)");
+      } catch (e) {
+        console.error("Failed to save total practice time.", e);
       }
-    }
-  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession, animationRef, incrementPoints]); // Added dependencies
+    },
+    [updateUserStats]
+  );
+
+  // --- Scroll Logic ---
+  const startScrolling = useCallback(
+    (fromPosition = 0) => {
+      // Calculate target scroll position (end of content)
+      const targetScrollY = Math.max(0, contentHeight - containerHeight);
+
+      // If already at or past the target, don't scroll
+      if (fromPosition >= targetScrollY - 1) {
+        // Small threshold
+        console.log(
+          "StartScroll: Already at or past target end. No scroll needed."
+        );
+        // Still start the timer if it wasn't already running
+        if (!practiceSessionStartTime) {
+          setPracticeSessionStartTime(Date.now());
+          console.log("Practice timer started (no scroll needed)");
+        }
+        return; // Exit the function
+      }
+
+      // Calculate remaining distance
+      const remainingDistance = targetScrollY - fromPosition;
+      const pixelsPerSecond = scrollSpeed * 50; // Base speed (pixels/sec) - Adjust multiplier as needed
+      const duration = Math.max(
+        (remainingDistance / pixelsPerSecond) * 1000,
+        1
+      ); // Duration in ms, ensure positive
+
+      console.log(
+        `StartScroll: From=${fromPosition.toFixed(
+          2
+        )}, Target=${targetScrollY.toFixed(
+          2
+        )}, Remaining=${remainingDistance.toFixed(
+          2
+        )}, Duration=${duration.toFixed(0)}ms`
+      );
+
+      // Check if duration is valid before starting animation
+      if (duration > 0) {
+        // Clear previous animation if any
+        if (animationRef.current) {
+          animationRef.current.stop();
+          console.log("StartScroll: Stopped previous animation.");
+        }
+
+        // <<< START tracking time when scrolling starts >>>
+        if (!practiceSessionStartTime) {
+          // Only set start time if not already running
+          setPracticeSessionStartTime(Date.now());
+          console.log("Practice timer started");
+        }
+        // <<< END tracking time >>>
+
+        // Create and start the timing animation
+        const animation = Animated.timing(scrollY, {
+          toValue: targetScrollY,
+          duration: duration, // Use the calculated duration
+          useNativeDriver: false,
+          easing: Easing.linear,
+        });
+        animationRef.current = animation;
+        animationRef.current.start(async ({ finished }) => {
+          animationRef.current = null; // Clear ref after animation finishes or stops
+          if (finished) {
+            console.log("Animation finished naturally.");
+            setIsScrolling(false); // Update state when finished.
+            setReachedEnd(true);
+            stopAllSounds();
+            // Record practice session completion and increment points
+            if (!practiceRecordedRef.current && !isWarmUpMode) {
+              recordPracticeSession();
+              incrementPoints();
+              practiceRecordedRef.current = true;
+            }
+          } else {
+            console.log("Animation stopped/interrupted before finishing.");
+            // Don't set isScrolling false here, pause button/stop button handles that
+          }
+        });
+      } else {
+        console.log(
+          "StartScroll: Calculated duration is zero or negative. No scroll started."
+        );
+        // Even if no scroll, mark practice session as started if button pressed
+        if (!practiceSessionStartTime) {
+          setPracticeSessionStartTime(Date.now());
+          console.log("Practice timer started (no scroll needed)");
+        }
+      }
+    },
+    [
+      scrollY,
+      containerHeight,
+      contentHeight,
+      scrollSpeed,
+      practiceSessionStartTime,
+      recordPracticeSession,
+      animationRef,
+      incrementPoints,
+    ]
+  ); // Added dependencies
 
   const pauseScrolling = useCallback(() => {
     if (animationRef.current) {
@@ -362,9 +442,13 @@ useEffect(() => {
       // <<< PAUSE tracking time >>>
       if (practiceSessionStartTime) {
         const duration = Date.now() - practiceSessionStartTime;
-        setAccumulatedPracticeTime(prev => prev + duration);
+        setAccumulatedPracticeTime((prev) => prev + duration);
         setPracticeSessionStartTime(null); // Reset start time
-        console.log(`Practice timer paused. Added ${duration}ms. Total session: ${accumulatedPracticeTime + duration}ms`);
+        console.log(
+          `Practice timer paused. Added ${duration}ms. Total session: ${
+            accumulatedPracticeTime + duration
+          }ms`
+        );
       }
       // <<< END PAUSE tracking time >>>
     }
@@ -391,7 +475,11 @@ useEffect(() => {
     let finalDuration = accumulatedPracticeTime;
     if (practiceSessionStartTime) {
       finalDuration += Date.now() - practiceSessionStartTime;
-      console.log(`Practice timer stopped. Added ${Date.now() - practiceSessionStartTime}ms.`);
+      console.log(
+        `Practice timer stopped. Added ${
+          Date.now() - practiceSessionStartTime
+        }ms.`
+      );
     }
     console.log(`Total session duration: ${finalDuration}ms`);
     setAccumulatedPracticeTime(0); // Reset accumulator for this screen instance
@@ -404,73 +492,133 @@ useEffect(() => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({ y: 0, animated: false });
     }
-    // Potentially trigger recording practice session here too? 
+    // Potentially trigger recording practice session here too?
     // Or rely on leaving the screen?
     if (!isWarmUpMode && !practiceRecordedRef.current) {
       recordPracticeSession(); // Record the practice
       incrementPoints(); // Call incrementPoints here as well
       practiceRecordedRef.current = true;
     }
-  }, [scrollY, recordPracticeSession, isWarmUpMode, accumulatedPracticeTime, practiceSessionStartTime, savePracticeTime]); // Added dependencies
+  }, [
+    scrollY,
+    recordPracticeSession,
+    isWarmUpMode,
+    accumulatedPracticeTime,
+    practiceSessionStartTime,
+    savePracticeTime,
+  ]); // Added dependencies
 
   const handleStartPause = async () => {
-  const status = await soundRef.current?.getStatusAsync();
-  if (!status.isLoaded) {
-    console.warn('Audio not loaded yet');
-    return;
-  }
-  if (status.isPlaying) {
-    await soundRef.current?.pauseAsync();
-  } else {
+    const status = await soundRef.current?.getStatusAsync();
+    if (!status.isLoaded) {
+      console.warn("Audio not loaded yet");
+      return;
+    }
+
+    // If audio is playing, pause both audio and text
+    if (status.isPlaying) {
+      await soundRef.current?.pauseAsync();
+      setIsScrolling(false);
+      return;
+    }
+
+    // If audio is finished (reachedEnd is true)
     if (reachedEnd) {
+      // If text is still scrolling, pause the text (do not reset)
+      if (isScrolling) {
+        setIsScrolling(false);
+        return;
+      }
+      // If text is not scrolling, check if scroll is at the end
+      const scrollAtEnd = Math.abs(scrollY._value - Math.max(0, contentHeight - containerHeight)) < 1;
+      if (!scrollAtEnd) {
+        setIsScrolling(true); // Just resume the text scroll
+        return;
+      }
+      // If scroll is at the end, reset audio and text, then play
       await soundRef.current?.setPositionAsync(0);
       setReachedEnd(false);
       scrollY.setValue(0);
+      await soundRef.current?.playAsync();
+      setIsScrolling(true);
+      return;
     }
+
+    // Otherwise, resume both
     await soundRef.current?.playAsync();
-  }
-};
+    setIsScrolling(true);
+  };
 
-// Refactored: Instantly reset scroll position and animation before navigating to next prompt
-const handleNextPrompt = React.useCallback(async () => {
-  stopAllSounds();
-  // Instantly reset scroll position and cancel animation
-  if (scrollViewRef.current && typeof scrollViewRef.current.scrollTo === 'function') {
-    scrollViewRef.current.scrollTo({ y: 0, animated: false });
-  }
-  if (animationRef.current && animationRef.current.stop) {
-    animationRef.current.stop();
-  }
-  setIsScrolling(false);
-  setReachedEnd(false);
-  practiceRecordedRef.current = false;
-  setAccumulatedPracticeTime(0);
-  setPracticeSessionStartTime(null);
+  // Refactored: Instantly reset scroll position and animation before navigating to next prompt
+  const handleNextPrompt = React.useCallback(async () => {
+    stopAllSounds();
+    // Instantly reset scroll position and cancel animation
+    if (
+      scrollViewRef.current &&
+      typeof scrollViewRef.current.scrollTo === "function"
+    ) {
+      scrollViewRef.current.scrollTo({ y: 0, animated: false });
+    }
+    if (animationRef.current && animationRef.current.stop) {
+      animationRef.current.stop();
+    }
+    setIsScrolling(false);
+    setReachedEnd(false);
+    practiceRecordedRef.current = false;
+    setAccumulatedPracticeTime(0);
+    setPracticeSessionStartTime(null);
 
-  if (isWarmUpMode || !categoryPrompts || categoryPrompts.length === 0) {
-    console.log("Cannot go to next prompt in warm-up mode or if no category prompts.");
-    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
-    return;
-  }
+    if (isWarmUpMode || !categoryPrompts || categoryPrompts.length === 0) {
+      console.log(
+        "Cannot go to next prompt in warm-up mode or if no category prompts."
+      );
+      navigation.navigate("PracticeTab", { screen: "CategorySelection" });
+      return;
+    }
 
-  const currentIndex = categoryPrompts.findIndex(p => p.id === selectedPromptId);
-  const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Loop back to the start
-  const nextPrompt = categoryPrompts[nextIndex];
+    const currentIndex = categoryPrompts.findIndex(
+      (p) => p.id === selectedPromptId
+    );
+    const nextIndex = (currentIndex + 1) % categoryPrompts.length; // Loop back to the start
+    const nextPrompt = categoryPrompts[nextIndex];
 
-  if (nextPrompt && nextPrompt.id !== selectedPromptId) {
-    console.log(`Navigating to PrePractice for next prompt: ${nextPrompt.title}`);
-    navigation.replace('PrePractice', {
-      selectedPrompt: nextPrompt,
-      categoryPrompts: categoryPrompts,
-    });
-  } else if (nextPrompt && nextPrompt.id === selectedPromptId && categoryPrompts.length === 1) {
-    console.log("Only one prompt in category, cannot go to next. Returning to category selection.");
-    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
-  } else {
-    console.log("Could not determine next prompt or no other prompts available.");
-    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
-  }
-}, [stopAllSounds, scrollViewRef, animationRef, setIsScrolling, setReachedEnd, practiceRecordedRef, setAccumulatedPracticeTime, setPracticeSessionStartTime, isWarmUpMode, categoryPrompts, selectedPromptId, navigation]);
+    if (nextPrompt && nextPrompt.id !== selectedPromptId) {
+      console.log(
+        `Navigating to PrePractice for next prompt: ${nextPrompt.title}`
+      );
+      navigation.replace("PrePractice", {
+        selectedPrompt: nextPrompt,
+        categoryPrompts: categoryPrompts,
+      });
+    } else if (
+      nextPrompt &&
+      nextPrompt.id === selectedPromptId &&
+      categoryPrompts.length === 1
+    ) {
+      console.log(
+        "Only one prompt in category, cannot go to next. Returning to category selection."
+      );
+      navigation.navigate("PracticeTab", { screen: "CategorySelection" });
+    } else {
+      console.log(
+        "Could not determine next prompt or no other prompts available."
+      );
+      navigation.navigate("PracticeTab", { screen: "CategorySelection" });
+    }
+  }, [
+    stopAllSounds,
+    scrollViewRef,
+    animationRef,
+    setIsScrolling,
+    setReachedEnd,
+    practiceRecordedRef,
+    setAccumulatedPracticeTime,
+    setPracticeSessionStartTime,
+    isWarmUpMode,
+    categoryPrompts,
+    selectedPromptId,
+    navigation,
+  ]);
 
   const handleGoBack = async () => {
     stopAllSounds(); // Stop all sounds before navigation
@@ -481,7 +629,7 @@ const handleNextPrompt = React.useCallback(async () => {
   const handleGoToCategories = async () => {
     stopAllSounds(); // Stop all sounds before navigation
     await stopScrolling(); // Stop scroll, save time
-    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
+    navigation.navigate("PracticeTab", { screen: "CategorySelection" });
   };
 
   // --- Determine Text Overlay Style ---
@@ -490,51 +638,59 @@ const handleNextPrompt = React.useCallback(async () => {
     ...defaultLayoutConfig,
     ...(routeLayoutConfig || {}),
     // Override background for warm-up mode to ensure visibility
-    backgroundColor: isWarmUpMode ? 'rgba(0,0,0,0.8)' : (routeLayoutConfig?.backgroundColor || defaultLayoutConfig.backgroundColor),
+    backgroundColor: isWarmUpMode
+      ? "rgba(0,0,0,0.8)"
+      : routeLayoutConfig?.backgroundColor ||
+        defaultLayoutConfig.backgroundColor,
   };
 
   // Determine text color for warm-up
   const dynamicTextStyle = isWarmUpMode
     ? styles.promptTextWhite // Always white for warm-up on dark overlay
-    : (currentPromptData?.textColor === 'white' ? styles.promptTextWhite : styles.promptTextDefault);
+    : currentPromptData?.textColor === "white"
+    ? styles.promptTextWhite
+    : styles.promptTextDefault;
 
   // --- Determine Control Bar Style ---
   const controlsStyle = [
     styles.controlsContainer, // Base style
     imageSource && !isWarmUpMode // Apply override only if image exists and not in warm-up mode
-      ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' } // Minimally visible white background
-      : {} // Otherwise, use the default (semi-transparent black) from styles.controlsContainer
+      ? { backgroundColor: "rgba(255, 255, 255, 0.1)" } // Minimally visible white background
+      : {}, // Otherwise, use the default (semi-transparent black) from styles.controlsContainer
   ];
 
   return (
     <View style={styles.container}>
-      {imageSource && <Image source={imageSource} style={styles.backgroundImageElement} />}
+      {imageSource && (
+        <Image source={imageSource} style={styles.backgroundImageElement} />
+      )}
       <View style={styles.contentWrapper}>
         <View style={textOverlayStyle}>
           <Animated.ScrollView
-  ref={scrollViewRef}
-  scrollEnabled={true}
-  showsVerticalScrollIndicator={false}
-  style={styles.scrollView}
-  contentContainerStyle={styles.scrollViewContent}
-  onLayout={e => setContainerHeight(e.nativeEvent.layout.height)}
-  onContentSizeChange={(width, height) => setContentHeight(height)}
-  scrollEventThrottle={16}
-  overScrollMode="never"
->
-  <View style={styles.gradientOverlay} pointerEvents="none">
-    {/* Gradient for readability */}
-  </View>
-  <Text style={dynamicTextStyle}>
-    {promptText}
-  </Text>
-</Animated.ScrollView>
+            ref={scrollViewRef}
+            scrollEnabled={true}
+            showsVerticalScrollIndicator={false}
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollViewContent}
+            onLayout={(e) => setContainerHeight(e.nativeEvent.layout.height)}
+            onContentSizeChange={(width, height) => setContentHeight(height)}
+            scrollEventThrottle={16}
+            overScrollMode="never"
+          >
+            <View style={styles.gradientOverlay} pointerEvents="none">
+              {/* Gradient for readability */}
+            </View>
+            <Text style={dynamicTextStyle}>{promptText}</Text>
+          </Animated.ScrollView>
         </View>
 
         <View style={controlsStyle}>
           <View style={styles.actionButtons}>
             {/* Home */}
-            <TouchableOpacity onPress={handleGoToCategories} style={styles.iconButton}>
+            <TouchableOpacity
+              onPress={handleGoToCategories}
+              style={styles.iconButton}
+            >
               <Ionicons name="home-outline" size={24} color="#FFFFFF" />
             </TouchableOpacity>
 
@@ -544,13 +700,23 @@ const handleNextPrompt = React.useCallback(async () => {
             </TouchableOpacity>
 
             {/* Play | Pause Button */}
-            <TouchableOpacity onPress={handleStartPause} style={styles.iconButton}>
-              <Ionicons name={isScrolling ? "pause" : "play"} size={24} color="#FFFFFF" />
+            <TouchableOpacity
+              onPress={handleStartPause}
+              style={styles.iconButton}
+            >
+              <Ionicons
+                name={isScrolling ? "pause" : "play"}
+                size={24}
+                color="#FFFFFF"
+              />
             </TouchableOpacity>
 
             {/* Conditionally render Next button (only if NOT warm-up) */}
             {!isWarmUpMode && categoryPrompts && categoryPrompts.length > 1 && (
-              <TouchableOpacity onPress={handleNextPrompt} style={styles.iconButton}>
+              <TouchableOpacity
+                onPress={handleNextPrompt}
+                style={styles.iconButton}
+              >
                 <Ionicons name="arrow-forward" size={24} color="#FFFFFF" />
               </TouchableOpacity>
             )}
@@ -566,112 +732,112 @@ const styles = StyleSheet.create({
   gradientOverlay: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 1,
-    pointerEvents: 'none',
-    backgroundColor: 'transparent',
+    pointerEvents: "none",
+    backgroundColor: "transparent",
     // You can use expo-linear-gradient for a real gradient
   },
 
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: "#000000",
   },
   backgroundImageElement: {
     ...StyleSheet.absoluteFillObject,
-    resizeMode: 'cover',
-    width: '100%',
-    height: '100%',
+    resizeMode: "cover",
+    width: "100%",
+    height: "100%",
   },
   contentWrapper: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    justifyContent: "flex-end",
+    alignItems: "center",
     // Removed padding to fix absolute positioning origin
-    // paddingTop: '10%', 
+    // paddingTop: '10%',
     // paddingBottom: '5%',
-    // paddingHorizontal: '5%', 
+    // paddingHorizontal: '5%',
   },
   textOverlay: {
-    width: '60%',
-    height: '40%',
+    width: "60%",
+    height: "40%",
     borderRadius: 10,
     padding: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginBottom: 10,
-    marginLeft: '-5%',
+    marginLeft: "-5%",
   },
   scrollView: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   scrollViewContent: {
     paddingBottom: 50,
     paddingHorizontal: 10, // Added horizontal padding for text
   },
   promptTextDefault: {
-    color: '#000000',
+    color: "#000000",
     fontSize: 20,
     lineHeight: 30,
-    textAlign: 'center',
-    fontFamily: 'System',
-    fontWeight: '500',
+    textAlign: "center",
+    fontFamily: "System",
+    fontWeight: "500",
     letterSpacing: 0.2,
     zIndex: 2,
   },
   promptTextWhite: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 20,
     lineHeight: 30,
-    textAlign: 'center',
-    fontFamily: 'System',
-    fontWeight: '500',
+    textAlign: "center",
+    fontFamily: "System",
+    fontWeight: "500",
     letterSpacing: 0.2,
     zIndex: 2,
   },
   controlsContainer: {
-    width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    width: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
     borderRadius: 10,
     paddingHorizontal: 20,
     paddingVertical: 15,
-    alignItems: 'center',
+    alignItems: "center",
   },
   controlLabel: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 14,
     marginBottom: 5,
   },
   slider: {
-    width: '90%',
+    width: "90%",
     height: 40,
     marginBottom: 10,
   },
   fontSizeControls: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 15,
-    width: '60%',
+    width: "60%",
   },
   fontSizeDisplay: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 16,
     marginHorizontal: 15,
   },
   actionButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+    alignItems: "center",
   },
   iconButton: {
     width: 54,
     height: 54,
     borderRadius: 27,
-    backgroundColor: 'rgba(0, 122, 255, 0.92)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0, 122, 255, 0.92)",
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 12,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.22,
     shadowRadius: 6.22,
@@ -679,7 +845,8 @@ const styles = StyleSheet.create({
     transform: [{ scale: 1 }], // For animation
   },
   // End Countdown Timer Styles
-  iconButtonPlaceholder: { // Style to maintain layout spacing when next button is hidden
+  iconButtonPlaceholder: {
+    // Style to maintain layout spacing when next button is hidden
     width: 50,
     height: 50,
     marginHorizontal: 10,
@@ -688,10 +855,10 @@ const styles = StyleSheet.create({
 
 // Default layout config (cleaned up)
 const defaultLayoutConfig = {
-  backgroundColor: 'rgba(255,255,255,0.9)', // Example default (slightly transparent white)
+  backgroundColor: "rgba(255,255,255,0.9)", // Example default (slightly transparent white)
   padding: 15, // Internal padding within the text overlay
   borderRadius: 10,
-  overflow: 'hidden', // Keep overflow hidden
+  overflow: "hidden", // Keep overflow hidden
 };
 
-export default TeleprompterScreen; 
+export default TeleprompterScreen;
