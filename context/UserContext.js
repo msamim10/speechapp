@@ -11,6 +11,7 @@ const USERNAME_KEY = '@userProfile_username';
 const AVATAR_URI_KEY = '@userProfile_avatarUri';
 const LAST_PRACTICED_KEY = '@userProfile_lastPracticedTimestamp';
 const STREAK_KEY = '@userProfile_currentStreak';
+const POINTS_KEY = '@userProfile_points';
 
 // Defaults
 const DEFAULT_USERNAME = 'User';
@@ -47,12 +48,14 @@ const UserContext = createContext({
   avatarSource: DEFAULT_AVATAR,
   currentStreak: 0,
   lastPracticedTimestamp: null,
+  points: 0,
   isLoading: true,
   updateUsername: async (newUsername) => {
     console.log("📝 UserContext: Default updateUsername called");
   },
   updateAvatarUri: async (newUri) => {},
   recordPracticeSession: async () => {},
+  incrementPoints: async () => {},
   signOut: async () => {},
   googleSignInHandler: async (userNameFromInput) => {
     console.warn("UserContext: Default googleSignInHandler called. This should be overridden by the provider.");
@@ -67,6 +70,7 @@ export const UserProvider = ({ children }) => {
   const [avatarUri, setAvatarUri] = useState(null);
   const [currentStreak, setCurrentStreak] = useState(0);
   const [lastPracticedTimestamp, setLastPracticedTimestamp] = useState(null);
+  const [points, setPoints] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   // Listen for Firebase auth state changes
@@ -84,6 +88,7 @@ export const UserProvider = ({ children }) => {
         setAvatarUri(null);
         setCurrentStreak(0);
         setLastPracticedTimestamp(null);
+        setPoints(0);
         setIsLoading(false);
       }
     });
@@ -137,8 +142,10 @@ export const UserProvider = ({ children }) => {
       const storedAvatarUri = await AsyncStorage.getItem(AVATAR_URI_KEY);
       const storedLastPracticed = await AsyncStorage.getItem(LAST_PRACTICED_KEY);
       const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+      const storedPoints = await AsyncStorage.getItem(POINTS_KEY);
 
       setAvatarUri(storedAvatarUri);
+      setPoints(storedPoints ? parseInt(storedPoints, 10) : 0);
 
       if (storedLastPracticed) {
         const lastPracticedDate = new Date(parseInt(storedLastPracticed, 10));
@@ -160,8 +167,9 @@ export const UserProvider = ({ children }) => {
       setAvatarUri(null);
       setCurrentStreak(0);
       setLastPracticedTimestamp(null);
+      setPoints(0);
     } finally {
-      console.log("✅ UserContext: Finished loading user data. Username set to:", finalUsername);
+      console.log("✅ UserContext: Finished loading user data. Username set to:", finalUsername, "Points:", points);
       setIsLoading(false);
     }
   };
@@ -234,6 +242,25 @@ export const UserProvider = ({ children }) => {
     }
   }, [lastPracticedTimestamp, currentStreak]);
 
+  // Function to increment points
+  const incrementPoints = useCallback(async () => {
+    const newPoints = points + 1;
+    setPoints(newPoints);
+    try {
+      await AsyncStorage.setItem(POINTS_KEY, newPoints.toString());
+      console.log("✅ UserContext: Points incremented to", newPoints);
+      if (newPoints > 0 && newPoints % 10 === 0) {
+        Alert.alert(
+          "🎉 Milestone Reached! 🎉",
+          `Congratulations! You've reached ${newPoints} points! Keep up the great work!`,
+          [{ text: "Awesome!" }]
+        );
+      }
+    } catch (e) {
+      console.error("❌ UserContext: Failed to save points:", e);
+    }
+  }, [points]);
+
   // Function to sign out user
   const signOut = useCallback(async () => {
     try {
@@ -249,12 +276,13 @@ export const UserProvider = ({ children }) => {
       
       await firebaseSignOut(auth);
       // Clear local storage
-      await AsyncStorage.multiRemove([USERNAME_KEY, AVATAR_URI_KEY, LAST_PRACTICED_KEY, STREAK_KEY]);
+      await AsyncStorage.multiRemove([USERNAME_KEY, AVATAR_URI_KEY, LAST_PRACTICED_KEY, STREAK_KEY, POINTS_KEY]);
       // Reset state
       setUsername(DEFAULT_USERNAME);
       setAvatarUri(null);
       setCurrentStreak(0);
       setLastPracticedTimestamp(null);
+      setPoints(0);
     } catch (e) {
       console.error("❌ UserContext: Failed to sign out:", e);
       throw e;
@@ -342,10 +370,12 @@ export const UserProvider = ({ children }) => {
       avatarSource,
       currentStreak,
       lastPracticedTimestamp,
+      points,
       isLoading,
       updateUsername: updateUsernameInContextAndStorage,
       updateAvatarUri,
       recordPracticeSession,
+      incrementPoints,
       signOut,
       googleSignInHandler,
     }}>

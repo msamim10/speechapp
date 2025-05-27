@@ -736,7 +736,8 @@ export const promptsData = [
     id: 'speech13',
     title: 'NASA Announcement',
     category: 'Speeches',
-    image: require('../assets/speechpics/nasa.png'),
+    image: require('../assets/speechpics/nasa.png'), 
+    summary: "A speech discussing the importance of space exploration, emphasizing the importance of space exploration, the importance of NASA, and the importance of the future of space exploration. It emphasizes the importance of space exploration and the importance of NASA.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Good afternoon, and welcome to this historic announcement from NASA.\n\nToday, we stand on the brink of a new era in space exploration. After years of research and development, we are ready to announce our next major mission to Mars.\n\nThis mission represents a quantum leap in our understanding of the Red Planet. Our new rover, equipped with cutting-edge technology, will search for signs of ancient life and test technologies for future human exploration.\n\nWhat makes this mission unique is our partnership with international space agencies and private sector innovators. Together, we're pushing the boundaries of what's possible in space exploration.\n\nI want to take a moment to acknowledge the incredible team behind this mission. Their dedication and expertise have brought us to this moment.\n\nAs we prepare for launch next year, we invite the world to join us on this journey of discovery. This is not just NASA's mission - it's humanity's mission.`,
     layout: { position: 'absolute', width: '60%', height: '30%', top: '62%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, }
@@ -746,6 +747,7 @@ export const promptsData = [
     title: 'Monument Sunrise Address',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_54_17 PM.png'),
+    summary: "A speech discussing the importance of the monument, emphasizing the importance of the monument, the importance of the sunrise, and the importance of the future of the monument. It emphasizes the importance of the monument and the importance of the sunrise.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `As the sun rises behind us, casting its first light on this hallowed ground, I am reminded of the generations who stood here before, calling for justice, unity, and progress.\n\nToday, we gather not just to remember — but to reignite our shared commitment to a better future.\n\nLet this place inspire us to speak truth with courage, to lead with integrity, and to walk forward — together — no matter the odds.\n\nIn this moment of national reflection, we must acknowledge both how far we've come and the journey that still lies ahead. The path to progress has never been straight or easy. It winds through valleys of struggle and climbs mountains of resistance.\n\nYet here we stand, testament to the resilience of the human spirit and the power of collective action. Each of us carries the responsibility to continue the work began by those who came before us — to expand freedom, to deepen democracy, and to ensure that dignity is afforded to every person.\n\nAs we leave this place today, let us carry with us not just memories of this gathering, but a renewed determination to be agents of positive change in our communities, our nation, and our world. The future is not predetermined — it is shaped by our choices, our courage, and our commitment to one another.`,
     layout: {
@@ -764,6 +766,7 @@ export const promptsData = [
     title: 'Rally for Change',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_13_24 PM.png'),
+    summary: "A speech discussing the importance of the rally, emphasizing the importance of the rally, the importance of the rally, and the importance of the future of the rally. It emphasizes the importance of the rally and the importance of the rally.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Look around you — this is what democracy looks like!\n\nToday, we raise our voices not in anger, but with purpose. We are here because we believe in the power of people over politics, of justice over silence.\n\nThis is our moment to push for what matters: fair wages, climate action, voting rights, and dignity for every single person.\n\nLet the world hear us: we are here, we are ready, and we are not backing down.\n\nFor too long, the concerns of everyday people have been drowned out by powerful interests and political gridlock. But history shows us that real, lasting change has always begun with ordinary citizens who refuse to accept the status quo.\n\nEvery major social advancement in our nation's history — from civil rights to labor protections, from women's suffrage to environmental safeguards — began with people just like us, gathering just like this, insisting that our country live up to its highest ideals.\n\nToday we add our voices to that proud tradition. We stand united across differences of background, belief, and experience, brought together by our shared humanity and common cause. This movement is not about left versus right — it's about right versus wrong, about creating a future where everyone has the opportunity to thrive.`,
     layout: {
@@ -782,6 +785,7 @@ export const promptsData = [
     title: 'UN General Assembly Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_56_47 PM.png'),
+    summary: "A speech discussing the importance of the UN General Assembly, emphasizing the importance of the UN General Assembly, the importance of the UN General Assembly, and the importance of the future of the UN General Assembly. It emphasizes the importance of the UN General Assembly and the importance of the UN General Assembly.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Mr. President, esteemed delegates,\n\nWe gather today at a time of urgent global challenge — and also of unparalleled opportunity.\n\nFrom climate change to digital equity, we are called to act not as isolated nations but as a united global community. Cooperation is no longer optional — it is essential.\n\nLet us forge partnerships that transcend borders and elevate voices that have too long been unheard. The future demands bold action, and history will judge us by what we choose to do next.\n\nOver the past year, we've witnessed both extraordinary resilience and profound vulnerability across our interconnected world. As temperatures rise and extreme weather events increase in frequency and intensity, our most vulnerable populations continue to bear the heaviest burden.\n\nMeanwhile, technological advancement accelerates, creating both potential solutions and new forms of inequality. We must ensure that the benefits of innovation reach all corners of the globe, leaving no one behind in our digital future.\n\nMy country pledges to increase its climate financing by 30% over the next five years and to open our technological innovations to developing nations without burdensome conditions. We will also welcome 50,000 additional refugees, recognizing our humanitarian responsibility in a world of increasing displacement.\n\nI call on every nation represented here today to match ambition with action, rhetoric with resources. Our words in this chamber must translate to meaningful change in the lives of those we serve.`,
     layout: {
@@ -800,6 +804,7 @@ export const promptsData = [
     title: 'Awards Ceremony Acceptance',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 08_58_57 PM.png'),
+    summary: "A speech discussing the importance of the awards ceremony, emphasizing the importance of the awards ceremony, the importance of the awards ceremony, and the importance of the future of the awards ceremony. It emphasizes the importance of the awards ceremony and the importance of the awards ceremony.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Wow... thank you. Standing here tonight is a dream I never thought would become reality.\n\nThis honor belongs not just to me, but to every mentor who lifted me up, every collaborator who challenged me, and every moment of failure that taught me to keep going.\n\nTo those watching who feel unseen — know this: your voice matters, your work matters, and your time will come.\n\nThank you, from the bottom of my heart.\n\nWhen I started this journey fifteen years ago, working out of my garage with nothing but determination and a vision, there were countless moments when giving up seemed like the only sensible option. I remember one particularly difficult period when I had maxed out my credit cards, my family was questioning my sanity, and the industry experts had written off my approach as impractical and naive.\n\nWhat kept me going were the small acts of kindness and belief from unexpected places — a former professor who connected me with a key advisor, a stranger who became our first customer, and my partner who somehow always found a way to keep food on the table while I chased this dream.\n\nThis award represents all those invisible moments of perseverance that happen behind the scenes of any worthwhile endeavor. The late nights, the rejected proposals, the prototypes that failed spectacularly — they were all necessary steps on the path that led here.`,
     layout: {
@@ -818,6 +823,7 @@ export const promptsData = [
     title: 'Courtroom Closing Statement',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_00_13 PM.png'),
+    summary: "A speech discussing the importance of the courtroom, emphasizing the importance of the courtroom, the importance of the courtroom, and the importance of the future of the courtroom. It emphasizes the importance of the courtroom and the importance of the courtroom.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Your Honor, members of the jury,\n\nYou've heard the evidence. You've seen the facts. And now, it comes down to a simple question: What is justice?\n\nThis isn't just about one person's actions. It's about accountability. About the truth finally being recognized in a room that has long ignored it.\n\nI ask you to remember not just what was said — but what was proven.\n\nLet justice be more than a word. Let it be the verdict you deliver today.\n\nThroughout this trial, we've presented witness testimony, expert analysis, and documented evidence that all point to the same conclusion. The prosecution has attempted to create a narrative based on circumstantial connections and emotional appeals. But a just verdict must be based on facts, not feelings.\n\nConsider the timeline we've established through multiple witnesses. Consider the forensic evidence that contradicts the prosecution's theory. Consider the inconsistencies in testimony from the state's key witness.\n\nMy client has maintained their innocence from the beginning. They have cooperated fully with this investigation, provided alibi witnesses, and submitted to all requests from law enforcement. These are not the actions of someone with guilt to hide.`,
     layout: {
@@ -836,6 +842,7 @@ export const promptsData = [
     title: 'TED Talk Introduction',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_03_23 PM.png'),
+    summary: "A speech discussing the importance of the TED Talk, emphasizing the importance of the TED Talk, the importance of the TED Talk, and the importance of the future of the TED Talk. It emphasizes the importance of the TED Talk and the importance of the TED Talk.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `What if I told you that the future you're afraid of — is actually the opportunity you've been waiting for?\n\nGood afternoon, TED community. Today, I want to challenge the assumptions we've made about failure, fear, and forward momentum.\n\nThis talk is not about being perfect. It's about being courageous enough to show up, even when you don't have all the answers.\n\nLet's dive in together and explore how small ideas, repeated with heart, can change everything.\n\nFive years ago, I lost everything — my company, my savings, my confidence. I was that classic cautionary tale of an entrepreneur who reached too far. The spectacular failure was covered in business magazines and analyzed by industry experts. Everyone had an opinion about what went wrong.\n\nBut what I discovered in that darkest moment wasn't just the depth of loss — it was the beginning of a profound transformation. When you have nothing left to lose, you suddenly have everything to gain. The fear that once paralyzed me became irrelevant.\n\nDuring the next 18 months, I interviewed over 200 people who had experienced similar catastrophic failures. What emerged was a pattern, a roadmap of sorts, for turning moments of greatest defeat into catalysts for unprecedented growth. These conversations revealed a counterintuitive truth: our biggest breakthroughs often lie on the other side of our most painful breakdowns.`,
     layout: {
@@ -854,6 +861,7 @@ export const promptsData = [
     title: 'Memorial Church Eulogy',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_06_36 PM.png'),
+    summary: "A speech discussing the importance of the memorial church, emphasizing the importance of the memorial church, the importance of the memorial church, and the importance of the future of the memorial church. It emphasizes the importance of the memorial church and the importance of the memorial church.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `We gather here in this sacred space to honor a life well-lived, and to grieve a loss deeply felt.\n\n[Name] was a beacon of quiet strength — someone whose kindness left an imprint on everyone they met.\n\nThough today is filled with sorrow, it is also filled with gratitude. Gratitude for the memories, the laughter, and the legacy of compassion left behind.\n\nLet us remember not just how [Name] died, but how they lived. And may we carry forward the light they shared with us.\n\nI remember the first time I met [Name], thirty years ago. It was during that terrible storm that flooded the downtown area. While most people were focused on protecting their own homes, [Name] organized an impromptu volunteer effort to help elderly residents evacuate. That was the essence of who they were — seeing beyond themselves to the needs of others, taking action without hesitation or expectation of recognition.\n\nMany of you have your own stories — moments when [Name]'s generosity, wisdom, or simple presence made all the difference in your lives. These stories matter. They remind us that a life is measured not in years but in impact, not in possessions but in connections.\n\n[Name] faced their final illness with the same grace and courage that characterized their entire life. Even in those difficult last days, their concern was for the comfort of their family and friends rather than themselves.`,
     layout: {
@@ -872,6 +880,7 @@ export const promptsData = [
     title: 'Democratic Rally Keynote',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_02_26 PM.png'),
+    summary: "A speech discussing the importance of the democratic rally, emphasizing the importance of the democratic rally, the importance of the democratic rally, and the importance of the future of the democratic rally. It emphasizes the importance of the democratic rally and the importance of the democratic rally.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Friends, we are here tonight not just to celebrate a campaign — but to launch a movement.\n\nA movement rooted in equity, inclusion, and economic justice. One that says healthcare is a right, not a privilege. That climate action is not optional, it's essential.\n\nIf you believe in lifting each other up, in listening before speaking, and in fighting like hell for the next generation — then you're in the right place.\n\nLet's go out there and win this — together.\n\nI've spent the past six months traveling across this district, listening to your stories. I've heard from factory workers worried about automation, from parents struggling to afford childcare, from students drowning in debt, and from seniors choosing between medicine and food.\n\nThese aren't just policy issues — they're human issues that affect real people every single day. And they won't be solved by the same old approach that got us here.\n\nOur campaign isn't funded by corporate PACs or special interests. It's powered by people like you who believe we deserve better. Every five-dollar donation, every volunteer hour, every conversation with a neighbor — that's what will transform our community.\n\nWhen they say we're asking for too much, we say: we're just getting started. When they say change isn't possible, we say: watch us make it happen. This is our moment to stand up, to speak out, and to reshape what's possible in politics.`,
     layout: {
@@ -890,6 +899,7 @@ export const promptsData = [
     title: 'Historic Civil Rights Tribute',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_08_35 PM.png'),
+    summary: "A speech discussing the importance of the historic civil rights tribute, emphasizing the importance of the historic civil rights tribute, the importance of the historic civil rights tribute, and the importance of the future of the historic civil rights tribute. It emphasizes the importance of the historic civil rights tribute and the importance of the historic civil rights tribute.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Standing here, in the footsteps of giants, we remember those who marched, who sacrificed, and who dared to dream.\n\nThis monument is not made of stone — it is built from courage, from conviction, from the unwavering belief that freedom belongs to all.\n\nLet us not treat this history as distant. Let it stir us to action.\n\nBecause the arc of the moral universe does not bend on its own — it bends when we pull it with every ounce of our being.\n\nSixty years ago, on these very streets, ordinary citizens faced fire hoses, police dogs, and brutal violence — all for demanding the basic rights promised to them as Americans. They were teachers and preachers, students and workers. They were mothers and fathers who wanted a better world for their children.\n\nTheir moral courage changed the course of history. Their nonviolent resistance transformed not just laws but hearts and minds. The victories they won — at lunch counters, in courtrooms, on buses, and at ballot boxes — were hard-fought and costly.\n\nYet today, we face new challenges to justice and equality. Voter suppression. Economic inequality. Systemic racism that persists in housing, education, healthcare, and criminal justice. These injustices may take different forms than they did six decades ago, but they stem from the same root causes and demand the same moral clarity from us.`,
     layout: {
@@ -908,6 +918,7 @@ export const promptsData = [
     title: 'University Commencement Speech',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 28, 2025, 09_01_24 PM.png'),
+    summary: "A speech discussing the importance of the university commencement speech, emphasizing the importance of the university commencement speech, the importance of the university commencement speech, and the importance of the future of the university commencement speech. It emphasizes the importance of the university commencement speech and the importance of the university commencement speech.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `To the graduating class: You did it.\n\nNot just the coursework — but the late nights, the doubts, the breakthroughs, the friendships, and the growth you never expected.\n\nToday isn't the end of your story. It's the moment the world hands you the pen and says, "Now you write it."\n\nSo go forward boldly. Make mistakes, make change, and make it count.\n\nWe can't wait to see what you build next.\n\nYour education has given you more than knowledge — it has given you perspective. In a world that's increasingly complex and polarized, you've learned to analyze deeply, question thoughtfully, and communicate effectively. These skills matter now more than ever.\n\nYou're graduating at a pivotal moment in history. Technologies like AI are transforming our economy. Climate change is reshaping our planet. Political and social movements are redefining our institutions. Some might see these challenges as burdens — I see them as opportunities for your generation to lead us toward more innovative, sustainable, and equitable solutions.\n\nRemember that success isn't linear. Many of you will change careers multiple times. You'll explore paths that don't even exist yet. The most successful people I know aren't those who followed a straight line, but those who remained curious, adaptable, and resilient in the face of uncertainty.\n\nAnd as you pursue your individual dreams, don't forget the collective responsibility we share to each other. Your education was made possible not just by your own efforts, but by the communities, family members, and institutions that supported you along the way.`,
     layout: {
@@ -927,6 +938,7 @@ export const promptsData = [
     title: 'Unity Through Faith Address',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_49_35 PM.png'),
+    summary: "A speech discussing the importance of the unity through faith address, emphasizing the importance of the unity through faith address, the importance of the unity through faith address, and the importance of the future of the unity through faith address. It emphasizes the importance of the unity through faith address and the importance of the unity through faith address.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Brothers and sisters, let us take a breath together — and remember who we are, and what binds us.\n\nNot our divisions, but our shared spirit. Not our fears, but our hope. Faith, not as dogma, but as the invitation to love boldly and serve humbly.\n\nIn times of turmoil, may our faith anchor us. In moments of doubt, may it carry us.\n\nLet us leave this place renewed — to be light in darkness and peace in unrest.\n\nFor centuries, people of faith have gathered in spaces like this — not to escape the world, but to be strengthened for it. Our sacred texts and traditions remind us that true spirituality is measured not just by what we believe, but by how we treat one another, especially those on the margins of society.\n\nOur community is blessed with diversity — different backgrounds, different life experiences, different interpretations of our shared faith. These differences need not divide us. Indeed, they enrich our understanding and expand our hearts.\n\nI'm reminded of the ancient parable of the wounded traveler, ignored by the religious authorities but helped by the unexpected stranger. This story challenges us to ask: Who is my neighbor? And how am I called to care for them? In a world that so often teaches us to fear the other, our faith calls us to a radical welcome and an expansive love.\n\nAs we face the challenges of our time — polarization, environmental crisis, economic inequality — let us draw strength from both our individual convictions and our collective wisdom.`,
     layout: {
@@ -945,6 +957,7 @@ export const promptsData = [
     title: 'Community Empowerment Rally',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_48_09 PM.png'),
+    summary: "A speech discussing the importance of the community empowerment rally, emphasizing the importance of the community empowerment rally, the importance of the community empowerment rally, and the importance of the future of the community empowerment rally. It emphasizes the importance of the community empowerment rally and the importance of the community empowerment rally.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Friends,\n\nLook around — this is what unity looks like. Today, we stand together for a brighter future, built on empowerment, inclusion, and action.\n\nWe're not here to just cheer; we're here to commit. To listen. To support one another. And to make real change — in our schools, our neighborhoods, and our leadership.\n\nLet's raise our voices and our hopes. Let's say yes to opportunity, yes to justice, and yes to every voice being heard. This movement belongs to all of us — and we're just getting started.\n\nFor too long, our community has been defined by what others say about us, rather than by what we know to be true. They look at our challenges and see only problems. We look at our community and see tremendous potential waiting to be unleashed.\n\nEvery person here has a story of resilience, a story of overcoming, a story of hope that refuses to die. Those stories, woven together, create the fabric of a community that's stronger than any challenge we face.\n\nSo what are we going to do? First, we're launching our neighborhood council initiative with representatives from every block working together to identify priorities and solutions. Second, we're starting a youth mentorship program connecting our elders with our teenagers to share wisdom and create opportunities. Third, we're establishing a community-owned cooperative to bring fresh food, jobs, and economic power right here to our neighborhood.\n\nThis isn't a quick fix or an overnight solution. Real change takes time, commitment, and consistent effort. But when we stand together, when we pool our resources, our talents, and our determination, there is absolutely nothing we cannot accomplish.`,
     layout: { position: 'absolute', width: '60%', height: '38%', top: '48%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
@@ -954,6 +967,7 @@ export const promptsData = [
     title: 'Gallery Hall Press Briefing',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_44_59 PM.png'),
+    summary: "A speech discussing the importance of the gallery hall press briefing, emphasizing the importance of the gallery hall press briefing, the importance of the gallery hall press briefing, and the importance of the future of the gallery hall press briefing. It emphasizes the importance of the gallery hall press briefing and the importance of the gallery hall press briefing.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Members of the press, colleagues,\n\nAs we gather here in this grand hall, I'm reminded that leadership is not about titles — it's about responsibility. Today, we address not just headlines, but the principles we stand for.\n\nOur mission is clear: transparency, accountability, and unity in the face of complex challenges. Every decision we make echoes through this institution and into the lives of those we serve.\n\nLet this briefing be more than updates — let it reflect our unwavering dedication to public trust.\n\nThe announcements we're making today come after months of careful deliberation, countless hours of expert consultation, and genuine engagement with communities across the nation. We did not arrive at these policy positions lightly or with partisan calculation. We arrived here by following the evidence, listening to diverse perspectives, and remaining focused on long-term outcomes rather than short-term political convenience.\n\nI understand there will be critiques from across the political spectrum. That's not just expected — it's essential in a healthy democracy. But I ask that we all elevate the discourse beyond soundbites and engage with the substance of these proposals. The challenges we face — from economic inequality to climate resilience to healthcare access — are too important for anything less.\n\nIn the detailed briefing materials we've provided, you'll find not just our policy framework but the data, research, and community input that informed our approach. You'll also find metrics for accountability — specific, measurable outcomes that will allow the public to judge our progress objectively.\n\nI'm now ready to address your questions with the same transparency and directness that we hope will characterize this administration's relationship with both the press and the public.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '62%', left: '25%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-8deg' }] }
@@ -963,6 +977,7 @@ export const promptsData = [
     title: 'Military Formation Address',
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_50_54 PM.png'),
+    summary: "A speech discussing the importance of the military formation address, emphasizing the importance of the military formation address, the importance of the military formation address, and the importance of the future of the military formation address. It emphasizes the importance of the military formation address and the importance of the military formation address.",
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Soldiers,\n\nAs you stand in formation today, remember what this uniform represents — loyalty, courage, and an unwavering duty to protect. Every drill, every command, every step you've taken has brought you to this moment.\n\nYou carry the pride of a nation and the strength of generations before you. In times of uncertainty, your discipline becomes the backbone of our defense.\n\nLead with honor. Train with intensity. Serve with heart. We are proud of you — now go make your mark.\n\nThe training you've completed has tested you physically and mentally. You've endured early mornings, long marches, and challenges designed to push you beyond what you thought possible. But the true test lies ahead, when you'll be called upon to make decisions under pressure, to lead when the path isn't clear, and to stand firm when others falter.\n\nLook to your left and right. These are not just your colleagues or fellow soldiers — they are your brothers and sisters in arms. The bonds you've formed during training will sustain you through whatever challenges lie ahead. Trust in each other, communicate clearly, and remember that your strength as a unit far exceeds your individual capabilities.\n\nAs you prepare for your deployments and assignments, remember also those who await your return. Your families, your communities, your country. They sleep peacefully at night because you have chosen to serve. That is a sacred trust and a profound responsibility.\n\nI have watched your progress through this training cycle, and I can say with confidence that you represent the very best of our military tradition. You have demonstrated not just technical proficiency, but the character and resilience that define true service.`,
     layout: { position: 'absolute', width: '60%', height: '35%', top: '50%', left: '20%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
@@ -971,6 +986,7 @@ export const promptsData = [
     id: 'speech29',
     title: 'Intimate Club Talk',
     category: 'Speeches',
+    summary: "A speech discussing the importance of the intimate club talk, emphasizing the importance of the intimate club talk, the importance of the intimate club talk, and the importance of the future of the intimate club talk. It emphasizes the importance of the intimate club talk and the importance of the intimate club talk.",
     image: require('../assets/speechpics/ChatGPT Image Apr 29, 2025, 12_54_57 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Hey everyone,\n\nThanks for being here tonight. This isn't a big auditorium or some corporate setting — it's a space for honesty, laughter, and real connection.\n\nI want to talk about resilience. Not the kind you post about — the kind that keeps you standing when no one's clapping. The kind that turns failure into fire.\n\nWhatever you're carrying tonight, know this: you're not alone, and your story matters. Let's lift each other up — and maybe laugh a little while we're at it.\n\nFive years ago, I had what looked like success from the outside. The career, the relationship, the apartment with a view. Then in the span of three months, I lost my job, my partner left, and I couldn't make rent. I found myself sleeping on a friend's couch, wondering how my life had unraveled so quickly.\n\nThat moment taught me something powerful about resilience. It's not about avoiding failure or hardship — it's about how you respond when everything falls apart. It's about finding that tiny spark of hope when all you can see is darkness.\n\nWhat saved me wasn't some dramatic comeback story. It was small, daily acts of persistence. It was sending out one more application when I'd already received twenty rejections. It was forcing myself to take a walk when depression made it hard to get out of bed. It was accepting help when pride made me want to handle everything alone.\n\nI started rebuilding by focusing not on getting back what I'd lost, but on rediscovering what truly mattered to me. I found purpose in volunteer work, community in unexpected places, and eventually, a new path forward that feels more authentic than the one I was on before.`,
@@ -980,6 +996,7 @@ export const promptsData = [
     id: 'speech30',
     title: 'Policy Brief at National Press Club',
     category: 'Speeches',
+
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 01_57_27 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'),
     text: `Good afternoon,\n\nWe meet today at a critical juncture for our country. The conversations we hold in rooms like this shape policy that impacts every American.\n\nAs we tackle pressing issues — from economic equity to global stability — I urge each of you to engage with purpose. These aren't just policy points; they are real people's lives.\n\nLet's keep the dialogue honest, data-informed, and focused on solutions that unite instead of divide.\n\nThe policy framework we're introducing today represents a significant departure from the status quo. For too long, we've approached these challenges through the lens of short-term political calculation rather than long-term national interest. We've allowed ideological rigidity to prevent us from finding common ground on issues where most Americans actually agree.\n\nOur research indicates that 78% of citizens across political affiliations support investment in clean energy infrastructure that creates jobs while addressing climate change. Similarly, 82% believe we need comprehensive healthcare reform that ensures affordability and access without bankrupting families facing serious illness.\n\nThe five-point plan outlined in your briefing materials tackles these priorities through a pragmatic approach that incorporates ideas from across the political spectrum. It refuses the false choice between economic growth and environmental protection. It rejects the notion that we must choose between strong borders and humane immigration policies.\n\nI welcome rigorous debate on the specifics, but I ask that we begin from a shared commitment to finding workable solutions. The American people deserve nothing less than our best efforts to move beyond partisan gridlock and chart a course toward a more prosperous, secure, and just future for all.`,
@@ -991,6 +1008,7 @@ export const promptsData = [
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 01_46_37 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
+    summary: "A speech addressing the White House Correspondents Gala, celebrating freedom of the press while balancing humor and serious reflection on democracy. The speech emphasizes the essential role of journalism in maintaining accountability, acknowledges the challenges faced by the press, and reinforces the importance of protecting press freedom in an era of rising authoritarianism.",
     text: `Ladies and gentlemen,\n\nWelcome to the most elegant roast in Washington! Tonight, we celebrate not just freedom of the press — but also freedom to make fun of everyone equally.\n\nYou all dig for truth in dark places and somehow still make it to dinner in black-tie attire.\n\nThank you for keeping us honest — and reminding us that democracy is stronger when journalism is brave, bold, and unrelenting. And yes — funny too.\n\nIt's quite remarkable to look around this room and see the faces that Americans wake up to every morning and go to bed with every night. Though I should clarify — I'm referring to your news broadcasts, not suggesting anything inappropriate about your sleeping arrangements.\n\nThese past few years haven't been easy for any of us. My administration has faced its share of challenges, and you've been there to document every triumph and stumble, often with a level of detail that makes my communications team reach for the antacids.\n\nBut that tension between government and press is not just normal — it's essential. When Thomas Jefferson said he'd prefer newspapers without government to government without newspapers, he probably hadn't just read an unflattering profile of himself. But he understood something fundamental about democracy: that accountability matters more than comfort.\n\nIn an era where authoritarianism is on the rise globally, where journalists face imprisonment and worse for doing their jobs, we should never take for granted the freedom represented in this room. The freedom to ask tough questions, to challenge power, and occasionally, to make the President squirm through five minutes of stand-up comedy.`,
     layout: { position: 'absolute', width: '62%', height: '33%', top: '62%', left: '15%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10 }
   },
@@ -1000,6 +1018,7 @@ export const promptsData = [
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_00_55 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
+    summary: "A speech celebrating Black excellence and representation at the NAACP Image Awards, highlighting the progress made in media representation while acknowledging ongoing challenges. The speech emphasizes the importance of authentic storytelling, behind-the-scenes representation, and the continuing fight for equity in the entertainment industry.",
     text: `Good evening,\n\nWhat an honor to stand before creators, changemakers, and champions of equity. The stories honored tonight break barriers and build bridges.\n\nFrom sound stages to classrooms, the work you do reshapes culture and inspires generations.\n\nTonight, we don't just hand out awards — we reaffirm a legacy of excellence, truth, and representation that continues to rise.\n\nKeep shining, keep creating — we see you.\n\nWhen I look across this room, I see more than talent. I see courage. I see persistence. I see the faces of those who refused to accept the limitations that society tried to place on them. In an industry that has historically marginalized our voices, you've not only claimed your seat at the table — you've transformed the entire conversation.\n\nThink back to where we were just a few decades ago, when roles for Black actors were limited and stereotypical, when our stories were told through someone else's lens, when directors and producers of color were barely represented. Compare that to tonight, where we celebrate groundbreaking films, television shows, music, and literature that center our diverse experiences with authenticity and nuance.\n\nThis progress didn't happen by accident. It happened because people in this room and those who came before you demanded change. You created your own production companies when doors were closed. You mentored young talent. You took creative and financial risks to bring untold stories to light.\n\nBut our work is far from finished. True representation isn't just about who appears on screen — it's about who makes decisions behind the scenes, who has access to funding, and whose stories are deemed worthy of being told. It's about ensuring that the full spectrum of Black experiences is reflected in our culture, not just those that fit comfortable narratives.`,
     layout: { position: 'absolute', width: '50%', height: '32%', top: '63%', left: '38%', backgroundColor: 'transparent', overflow: 'hidden', borderRadius: 10, transform: [{ rotate: '-8deg' }] }
   },
@@ -1007,6 +1026,7 @@ export const promptsData = [
     id: 'speech33',
     title: 'Late Night Guest Segment',
     category: 'Speeches',
+    summary: "A speech for a late night talk show appearance that balances humor with meaningful insights, discussing personal experiences and the power of shared laughter to bridge divides. The speech emphasizes the importance of human connection and finding common ground through storytelling and humor, while acknowledging the serious challenges facing society.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 01_56_05 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Wow — what a crowd!\n\nBefore I walked out, they said, "Keep it short and funny." I'm aiming for at least one of those.\n\nBut seriously, I came here tonight not just to entertain, but to connect. Humor brings us together in ways politics never can.\n\nSo let's laugh, let's think, and let's be reminded that behind every joke, there's truth — and behind every person, there's a story worth hearing.\n\nYou know, I've spent the last few years traveling across the country talking to people from all walks of life for my new book. What's fascinating is that despite all the division we hear about, most people are united by the same basic desires: they want opportunities for their kids, they want their communities to be safe, and they want a good laugh after a long day.\n\nI remember sitting in a diner in a small Midwestern town, talking to this older gentleman who had views completely opposite to mine on almost everything political. But we spent three hours sharing stories and by the end, we were laughing so hard the waitress had to ask us to quiet down. We never changed each other's minds on policy, but we recognized each other's humanity.\n\nThat's what I hope we can do more of as a country — find those moments of connection through humor and genuine curiosity about each other's stories. It's harder to demonize someone when you've shared a laugh with them.\n\nSo while we might debate the serious issues facing our nation — and there are many — let's not forget that sometimes the most revolutionary act is simply to see each other clearly and to find joy in our shared experience as humans on this complicated journey together.`,
@@ -1015,6 +1035,7 @@ export const promptsData = [
   {
     id: 'speech34',
     title: 'Iowa Debate Opening Statement',
+    summary: "A speech delivering an opening statement at the Iowa debate, focusing on substantive policy proposals and personal connection to working-class values. The speech emphasizes real solutions to challenges facing Americans, including healthcare, climate action, and economic justice, while sharing the candidate's background and experience visiting all 99 Iowa counties.",
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_02_25 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
@@ -1024,6 +1045,7 @@ export const promptsData = [
   {
     id: 'speech35',
     title: 'Pearl Harbor Remembrance Speech',
+    summary: "A speech commemorating the anniversary of Pearl Harbor, focusing on honoring the sacrifices made and the enduring legacy of those who served. The speech emphasizes the importance of remembrance, unity, and vigilance while connecting historical events to present-day values of courage and commitment to peace.",
     category: 'Speeches',
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 04_56_56 PM.png'),
     text: `Ladies and gentlemen,\n\nToday we gather at Pearl Harbor to honor the memory of those who gave their lives in service and sacrifice. This sacred site reminds us of the cost of freedom.\n\nTheir legacy lives not just in history books, but in our commitment to peace, vigilance, and unity.\n\nMay we never forget. And may we always live in a way that honors their courage.\n\nEighty-four years ago, on a quiet Sunday morning, the waters before us erupted in fire and chaos. More than 2,400 Americans lost their lives in a matter of hours. They were sailors and soldiers, marines and civilians. They were fathers and sons, husbands and brothers. They were Americans who had breakfast that morning with no idea that it would be their last.\n\nI'm humbled to stand here with the few remaining survivors of that fateful day – living witnesses to one of history's pivotal moments. Their firsthand accounts remind us that history isn't just dates and facts. It's human beings making choices of extraordinary courage amid unimaginable circumstances.\n\nWe remember the crew of the USS Oklahoma, who continued to tap messages to rescuers as water filled their compartments. We remember the nurses who treated the wounded under enemy fire. We remember the civilians who rushed to donate blood and provide aid.\n\nThe generation that endured Pearl Harbor and went on to win World War II has been rightly called the Greatest Generation. They didn't seek glory or recognition. They simply answered the call of duty, defended freedom when it was threatened, and then returned home to build the America we inherit today.`,
@@ -1033,6 +1055,7 @@ export const promptsData = [
     id: 'speech36',
     title: 'Gateway Arch Unity Speech',
     category: 'Speeches',
+    summary: "A speech delivered at the Gateway Arch in St. Louis, emphasizing themes of unity, progress, and shared purpose across diverse communities. The speech draws parallels between the physical construction of the arch by diverse workers and the ongoing work of building an inclusive society, while acknowledging historical significance of St. Louis in American expansion and civil rights.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 04_58_20 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Standing under this great arch, we are reminded of the journey — from past struggles to future promise. This monument is more than metal — it's a symbol of progress.\n\nWe are many voices, but one people. One mission — to build bridges, not walls.\n\nLet today be a call for inclusion, innovation, and inspiration that reaches as high as the arch above us.\n\nThis Gateway Arch, rising 630 feet above us, was built by diverse hands — Irish and Italian immigrants, African Americans, and many others who may have spoken different languages but shared a common vision. They worked together, despite differences, to create something extraordinary that would outlast all of them.\n\nSt. Louis itself sits at the confluence of great rivers, a meeting place of cultures and ideas throughout our nation's history. It was from this very spot that Lewis and Clark embarked on their journey westward, opening a new chapter in American exploration. It was in this city that Dred Scott filed his lawsuit for freedom, challenging the very definition of citizenship and human rights in America.\n\nToday, we face our own defining challenges — division that threatens to tear at the fabric of our communities, economic uncertainties that leave too many families struggling, and rapid technological change that both connects and divides us. But like those who came before us, we have the opportunity to build something remarkable together.\n\nThe arch teaches us an important lesson about unity. Each section depends on all the others. Remove one piece, and the entire structure would fail. So too with our society — we rise or fall together. Our diversity isn't a weakness to overcome but our greatest source of strength and innovation.`,
@@ -1042,6 +1065,7 @@ export const promptsData = [
     id: 'speech37',
     title: 'University Commencement Speech',
     category: 'Speeches',
+    summary: "A commencement speech delivered to university graduates, emphasizing interdisciplinary learning, intellectual growth, and preparing for global challenges. The speech encourages students to embrace discomfort, seek diverse perspectives, and use their education to make meaningful contributions to society while highlighting the university's focus on cross-disciplinary collaboration.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 05_05_00 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Welcome scholars,\n\nThis campus is more than classrooms and textbooks — it's a training ground for thought, for growth, and for global citizenship.\n\nToday you begin a chapter of discovery. Seek knowledge. Challenge assumptions. And above all, use what you learn to lead with compassion.\n\nThe world awaits what you will build.\n\nLook around you. These halls have been home to Nobel laureates, pioneering researchers, transformative artists, and leaders who have shaped our world. But they all started exactly where you are sitting today: curious, perhaps a bit nervous, and filled with possibilities.\n\nYou arrive at a pivotal moment in history. We face unprecedented global challenges: climate change, technological disruption, social inequality, and political polarization. These problems are complex and interconnected, requiring innovative thinking across traditional boundaries of discipline and culture.\n\nThis is why our university has redesigned its curriculum to emphasize interdisciplinary collaboration. We want you to become not just experts in your field, but translators between fields, able to connect insights from seemingly unrelated domains. The computer scientist who understands ethics. The economist who appreciates ecology. The engineer who values anthropology.\n\nDuring your time here, I encourage you to embrace intellectual discomfort. Seek out viewpoints that challenge your own. Take courses outside your comfort zone. Engage respectfully with those whose life experiences differ dramatically from yours. True learning happens not when we confirm what we already believe, but when we grapple with ideas that push us to think more deeply.`,
@@ -1051,6 +1075,7 @@ export const promptsData = [
     id: 'speech38',
     title: 'BET Awards Tribute',
     category: 'Speeches',
+    summary: "A tribute speech at the BET Awards celebrating Black excellence in entertainment and culture, emphasizing the historical significance of BET's founding, the impact of representation in media, and the role of Black artistry in social change. The speech acknowledges pioneers who broke barriers while highlighting how current artists continue to use their platforms for cultural preservation and social justice.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 05_03_35 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Good evening,\n\nTonight we honor Black excellence — not just in music and media, but in culture, courage, and community.\n\nThe stories shared on this stage uplift and ignite. They tell us that our voices matter, that our art shapes generations.\n\nSo shine bright, speak loud, and never stop pushing the world forward.\n\nThis moment calls for celebration, but also for reflection. When BET was founded over 45 years ago, the landscape of media representation looked vastly different. Doors were closed. Voices were silenced. Stories went untold. But through perseverance, creativity, and unwavering conviction, those barriers began to fall.\n\nI look around this room and see pioneers who refused to take no for an answer. Artists who created their own lanes when the existing ones excluded them. Visionaries who built platforms and opened doors for others to follow. Through your work, millions of young people see themselves represented, their experiences validated, their dreams affirmed.\n\nThis year's nominees have not just entertained us; they've moved us, challenged us, and inspired us. They've used their art to address systemic inequality, to preserve our rich cultural heritage, and to imagine new possibilities for our future. Their music, films, television, and digital content carry forward a legacy of storytelling that has sustained our communities through centuries of struggle and triumph.\n\nAs we celebrate tonight, let us remember that our creativity has always been both expression and resistance. From spirituals sung in fields to jazz clubs in Harlem, from community theaters to global streaming platforms, Black artistry has consistently transformed American culture while fighting for justice and human dignity.`,
@@ -1060,6 +1085,7 @@ export const promptsData = [
     id: 'speech39',
     title: 'Atlanta Civil Rights Dedication',
     category: 'Speeches',
+    summary: "A dedication speech at the opening of a new wing of the Civil Rights Museum in Atlanta, emphasizing the city's pivotal role in the civil rights movement, honoring both famous leaders and unsung heroes, and connecting historical struggles to ongoing work for justice. The speech highlights Atlanta's significance as the home of Martin Luther King Jr. and SNCC while emphasizing that civil rights progress requires continuous commitment.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 05_01_50 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Today, at the Civil Rights Museum, we remember those who marched, who stood, and who refused to be silent.\n\nTheir struggle paved the way for justice — and it calls each of us to keep marching, keep standing, keep speaking.\n\nThis is not just history. This is a movement that lives in us.\n\nLet's carry the torch with dignity and determination.\n\nAtlanta stands at the heart of America's civil rights story. It was here that a young preacher named Martin Luther King Jr. developed his philosophy of nonviolent resistance. It was here that the Student Nonviolent Coordinating Committee organized campaigns that would transform the nation. It was here that ordinary citizens risked everything for the extraordinary promise of equality.\n\nAs we dedicate this new wing of the museum, we honor both famous leaders and unsung heroes. We remember the strategists who planned boycotts and the volunteers who prepared meals. We honor those who faced fire hoses and police dogs, and those who offered their homes as safe havens. We recognize that the movement was built not just on dramatic moments captured by news cameras, but on countless daily acts of courage that often went unrecorded.\n\nThis museum isn't just about preserving the past—it's about illuminating the present and inspiring the future. The exhibits you'll see remind us that progress is never guaranteed. Each generation must recommit to the work of justice, must find new ways to address persistent inequalities, must confront new manifestations of old prejudices.\n\nThe civil rights leaders we honor today understood that America's founding promise of equality required constant vigilance and ongoing work. They knew that democracy isn't a static achievement but a continuous process of becoming more inclusive, more just, more true to our highest ideals.`,
@@ -1069,6 +1095,7 @@ export const promptsData = [
     id: 'speech40',
     title: 'Macys Parade Welcome',
     category: 'Speeches',
+    summary: "A welcoming speech for the Macy's Thanksgiving Day Parade, celebrating the parade's history, traditions, and community spirit. The speech emphasizes the parade's role in bringing joy and wonder to millions, acknowledging the dedication of performers and organizers while highlighting how the event has grown from a small celebration into a beloved national tradition that marks the start of the holiday season.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_26_26 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Hello New York!\n\nWhat a day to celebrate joy, creativity, and the incredible energy of our city. As the floats roll in and the music fills the air, let's remember what brings us together — imagination, tradition, and community.\n\nTo every performer, every family watching from home, and everyone lining these streets — thank you. Let's make this year's parade unforgettable!\n\nFor nearly a century, this parade has been a beloved tradition that marks the beginning of the holiday season. It started as a small celebration and has grown into this magnificent spectacle that captivates millions around the world. What makes this event so special is that it brings out the child in all of us — that sense of wonder and excitement that sometimes gets lost in our busy lives.\n\nToday we have over 8,000 participants — from marching bands that have practiced for months, to dance troupes showcasing incredible talent, to our balloon handlers managing those iconic characters floating above us. Behind every performer and every float is a story of dedication and hard work.\n\nAs we watch the parade unfold, I hope you feel the magic that happens when a city comes together to celebrate. This isn't just about entertainment — it's about creating memories that will last a lifetime for the children watching, just as many of us remember watching when we were young.\n\nNow, let the 99th Annual Macy's Thanksgiving Day Parade begin!`,
@@ -1078,6 +1105,7 @@ export const promptsData = [
     id: 'speech41',
     title: 'Hollywood Walk of Fame Tribute',
     category: 'Speeches',
+    summary: "A tribute speech at a Hollywood Walk of Fame star dedication ceremony, celebrating an actor's 30-year journey from humble beginnings to industry success. The speech emphasizes themes of perseverance, mentorship, and using fame as a platform for positive change, while acknowledging both the visible achievements and behind-the-scenes dedication that led to this recognition.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_28_12 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Thank you all for being here today,\n\nStanding on this iconic stretch of sidewalk, we honor a journey paved with talent, perseverance, and passion. This star is more than a name — it's a legacy.\n\nTo the fans, colleagues, and dreamers: keep reaching. Because this industry runs on the stories we dare to tell and the dreams we dare to chase.\n\nThirty years ago, a young performer stepped off a bus with nothing but talent and determination. There were countless auditions, numerous rejections, and those small early roles that barely paid the rent. But with each setback came growth, with each challenge came opportunity.\n\nWhat makes this moment so special isn't just the accomplishments we celebrate today — the award-winning performances, the box office successes, the critical acclaim. It's the character behind the characters. It's the countless hours of preparation that the audience never sees. It's the mentorship provided to young artists, the philanthropic work that happens away from the cameras, and the courage to use this platform to advocate for important causes.\n\nHollywood Boulevard tells the story of our entertainment history through these stars. From the pioneers of the silent film era to the digital innovators of today, each star represents someone who dared to transform imagination into reality.\n\nToday, we add another name to this illustrious walkway — a name that future generations will see and be inspired by, just as you were inspired by those who came before.`,
@@ -1087,6 +1115,7 @@ export const promptsData = [
     id: 'speech42',
     title: 'Military Funeral Reflection',
     category: 'Speeches',
+    summary: "A solemn speech delivered at a military funeral, honoring a fallen service member's dedication, sacrifice, and character. The speech acknowledges both the dramatic and everyday aspects of military courage, offers comfort to the grieving family, and emphasizes the lasting impact of their service while promising to preserve their memory. The tone balances formal military respect with personal warmth.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_29_13 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Today, we honor a life of service and sacrifice.\n\nIn the quiet rows of these stones lies the heartbeat of a nation — brave souls who stood for something greater than themselves. Our fallen hero joins their ranks.\n\nMay we carry forward their memory not in silence, but in the way we live, lead, and love this country.\n\nRest in peace, soldier. Your duty is done.\n\nWhen we speak of courage, we often think of dramatic moments on the battlefield. But for those who serve, courage is also found in the quiet commitment made on the day they first put on the uniform. It's found in the daily sacrifices — missing birthdays and anniversaries, moving families across the country, and facing dangers that most civilians will never understand.\n\nOur fallen comrade embodied this courage in both dramatic and ordinary ways. Those who served alongside speak of their calm under pressure, their unwavering integrity, and their dedication to the mission and to their fellow service members. They speak too of their humor, their kindness, and the countless small acts of generosity that defined their character.\n\nTo the family gathered here today: We cannot fully understand your grief, but please know that your loved one's sacrifice has meaning. They stood for the highest ideals of our nation — duty, honor, and the protection of the freedoms we hold dear.\n\nAs we lay them to rest among heroes, we make this solemn promise: We will remember. Not just today, but in the years to come. Their name, their service, their sacrifice will never be forgotten.`,
@@ -1096,6 +1125,7 @@ export const promptsData = [
     id: 'speech43',
     title: 'Civil Rights Memorial Speech',
     category: 'Speeches',
+    summary: "A commemorative speech at the dedication of a civil rights memorial, reflecting on Dr. Martin Luther King Jr.'s dream and the ongoing journey toward racial equality. The speech acknowledges progress made since the civil rights era while candidly addressing contemporary challenges, emphasizing that the work of justice requires continued commitment and collective action.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_32_37 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `We gather here before greatness carved in stone — a reminder that the arc of justice is long, but it bends because of those who push.\n\nDr. King once stood with conviction. Now we stand here, not to simply remember, but to continue.\n\nLet's carry forward his dream — with courage, with community, and with relentless belief in the power of peaceful change.\n\nFifty-eight years ago, Dr. King spoke of a dream. It wasn't just his dream — it was a vision of America at its best, a nation that truly lives up to its founding promise that all people are created equal. Today, as we stand in the shadow of this monument, we must ask ourselves: How far have we come toward realizing that dream? And what work remains undone?\n\nWe've seen progress that would have seemed impossible in Dr. King's time. Legal segregation has been abolished. The Voting Rights Act opened the ballot box to millions. We've witnessed leadership at every level of government that reflects the full diversity of our nation.\n\nBut we would dishonor Dr. King's legacy if we claimed the work was complete. When poverty still follows the fault lines of race and ethnicity, when voting rights face new restrictions, when our criminal justice system continues to impact communities of color disproportionately — we must acknowledge that the dream remains unfulfilled.\n\nHowever, acknowledging this reality is not cause for despair but for renewed commitment. Dr. King showed us that change is possible when ordinary people join together with extraordinary resolve.`,
@@ -1105,6 +1135,7 @@ export const promptsData = [
     id: 'speech44',
     title: 'State Capitol Press Briefing',
     category: 'Speeches',
+    summary: "A press briefing at a state capitol, delivering updates on infrastructure, education, and public safety initiatives. The speech emphasizes transparency, accountability, and non-partisan approach to governance while providing specific data points on project outcomes. The briefing maintains a professional yet accessible tone, focusing on concrete achievements and their impact on residents' daily lives.",
     image: require('../assets/speechpics/ChatGPT Image Apr 30, 2025, 02_37_53 PM.png'),
     soundAsset: require('../assets/sounds/clapping.mp3'), // <-- ENSURE THIS LINE IS HERE
     text: `Good morning,\n\nWe stand here in the heart of governance — where policy meets the people. Today's briefing is not about spin, it's about facts.\n\nFrom education funding to public safety, we're here to outline our next steps and invite accountability.\n\nLet's commit to a government that listens, learns, and leads — with clarity and compassion.\n\nI want to begin by addressing the infrastructure bill that passed last week. This represents the largest investment in our state's roads, bridges, and public transit in over two decades. Starting next month, you'll see crews breaking ground on key projects in every county, creating over 5,000 jobs for our residents.\n\nOn education, we've increased the per-pupil funding by 8% and secured additional support for special education services. Our teacher retention initiative has already shown promising results, with a 15% reduction in turnover compared to this time last year.\n\nRegarding public safety, the new community policing program is now operating in 12 municipalities, with plans to expand to 10 more by year-end. Early data shows a 20% improvement in response times and stronger community relationships.\n\nLet me be clear: these are not partisan issues. They're about creating a state where every resident has the opportunity to thrive, where our children receive a world-class education, and where our communities are safe and vibrant.`,
@@ -1117,6 +1148,7 @@ export const promptsData = [
     id: 'presentation1',
     title: 'Amazon Executive Briefing',
     category: 'Presentations',
+    summary: "An executive briefing to Amazon's board of directors, presenting quarterly performance metrics and strategic initiatives. The presentation covers revenue growth, market share analysis, operational efficiency improvements, and future priorities. The tone is professional and data-driven, focusing on clear communication of key business metrics and strategic direction.",
     image: require('../assets/presentationpics/pic23.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
     text: `Good morning, board members and distinguished guests.
@@ -1144,6 +1176,7 @@ export const promptsData = [
   {
     id: 'presentation2',
     title: 'TechForward Keynote Kickoff',
+    summary: "A keynote address opening a major technology conference, focusing on human-machine collaboration and technological innovation. The speech sets an inspiring tone for the event, highlighting the convergence of AI, quantum computing, and biotechnology. It emphasizes the transformative potential of technology while maintaining a human-centric perspective, preparing attendees for three days of workshops, panels, and discussions.",
     category: 'Presentations',
     image: require('../assets/presentationpics/pic45.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1171,6 +1204,7 @@ export const promptsData = [
   },
   {
     id: 'presentation3',
+    summary: "A product launch presentation for SmartHome Pro, a comprehensive smart home automation system. The presentation demonstrates the system's key features including voice control, AI-powered personalization, and energy efficiency. It includes a live demonstration of the product's capabilities, emphasizing its ability to learn user routines and reduce energy consumption while maintaining comfort.",
     title: 'SmartHome Pro Product Launch',
     category: 'Presentations',
     image: require('../assets/presentationpics/pic9.png'),
@@ -1200,6 +1234,7 @@ export const promptsData = [
   {
     id: 'presentation4',
     title: 'Weekly Engineering Sync',
+    summary: "A weekly engineering sync meeting update, covering progress on key initiatives, upcoming deadlines, and team performance. The presentation emphasizes clear communication of project status, highlights team achievements, and encourages open discussion for continuous improvement.",
     category: 'Presentations',
     image: require('../assets/presentationpics/pic34.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1228,6 +1263,7 @@ export const promptsData = [
   {
     id: 'presentation5',
     title: 'Casual Team Story Share',
+    summary: "A casual team meeting where team members share stories about how their work is making an impact. The presentation emphasizes the importance of innovation and making a difference, while encouraging open discussion and collaboration.",
     category: 'Presentations',
     image: require('../assets/presentationpics/pic2.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1256,6 +1292,7 @@ export const promptsData = [
   {
     id: 'presentation6',
     title: 'Design Thinking Hands-on Workshop',
+    summary: "A design thinking workshop where participants learn to solve complex problems through creative collaboration. The presentation emphasizes the importance of empathy, problem-solving, and teamwork, while encouraging participants to think outside the box and come up with innovative solutions.",
     category: 'Presentations',
     image: require('../assets/presentationpics/pic1.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1284,6 +1321,7 @@ export const promptsData = [
   {
     id: 'presentation7',
     title: 'Google Strategy Session',
+    summary: "A strategic alignment session at Google, focusing on the company's priorities, product roadmap, and leadership goals. The presentation emphasizes the importance of AI, sustainability, and product accessibility, while highlighting the company's commitment to responsible innovation and global reach.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 08_15_15 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1302,6 +1340,7 @@ export const promptsData = [
   {
     id: 'presentation8',
     title: 'Amazon Executive Briefing',
+    summary: "An executive briefing to Amazon's board of directors, presenting quarterly performance metrics and strategic initiatives. The presentation covers revenue growth, market share analysis, operational efficiency improvements, and future priorities. The tone is professional and data-driven, focusing on clear communication of key business metrics and strategic direction.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_09_59 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1320,6 +1359,7 @@ export const promptsData = [
   {
     id: 'presentation9',
     title: 'Venture Capital Pitch',
+    summary: "A venture capital pitch for a startup that is revolutionizing logistics in Southeast Asia. The presentation emphasizes the company's unique value proposition, market opportunity, and competitive advantage, while highlighting the team's expertise and the potential for significant growth.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_11_13 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1338,6 +1378,7 @@ export const promptsData = [
   {
     id: 'presentation10',
     title: 'Museum Policy Forum',
+    summary: "A policy forum discussing the importance of cultural preservation in the digital age, emphasizing the importance of preserving cultural heritage, the importance of preserving cultural heritage, and the importance of preserving cultural heritage. It emphasizes the importance of preserving cultural heritage and the importance of preserving cultural heritage.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_14_14 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1357,6 +1398,7 @@ export const promptsData = [
   {
     id: 'presentation11',
     title: 'Research Poster Discussion',
+    summary: "A research poster discussion discussing the importance of behavioral trends in digital learning environments, emphasizing the importance of behavioral trends in digital learning environments, the importance of behavioral trends in digital learning environments, and the importance of behavioral trends in digital learning environments. It emphasizes the importance of behavioral trends in digital learning environments and the importance of behavioral trends in digital learning environments.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_12_19 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1377,6 +1419,7 @@ export const promptsData = [
   {
     id: 'presentation12',
     title: 'MIT Department Colloquium',
+    summary: "A colloquium discussing the importance of quantum architectures for AI model training, emphasizing the importance of quantum architectures for AI model training, the importance of quantum architectures for AI model training, and the importance of quantum architectures for AI model training. It emphasizes the importance of quantum architectures for AI model training and the importance of quantum architectures for AI model training.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_15_05 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1395,6 +1438,7 @@ export const promptsData = [
   {
     id: 'presentation13',
     title: 'Hospital Grand Rounds',
+    summary: "A grand rounds discussing the importance of multi-drug-resistant infections in a post-transplant patient, emphasizing the importance of multi-drug-resistant infections in a post-transplant patient, the importance of multi-drug-resistant infections in a post-transplant patient, and the importance of multi-drug-resistant infections in a post-transplant patient. It emphasizes the importance of multi-drug-resistant infections in a post-transplant patient and the importance of multi-drug-resistant infections in a post-transplant patient.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_19_50 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1413,6 +1457,7 @@ export const promptsData = [
   {
     id: 'presentation14',
     title: 'NGO Policy Conference',
+    summary: "A policy conference discussing the importance of cross-border collaboration in climate response policy, emphasizing the importance of cross-border collaboration in climate response policy, the importance of cross-border collaboration in climate response policy, and the importance of cross-border collaboration in climate response policy. It emphasizes the importance of cross-border collaboration in climate response policy and the importance of cross-border collaboration in climate response policy.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_22_04 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1431,6 +1476,7 @@ export const promptsData = [
   {
     id: 'presentation15',
     title: 'NYSE IPO Bell Briefing',
+    summary: "A NYSE IPO bell briefing discussing the importance of the IPO, emphasizing the importance of the IPO, the importance of the IPO, and the importance of the IPO. It emphasizes the importance of the IPO and the importance of the IPO.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 09_24_23 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1449,6 +1495,7 @@ export const promptsData = [
   {
     id: 'presentation17',
     title: 'Government Economic Briefing',
+    summary: "A government economic briefing discussing the importance of the economic briefing, emphasizing the importance of the economic briefing, the importance of the economic briefing, and the importance of the economic briefing. It emphasizes the importance of the economic briefing and the importance of the economic briefing.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 28, 2025, 10_23_14 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1467,6 +1514,7 @@ export const promptsData = [
   {
     id: 'presentation18',
     title: 'Hospital Grand Rounds',
+    summary: "A hospital grand rounds discussing the importance of the hospital grand rounds, emphasizing the importance of the hospital grand rounds, the importance of the hospital grand rounds, and the importance of the hospital grand rounds. It emphasizes the importance of the hospital grand rounds and the importance of the hospital grand rounds.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_01_21 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1486,6 +1534,7 @@ export const promptsData = [
   {
     id: 'presentation19',
     title: 'Corporate All-Hands Update',
+    summary: "A corporate all-hands update discussing the importance of the corporate all-hands update, emphasizing the importance of the corporate all-hands update, the importance of the corporate all-hands update, and the importance of the corporate all-hands update. It emphasizes the importance of the corporate all-hands update and the importance of the corporate all-hands update.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_03_22 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1505,6 +1554,7 @@ export const promptsData = [
   {
     id: 'presentation20',
     title: 'Architecture Walkthrough',
+    summary: "A architecture walkthrough discussing the importance of the architecture walkthrough, emphasizing the importance of the architecture walkthrough, the importance of the architecture walkthrough, and the importance of the architecture walkthrough. It emphasizes the importance of the architecture walkthrough and the importance of the architecture walkthrough.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_06_35 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1524,6 +1574,7 @@ export const promptsData = [
   {
     id: 'presentation21',
     title: 'University Poster Session',
+    summary: "A university poster session discussing the importance of the university poster session, emphasizing the importance of the university poster session, the importance of the university poster session, and the importance of the university poster session. It emphasizes the importance of the university poster session and the importance of the university poster session.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_12_19 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1543,6 +1594,7 @@ export const promptsData = [
   {
     id: 'presentation22',
     title: 'Community Town Hall',
+    summary: "A community town hall discussing the importance of the community town hall, emphasizing the importance of the community town hall, the importance of the community town hall, and the importance of the community town hall. It emphasizes the importance of the community town hall and the importance of the community town hall.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 29, 2025, 01_15_56 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1562,6 +1614,7 @@ export const promptsData = [
   {
     id: 'presentation23',
     title: 'LinkedIn Industry Insights',
+    summary: "A LinkedIn industry insights session discussing the importance of the industry insights session, emphasizing the importance of the industry insights session, the importance of the industry insights session, and the importance of the industry insights session. It emphasizes the importance of the industry insights session and the importance of the industry insights session.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 02_48_05 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1594,6 +1647,7 @@ export const promptsData = [
   {
     id: 'presentation24',
     title: 'Tesla Research Review',
+    summary: "A Tesla research review discussing the importance of the Tesla research review, emphasizing the importance of the Tesla research review, the importance of the Tesla research review, and the importance of the Tesla research review. It emphasizes the importance of the Tesla research review and the importance of the Tesla research review.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 02_52_05 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1627,6 +1681,7 @@ export const promptsData = [
   {
     id: 'presentation25',
     title: 'Netflix Subscriber Trends',
+    summary: "A Netflix subscriber trends session discussing the importance of the Netflix subscriber trends session, emphasizing the importance of the Netflix subscriber trends session, the importance of the Netflix subscriber trends session, and the importance of the Netflix subscriber trends session. It emphasizes the importance of the Netflix subscriber trends session and the importance of the Netflix subscriber trends session.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 02_54_25 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1659,6 +1714,7 @@ export const promptsData = [
   {
     id: 'presentation26',
     title: 'Startup Demo Pitch',
+    summary: "A startup demo pitch discussing the importance of the startup demo pitch, emphasizing the importance of the startup demo pitch, the importance of the startup demo pitch, and the importance of the startup demo pitch. It emphasizes the importance of the startup demo pitch and the importance of the startup demo pitch.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_00_29 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1691,6 +1747,7 @@ export const promptsData = [
   {
     id: 'presentation27',
     title: 'Stanford Design Thinking Workshop',
+    summary: "A Stanford design thinking workshop discussing the importance of the design thinking workshop, emphasizing the importance of the design thinking workshop, the importance of the design thinking workshop, and the importance of the design thinking workshop. It emphasizes the importance of the design thinking workshop and the importance of the design thinking workshop.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_02_23 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1709,6 +1766,7 @@ export const promptsData = [
   {
     id: 'presentation28',
     title: 'CDC Public Health Briefing',
+    summary: "A CDC public health briefing discussing the importance of the public health briefing, emphasizing the importance of the public health briefing, the importance of the public health briefing, and the importance of the public health briefing. It emphasizes the importance of the public health briefing and the importance of the public health briefing.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_09_20 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1727,6 +1785,7 @@ export const promptsData = [
   {
     id: 'presentation29',
     title: 'Slack Feature Rollout Review',
+    summary: "A Slack feature rollout review discussing the importance of the feature rollout review, emphasizing the importance of the feature rollout review, the importance of the feature rollout review, and the importance of the feature rollout review. It emphasizes the importance of the feature rollout review and the importance of the feature rollout review.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_11_25 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1745,6 +1804,7 @@ export const promptsData = [
   {
     id: 'presentation30',
     title: 'NOAA Climate Policy Briefing',
+    summary: "A NOAA climate policy briefing discussing the importance of the climate policy briefing, emphasizing the importance of the climate policy briefing, the importance of the climate policy briefing, and the importance of the climate policy briefing. It emphasizes the importance of the climate policy briefing and the importance of the climate policy briefing.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_12_59 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1763,6 +1823,7 @@ export const promptsData = [
   {
     id: 'presentation31',
     title: 'Silicon Valley Boardroom Strategy Pitch',
+    summary: "A Silicon Valley boardroom strategy pitch discussing the importance of the boardroom strategy pitch, emphasizing the importance of the boardroom strategy pitch, the importance of the boardroom strategy pitch, and the importance of the boardroom strategy pitch. It emphasizes the importance of the boardroom strategy pitch and the importance of the boardroom strategy pitch.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_14_30 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1781,6 +1842,7 @@ export const promptsData = [
   {
     id: 'presentation32',
     title: 'Department of Homeland Security Cyber Briefing',
+    summary: "A Department of Homeland Security cyber briefing discussing the importance of the cyber briefing, emphasizing the importance of the cyber briefing, the importance of the cyber briefing, and the importance of the cyber briefing. It emphasizes the importance of the cyber briefing and the importance of the cyber briefing.",
     category: 'Presentations',
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 03_23_40 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1800,6 +1862,7 @@ export const promptsData = [
   {
     id: "presentation33",
     title: "Meta Policy Review Briefing",
+    summary: "A Meta policy review briefing discussing the importance of the policy review briefing, emphasizing the importance of the policy review briefing, the importance of the policy review briefing, and the importance of the policy review briefing. It emphasizes the importance of the policy review briefing and the importance of the policy review briefing.",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_06_29 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1818,6 +1881,7 @@ export const promptsData = [
   {
     id: "presentation34",
     title: "BuzzFeed Editorial Pitch Workshop",
+    summary: "A BuzzFeed editorial pitch workshop discussing the importance of the editorial pitch workshop, emphasizing the importance of the editorial pitch workshop, the importance of the editorial pitch workshop, and the importance of the editorial pitch workshop. It emphasizes the importance of the editorial pitch workshop and the importance of the editorial pitch workshop.",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_08_54 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1836,6 +1900,7 @@ export const promptsData = [
   {
     id: "presentation35",
     title: "Salesforce Innovation Roadmap Briefing",
+    summary: "A Salesforce innovation roadmap briefing discussing the importance of the innovation roadmap briefing, emphasizing the importance of the innovation roadmap briefing, the importance of the innovation roadmap briefing, and the importance of the innovation roadmap briefing. It emphasizes the importance of the innovation roadmap briefing and the importance of the innovation roadmap briefing.",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_10_42 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1855,6 +1920,7 @@ export const promptsData = [
   {
     id: "presentation36",
     title: "Amazon Robotics All-Hands",
+    summary: "A Amazon Robotics all-hands discussing the importance of the all-hands, emphasizing the importance of the all-hands, the importance of the all-hands, and the importance of the all-hands. It emphasizes the importance of the all-hands and the importance of the all-hands.",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_11_35 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1873,6 +1939,7 @@ export const promptsData = [
   {
     id: "presentation37",
     title: "Dropbox Product Strategy Sync",
+    summary: "A Dropbox product strategy sync discussing the importance of the product strategy sync, emphasizing the importance of the product strategy sync, the importance of the product strategy sync, and the importance of the product strategy sync. It emphasizes the importance of the product strategy sync and the importance of the product strategy sync.",
     category: "Presentations",
     image: require('../assets/presentationpics/ChatGPT Image Apr 30, 2025, 05_13_21 PM.png'),
     soundAsset: require('../assets/sounds/soundforpresentation.mp3'),
@@ -1895,6 +1962,7 @@ export const promptsData = [
   {
     id: 'interview1',
     title: 'Google Networking Interview',
+    summary: "A technical interview for a Google networking position covering personal background, interest in the role, and teamwork experience. The candidate discusses their full-stack development experience, passion for networking technology, and collaborative approach to team development.",
     category: 'Interviews',
     image: require('../assets/interviewpics/pic9300.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1904,6 +1972,7 @@ export const promptsData = [
   {
     id: 'interview2',
     title: 'TV Presenter Interview',
+    summary: "A TV presenter interview covering personal background, interest in broadcasting, and preparation for live broadcasts. The candidate discusses their experience as a news reporter, their passion for connecting with audiences, and their preparation routine for live broadcasts.",
     category: 'Interviews',
     image: require('../assets/interviewpics/pic8025.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1913,6 +1982,7 @@ export const promptsData = [
   {
     id: 'interview3',
     title: 'Business Analyst Interview',
+    summary: "A business analyst interview covering the candidate's approach to gathering and analyzing business requirements, handling conflicting requirements, and a challenging project they worked on.",
     category: 'Interviews',
     image: require('../assets/interviewpics/pic7800.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1922,6 +1992,7 @@ export const promptsData = [
   {
     id: 'interview4',
     title: 'Marketing Manager Interview',
+    summary: "A marketing manager interview covering the candidate's approach to developing a marketing strategy, measuring campaign success, and staying updated with marketing trends.",
     category: 'Interviews',
     image: require('../assets/interviewpics/01234.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1931,6 +2002,7 @@ export const promptsData = [
   {
     id: 'interview5',
     title: 'News Reporter Interview',
+    summary: "A news reporter interview covering the candidate's approach to verifying the accuracy of their sources, handling breaking news situations, and building relationships with sources.",
     category: 'Interviews',
     image: require('../assets/interviewpics/pic3921.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1940,6 +2012,7 @@ export const promptsData = [
   {
     id: 'interview7',
     title: 'One to One Interview',
+    summary: "A one to one interview covering the candidate's greatest strengths, their vision for the future, and how they handle work-life balance.",
     category: 'Interviews',
     image: require('../assets/interviewpics/444.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1949,6 +2022,7 @@ export const promptsData = [
   {
     id: 'interview8',
     title: 'Final Interview with CEO',
+    summary: "A final interview with the CEO covering the candidate's vision for the company, how they handle company-wide challenges, and what value they can bring to the executive team.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ceo.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1958,6 +2032,7 @@ export const promptsData = [
   {
     id: 'interview9',
     title: 'Doctor Interview',
+    summary: "A doctor interview covering the candidate's approach to handling difficult patient cases, staying current with medical advancements, and handling ethical dilemmas in medicine.",
     category: 'Interviews',
     image: require('../assets/interviewpics/medical-officer.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1967,6 +2042,7 @@ export const promptsData = [
   {
     id: 'interview10',
     title: 'Live TV Interview',
+    summary: "A live TV interview covering the candidate's approach to handling unexpected situations during live broadcasts, their preparation routine for live broadcasts, and their ability to remain calm under pressure.",
     category: 'Interviews',
     image: require('../assets/interviewpics/tv-news.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1976,6 +2052,7 @@ export const promptsData = [
   {
     id: 'interview11',
     title: 'Technical Panel Interview',
+    summary: "A technical panel interview covering the candidate's approach to debugging a critical production issue, their experience with system design interviews, and their ability to give technical feedback.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_26_51 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1985,6 +2062,7 @@ export const promptsData = [
   {
     id: 'interview12',
     title: 'Hiring Committee Review',
+    summary: "A hiring committee review covering the candidate's approach to disagreeing with a team decision, their approach to measuring project success, and their ability to handle stakeholder misalignment.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_33_14 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -1994,6 +2072,7 @@ export const promptsData = [
   {
     id: 'interview13',
     title: 'Coffee Chat Interview',
+    summary: "A coffee chat interview covering the candidate's approach to working in a team environment, their ability to handle disagreements in informal settings, and something fun or unexpected about them.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_34_22 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2003,6 +2082,7 @@ export const promptsData = [
   {
     id: 'interview14',
     title: 'Whiteboard Coding Challenge',
+    summary: "A whiteboard coding challenge covering the candidate's approach to solving a problem, their approach to technical assessments, and their ability to manage their time during live challenges.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_35_26 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2012,6 +2092,7 @@ export const promptsData = [
   {
     id: 'interview15',
     title: 'Behavioral Screening Interview',
+    summary: "A behavioral screening interview covering the candidate's approach to overcoming a big challenge, their approach to staying motivated during repetitive tasks, and their ability to handle constructive criticism.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_36_33 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2021,6 +2102,7 @@ export const promptsData = [
   {
     id: 'interview16',
     title: 'HR Screening Round',
+    summary: "An HR screening round covering the candidate's interest in the position, their salary expectations, and their availability to start.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_37_39 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2030,6 +2112,7 @@ export const promptsData = [
   {
     id: 'interview17',
     title: 'Virtual Interview Setup',
+    summary: "A virtual interview setup covering the candidate's approach to preparing for virtual interviews, their experience working remotely, and their tips for video interview etiquette.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_39_08 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2039,6 +2122,7 @@ export const promptsData = [
   {
     id: 'interview18',
     title: 'Recruiter Discussion at Career Fair',
+    summary: "A recruiter discussion at a career fair covering the candidate's interest in the company, their most proud achievement, and their availability to start.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 09_44_51 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2048,6 +2132,7 @@ export const promptsData = [
   {
     id: 'interview19',
     title: 'Product Manager Chat at Google Lounge',
+    summary: "A product manager chat at Google Lounge covering the candidate's approach to product strategy, handling conflicting stakeholder priorities, and ensuring product quality.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_37_26 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2057,6 +2142,7 @@ export const promptsData = [
   {
     id: 'interview20',
     title: 'Live TV Interview Set',
+    summary: "A live TV interview set covering the candidate's approach to staying composed on live TV, their biggest risk professionally, and their preparation for tricky or controversial questions.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 28, 2025, 10_44_41 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2066,6 +2152,7 @@ export const promptsData = [
   {
     id: 'interview21',
     title: 'White House Policy Discussion',
+    summary: "A white house policy discussion covering the candidate's approach to improving national security, supporting economic growth, and international cooperation.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_19_01 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2075,6 +2162,7 @@ export const promptsData = [
   {
     id: 'interview22',
     title: 'Volunteer Program Interview',
+    summary: "A volunteer program interview covering the candidate's interest in volunteering, their experience with volunteering, and how they would handle challenging situations during volunteering.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_27_07 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2084,6 +2172,7 @@ export const promptsData = [
   {
     id: 'interview23',
     title: 'Academic Panel Interview',
+    summary: "An academic panel interview covering the candidate's approach to managing classroom diversity, using innovative teaching methods, and assessing student progress.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_21_32 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2093,6 +2182,7 @@ export const promptsData = [
   {
     id: 'interview24',
     title: 'Factory Floor Interview',
+    summary: "A factory floor interview covering the candidate's approach to ensuring production efficiency, maintaining machinery, and working on the factory floor.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_29_14 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2102,6 +2192,7 @@ export const promptsData = [
   {
     id: 'interview25',
     title: 'Cafe Business Meeting',
+    summary: "A cafe business meeting covering the candidate's key business priorities for this year, maintaining client relationships, and overcoming significant business challenges.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 29, 2025, 01_30_33 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2111,6 +2202,7 @@ export const promptsData = [
   {
     id: 'interview26',
     title: 'Enterprise Strategy Meeting at IBM HQ',
+    summary: "An enterprise strategy meeting at IBM HQ covering IBM's key innovation priorities, approaching digital transformation for clients, and mitigating risks associated with legacy systems.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_24_42 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2120,6 +2212,7 @@ export const promptsData = [
   {
     id: 'interview27',
     title: 'Content Creator Pitch at YouTube Studio',
+    summary: "A content creator pitch at YouTube Studio covering the candidate's approach to content creation, their experience with content creation, and their ability to create engaging content.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_26_20 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2129,6 +2222,7 @@ export const promptsData = [
   {
     id: 'interview28',
     title: 'Recruiter Screening Interview',
+    summary: "A recruiter screening interview covering the candidate's approach to evaluating candidates, their ability to remain impartial during high-volume recruitment, and their ability to handle high-volume recruitment effectively.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_28_42 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2138,6 +2232,7 @@ export const promptsData = [
   {
     id: 'interview29',
     title: 'Disney Imagineering Technical Review',
+    summary: "A Disney Imagineering technical review covering the candidate's approach to balancing storytelling with engineering constraints, their experience with themed experiences, and their ability to validate guest interaction flows.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_30_26 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2147,6 +2242,7 @@ export const promptsData = [
   {
     id: 'interview30',
     title: 'Talent Assessment at Corporate Office',
+    summary: "A talent assessment at a corporate office covering the candidate's approach to designing fair assessment exercises, their ability to measure candidate performance objectively, and their ability to provide feedback to unsuccessful candidates.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_34_18 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2157,6 +2253,7 @@ export const promptsData = [
   {
     id: 'interview31',
     title: 'Executive Panel Discussion in Chicago',
+    summary: "An executive panel discussion in Chicago covering the candidate's approach to driving metropolitan corporate strategy, their ability to navigate regional regulatory challenges, and their ability to leverage city resources for growth.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_36_51 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2166,6 +2263,7 @@ export const promptsData = [
   {
     id: 'interview32',
     title: 'Regulatory Hearing at Federal Agency',
+    summary: "A regulatory hearing at a federal agency covering the candidate's approach to ensuring policy compliance across departments, their ability to balance security interests with individual privacy, and their ability to maintain public accountability.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_20_47 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2175,6 +2273,7 @@ export const promptsData = [
   {
     id: 'interview33',
     title: 'Regional Operations Interview at Home Depot Atlanta HQ',
+    summary: "A regional operations interview at Home Depot Atlanta HQ covering the candidate's approach to optimizing supply chain efficiency regionally, their ability to manage seasonal demand fluctuations, and their ability to ensure brand consistency across stores.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_39_56 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2184,6 +2283,7 @@ export const promptsData = [
   {
     id: 'interview34',
     title: 'Cloud Solutions Architect Interview at Microsoft',
+    summary: "A cloud solutions architect interview at Microsoft covering the candidate's approach to designing scalable cloud architectures, their ability to ensure data security in the cloud, and their ability to optimize cloud costs for enterprise clients.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_48_25 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2193,6 +2293,7 @@ export const promptsData = [
   {
     id: 'interview35',
     title: 'Financial Analyst Interview at Bloomberg',
+    summary: "A financial analyst interview at Bloomberg covering the candidate's approach to analyzing market trends effectively, their ability to communicate complex insights to stakeholders, and their ability to ensure data accuracy under tight deadlines.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_19_13 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2202,6 +2303,7 @@ export const promptsData = [
   {
     id: 'interview36',
     title: 'Environmental Policy Advisor Interview',
+    summary: "An environmental policy advisor interview covering the candidate's approach to developing sustainable environmental policies, measuring environmental impact, and engaging communities in policy adoption.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_45_04 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2211,6 +2313,7 @@ export const promptsData = [
   {
     id: 'interview37',
     title: 'Medical Ethics Panel at Johns Hopkins Medical Center',
+    summary: "A medical ethics panel at Johns Hopkins Medical Center covering the candidate's approach to patient informed consent, balancing research innovation with patient care, and safeguarding clinical trial integrity.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 03_43_22 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2220,6 +2323,7 @@ export const promptsData = [
   {
     id: 'interview38',
     title: 'Brand Strategy Discussion at Starbucks HQ',
+    summary: "A brand strategy discussion at Starbucks HQ covering the candidate's approach to maintaining brand loyalty globally, their approach to digital engagement, and their approach to responsible expansion.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_18_12 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2229,6 +2333,7 @@ export const promptsData = [
   {
     id: 'interview39',
     title: 'Social Media Strategist Interview at Snap Inc.',
+    summary: "A social media strategist interview at Snap Inc. covering the candidate's approach to driving user engagement on social platforms, their strategy for monetizing content, and their approach to protecting user data privacy.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_22_25 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2238,6 +2343,7 @@ export const promptsData = [
   {
     id: 'interview40',
     title: 'Executive Education Director Interview at Harvard Business School',
+    summary: "An executive education director interview at Harvard Business School covering the candidate's approach to designing executive education curricula, measuring participant outcomes, and adapting programs for evolving market needs.",
     category: 'Interviews',
     image: require('../assets/interviewpics/ChatGPT Image Apr 30, 2025, 05_25_06 PM.png'),
     soundAsset: require('../assets/sounds/soundforinterview.mp3'),
@@ -2254,6 +2360,7 @@ export const promptsData = [
   {
     id: 'specific1',
     title: 'Student Academic Progress',
+    summary: "A student academic progress discussion covering the candidate's approach to improving writing skills, attending writing workshops, and setting up a study schedule for research projects.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/pic2215.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2263,6 +2370,7 @@ export const promptsData = [
   {
     id: 'specific2',
     title: 'Fire Fighter Training',
+    summary: "A firefighter training session covering the candidate's approach to high-rise building fire scenarios, checking oxygen levels before entry, and following established evacuation procedures.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/pic82501.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2272,6 +2380,7 @@ export const promptsData = [
   {
     id: 'specific3',
     title: 'Museum Guide',
+    summary: "A museum guide session covering the candidate's approach to exploring modern art history, appreciating artwork, and following safety guidelines.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/pic8931.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2281,6 +2390,7 @@ export const promptsData = [
   {
     id: 'specific4',
     title: 'Fighter Jet Guide',
+    summary: "A fighter jet guide session covering the candidate's approach to exploring the F-35 Lightning II, understanding its advanced capabilities, and following safety protocols.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/pic7649.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2290,6 +2400,7 @@ export const promptsData = [
   {
     id: 'specific5',
     title: 'Safari Park Guide',
+    summary: "A safari park guide session covering the candidate's approach to exploring the savanna habitat, encountering animals, and following safety guidelines.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/pic8333.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2299,6 +2410,7 @@ export const promptsData = [
   {
     id: 'specific6',
     title: 'Handling a Customer Complaint',
+    summary: "A customer complaint handling session covering the candidate's approach to understanding the customer's issue, apologizing for the inconvenience, and offering a solution.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_46_10 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2308,6 +2420,7 @@ export const promptsData = [
   {
     id: 'specific7',
     title: 'Giving Constructive Feedback to Peer',
+    summary: "A constructive feedback session covering the candidate's approach to providing feedback to a peer, highlighting strengths and areas for improvement, and offering suggestions for improvement.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_49_46 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2317,6 +2430,7 @@ export const promptsData = [
   {
     id: 'specific9',
     title: 'Explaining a Technical Issue to Non-Technical Manager',
+    summary: "A technical issue explanation session covering the candidate's approach to explaining a technical issue to a non-technical manager, using a simple analogy to help the manager understand the issue.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 09_58_40 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2326,6 +2440,7 @@ export const promptsData = [
   {
     id: 'specific10',
     title: 'Asking for a Raise or Promotion',
+    summary: "A raise or promotion request session covering the candidate's approach to asking for a raise or promotion, highlighting their achievements, and offering suggestions for improvement.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 10_01_12 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2335,6 +2450,7 @@ export const promptsData = [
   {
     id: 'specific11',
     title: 'Declining an Unreasonable Request Politely',
+    summary: "A decline of an unreasonable request session covering the candidate's approach to declining an unreasonable request, highlighting their current workload, and offering suggestions for improvement.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 10_10_32 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2344,6 +2460,7 @@ export const promptsData = [
   {
     id: 'specific12',
     title: 'Delivering Bad News to a Client',
+    summary: "A bad news delivery session covering the candidate's approach to delivering bad news to a client, highlighting the unexpected technical challenge, and offering a mitigation plan.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 10_12_11 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2353,6 +2470,7 @@ export const promptsData = [
   {
     id: 'specific13',
     title: 'Persuading Stakeholders to Adopt New Process',
+    summary: "A persuasive session covering the candidate's approach to persuading stakeholders to adopt a new process, highlighting the benefits of the new process, and offering a phased implementation plan.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 11_02_07 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2362,6 +2480,7 @@ export const promptsData = [
   {
     id: 'specific14',
     title: 'Apologizing for a Mistake',
+    summary: "An apology session covering the candidate's approach to apologizing for a mistake, highlighting the importance of accuracy in reports, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 11_09_00 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2371,6 +2490,7 @@ export const promptsData = [
   {
     id: 'specific15',
     title: 'Running a Quick Stand-up Meeting',
+    summary: "A stand-up meeting session covering the candidate's approach to running a quick stand-up meeting, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 28, 2025, 11_11_46 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2380,6 +2500,7 @@ export const promptsData = [
   {
     id: 'specific16',
     title: 'Storm Update Press Briefing',
+    summary: "A storm update press briefing session covering the candidate's approach to running a storm update press briefing, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 03_50_44 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2390,6 +2511,7 @@ export const promptsData = [
   {
     id: 'specific17',
     title: 'NORAD Command Center Briefing',
+    summary: "A NORAD command center briefing session covering the candidate's approach to running a NORAD command center briefing, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_06_06 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2400,6 +2522,7 @@ export const promptsData = [
   {
     id: 'specific18',
     title: 'Rocket Launch Site Crew Coordination',
+    summary: "A rocket launch site crew coordination session covering the candidate's approach to running a rocket launch site crew coordination, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_03_51 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2410,6 +2533,7 @@ export const promptsData = [
   {
     id: 'specific19',
     title: 'Team Locker Room Pre-game Huddle',
+    summary: "A team locker room pre-game huddle session covering the candidate's approach to running a team locker room pre-game huddle, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_07_48 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2420,6 +2544,7 @@ export const promptsData = [
   {
     id: 'specific20',
     title: 'Disaster Relief Coordination Meeting',
+    summary: "A disaster relief coordination meeting session covering the candidate's approach to running a disaster relief coordination meeting, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 03_54_55 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2430,6 +2555,7 @@ export const promptsData = [
   {
     id: 'specific21',
     title: 'Pandemic Drill Emergency Response',
+    summary: "A pandemic drill emergency response session covering the candidate's approach to running a pandemic drill emergency response, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_09_46 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2440,6 +2566,7 @@ export const promptsData = [
   {
     id: 'specific22',
     title: 'Warehouse Operations Coordination',
+    summary: "A warehouse operations coordination session covering the candidate's approach to running a warehouse operations coordination, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_10_50 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2450,6 +2577,7 @@ export const promptsData = [
   {
     id: 'specific23',
     title: 'Aerial Firefighting Deployment Brief',
+    summary: "Aerial firefighting deployment brief session covering the candidate's approach to running an aerial firefighting deployment brief, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_02_02 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2460,6 +2588,7 @@ export const promptsData = [
   {
     id: 'specific24',
     title: 'National Park Ranger Briefing',
+    summary: "A national park ranger briefing session covering the candidate's approach to running a national park ranger briefing, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_12_41 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2470,6 +2599,7 @@ export const promptsData = [
   {
     id: 'specific25',
     title: 'Airport Ground Operations Coordination',
+    summary: "An airport ground operations coordination session covering the candidate's approach to running an airport ground operations coordination, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Situational/Specific',
     image: require('../assets/specificpics/ChatGPT Image Apr 30, 2025, 04_15_03 PM.png'),
     soundAsset: require('../assets/sounds/soundforsituationalandSpecific.mp3'),
@@ -2487,6 +2617,7 @@ export const promptsData = [
   {
     id: 'social1',
     title: 'Couple Social Scene',
+    summary: "A couple social scene covering the candidate's approach to running a couple social scene, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic2789.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2496,6 +2627,7 @@ export const promptsData = [
   {
     id: 'social2',
     title: 'Office Social Scene',
+    summary: "An office social scene covering the candidate's approach to running an office social scene, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic6712.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2505,6 +2637,7 @@ export const promptsData = [
   {
     id: 'social3',
     title: 'Family Social Scene',
+    summary: "A family social scene covering the candidate's approach to running a family social scene, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic4002.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2514,6 +2647,7 @@ export const promptsData = [
   {
     id: 'social4',
     title: 'Library Social Scene',
+    summary: "A library social scene covering the candidate's approach to running a library social scene, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/pic5021.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2523,6 +2657,7 @@ export const promptsData = [
   {
     id: 'social6',
     title: 'Networking Event Small Talk',
+    summary: "A networking event small talk covering the candidate's approach to running a networking event small talk, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 10_15_55 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2532,6 +2667,7 @@ export const promptsData = [
   {
     id: 'social7',
     title: 'Catching Up With a Friend',
+    summary: "A catching up with a friend covering the candidate's approach to running a catching up with a friend, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_14_10 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2541,6 +2677,7 @@ export const promptsData = [
   {
     id: 'social8',
     title: 'Meeting a Neighbor',
+    summary: "A meeting a neighbor covering the candidate's approach to running a meeting a neighbor, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_25_30 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2550,6 +2687,7 @@ export const promptsData = [
   {
     id: 'social9',
     title: 'Casual Coffee Break Chat (Work)',
+    summary: "A casual coffee break chat (work) covering the candidate's approach to running a casual coffee break chat (work), highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_20_29 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2559,6 +2697,7 @@ export const promptsData = [
   {
     id: 'social10',
     title: 'Joining a Group Conversation',
+    summary: "A joining a group conversation covering the candidate's approach to running a joining a group conversation, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_29_49 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2568,6 +2707,7 @@ export const promptsData = [
   {
     id: 'social11',
     title: 'Making Plans with Acquaintance',
+    summary: "A making plans with an acquaintance covering the candidate's approach to running a making plans with an acquaintance, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_37_48 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2577,6 +2717,7 @@ export const promptsData = [
   {
     id: 'social12',
     title: 'Discussing Hobbies/Interests',
+    summary: "A discussing hobbies/interests covering the candidate's approach to running a discussing hobbies/interests, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_35_11 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2586,6 +2727,7 @@ export const promptsData = [
   {
     id: 'social13',
     title: 'Giving a Casual Compliment',
+    summary: "A giving a casual compliment covering the candidate's approach to running a giving a casual compliment, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_40_32 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2595,6 +2737,7 @@ export const promptsData = [
   {
     id: 'social14',
     title: 'Ending a Conversation Politely',
+    summary: "An ending a conversation politely covering the candidate's approach to running an ending a conversation politely, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_47_47 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2604,6 +2747,7 @@ export const promptsData = [
   {
     id: 'social15',
     title: 'Reacting to Shared News (Good/Bad)',
+    summary: "A reacting to shared news (good/bad) covering the candidate's approach to running a reacting to shared news (good/bad), highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 28, 2025, 11_52_54 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2613,6 +2757,7 @@ export const promptsData = [
   {
     id: 'social16',
     title: 'Campfire Story Night',
+    summary: "A campfire story night covering the candidate's approach to running a campfire story night, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_20_52 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2632,6 +2777,7 @@ export const promptsData = [
   {
     id: 'social17',
     title: 'Thanksgiving Toast',
+    summary: "A thanksgiving toast covering the candidate's approach to running a thanksgiving toast, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_22_36 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2651,6 +2797,7 @@ export const promptsData = [
   {
     id: 'social18',
     title: 'Outdoor Movie Night Welcome',
+    summary: "An outdoor movie night welcome covering the candidate's approach to running an outdoor movie night welcome, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_26_02 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2670,6 +2817,7 @@ export const promptsData = [
   {
     id: 'social19',
     title: 'Cabin Game Night Kickoff',
+    summary: "A cabin game night kickoff covering the candidate's approach to running a cabin game night kickoff, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_18_47 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2689,6 +2837,7 @@ export const promptsData = [
   {
     id: 'social20',
     title: 'Brewery Brainstorm Session',
+    summary: "A brewery brainstorm session covering the candidate's approach to running a brewery brainstorm session, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_27_46 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2708,6 +2857,7 @@ export const promptsData = [
   {
     id: 'social21',
     title: 'Festival Meet-Up Greeting',
+    summary: "A festival meet-up greeting covering the candidate's approach to running a festival meet-up greeting, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_32_17 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2727,6 +2877,7 @@ export const promptsData = [
   {
     id: 'social22',
     title: 'Dorm Game Night Starter',
+    summary: "A dorm game night starter covering the candidate's approach to running a dorm game night starter, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_30_03 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2746,6 +2897,7 @@ export const promptsData = [
   {
     id: 'social23',
     title: 'Porch Group Catch-Up',
+    summary: "A porch group catch-up covering the candidate's approach to running a porch group catch-up, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_39_35 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2765,6 +2917,7 @@ export const promptsData = [
   {
     id: 'social24',
     title: 'Fairground Food Talk',
+    summary: "A fairground food talk covering the candidate's approach to running a fairground food talk, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_44_47 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2784,6 +2937,7 @@ export const promptsData = [
   {
     id: 'social25',
     title: 'Rooftop Wine Conversation',
+    summary: "A rooftop wine conversation covering the candidate's approach to running a rooftop wine conversation, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Social & Casual',
     image: require('../assets/socialpics/ChatGPT Image Apr 30, 2025, 04_41_42 PM.png'),
     soundAsset: require('../assets/sounds/soundforsocialandcasual.mp3'),
@@ -2806,6 +2960,7 @@ export const promptsData = [
   {
     id: 'virtual1',
     title: 'Quarterly Project Update & Next Steps', // Updated title
+    summary: "A quarterly project update & next steps covering the candidate's approach to running a quarterly project update & next steps, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_25_39 PM.png'),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2824,6 +2979,7 @@ export const promptsData = [
   {
     id: 'virtual2',
     title: 'Client Pitch: Streamlining Operations', // Updated title
+    summary: "A client pitch: streamlining operations covering the candidate's approach to running a client pitch: streamlining operations, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Virtual Communication',
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
     image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_28_50 PM.png'),
@@ -2844,6 +3000,7 @@ This system not only speeds up processes but also provides real-time analytics, 
   {
     id: 'virtual3',
     title: 'Team Brainstorm: New Marketing Initiative', // Updated title
+    summary: "A team brainstorm: new marketing initiative covering the candidate's approach to running a team brainstorm: new marketing initiative, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_32_13 PM.png'),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2864,6 +3021,7 @@ Let's start by throwing out some initial concepts. Don't worry about feasibility
   {
     id: 'virtual4',
     title: 'Performance Review Discussion', // Updated title
+    summary: "A performance review discussion covering the candidate's approach to running a performance review discussion, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 26, 2025, 07_43_24 PM.png'),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2884,6 +3042,7 @@ Looking forward, let's discuss development goals for the upcoming year. Based on
   {
     id: 'virtual5',
     title: 'Large Group Webinar: Polling Session',
+    summary: "A large group webinar: polling session covering the candidate's approach to running a large group webinar: polling session, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_19_40 AM.png'),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2904,6 +3063,7 @@ Your responses will help tailor the rest of the session to your needs and intere
   {
     id: 'virtual6',
     title: 'Video Status Update for Internal Team',
+    summary: "A video status update for internal team covering the candidate's approach to running a video status update for internal team, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_25_15 AM.png'),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2924,6 +3084,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
   {
     id: 'virtual7',
     title: 'Hotel-Based Remote Check-In Meeting',
+    summary: "A hotel-based remote check-in meeting covering the candidate's approach to running a hotel-based remote check-in meeting, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: 'Virtual Communication',
     image: require('../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_28_35 AM.png'),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2945,6 +3106,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
   {
     id: "virtual9",
     title: "Conference Networking Recap",
+    summary: "A conference networking recap covering the candidate's approach to running a conference networking recap, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: "Virtual Communication",
     image: require("../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_42_17 AM.png"),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2963,6 +3125,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
   {
     id: "virtual10",
     title: "Training Session Wrap-up and Reflection",
+    summary: "A training session wrap-up and reflection covering the candidate's approach to running a training session wrap-up and reflection, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: "Virtual Communication",
     image: require("../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_43_27 AM.png"),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2981,6 +3144,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
   {
     id: "virtual11",
     title: "Global Sync Call: Leadership Check-In",
+    summary: "A global sync call: leadership check-in covering the candidate's approach to running a global sync call: leadership check-in, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: "Virtual Communication",
     image: require("../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_50_06 AM.png"),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -2999,6 +3163,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
   {
     id: "virtual12",
     title: "Pre-Recorded Course Introduction",
+    summary: "A pre-recorded course introduction covering the candidate's approach to running a pre-recorded course introduction, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: "Virtual Communication",
     image: require("../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_51_28 AM.png"),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3017,6 +3182,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
   {
     id: "virtual13",
     title: "One-on-One: Career Coaching Session",
+    summary: "A one-on-one: career coaching session covering the candidate's approach to running a one-on-one: career coaching session, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: "Virtual Communication",
     image: require("../assets/vcpics/ChatGPT Image Apr 29, 2025, 12_59_30 AM.png"),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3035,6 +3201,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
   {
     id: "virtual14",
     title: "Live Podcast Recording",
+    summary: "A live podcast recording covering the candidate's approach to running a live podcast recording, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
     category: "Virtual Communication",
     image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 05_44_53 PM.png"),
     soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3056,6 +3223,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual15",
       title: "Virtual Trivia Night",
+      summary: "A virtual trivia night covering the candidate's approach to running a virtual trivia night, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_17_01 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3076,6 +3244,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual16",
       title: "Team Sync: Project Overview",
+      summary: "A team sync: project overview covering the candidate's approach to running a team sync: project overview, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_19_26 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3096,6 +3265,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual17",
       title: "Reddit Live AMA Session",
+      summary: "A reddit live AMA session covering the candidate's approach to running a reddit live AMA session, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_21_13 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3116,6 +3286,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual18",
       title: "Clubhouse Live Audio Panel",
+      summary: "A clubhouse live audio panel covering the candidate's approach to running a clubhouse live audio panel, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_23_48 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3136,6 +3307,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual19",
       title: "Horizon Virtual Meeting Login",
+      summary: "A horizon virtual meeting login covering the candidate's approach to running a horizon virtual meeting login, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_25_37 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3156,6 +3328,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual20",
       title: "Discord Screen Sharing Session",
+      summary: "A discord screen sharing session covering the candidate's approach to running a discord screen sharing session, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_26_30 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3176,6 +3349,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual21",
       title: "Live News Broadcast",
+      summary: "A live news broadcast covering the candidate's approach to running a live news broadcast, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_30_43 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3195,6 +3369,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual22",
       title: "StreamYard Live Broadcast",
+      summary: "A streamyard live broadcast covering the candidate's approach to running a streamyard live broadcast, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_37_36 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),
@@ -3215,6 +3390,7 @@ Next up is the front-end integration and QA testing phase. If you have any block
     {
       id: "virtual23",
       title: "Video Standup Meeting",
+      summary: "A video standup meeting covering the candidate's approach to running a video standup meeting, highlighting the importance of clear communication, and offering a solution to prevent the mistake from happening again.",
       category: "Virtual Communication",
       image: require("../assets/vcpics/ChatGPT Image Apr 30, 2025, 06_39_29 PM.png"),
       soundAsset: require('../assets/sounds/soundforvc.mp3'),

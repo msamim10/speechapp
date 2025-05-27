@@ -92,7 +92,7 @@ function TeleprompterScreen({ route, navigation }) {
   const [soundsLoaded, setSoundsLoaded] = useState(false); // Add state to track if sounds are loaded
   const [practiceSessionStartTime, setPracticeSessionStartTime] = useState(null); // <<< Track start time of active scrolling
   const [accumulatedPracticeTime, setAccumulatedPracticeTime] = useState(0); // <<< Track session duration in ms
-  const { recordPracticeSession, updateUserStats } = useUser(); // Get the function from context and updateUserStats
+  const { recordPracticeSession, updateUserStats, incrementPoints } = useUser(); // Get the function from context and updateUserStats
   const practiceRecordedRef = useRef(false); // Ref to prevent multiple recordings per session
   const isUnmountingRef = useRef(false); // <<< Ref to track if component is unmounting
   const [presentationSound, setPresentationSound] = useState();
@@ -557,9 +557,10 @@ function TeleprompterScreen({ route, navigation }) {
           setIsScrolling(false);
           // Stop all sounds when animation finishes naturally
           await stopAllSounds();
-          // Record practice session completion
-          if (!practiceRecordedRef.current) {
+          // Record practice session completion and increment points
+          if (!practiceRecordedRef.current && !isWarmUpMode) {
             recordPracticeSession();
+            incrementPoints();
             practiceRecordedRef.current = true;
           }
         } else {
@@ -586,7 +587,7 @@ function TeleprompterScreen({ route, navigation }) {
         animationRef.current = null;
       }
     };
-  }, [isScrolling, scrollSpeed, contentHeight, containerHeight, recordPracticeSession]); // Add recordPracticeSession dependency
+  }, [isScrolling, scrollSpeed, contentHeight, containerHeight, recordPracticeSession, incrementPoints]); // Add recordPracticeSession dependency
 
   // --- NEW useEffect to handle scrolling based on isScrolling state ---
   useEffect(() => {
@@ -712,10 +713,11 @@ function TeleprompterScreen({ route, navigation }) {
           console.log("Animation finished naturally.");
           setIsScrolling(false); // Update state when finished.
           stopAllSounds();
-          // Record practice session completion
-          if (!practiceRecordedRef.current) {
+          // Record practice session completion and increment points
+          if (!practiceRecordedRef.current && !isWarmUpMode) {
             recordPracticeSession();
-            practiceRecordedRef.current = true; // Mark as recorded
+            incrementPoints();
+            practiceRecordedRef.current = true;
           }
         } else {
           console.log("Animation stopped/interrupted before finishing.");
@@ -730,7 +732,7 @@ function TeleprompterScreen({ route, navigation }) {
         console.log("Practice timer started (no scroll needed)");
       }
     }
-  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession, animationRef]); // Added dependencies
+  }, [scrollY, containerHeight, contentHeight, scrollSpeed, practiceSessionStartTime, recordPracticeSession, animationRef, incrementPoints]); // Added dependencies
 
   const pauseScrolling = useCallback(() => {
     if (animationRef.current) {
@@ -785,6 +787,7 @@ function TeleprompterScreen({ route, navigation }) {
     // Or rely on leaving the screen?
     if (!isWarmUpMode && !practiceRecordedRef.current) {
       recordPracticeSession(); // Record the practice
+      incrementPoints(); // Call incrementPoints here as well
       practiceRecordedRef.current = true;
     }
 
@@ -798,7 +801,7 @@ function TeleprompterScreen({ route, navigation }) {
 
     setSoundsLoaded(false); 
 
-  }, [scrollY, recordPracticeSession, isWarmUpMode, stopAllSounds, accumulatedPracticeTime, practiceSessionStartTime, savePracticeTime]); // Added dependencies
+  }, [scrollY, recordPracticeSession, isWarmUpMode, stopAllSounds, accumulatedPracticeTime, practiceSessionStartTime, savePracticeTime, incrementPoints]); // Added dependencies
 
   // --- Button Handlers --- 
   const handleStartPause = async () => {

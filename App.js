@@ -62,7 +62,7 @@ function MainTabs() {
     <Tab.Navigator
       initialRouteName="HomeTab"
       screenOptions={({ route }) => ({ 
-        tabBarActiveTintColor: colors.primary,
+        tabBarActiveTintColor: colors.accentTeal,
         tabBarInactiveTintColor: colors.playfulIconInactive,
         tabBarStyle: { display: getTabBarVisibility(route) }, 
         tabBarIcon: ({ focused, color, size }) => {
