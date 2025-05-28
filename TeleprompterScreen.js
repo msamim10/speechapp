@@ -586,9 +586,10 @@ function TeleprompterScreen({ route, navigation }) {
       console.log(
         `Navigating to PrePractice for next prompt: ${nextPrompt.title}`
       );
-      navigation.replace("PrePractice", {
+      navigation.push("PrePractice", {
         selectedPrompt: nextPrompt,
         categoryPrompts: categoryPrompts,
+        isFromNextPrompt: true,
       });
     } else if (
       nextPrompt &&
@@ -623,7 +624,30 @@ function TeleprompterScreen({ route, navigation }) {
   const handleGoBack = async () => {
     stopAllSounds(); // Stop all sounds before navigation
     await stopScrolling(); // Stop scroll, save time
-    navigation.goBack();
+
+    const { isNextPromptSequence } = route.params || {};
+
+    if (isNextPromptSequence) {
+      // Navigated here via "Next Prompt". Pop current Teleprompter, its PrePractice, and the previous Teleprompter.
+      // This should land on the PrePractice of the *previous* prompt.
+      if (navigation.canGoBack()) { // Check if we can pop 3 times
+        const state = navigation.getState();
+        if (state && state.routes.length > 3) {
+            navigation.pop(3);
+        } else {
+            // Not enough screens to pop 3, fallback to categories or prompt selection
+            // This case might indicate a direct deep link or an unexpected stack
+            console.warn("Teleprompter: Not enough screens in stack to pop(3) for isNextPromptSequence. Navigating to CategorySelection.");
+            navigation.navigate("PracticeTab", { screen: "CategorySelection" });
+        }
+      } else {
+         // Fallback if cannot go back further (e.g., stack is too shallow)
+         navigation.navigate("PracticeTab", { screen: "CategorySelection" });
+      }
+    } else {
+      // This was the first prompt viewed in a sequence. Go back to its PrePractice screen.
+      navigation.goBack();
+    }
   };
 
   const handleGoToCategories = async () => {

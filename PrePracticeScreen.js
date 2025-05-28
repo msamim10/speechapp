@@ -1,7 +1,7 @@
 // PrePracticeScreen.js (New File)
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import colors from './constants/colors'; // Assuming you have this
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -10,55 +10,78 @@ const COUNTDOWN_SECONDS = 5;
 function PrePracticeScreen() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { selectedPrompt, categoryPrompts } = route.params || {}; // Ensure params are destructured safely
+  const { selectedPrompt, categoryPrompts, isFromNextPrompt } = route.params || {}; // Ensure params are destructured safely
 
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
   const timerRef = useRef(null);
 
+  const handleGoHome = () => {
+    clearInterval(timerRef.current); // Stop the countdown if active
+    navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
+  };
+
+  // Effect to start/reset countdown when screen comes into focus or selectedPrompt changes
+  useFocusEffect(
+    useCallback(() => {
+      if (!selectedPrompt) {
+        console.error("PrePracticeScreen (focus): No selectedPrompt provided!");
+        if (navigation.canGoBack()) navigation.goBack();
+        else navigation.navigate("PracticeTab", { screen: "CategorySelection" }); // Fallback
+        return;
+      }
+
+      console.log(`PrePracticeScreen focused/prompt changed: ${selectedPrompt.title}. Resetting countdown.`);
+      clearInterval(timerRef.current); // Clear any existing timer
+      setCountdown(COUNTDOWN_SECONDS); // Reset countdown state
+
+      timerRef.current = setInterval(() => {
+        setCountdown((prevCountdown) => {
+          if (prevCountdown <= 1) { // When it reaches 1, next tick will be 0
+            clearInterval(timerRef.current);
+            return 0;
+          }
+          return prevCountdown - 1;
+        });
+      }, 1000);
+
+      return () => {
+        console.log(`PrePracticeScreen unfocused/cleanup: ${selectedPrompt.title}`);
+        clearInterval(timerRef.current);
+      };
+    }, [selectedPrompt, navigation]) // Dependency: selectedPrompt ensures it reruns if the prompt itself changes
+  );
+
+  // Original useEffect for navigation when countdown hits 0 (can remain as is)
+  useEffect(() => {
+    if (countdown === 0) {
+      // clearInterval(timerRef.current); // Already cleared by the countdown setter or focus effect cleanup
+      if (selectedPrompt && categoryPrompts) {
+        navigation.push('Teleprompter', { 
+          selectedPromptId: selectedPrompt.id,
+          categoryPrompts: categoryPrompts,
+          isNextPromptSequence: !!isFromNextPrompt, 
+        });
+      } else {
+        console.error("PrePracticeScreen: Countdown finished but prompt data missing for navigation.");
+        if (navigation.canGoBack()) navigation.goBack();
+        else navigation.navigate("PracticeTab", { screen: "CategorySelection" }); // Fallback
+      }
+    }
+  }, [countdown, navigation, selectedPrompt, categoryPrompts, isFromNextPrompt]);
+
   const handleSkip = () => {
     clearInterval(timerRef.current);
     if (selectedPrompt && categoryPrompts) {
-      navigation.replace('Teleprompter', {
+      navigation.push('Teleprompter', {
         selectedPromptId: selectedPrompt.id,
         categoryPrompts: categoryPrompts,
+        isNextPromptSequence: !!isFromNextPrompt,
       });
     } else {
       console.error("PrePracticeScreen: Skip pressed but prompt data missing for navigation.");
       navigation.goBack();
     }
   };
-
-  useEffect(() => {
-    if (!selectedPrompt) {
-      console.error("PrePracticeScreen: No selectedPrompt provided!");
-      // Potentially navigate back or show an error
-      navigation.goBack();
-      return;
-    }
-
-    timerRef.current = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
-    }, 1000);
-
-    return () => clearInterval(timerRef.current);
-  }, [selectedPrompt, navigation]);
-
-  useEffect(() => {
-    if (countdown === 0) {
-      clearInterval(timerRef.current);
-      if (selectedPrompt && categoryPrompts) {
-        navigation.replace('Teleprompter', { // Use replace to avoid back navigation to this screen
-          selectedPromptId: selectedPrompt.id,
-          categoryPrompts: categoryPrompts,
-          // Pass any other necessary params to TeleprompterScreen
-        });
-      } else {
-        console.error("PrePracticeScreen: Countdown finished but prompt data missing for navigation.");
-        // Fallback navigation if data is somehow missing
-        navigation.goBack();
-      }
-    }
-  }, [countdown, navigation, selectedPrompt, categoryPrompts]);
 
   if (!selectedPrompt) {
     // This could be a more user-friendly loading/error state
@@ -76,6 +99,9 @@ function PrePracticeScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <TouchableOpacity onPress={handleGoHome} style={styles.homeButton}>
+        <Ionicons name="home-outline" size={28} color={colors.primaryDark} />
+      </TouchableOpacity>
       <View style={styles.container}>
         <Text style={styles.title}>Get Ready!</Text>
         
@@ -209,7 +235,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     position: 'absolute',
     bottom: 40,
-  }
+  },
+  homeButton: {
+    position: 'absolute',
+    top: 55,
+    left: 20,
+    zIndex: 10,
+    padding: 10,
+  },
 });
 
 export default PrePracticeScreen; 
