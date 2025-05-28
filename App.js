@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -30,6 +31,8 @@ const Tab = createBottomTabNavigator();
 const AuthStackNav = createNativeStackNavigator();
 const MainStackNav = createNativeStackNavigator();
 const ProfileStackNav = createNativeStackNavigator();
+
+SplashScreen.preventAutoHideAsync();
 
 function PracticeStack() {
   return (
@@ -139,16 +142,22 @@ function App() {
   const [user, setUser] = useState(null); 
 
   useEffect(() => {
+    // Keep splash visible while we initialize
+    SplashScreen.preventAutoHideAsync().catch(() => {});
     console.log("Setting up Firebase Auth listener...");
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       console.log("Auth state changed. User:", firebaseUser?.uid || 'null');
       setUser(firebaseUser);
       if (initializing) {
         setInitializing(false);
+        // Hide splash when initialization is done
+        SplashScreen.hideAsync().catch(() => {});
       }
     });
 
-    return unsubscribe; 
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   if (initializing) {
