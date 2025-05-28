@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
   homeButton: {
     position: 'absolute',
     top: 55,
-    left: 20,
+    right: 20,
     zIndex: 10,
     padding: 10,
   },
