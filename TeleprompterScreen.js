@@ -25,9 +25,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const sampleText = `Welcome to the Public Speaking Practice App!\n\nThis is your teleprompter screen. The text you see here will scroll automatically based on the speed you set.\n\nYou can adjust the scrolling speed using the slider below. Faster speeds mean the text moves quicker, while slower speeds give you more time to read.\n\nFont size can also be adjusted using the 'A-' and 'A+' buttons. Find a size that's comfortable for you to read from a distance.\n\nThe 'Start' button begins the scrolling animation. Once started, it changes to 'Pause', allowing you to temporarily halt the text movement.\n\nThe 'Stop' button will cease the scrolling entirely and reset the text position back to the very beginning.\n\nPractice delivering your speech smoothly and confidently. Remember to maintain eye contact with your imaginary audience and use appropriate gestures.\n\nEffective public speaking is a skill that improves with practice. Use this tool regularly to rehearse your presentations, speeches, or even just talking points for meetings.\n\nTry varying the speed and font size to simulate different conditions or preferences. Good luck with your practice session!\n\nHere is some more text just to ensure the content is long enough to properly test the scrolling functionality across different device heights and font sizes. Keep going, you are doing great! Public speaking can be challenging, but preparation makes a huge difference.\n\nFinal paragraph to fill things out. Focus on clarity, pace, and engagement during your delivery.`;
 
 function TeleprompterScreen({ route, navigation }) {
+  // Handle direct text mode for warm-up
   const directText = route.params?.directText;
+  
   // Get regular params only if directText is not present
-  const { selectedPromptId, categoryPrompts } = directText
+  const { selectedPromptId, categoryPrompts, isNextPromptSequence } = directText
     ? {}
     : route.params || {};
 
@@ -43,28 +45,58 @@ function TeleprompterScreen({ route, navigation }) {
   const imageSource = isWarmUpMode
     ? null
     : currentPromptData?.image || defaultImages.promptBackground;
-  const initialPromptText = isWarmUpMode
+  const promptText = isWarmUpMode
     ? directText
     : currentPromptData?.text || "Prompt text not found.";
   const routeLayoutConfig = isWarmUpMode ? null : currentPromptData?.layout;
+  const category = isWarmUpMode ? null : currentPromptData?.category;
+  const promptId = isWarmUpMode ? null : currentPromptData?.id;
 
-  const [promptText] = useState(initialPromptText || sampleText); // Use selected or fallback
-  const [isScrolling, setIsScrolling] = useState(false); // Start paused until countdown finishes
-  const [scrollSpeed, setScrollSpeed] = useState(1.0); // Keep speed control logic
-  const scrollY = useRef(new Animated.Value(0)).current;
+  const [scrollSpeed, setScrollSpeed] = useState(1.0);
+  const [fontSize, setFontSize] = useState(20);
+  const [isScrolling, setIsScrolling] = useState(false);
   const scrollViewRef = useRef(null);
-  const [containerHeight, setContainerHeight] = useState(0);
+  const scrollY = useRef(new Animated.Value(0)).current;
   const [contentHeight, setContentHeight] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
   const animationRef = useRef(null);
+
+  // Practice tracking states
   const [practiceSessionStartTime, setPracticeSessionStartTime] =
-    useState(null); // <<< Track start time of active scrolling
-  const [accumulatedPracticeTime, setAccumulatedPracticeTime] = useState(0); // <<< Track session duration in ms
-  const { recordPracticeSession, updateUserStats, incrementPoints } = useUser(); // Get the function from context and updateUserStats
+    useState(null);
+  const [accumulatedPracticeTime, setAccumulatedPracticeTime] = useState(0);
+
+  // Practice session recording
+  const { user, updateUserStats, incrementPoints } = useUser();
+  const recordPracticeSession = useCallback(async () => {
+    if (!user || isWarmUpMode) return; // Don't record warm-up sessions
+
+    try {
+      const sessionData = {
+        date: new Date().toISOString(),
+        category: category || "General",
+        promptId: promptId || "unknown",
+        promptTitle: currentPromptData?.title || "Unknown Prompt",
+      };
+
+      const sessionsKey = `practice_sessions_${user.id}`;
+      const existingSessions = await AsyncStorage.getItem(sessionsKey);
+      const sessions = existingSessions ? JSON.parse(existingSessions) : [];
+      sessions.push(sessionData);
+
+      await AsyncStorage.setItem(sessionsKey, JSON.stringify(sessions));
+      console.log("Practice session recorded:", sessionData);
+    } catch (error) {
+      console.error("Failed to record practice session:", error);
+    }
+  }, [user, category, promptId, currentPromptData, isWarmUpMode]);
+
   const practiceRecordedRef = useRef(false); // Ref to prevent multiple recordings per session
   const [reachedEnd, setReachedEnd] = useState(false);
 
   const soundRef = useRef(new Audio.Sound());
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
+  const [isSoundPlaying, setIsSoundPlaying] = useState(false); // New state for sound control
 
   // Reset scroll position to top whenever promptText changes
   useEffect(() => {
@@ -99,21 +131,13 @@ function TeleprompterScreen({ route, navigation }) {
               return;
             }
 
+            // Update sound playing state
+            setIsSoundPlaying(playbackStatus.isPlaying);
+
             if (playbackStatus.isPlaying && !hasStartedPlaying) {
               setHasStartedPlaying(true);
-              if (!isScrolling) {
-                console.log(`TeleprompterScreen: Audio playing, queueing auto-scroll in ${initialScrollDelay}ms`);
-                setTimeout(() => {
-                  if (isMounted && !isScrolling) {
-                    console.log("TeleprompterScreen: Audio auto-scroll delay complete, setting isScrolling to true");
-                    setIsScrolling(true);
-                  } else if (isMounted && isScrolling) {
-                    console.log("TeleprompterScreen: Audio auto-scroll delay complete, but scrolling was already true. No action.");
-                  } else {
-                    console.log("TeleprompterScreen: Audio auto-scroll delay complete, but conditions not met (unmounted or was paused).");
-                  }
-                }, initialScrollDelay);
-              }
+              // REMOVED: Automatic scrolling when audio starts
+              // The user should control scrolling manually with the play/pause button
             }
 
             if (playbackStatus.didJustFinish && !playbackStatus.isLooping) {
@@ -121,21 +145,30 @@ function TeleprompterScreen({ route, navigation }) {
                 setReachedEnd(true);
                 console.log("finished audio");
               }
+              setIsSoundPlaying(false);
             }
           }
         );
         soundRef.current = sound;
-      } else if (!isWarmUpMode) {
+        
+        // Start scrolling automatically when sound loads (if no sound, scroll starts immediately below)
+        if (!isScrolling) {
+          console.log(`TeleprompterScreen: Audio loaded, starting auto-scroll in ${initialScrollDelay}ms`);
+          setTimeout(() => {
+            if (isMounted) {
+              console.log("TeleprompterScreen: Auto-scroll delay complete, setting isScrolling to true");
+              setIsScrolling(true);
+            }
+          }, initialScrollDelay);
+        }
+      } else {
+        // No audio case - start scrolling automatically
         if (!isScrolling) {
           console.log(`TeleprompterScreen: No audio, queueing auto-scroll in ${initialScrollDelay}ms`);
           setTimeout(() => {
-            if (isMounted && !isScrolling) {
+            if (isMounted) {
               console.log("TeleprompterScreen: No-audio auto-scroll delay complete, setting isScrolling to true");
               setIsScrolling(true);
-            } else if (isMounted && isScrolling) {
-              console.log("TeleprompterScreen: No-audio auto-scroll delay complete, but scrolling was already true. No action.");
-            } else {
-              console.log("TeleprompterScreen: No-audio auto-scroll delay complete, but conditions not met (unmounted or was paused).");
             }
           }, initialScrollDelay);
         }
@@ -275,7 +308,6 @@ function TeleprompterScreen({ route, navigation }) {
           // Record practice session completion
           if (!practiceRecordedRef.current) {
             recordPracticeSession();
-            incrementPoints();
             practiceRecordedRef.current = true;
           }
         }
@@ -302,7 +334,6 @@ function TeleprompterScreen({ route, navigation }) {
     contentHeight,
     containerHeight,
     recordPracticeSession,
-    incrementPoints,
   ]); // Add recordPracticeSession dependency
 
   // --- NEW useEffect to handle scrolling based on isScrolling state ---
@@ -435,7 +466,6 @@ function TeleprompterScreen({ route, navigation }) {
             // Record practice session completion and increment points
             if (!practiceRecordedRef.current && !isWarmUpMode) {
               recordPracticeSession();
-              incrementPoints();
               practiceRecordedRef.current = true;
             }
           } else {
@@ -462,7 +492,6 @@ function TeleprompterScreen({ route, navigation }) {
       practiceSessionStartTime,
       recordPracticeSession,
       animationRef,
-      incrementPoints,
     ]
   ); // Added dependencies
 
@@ -527,7 +556,6 @@ function TeleprompterScreen({ route, navigation }) {
     // Or rely on leaving the screen?
     if (!isWarmUpMode && !practiceRecordedRef.current) {
       recordPracticeSession(); // Record the practice
-      incrementPoints(); // Call incrementPoints here as well
       practiceRecordedRef.current = true;
     }
   }, [
@@ -540,41 +568,50 @@ function TeleprompterScreen({ route, navigation }) {
   ]); // Added dependencies
 
   const handleStartPause = async () => {
-    const status = await soundRef.current?.getStatusAsync();
-    // If no sound is loaded (e.g. warm-up mode or prompt has no audio), just toggle scrolling
-    if (!status || !status.isLoaded) {
-      setIsScrolling(!isScrolling);
-      if (!isScrolling && !practiceSessionStartTime) { // Starting scrolling for the first time
-        setPracticeSessionStartTime(Date.now());
-      } else if (isScrolling && practiceSessionStartTime) { // Pausing scrolling
-        const duration = Date.now() - practiceSessionStartTime;
-        setAccumulatedPracticeTime((prev) => prev + duration);
-        setPracticeSessionStartTime(null);
-      }
-      return;
-    }
-
+    // This function now only controls scrolling
     if (isScrolling) { // If currently scrolling, PAUSE
-      await soundRef.current?.pauseAsync();
       setIsScrolling(false);
       // Time tracking for pause is handled by pauseScrolling() which is triggered by useEffect on isScrolling change
     } else { // If currently PAUSED, PLAY
       if (reachedEnd) { // If was at the end, restart everything
-        await soundRef.current?.setPositionAsync(0);
         if (scrollViewRef.current) { // Reset scroll position visually
             scrollViewRef.current.scrollTo({ y: 0, animated: false });
         }
         scrollY.setValue(0); // Reset animated scroll value
         setReachedEnd(false);
-        setHasStartedPlaying(false); // Allow hasStartedPlaying logic to run again if needed
         practiceRecordedRef.current = false; // Allow re-recording if they play again
-      }
-      await soundRef.current?.playAsync();
-      if (!hasStartedPlaying) {
-        setHasStartedPlaying(true);
       }
       setIsScrolling(true);
       // Time tracking for start is handled by startScrolling() which is triggered by useEffect on isScrolling change
+    }
+  };
+
+  // New function to handle sound control
+  const handleSoundToggle = async () => {
+    const status = await soundRef.current?.getStatusAsync();
+    
+    // If no sound is loaded, do nothing
+    if (!status || !status.isLoaded) {
+      console.log("No sound loaded to control");
+      return;
+    }
+
+    if (isSoundPlaying) {
+      // Pause the sound
+      await soundRef.current?.pauseAsync();
+      setIsSoundPlaying(false);
+    } else {
+      // Play or resume the sound
+      if (status.positionMillis === status.durationMillis && status.durationMillis > 0) {
+        // Sound has finished, restart from beginning
+        await soundRef.current?.setPositionAsync(0);
+      }
+      await soundRef.current?.playAsync();
+      setIsSoundPlaying(true);
+      
+      if (!hasStartedPlaying) {
+        setHasStartedPlaying(true);
+      }
     }
   };
 
@@ -752,7 +789,7 @@ function TeleprompterScreen({ route, navigation }) {
               <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
 
-            {/* Play | Pause Button */}
+            {/* Play | Pause Button for Scrolling */}
             <TouchableOpacity
               onPress={handleStartPause}
               style={styles.iconButton}
@@ -763,6 +800,20 @@ function TeleprompterScreen({ route, navigation }) {
                 color="#FFFFFF"
               />
             </TouchableOpacity>
+
+            {/* Sound Control Button */}
+            {currentPromptData?.soundAsset && (
+              <TouchableOpacity
+                onPress={handleSoundToggle}
+                style={styles.iconButton}
+              >
+                <Ionicons
+                  name={isSoundPlaying ? "volume-high" : "volume-mute"}
+                  size={24}
+                  color="#FFFFFF"
+                />
+              </TouchableOpacity>
+            )}
 
             {/* Conditionally render Next button (only if NOT warm-up) */}
             {!isWarmUpMode && categoryPrompts && categoryPrompts.length > 1 && (
@@ -878,9 +929,11 @@ const styles = StyleSheet.create({
   },
   actionButtons: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "flex-start",
     width: "100%",
     alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 40,
   },
   iconButton: {
     width: 54,
@@ -889,13 +942,13 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 122, 255, 0.92)",
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 12,
+    marginHorizontal: 8,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.22,
     shadowRadius: 6.22,
     elevation: 8,
-    transform: [{ scale: 1 }], // For animation
+    transform: [{ scale: 1 }],
   },
   // End Countdown Timer Styles
   iconButtonPlaceholder: {

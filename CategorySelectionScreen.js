@@ -97,10 +97,7 @@ function CategorySelectionScreen() {
           </TouchableOpacity>
         ))}
 
-        {/* Daily update message - moved to the end of ScrollView content */}
-        <Text style={styles.dailyUpdateText}>
-          New prompts and images are updated daily!
-        </Text>
+        {/* Daily update message removed */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -109,7 +106,7 @@ function CategorySelectionScreen() {
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: colors.backgroundLight || '#F8F9FA',
+    backgroundColor: '#FFFFFF', // Changed to white
     // paddingTop: Platform.OS === 'android' ? 25 : 0, // Removed, handled by SafeAreaView
   },
   header: {
@@ -134,22 +131,10 @@ const styles = StyleSheet.create({
     fontWeight: '700', // Bolder
     color: colors.textPrimary || '#212529',
   },
-  dailyUpdateText: { 
-    fontSize: 14,
-    color: colors.textSubtle || colors.textSecondary, 
-    textAlign: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 15, // Ensure enough padding
-    backgroundColor: colors.borderLight, // Changed to a light gray background
-    width: '100%', // Ensure it takes full width if it's the last item
-    marginTop: 10, // Add some margin above it if categories end abruptly
-    // Adding a subtle top border for separation if desired
-    // borderTopWidth: 1,
-    // borderTopColor: colors.shadowColor || '#E0E0E0',
-  },
+  // dailyUpdateText style removed since we're not using it anymore
   scrollContentContainer: {
     paddingHorizontal: 16,
-    paddingBottom: 10, // Reduced paddingBottom as the text below will have its own padding
+    paddingBottom: 10, // Reduced bottom padding
     paddingTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',

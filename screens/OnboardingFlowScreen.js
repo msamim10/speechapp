@@ -7,13 +7,10 @@ import {
     Platform,
     SafeAreaView,
     Text,
-    ImageBackground,
     TouchableOpacity
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 import colors from '../constants/colors';
-import { categoryImageSources } from '../constants/imageUtils';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
@@ -22,26 +19,18 @@ const onboardingSlidesContent = [
         key: '1',
         title: 'Master Your Message',
         subtitle: 'Confidently deliver impactful speeches and presentations.',
-        imageKey: 'keynote_speech_stage_audience',
     },
     {
         key: '2',
         title: 'Practice Anytime, Anywhere',
         subtitle: 'Access a library of prompts or create your own.',
-        imageKey: 'man_in_suit_speaking_on_stage_side_view',
     },
     {
         key: '3',
         title: 'Track Your Progress',
         subtitle: 'Build streaks and see your improvement over time.',
-        imageKey: 'woman_presenting_on_stage_ted_style',
     },
 ];
-
-const getImage = (key) => {
-    const foundImage = categoryImageSources.find(source => source.imageKey === key);
-    return foundImage ? foundImage.image : categoryImageSources[0]?.image;
-};
 
 const OnboardingFlowScreen = () => {
     const navigation = useNavigation();
@@ -64,71 +53,59 @@ const OnboardingFlowScreen = () => {
 
     const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 50 }).current;
 
-    const renderBackgroundImage = ({ item }) => (
-        <ImageBackground source={getImage(item.imageKey)} style={styles.backgroundImage}>
-            <LinearGradient
-                colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.7)']}
-                style={StyleSheet.absoluteFillObject} // Ensure gradient covers the image
-            />
-        </ImageBackground>
+    const renderSlide = ({ item }) => (
+        <View style={styles.slideContainer}>
+            <View style={styles.slideContent}>
+                <Text style={styles.titleText}>{item.title}</Text>
+                <Text style={styles.subtitleText}>{item.subtitle}</Text>
+            </View>
+        </View>
     );
-
-    // Text content will now be dynamic based on the current slide index
-    const currentSlideContent = onboardingSlidesContent[currentIndex];
 
     return (
         <SafeAreaView style={styles.safeAreaContainer}>
             <FlatList
                 ref={flatListRef}
-                data={onboardingSlidesContent} // Data for images
-                renderItem={renderBackgroundImage}
+                data={onboardingSlidesContent}
+                renderItem={renderSlide}
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item) => item.key}
                 onViewableItemsChanged={onViewableItemsChanged}
                 viewabilityConfig={viewabilityConfig}
-                style={StyleSheet.absoluteFill} // Make FlatList cover the whole screen behind content
+                style={styles.flatList}
             />
 
-            {/* Static Content Overlay */}
-            <View style={styles.overlayContentContainer}>
-                <View style={styles.textContainer}>
-                    {/* Display dynamic text based on current slide */}
-                    <Text style={styles.titleText}>{currentSlideContent.title}</Text>
-                    <Text style={styles.subtitleText}>{currentSlideContent.subtitle}</Text>
-                </View>
-
-                {/* Buttons and Pagination appear fixed at the bottom */}
-                <View style={styles.bottomControlsContainer}>
-                    {/* Auth buttons are always visible */}
-                    <View style={styles.authButtonContainer}>
-                        <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted}>
-                            <Text style={styles.buttonText}>Get Started</Text>
+            {/* Bottom Controls */}
+            <View style={styles.bottomControlsContainer}>
+                {/* Auth buttons */}
+                <View style={styles.authButtonContainer}>
+                    <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted}>
+                        <Text style={styles.buttonText}>Get Started</Text>
+                    </TouchableOpacity>
+                    {/* Sign In Link */}
+                    <View style={styles.signInBox}>
+                        <TouchableOpacity style={styles.signInLink} onPress={handleSignIn}>
+                            <Text style={styles.signInLinkText}>Already have an account? Sign In</Text>
                         </TouchableOpacity>
-                        {/* Styled Sign In Link */}
-                        <View style={styles.signInBox}>
-                            <TouchableOpacity style={styles.signInLink} onPress={handleSignIn}>
-                                <Text style={styles.signInLinkText}>Already have an account? Sign In</Text>
-                            </TouchableOpacity>
-                        </View>
                     </View>
-                    <View style={styles.paginationContainer}>
-                        {onboardingSlidesContent.map((_, index) => (
-                            <View
-                                key={index}
-                                style={[
-                                    styles.dot,
-                                    currentIndex === index ? styles.activeDot : styles.inactiveDot,
-                                ]}
-                            />
-                        ))}
-                    </View>
-                    {/* "Swipe for more" text, shown if not on the last slide */}
-                    {currentIndex < onboardingSlidesContent.length - 1 && (
-                        <Text style={styles.swipeMoreText}>Swipe for more</Text>
-                    )}
                 </View>
+                <View style={styles.paginationContainer}>
+                    {onboardingSlidesContent.map((_, index) => (
+                        <View
+                            key={index}
+                            style={[
+                                styles.dot,
+                                currentIndex === index ? styles.activeDot : styles.inactiveDot,
+                            ]}
+                        />
+                    ))}
+                </View>
+                {/* "Swipe for more" text, shown if not on the last slide */}
+                {currentIndex < onboardingSlidesContent.length - 1 && (
+                    <Text style={styles.swipeMoreText}>Swipe for more</Text>
+                )}
             </View>
         </SafeAreaView>
     );
@@ -137,52 +114,49 @@ const OnboardingFlowScreen = () => {
 const styles = StyleSheet.create({
     safeAreaContainer: {
         flex: 1,
-        backgroundColor: '#000', // Fallback background color
+        backgroundColor: '#FFFFFF', // White background
     },
-    backgroundImage: {
+    flatList: {
+        flex: 1,
+    },
+    slideContainer: {
         width: screenWidth,
-        height: screenHeight, // Make each image take full screen
+        height: screenHeight * 0.6, // Take up 60% of screen height
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    overlayContentContainer: {
-        ...StyleSheet.absoluteFillObject, // Let this view cover the FlatList
-        flex: 1,
-        justifyContent: 'space-between', // Pushes text to top, controls to bottom
-        alignItems: 'center',
         paddingHorizontal: 20,
-        paddingTop: Platform.OS === 'ios' ? 60 : 40, 
-        paddingBottom: Platform.OS === 'ios' ? 40 : 30,
     },
-    textContainer: {
+    slideContent: {
         alignItems: 'center',
         width: '100%',
-        marginTop: '20%', // Push text down a bit from the top
-        backgroundColor: 'transparent', // Ensure text container doesn't block image
     },
     titleText: {
         fontSize: 32,
         fontWeight: 'bold',
-        color: colors.textLight,
+        color: '#000000', // Black text
         textAlign: 'center',
         marginBottom: 15,
     },
     subtitleText: {
         fontSize: 18,
-        color: colors.textLight,
-        fontWeight: 'bold',
+        color: '#000000', // Black text
+        fontWeight: '500',
         textAlign: 'center',
         paddingHorizontal: 15,
         lineHeight: 26,
     },
     bottomControlsContainer: {
+        position: 'absolute',
+        bottom: 0,
         width: '100%',
         alignItems: 'center',
+        paddingBottom: Platform.OS === 'ios' ? 40 : 30,
+        backgroundColor: '#FFFFFF', // White background
     },
     authButtonContainer: {
         width: '100%',
         alignItems: 'center',
-        marginBottom: 20, // Space between auth buttons and pagination dots
+        marginBottom: 20,
     },
     getStartedButton: {
         backgroundColor: colors.primary,
@@ -204,28 +178,27 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     signInLink: {
-        paddingVertical: 10, // Padding inside the touchable opacity for better tap area
-        paddingHorizontal: 15, // Padding inside the touchable opacity
+        paddingVertical: 10,
+        paddingHorizontal: 15,
     },
     signInLinkText: {
         color: colors.textLight,
         fontSize: 16,
         fontWeight: '500',
-        textAlign: 'center', // Ensure text inside the link is centered
+        textAlign: 'center',
     },
-    signInBox: { // Style for the blue box around the sign-in link
-        backgroundColor: colors.primary, // Assuming colors.primary is your blue
-        borderRadius: 25, // Match getStartedButton or choose your own
-        paddingVertical: 5, // Small padding around the link to make the box visible
+    signInBox: {
+        backgroundColor: colors.primary,
+        borderRadius: 25,
+        paddingVertical: 5,
         paddingHorizontal: 10,
-        width: '90%', // Match getStartedButton width
-        alignItems: 'center', // Center the TouchableOpacity link inside
+        width: '90%',
+        alignItems: 'center',
     },
     paginationContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        // Removed absolute positioning, will be part of bottomControlsContainer flow
     },
     dot: {
         width: 10,
@@ -240,15 +213,15 @@ const styles = StyleSheet.create({
         borderRadius: 6,
     },
     inactiveDot: {
-        backgroundColor: colors.white,
-        opacity: 0.6, // Slightly more opaque for white dots
+        backgroundColor: '#CCCCCC', // Light gray for inactive dots
+        opacity: 0.6,
     },
     swipeMoreText: {
-        color: colors.textLight, // White text
+        color: '#000000', // Black text
         fontSize: 12,
-        fontWeight: '300', // Lighter font weight
-        marginTop: 15, // Space above the text, below pagination dots
-        opacity: 0.8, // Slightly less prominent
+        fontWeight: '300',
+        marginTop: 15,
+        opacity: 0.8,
     },
 });
 
