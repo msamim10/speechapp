@@ -10,7 +10,8 @@
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/amplivio-splash.png",
-      "resizeMode": "contain"
+      "resizeMode": "contain",
+      "backgroundColor": "#18BFFF"
     },
     "assetBundlePatterns": [
       "**/*"
