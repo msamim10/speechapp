@@ -80,12 +80,16 @@ function TeleprompterScreen({ route, navigation }) {
 
   useEffect(() => {
     let isMounted = true;
+    const initialScrollDelay = 50; // <<< Adjusted to a very short delay (e.g., 50ms)
+
     async function loadSounds() {
       if (currentPromptData?.soundAsset) {
         const { sound } = await Audio.Sound.createAsync(
           currentPromptData.soundAsset,
           { shouldPlay: true },
           (playbackStatus) => {
+            if (!isMounted) return;
+
             if (!playbackStatus.isLoaded) {
               if (playbackStatus.error) {
                 console.log(
@@ -94,9 +98,22 @@ function TeleprompterScreen({ route, navigation }) {
               }
               return;
             }
-            if (playbackStatus.isPlaying && !hasStartedPlaying && isMounted) {
+
+            if (playbackStatus.isPlaying && !hasStartedPlaying) {
               setHasStartedPlaying(true);
-              if (!isScrolling) setIsScrolling(true); // Ensure text scroll and button are in play state on first open
+              if (!isScrolling) {
+                console.log(`TeleprompterScreen: Audio playing, queueing auto-scroll in ${initialScrollDelay}ms`);
+                setTimeout(() => {
+                  if (isMounted && !isScrolling) {
+                    console.log("TeleprompterScreen: Audio auto-scroll delay complete, setting isScrolling to true");
+                    setIsScrolling(true);
+                  } else if (isMounted && isScrolling) {
+                    console.log("TeleprompterScreen: Audio auto-scroll delay complete, but scrolling was already true. No action.");
+                  } else {
+                    console.log("TeleprompterScreen: Audio auto-scroll delay complete, but conditions not met (unmounted or was paused).");
+                  }
+                }, initialScrollDelay);
+              }
             }
 
             if (playbackStatus.didJustFinish && !playbackStatus.isLooping) {
@@ -108,6 +125,20 @@ function TeleprompterScreen({ route, navigation }) {
           }
         );
         soundRef.current = sound;
+      } else if (!isWarmUpMode) {
+        if (!isScrolling) {
+          console.log(`TeleprompterScreen: No audio, queueing auto-scroll in ${initialScrollDelay}ms`);
+          setTimeout(() => {
+            if (isMounted && !isScrolling) {
+              console.log("TeleprompterScreen: No-audio auto-scroll delay complete, setting isScrolling to true");
+              setIsScrolling(true);
+            } else if (isMounted && isScrolling) {
+              console.log("TeleprompterScreen: No-audio auto-scroll delay complete, but scrolling was already true. No action.");
+            } else {
+              console.log("TeleprompterScreen: No-audio auto-scroll delay complete, but conditions not met (unmounted or was paused).");
+            }
+          }, initialScrollDelay);
+        }
       }
     }
 
@@ -510,43 +541,41 @@ function TeleprompterScreen({ route, navigation }) {
 
   const handleStartPause = async () => {
     const status = await soundRef.current?.getStatusAsync();
-    if (!status.isLoaded) {
-      console.warn("Audio not loaded yet");
+    // If no sound is loaded (e.g. warm-up mode or prompt has no audio), just toggle scrolling
+    if (!status || !status.isLoaded) {
+      setIsScrolling(!isScrolling);
+      if (!isScrolling && !practiceSessionStartTime) { // Starting scrolling for the first time
+        setPracticeSessionStartTime(Date.now());
+      } else if (isScrolling && practiceSessionStartTime) { // Pausing scrolling
+        const duration = Date.now() - practiceSessionStartTime;
+        setAccumulatedPracticeTime((prev) => prev + duration);
+        setPracticeSessionStartTime(null);
+      }
       return;
     }
 
-    // If audio is playing, pause both audio and text
-    if (status.isPlaying) {
+    if (isScrolling) { // If currently scrolling, PAUSE
       await soundRef.current?.pauseAsync();
       setIsScrolling(false);
-      return;
-    }
-
-    // If audio is finished (reachedEnd is true)
-    if (reachedEnd) {
-      // If text is still scrolling, pause the text (do not reset)
-      if (isScrolling) {
-        setIsScrolling(false);
-        return;
+      // Time tracking for pause is handled by pauseScrolling() which is triggered by useEffect on isScrolling change
+    } else { // If currently PAUSED, PLAY
+      if (reachedEnd) { // If was at the end, restart everything
+        await soundRef.current?.setPositionAsync(0);
+        if (scrollViewRef.current) { // Reset scroll position visually
+            scrollViewRef.current.scrollTo({ y: 0, animated: false });
+        }
+        scrollY.setValue(0); // Reset animated scroll value
+        setReachedEnd(false);
+        setHasStartedPlaying(false); // Allow hasStartedPlaying logic to run again if needed
+        practiceRecordedRef.current = false; // Allow re-recording if they play again
       }
-      // If text is not scrolling, check if scroll is at the end
-      const scrollAtEnd = Math.abs(scrollY._value - Math.max(0, contentHeight - containerHeight)) < 1;
-      if (!scrollAtEnd) {
-        setIsScrolling(true); // Just resume the text scroll
-        return;
-      }
-      // If scroll is at the end, reset audio and text, then play
-      await soundRef.current?.setPositionAsync(0);
-      setReachedEnd(false);
-      scrollY.setValue(0);
       await soundRef.current?.playAsync();
+      if (!hasStartedPlaying) {
+        setHasStartedPlaying(true);
+      }
       setIsScrolling(true);
-      return;
+      // Time tracking for start is handled by startScrolling() which is triggered by useEffect on isScrolling change
     }
-
-    // Otherwise, resume both
-    await soundRef.current?.playAsync();
-    setIsScrolling(true);
   };
 
   // Refactored: Instantly reset scroll position and animation before navigating to next prompt
