@@ -30,6 +30,7 @@ function PrePracticeScreen() {
     route.params || {}; // Ensure params are destructured safely
 
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
+  const [paywallVisible, setPaywallVisible] = useState(false);
   const timerRef = useRef(null);
   const [isFavorited, setIsFavorited] = useState(false); // State for favorite status
 
@@ -52,6 +53,21 @@ function PrePracticeScreen() {
   }, [selectedPrompt?.id]);
 
   const handleToggleFavorite = async () => {
+    const hasSubscription = await checkActiveSubscription();
+    if (!hasSubscription) {
+      if (paywallVisible) return;
+      setPaywallVisible(true);
+      const result = await RevenueCatUI.presentPaywall();
+      setPaywallVisible(false);
+      if (
+        result === PAYWALL_RESULT.CANCELLED ||
+        result === PAYWALL_RESULT.ERROR
+      ) {
+        await handleSubCancel();
+        console.log("Result: ", result);
+        return;
+      }
+    }
     if (!selectedPrompt?.id) return;
 
     const newFavoritedStatus = !isFavorited;
@@ -84,11 +100,8 @@ function PrePracticeScreen() {
   };
 
   const handleSubCancel = async () => {
-    console.log("DISMISSS");
-    // After paywall closes, check again if user subscribed
     const stillNoSub = !(await checkActiveSubscription());
     if (stillNoSub) {
-      // Navigate away from PrePracticeScreen
       if (navigation.canGoBack()) navigation.goBack();
       else
         navigation.navigate("PracticeTab", {
@@ -144,7 +157,10 @@ function PrePracticeScreen() {
             const hasSubscription = await checkActiveSubscription();
             console.log("BEFORE DISMISS");
             if (!hasSubscription) {
+              if (paywallVisible) return;
+              setPaywallVisible(true);
               const result = await RevenueCatUI.presentPaywall();
+              setPaywallVisible(false);
               if (
                 result === PAYWALL_RESULT.CANCELLED ||
                 result === PAYWALL_RESULT.ERROR

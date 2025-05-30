@@ -30,6 +30,7 @@
         <data android:scheme="com.googleusercontent.apps.481724800294-qf8tpubdlkthcu1dskrmv1ju0lg8vo9r"/>
         <data android:scheme="com.anonymous.PublicSpeakingApp"/>
         <data android:scheme="exp+publicspeakingapp"/>
+        <data android:scheme="exp+amplivio"/>
       </intent-filter>
     </activity>
   </application>
