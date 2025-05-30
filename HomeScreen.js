@@ -14,6 +14,7 @@ import {
   FlatList,
   StatusBar,
   Animated,
+  AppState,
 } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import colors from './constants/colors';
@@ -91,10 +92,122 @@ function HomeScreen() {
   const [recentPrompts, setRecentPrompts] = useState([]);
   const [featuredPrompt, setFeaturedPrompt] = useState(null);
   const [favoritePrompts, setFavoritePrompts] = useState([]);
-  const [playCounts, setPlayCounts] = useState({}); // State for play counts
+  const [playCounts, setPlayCounts] = useState({});
 
-  // Animation for the logo
   const logoScale = useRef(new Animated.Value(1)).current;
+
+  // Ref to track component mount status
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  // Moved and refactored loadData
+  const loadData = useCallback(async (reason = "unknown") => {
+    console.log(`--- HomeScreen: Loading Data (reason: ${reason}) ---`);
+    try {
+      if (isMountedRef.current) setImagesReady(true); // Or based on actual image readiness
+
+      const playCountsJson = await AsyncStorage.getItem(PROMPT_PLAY_COUNTS_KEY);
+      if (isMountedRef.current) {
+        if (playCountsJson) {
+          setPlayCounts(JSON.parse(playCountsJson));
+          console.log("Loaded play counts.");
+        } else {
+          setPlayCounts({});
+          console.log("No play counts found in AsyncStorage, initialized empty.");
+        }
+      }
+
+      const historyIdsJson = await AsyncStorage.getItem('@practiceHistoryIds');
+      if (isMountedRef.current) {
+        if (historyIdsJson) {
+          const historyIds = JSON.parse(historyIdsJson);
+          if (Array.isArray(historyIds) && historyIds.length > 0) {
+            const allPrompts = promptsData.flat();
+            const historyDetails = historyIds
+              .map(id => allPrompts.find(p => p.id === id))
+              .filter(prompt => prompt != null);
+            setPracticeHistoryPrompts(historyDetails.slice(0, 10));
+          }
+        } else {
+          setPracticeHistoryPrompts([]);
+        }
+      }
+
+      const favoritesIdsJson = await AsyncStorage.getItem(FAVORITES_KEY);
+      if (isMountedRef.current) {
+        if (favoritesIdsJson) {
+          const favoriteIds = JSON.parse(favoritesIdsJson);
+          if (Array.isArray(favoriteIds) && favoriteIds.length > 0) {
+            const allPrompts = promptsData.flat();
+            const favoriteDetails = favoriteIds
+              .map(id => allPrompts.find(p => p.id === id))
+              .filter(prompt => prompt != null);
+            setFavoritePrompts(favoriteDetails);
+            console.log("Loaded favorite prompts:", favoriteDetails.length);
+          } else {
+            setFavoritePrompts([]);
+            console.log("No valid favorite IDs found or array empty.");
+          }
+        } else {
+          setFavoritePrompts([]);
+          console.log("No favorites data found in AsyncStorage.");
+        }
+      }
+
+      if (isMountedRef.current && promptsData && promptsData.flat().length > 0) {
+        const allPrompts = promptsData.flat();
+        const shuffledPrompts = [...allPrompts].sort(() => 0.5 - Math.random());
+        setRecentPrompts(shuffledPrompts.slice(0, 15));
+      }
+
+      if (isMountedRef.current && promptsData && promptsData.flat().length > 0) {
+        const allPrompts = promptsData.flat();
+        const randomIndex = Math.floor(Math.random() * allPrompts.length);
+        setFeaturedPrompt(allPrompts[randomIndex]);
+      }
+
+    } catch (error) {
+      console.error('Error loading home screen data:', error);
+      if (isMountedRef.current) {
+        setImagesReady(true); // Still allow UI to render
+      }
+    }
+  }, [/* setImagesReady, setPlayCounts, etc. are stable, so effectively empty deps */]);
+
+
+  // Initial data load on mount
+  useEffect(() => {
+    loadData("initial mount");
+  }, [loadData]);
+
+  // Listener for AppState changes (e.g., app coming to foreground)
+  const appState = useRef(AppState.currentState);
+  useEffect(() => {
+    const handleAppStateChange = async (nextAppState) => {
+      if (
+        isMountedRef.current &&
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        console.log('App has come to the foreground! Refreshing HomeScreen data.');
+        await loadData("app resume");
+      }
+      if (isMountedRef.current) {
+          appState.current = nextAppState;
+      }
+    };
+
+    const subscription = AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      subscription.remove();
+    };
+  }, [loadData]);
 
   const handleLogoPressIn = () => {
     Animated.spring(logoScale, {
@@ -111,92 +224,6 @@ function HomeScreen() {
       useNativeDriver: true,
     }).start();
   };
-
-  // Use useFocusEffect to reload data when the screen comes into focus
-  useFocusEffect(
-    useCallback(() => {
-      let isMounted = true;
-      console.log("--- HomeScreen Focused: Loading Data ---");
-
-      const loadData = async () => {
-        try {
-          // --- Temp: Set imagesReady immediately for faster testing ---
-          if (isMounted) setImagesReady(true);
-
-          // --- Load Play Counts ---
-          const playCountsJson = await AsyncStorage.getItem(PROMPT_PLAY_COUNTS_KEY);
-          if (isMounted && playCountsJson) {
-            setPlayCounts(JSON.parse(playCountsJson));
-            console.log("Loaded play counts.");
-          } else if (isMounted) {
-            setPlayCounts({}); // Initialize if not found
-            console.log("No play counts found in AsyncStorage, initialized empty.");
-          }
-
-          // --- Load Practice History --- 
-          const historyIdsJson = await AsyncStorage.getItem('@practiceHistoryIds');
-          if (isMounted && historyIdsJson) {
-            const historyIds = JSON.parse(historyIdsJson);
-            if (Array.isArray(historyIds) && historyIds.length > 0) {
-              const allPrompts = promptsData.flat();
-              const historyDetails = historyIds
-                .map(id => allPrompts.find(p => p.id === id))
-                .filter(prompt => prompt != null);
-              setPracticeHistoryPrompts(historyDetails.slice(0, 10));
-            }
-          } else if (isMounted) {
-            setPracticeHistoryPrompts([]);
-          }
-
-          // --- Load Favorite Prompts ---
-          const favoritesIdsJson = await AsyncStorage.getItem(FAVORITES_KEY);
-          if (isMounted && favoritesIdsJson) {
-            const favoriteIds = JSON.parse(favoritesIdsJson);
-            if (Array.isArray(favoriteIds) && favoriteIds.length > 0) {
-              const allPrompts = promptsData.flat();
-              const favoriteDetails = favoriteIds
-                .map(id => allPrompts.find(p => p.id === id))
-                .filter(prompt => prompt != null);
-              setFavoritePrompts(favoriteDetails);
-              console.log("Loaded favorite prompts:", favoriteDetails.length);
-            } else {
-              setFavoritePrompts([]); // Reset if no valid favorite IDs
-              console.log("No valid favorite IDs found or array empty.");
-            }
-          } else if (isMounted) {
-            setFavoritePrompts([]);
-            console.log("No favorites data found in AsyncStorage.");
-          }
-
-          // --- Load 5 Random Prompts for "Explore Prompts" ---
-          if (isMounted && promptsData && promptsData.flat().length > 0) {
-              const allPrompts = promptsData.flat();
-              const shuffledPrompts = [...allPrompts].sort(() => 0.5 - Math.random());
-              setRecentPrompts(shuffledPrompts.slice(0, 15));
-          }
-
-          // --- Select Featured Prompt ---
-          if (isMounted && promptsData && promptsData.flat().length > 0) {
-              const allPrompts = promptsData.flat();
-              const randomIndex = Math.floor(Math.random() * allPrompts.length);
-              setFeaturedPrompt(allPrompts[randomIndex]);
-          }
-
-        } catch (error) {
-          console.error('Error loading home screen data:', error);
-           if (isMounted) {
-               setImagesReady(true); // Still allow UI to render
-           }
-        }
-      };
-
-      loadData();
-      return () => { 
-        isMounted = false; 
-        console.log("--- HomeScreen Unfocused ---");
-      };
-    }, []) // No dependencies, so it runs on every focus
-  );
 
   // --- Handlers ---
   const handleStartPractice = async () => {
@@ -300,76 +327,91 @@ function HomeScreen() {
     [handleSelectRecentPrompt]
   );
 
-  const renderHeader = () => (
-    <View style={styles.headerContainer}>
-      <View style={styles.headerTopRow}>
-        <View style={styles.greetingAndStreakContainer}>
-          <Text style={styles.greetingText}>Hello, {username || "Guest"}!</Text>
-          {/* Gamification Row: Streak and Points */}
-          <View style={styles.gamificationRow}>
-            <View style={styles.streakContainer}>
-              <Ionicons name="flame" size={20} color={colors.playfulYellow} />
-              <Text style={styles.streakText}>
-                {currentStreak || 0} Day Streak
-              </Text>
+  const renderHeader = () => {
+    let userLevel;
+    if (points < 25) {
+      userLevel = 1;
+    } else if (points < 50) {
+      userLevel = 2;
+    } else {
+      userLevel = 3;
+    }
+
+    return (
+      <View style={styles.headerContainer}>
+        <View style={styles.headerTopRow}>
+          <View style={styles.greetingAndStreakContainer}>
+            <Text style={styles.greetingText}>Hello, {username || "Guest"}!</Text>
+            {/* Gamification Row: Streak and Points */}
+            <View style={styles.gamificationRow}>
+              <View style={styles.streakContainer}>
+                <Ionicons name="flame" size={20} color={colors.playfulYellow} />
+                <Text style={styles.streakText}>
+                  {currentStreak || 0} Day Streak
+                </Text>
+              </View>
+              <View style={styles.headerStatItem}>
+                <Ionicons
+                  name="star-outline"
+                  size={20}
+                  color={colors.accentTeal}
+                />
+                <Text style={styles.headerStatText}>Points: {points}</Text>
+              </View>
+              <View style={styles.levelStatItem}> 
+                <Ionicons name="ribbon-outline" size={20} color={colors.primaryDark} />
+                <Text style={styles.headerStatText}>Level: {userLevel}</Text>
+              </View>
             </View>
-            <View style={styles.headerStatItem}>
-              <Ionicons
-                name="star-outline"
-                size={20}
-                color={colors.accentTeal}
-              />
-              <Text style={styles.headerStatText}>Points: {points}</Text>
-            </View>
+            {/* <Text style={styles.subGreetingText}>Ready to practice?</Text> */}
           </View>
-          <Text style={styles.subGreetingText}>Ready to practice?</Text>
-        </View>
-        <TouchableOpacity
-          activeOpacity={0.9} // To make the press feel responsive
-          onPressIn={handleLogoPressIn}
-          onPressOut={handleLogoPressOut}
-          // onPress={() => console.log("Logo pressed!")} // Optional: for other actions
-        >
-          <Animated.View style={{ transform: [{ scale: logoScale }] }}>
-            <Image source={appLogo} style={styles.headerLogo} />
-          </Animated.View>
-        </TouchableOpacity>
-      </View>
-      {/* Gamification/Stats Row - Can be expanded */}
-      {/* 
-      <View style={styles.statsRowContainer}>
-        <View style={styles.statItem}>
-          <Ionicons name="star-outline" size={20} color={colors.accentTeal} />
-          <Text style={styles.statText}>Points: 0</Text> 
-        </View>
-        <View style={styles.statItem}>
-          <Ionicons name="trophy-outline" size={20} color={colors.playfulPink} />
-          <Text style={styles.statText}>Level: 1</Text> 
-        </View>
-      </View>
-      */}
-      <View style={styles.quickActionsHeaderContainer}>
-        <TouchableOpacity
-          style={[styles.quickActionButton, styles.primaryAction]}
-          onPress={handleStartPractice}
-        >
-          <Ionicons name="mic" size={20} color={colors.textLight} />
-          <Text
-            style={[styles.quickActionHeaderText, { color: colors.textLight }]}
+          <TouchableOpacity
+            activeOpacity={0.9} // To make the press feel responsive
+            onPressIn={handleLogoPressIn}
+            onPressOut={handleLogoPressOut}
+            // onPress={() => console.log("Logo pressed!")} // Optional: for other actions
           >
-            Start Practice
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.quickActionButton, styles.secondaryAction]}
-          onPress={handleQuickPractice}
-        >
-          {/* <Ionicons name="flash" size={20} color={colors.accentTeal} /> */}
-          <Text style={[styles.quickActionHeaderText, { color: colors.accentTeal }]}>Quick Practice</Text>
-        </TouchableOpacity>
+            <Animated.View style={{ transform: [{ scale: logoScale }] }}>
+              <Image source={appLogo} style={styles.headerLogo} />
+            </Animated.View>
+          </TouchableOpacity>
+        </View>
+        {/* Gamification/Stats Row - Can be expanded */}
+        {/* 
+        <View style={styles.statsRowContainer}>
+          <View style={styles.statItem}>
+            <Ionicons name="star-outline" size={20} color={colors.accentTeal} />
+            <Text style={styles.statText}>Points: 0</Text> 
+          </View>
+          <View style={styles.statItem}>
+            <Ionicons name="trophy-outline" size={20} color={colors.playfulPink} />
+            <Text style={styles.statText}>Level: 1</Text> 
+          </View>
+        </View>
+        */}
+        <View style={styles.quickActionsHeaderContainer}>
+          <TouchableOpacity
+            style={[styles.quickActionButton, styles.primaryAction]}
+            onPress={handleStartPractice}
+          >
+            <Ionicons name="mic" size={20} color={colors.textLight} />
+            <Text
+              style={[styles.quickActionHeaderText, { color: colors.textLight }]}
+            >
+              Start Practice
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.quickActionButton, styles.secondaryAction]}
+            onPress={handleQuickPractice}
+          >
+            <Ionicons name="speedometer-outline" size={20} color={colors.textLight} />
+            <Text style={[styles.quickActionHeaderText, { color: colors.textLight }]}>Warm Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
+    );
+  };
 
   const renderFeaturedPrompt = () => (
     <View style={styles.featuredSectionContainer}>
@@ -431,47 +473,55 @@ function HomeScreen() {
 
   // <<< Function to render the Practice History Section >>>
   const renderPracticeHistory = () => {
-    if (!practiceHistoryPrompts || practiceHistoryPrompts.length === 0) {
-      return null; // Don't render if there's no history
-    }
-
     return (
       <View style={styles.practiceHistorySectionContainer}>
         <Text style={styles.practiceHistorySectionTitle}>
           Resume Last Practice
         </Text>
-        <FlatList
-          data={practiceHistoryPrompts}
-          renderItem={renderHistoryItem} // <<< Use memoized render function
-          keyExtractor={(item) => item.id + "-history"} // Ensure unique keys
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.recentList} // Reuse recentList style for padding
-        />
+        {(!practiceHistoryPrompts || practiceHistoryPrompts.length === 0) ? (
+          <View style={styles.emptySectionContent}>
+            <Text style={styles.emptySectionText}>
+              No practice history yet. Start a session to see it here!
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            data={practiceHistoryPrompts}
+            renderItem={renderHistoryItem}
+            keyExtractor={(item) => item.id + "-history"}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.recentList}
+          />
+        )}
       </View>
     );
   };
 
   const renderFavoritePrompts = () => {
-    if (!favoritePrompts || favoritePrompts.length === 0) {
-      return null; // Hide the section if there are no favorites
-    }
-
+    // recentSection style includes top border and white background
     return (
-      <View style={styles.recentSection}> {/* Can reuse recentSection style or create a new one */}
+      <View style={styles.recentSection}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Your Favorites</Text>
           {/* Optional: Add a 'See All' button if you plan a dedicated favorites screen */}
         </View>
-        <FlatList
-          data={favoritePrompts}
-          renderItem={renderRecentPromptCard} // Reusing renderRecentPromptCard
-          keyExtractor={(item) => item.id + '-favorite'} // Ensure unique keys
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.recentList}
-          style={{ backgroundColor: colors.cardBackground }} // Explicitly set background
-        />
+        {(!favoritePrompts || favoritePrompts.length === 0) ? (
+          <View style={styles.emptySectionContent}>
+            <Text style={styles.emptySectionText}>
+              You haven't favorited any prompts yet. Tap the heart icon on a prompt to add it!
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            data={favoritePrompts}
+            renderItem={renderRecentPromptCard}
+            keyExtractor={(item) => item.id + '-favorite'}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.recentList}
+          />
+        )}
       </View>
     );
   };
@@ -510,10 +560,11 @@ function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: '#FFFFFF',
   },
   scrollView: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   scrollContent: {
     paddingBottom: 0,
@@ -522,7 +573,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: Platform.OS === "ios" ? 20 : 25,
     paddingBottom: 25,
-    backgroundColor: colors.cardBackground,
+    backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: colors.shadowColor,
   },
@@ -531,12 +582,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-start",
     width: "100%",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   gamificationRow: {
     flexDirection: "row",
     alignItems: "center",
-    flexWrap: "wrap",
     marginBottom: 6,
   },
   greetingAndStreakContainer: {
@@ -547,24 +597,33 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "700",
     color: colors.textPrimary,
-    marginBottom: 8,
+    marginBottom: 16,
   },
   streakContainer: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.playfulLime,
-    paddingHorizontal: 10,
+    paddingHorizontal: 6,
     paddingVertical: 5,
     borderRadius: 20,
     alignSelf: "flex-start",
-    marginBottom: 10,
   },
   headerStatItem: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 10,
+    marginLeft: 6,
     backgroundColor: colors.playfulLime,
-    paddingHorizontal: 10,
+    paddingHorizontal: 6,
+    paddingVertical: 5,
+    borderRadius: 20,
+    alignSelf: "flex-start",
+  },
+  levelStatItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 6,
+    backgroundColor: colors.playfulLime,
+    paddingHorizontal: 6,
     paddingVertical: 5,
     borderRadius: 20,
     alignSelf: "flex-start",
@@ -581,11 +640,6 @@ const styles = StyleSheet.create({
     color: colors.primaryDark,
     marginLeft: 6,
   },
-  subGreetingText: {
-    fontSize: 16,
-    color: colors.textSubtle,
-    marginTop: 8,
-  },
   profileButton: {
     padding: 5,
   },
@@ -601,7 +655,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   featuredCard: {
-    height: 350,
+    height: 450,
     borderRadius: 16,
     overflow: "hidden",
     backgroundColor: colors.cardBackground,
@@ -652,9 +706,11 @@ const styles = StyleSheet.create({
   },
   recentSection: {
     paddingHorizontal: 20,
-    backgroundColor: colors.cardBackground,
+    backgroundColor: '#FFFFFF',
     paddingVertical: 16,
     marginBottom: 15,
+    borderTopWidth: 1,
+    borderTopColor: colors.shadowColor,
   },
   sectionHeader: {
     flexDirection: "row",
@@ -741,9 +797,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.accentTeal,
   },
   secondaryAction: {
-    backgroundColor: colors.cardBackground,
-    borderWidth: 1.5,
-    borderColor: colors.accentTeal,
+    backgroundColor: colors.accentTeal,
   },
   quickActionHeaderText: {
     fontSize: 14,
@@ -752,9 +806,11 @@ const styles = StyleSheet.create({
   practiceHistorySectionContainer: {
     paddingHorizontal: horizontalPadding,
     marginBottom: 15,
-    backgroundColor: colors.backgroundLight,
-    paddingTop: 2,
+    backgroundColor: '#FFFFFF',
+    paddingTop: 16,
     paddingBottom: 16,
+    borderTopWidth: 1,
+    borderTopColor: colors.shadowColor,
   },
   practiceHistorySectionTitle: {
     fontSize: 20,
@@ -782,14 +838,18 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  emptySectionContainer: {
+  emptySectionContainer: { // This style is no longer used as a full container, replaced by emptySectionContent
     paddingHorizontal: 20,
     paddingVertical: 16,
-    marginVertical: 0,
-    marginBottom: 15,
-    backgroundColor: colors.cardBackground,
+    // marginVertical: 0, // Removed
+    // marginBottom: 15, // Removed
+    backgroundColor: '#FFFFFF', // Changed to white
     alignItems: 'center',
-    borderRadius: 12,
+    borderRadius: 12, // May not be needed if it's just a text wrapper now
+  },
+  emptySectionContent: { // New style for the content area within the always-visible sections
+    paddingVertical: 20, // Add some padding for the text
+    alignItems: 'center',
   },
   emptySectionText: {
     fontSize: 15,
