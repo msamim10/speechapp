@@ -273,7 +273,7 @@ function HomeScreen() {
           style={[styles.quickActionButton, styles.secondaryAction]}
           onPress={handleQuickPractice}
         >
-          <Ionicons name="flash" size={20} color={colors.accentTeal} />
+          {/* <Ionicons name="flash" size={20} color={colors.accentTeal} /> */}
           <Text style={[styles.quickActionHeaderText, { color: colors.accentTeal }]}>Quick Practice</Text>
         </TouchableOpacity>
       </View>
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 24,
+    paddingBottom: 0,
   },
   headerContainer: {
     paddingHorizontal: 20,

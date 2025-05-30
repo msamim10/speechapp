@@ -42,17 +42,17 @@ function WarmUpScreen() {
     // Audio setup
     const setupAudio = async () => {
       try {
-        await Audio.setAudioModeAsync({
-          allowsRecordingIOS: false,
-          playsInSilentModeIOS: true,
-          staysActiveInBackground: false,
-          shouldDuckAndroid: true,
-          playThroughEarpieceAndroid: false,
-        });
-        const { sound } = await Audio.Sound.createAsync(
-          require('./assets/sounds/racenoise.mp3') // Correct path to your sound
-        );
-        soundRef.current = sound;
+        // await Audio.setAudioModeAsync({
+        //   allowsRecordingIOS: false,
+        //   playsInSilentModeIOS: true,
+        //   staysActiveInBackground: false,
+        //   shouldDuckAndroid: true,
+        //   playThroughEarpieceAndroid: false,
+        // });
+        // const { sound } = await Audio.Sound.createAsync(
+        //   require('./assets/sounds/racenoise.mp3') // Correct path to your sound
+        // );
+        // soundRef.current = sound;
       } catch (error) {
         console.error('Failed to load sound', error);
       }
@@ -61,9 +61,9 @@ function WarmUpScreen() {
 
     return () => {
       // Unload sound when component unmounts
-      if (soundRef.current) {
-        soundRef.current.unloadAsync();
-      }
+      // if (soundRef.current) {
+      //   soundRef.current.unloadAsync();
+      // }
     };
   }, []);
 
@@ -77,15 +77,15 @@ function WarmUpScreen() {
       return () => clearTimeout(timer);
   }, [isPracticing, countdown]);
 
-  const playSound = async () => {
-    if (soundRef.current) {
-      try {
-        await soundRef.current.replayAsync(); // Use replayAsync to play from the beginning
-      } catch (error) {
-        console.error('Failed to play sound', error);
-      }
-    }
-  };
+  // const playSound = async () => {
+  //   if (soundRef.current) {
+  //     try {
+  //       await soundRef.current.replayAsync(); // Use replayAsync to play from the beginning
+  //     } catch (error) {
+  //       console.error('Failed to play sound', error);
+  //     }
+  //   }
+  // };
 
   const handleNewPrompt = () => {
     if (isPracticing) return; // Don't change prompt during countdown
@@ -94,15 +94,15 @@ function WarmUpScreen() {
 
   const handleStartPractice = () => {
     if (isPracticing) return;
-    playSound(); // Start sound immediately
+    // playSound(); // Start sound immediately
     setIsPracticing(true);
     setCountdown(4); // Reset countdown
   };
   
   const handleStopPractice = () => {
-    if (soundRef.current) {
-        soundRef.current.stopAsync();
-    }
+    // if (soundRef.current) {
+    //     soundRef.current.stopAsync();
+    // }
     setIsPracticing(false);
     setCountdown(4); // Reset countdown for next time
   };
@@ -116,8 +116,8 @@ function WarmUpScreen() {
         }} style={styles.backButton}>
         <Ionicons name="arrow-back" size={28} color={colors.primary} />
       </TouchableOpacity>
-        <Text style={styles.headerTitle}>Quick Practice</Text>
-        <View style={{ width: 28 }} />{/* Placeholder for spacing */}
+        {/* <Text style={styles.headerTitle}>Quick Practice</Text> */}
+        {/* <View style={{ width: 28 }} /> */}{/* Placeholder for spacing */}
       </View>
 
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -169,13 +169,11 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 15,
     paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.borderLight || '#E9ECEF',
-    backgroundColor: colors.white || 'white',
+    backgroundColor: 'transparent',
   },
   backButton: {
     padding: 5,

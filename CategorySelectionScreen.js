@@ -55,13 +55,13 @@ function CategorySelectionScreen() {
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <TouchableOpacity onPress={handleGoHome} style={styles.headerButtonLeft}>
         <Ionicons name="arrow-back-outline" size={28} color={colors.textPrimary} />
       </TouchableOpacity>
-        <Text style={styles.headerTitle}>Choose a Category</Text>
-        <View style={styles.headerButtonRight} />{/* Placeholder for balance */}
-      </View>
+        {/* <Text style={styles.headerTitle}>Choose a Category</Text> */}
+        {/* <View style={styles.headerButtonRight} /> */}{/* Placeholder for balance */}
+      {/* </View> */}
 
       {/* Daily update message removed from here */}
       {/* <Text style={styles.dailyUpdateText}>
@@ -111,14 +111,14 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start', // Changed from space-between
     alignItems: 'center',
     paddingHorizontal: 15,
     paddingTop: Platform.OS === 'ios' ? 10 : 20, // Adjusted padding for platform
     paddingBottom: 15, // Increased bottom padding
-    borderBottomWidth: 1,
-    borderBottomColor: colors.borderLight || '#E9ECEF',
-    backgroundColor: colors.white || 'white',
+    // borderBottomWidth: 1, // Removed border
+    // borderBottomColor: colors.borderLight || '#E9ECEF', // Removed border color
+    backgroundColor: 'transparent', // Made background transparent
   },
   headerButtonLeft: { // Specific style for left button
     padding: 5,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   scrollContentContainer: {
     paddingHorizontal: 16,
     paddingBottom: 10, // Reduced bottom padding
-    paddingTop: 20,
+    paddingTop: 10, // Changed from 20 to 10
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

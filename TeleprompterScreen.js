@@ -275,7 +275,7 @@ function TeleprompterScreen({ route, navigation }) {
 
       // Calculate remaining distance
       const remainingDistance = targetScrollY - currentScrollY;
-      const pixelsPerSecond = scrollSpeed * 50; // Adjust base speed (pixels/sec) if needed
+      const pixelsPerSecond = scrollSpeed * 35; // Changed from 50 to 35
       const duration = Math.max(
         (remainingDistance / pixelsPerSecond) * 1000,
         1
@@ -416,7 +416,7 @@ function TeleprompterScreen({ route, navigation }) {
 
       // Calculate remaining distance
       const remainingDistance = targetScrollY - fromPosition;
-      const pixelsPerSecond = scrollSpeed * 50; // Base speed (pixels/sec) - Adjust multiplier as needed
+      const pixelsPerSecond = scrollSpeed * 35; // Changed from 50 to 35
       const duration = Math.max(
         (remainingDistance / pixelsPerSecond) * 1000,
         1

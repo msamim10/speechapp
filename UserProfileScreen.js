@@ -205,20 +205,20 @@ function UserProfileScreen() {
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.headerButton}>
           <Ionicons name="arrow-back" size={28} color={colors.primary} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Profile</Text>
         <View style={styles.headerButton} />
-      </View>
+      </View> */}
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
-          <View style={styles.profileSection}>
+          {/* <View style={styles.profileSection}>
             <TouchableOpacity onPress={pickImage} style={styles.avatarTouchable}>
               <Image source={avatarSource} style={styles.avatar} />
               <View style={styles.avatarEditIconContainer}>
@@ -230,7 +230,7 @@ function UserProfileScreen() {
               <Ionicons name="log-out-outline" size={18} color={colors.textSecondary} style={styles.inlineLogoutIcon} />
               <Text style={styles.inlineLogoutButtonText}>Logout</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
 
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Edit Username</Text>
@@ -303,6 +303,12 @@ function UserProfileScreen() {
               )}
             </TouchableOpacity>
           </View>
+
+          {/* Updated Logout Button/Link */}
+          <TouchableOpacity onPress={handleLogoutCombined} style={styles.logoutLink}>
+            <Ionicons name="log-out-outline" size={20} color={'#FF3B30'} style={styles.logoutLinkIcon} />
+            <Text style={styles.logoutLinkText}>Logout</Text>
+          </TouchableOpacity>
 
         </ScrollView>
       </KeyboardAvoidingView>
@@ -466,14 +472,21 @@ const styles = StyleSheet.create({
   buttonIcon: {
     marginRight: 10,
   },
-  logoutButton: {
-    backgroundColor: colors.accentTeal,
-    marginBottom: 20,
+  logoutLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20, 
+    marginBottom: 10,
+    paddingVertical: 8,
   },
-  buttonText: {
+  logoutLinkIcon: {
+    marginRight: 6,
+  },
+  logoutLinkText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.textLight,
+    color: '#FF3B30',
   },
   infoRow: {
     flexDirection: 'row',
