@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, TextInput } from 'react-native';
 import { promptsData } from './data/prompts.js'; // Import the full data
 import colors from './constants/colors'; // Import colors
 import Ionicons from '@expo/vector-icons/Ionicons'; // Ensure Ionicons is imported
@@ -8,6 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 function PromptSelectionScreen({ route, navigation }) {
   // Get the category passed from HomeScreen
   const { category } = route.params;
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
 
   useFocusEffect(
     useCallback(() => {
@@ -20,9 +21,19 @@ function PromptSelectionScreen({ route, navigation }) {
   );
 
   // Determine which prompts to display
-  const displayPrompts = category === 'All' 
-    ? promptsData // Show all if category is 'All'
-    : promptsData.filter(prompt => prompt.category === category); // Otherwise, filter
+  const getFilteredPrompts = () => {
+    let prompts = category === 'All' 
+      ? promptsData.flat() // Show all if category is 'All' - flatten if promptsData is nested
+      : promptsData.filter(prompt => prompt.category === category); // Otherwise, filter by category
+
+    if (searchQuery.trim() !== '') {
+      prompts = prompts.filter(prompt => 
+        prompt.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    return prompts;
+  };
+  const displayPrompts = getFilteredPrompts();
 
   // Determine the header text
   const headerText = category === 'All' ? 'All Prompts' : `${category} Prompts`;
@@ -68,23 +79,32 @@ function PromptSelectionScreen({ route, navigation }) {
 
   return (
     <View style={styles.safeAreaContainer}>
-      {/* Back Button */}
-      <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
+      {/* Back Button - Commented out */}
+      {/* <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
         <Ionicons name="arrow-back" size={28} color={colors.primary} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {/* Existing Content - Wrapped in a container View for layout */}
       <View style={styles.contentContainer}>
-        {/* Random Prompt Button */}
-        {displayPrompts && displayPrompts.length > 0 && (
-          <TouchableOpacity 
-            style={styles.randomButton} 
-            onPress={handleRandomPromptSelect}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.randomButtonText}>Choose Random Prompt</Text>
-          </TouchableOpacity>
-        )}
+        {/* Random Prompt Button and Search Bar Container */}
+        <View style={styles.topControlsContainer}>
+          {displayPrompts && displayPrompts.length > 0 && (
+            <TouchableOpacity 
+              style={styles.randomButton} 
+              onPress={handleRandomPromptSelect}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.randomButtonText}>Random</Text>
+            </TouchableOpacity>
+          )}
+          <TextInput
+            style={styles.searchBar}
+            placeholder="Search prompts..."
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            placeholderTextColor={colors.textSubtle}
+          />
+        </View>
 
         {/* Prompt List */}
         <FlatList
@@ -116,7 +136,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     paddingHorizontal: 15,
-    paddingTop: 40,
+    paddingTop: 15,
   },
   listStyle: {
     flex: 1,
@@ -156,13 +176,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   randomButton: {
-    backgroundColor: colors.success,
+    backgroundColor: colors.accentTeal,
     paddingVertical: 12,
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
     borderRadius: 10,
     alignItems: 'center',
-    marginBottom: 20,
-    alignSelf: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -173,6 +191,23 @@ const styles = StyleSheet.create({
     color: colors.buttonText,
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  topControlsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    gap: 10,
+  },
+  searchBar: {
+    flex: 1,
+    height: 44,
+    backgroundColor: colors.cardBackground,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    color: colors.textPrimary,
+    borderWidth: 1,
+    borderColor: colors.shadowColor,
   },
 });
 

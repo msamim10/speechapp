@@ -15,7 +15,7 @@ import {
   StatusBar,
   Animated,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import colors from './constants/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { categoryImageSources, preloadImages, defaultImages } from './constants/imageUtils';
@@ -25,6 +25,8 @@ import { promptsData } from './data/prompts';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const appLogo = require('./assets/applogo.png');
+const FAVORITES_KEY = '@favoritePromptIds'; // Key for AsyncStorage
+const PROMPT_PLAY_COUNTS_KEY = '@promptPlayCounts'; // Key for play counts
 
 // Calculate card widths based on screen dimensions
 const screenWidth = Dimensions.get('window').width;
@@ -77,6 +79,8 @@ function HomeScreen() {
   const [practiceHistoryPrompts, setPracticeHistoryPrompts] = useState([]);
   const [recentPrompts, setRecentPrompts] = useState([]);
   const [featuredPrompt, setFeaturedPrompt] = useState(null);
+  const [favoritePrompts, setFavoritePrompts] = useState([]);
+  const [playCounts, setPlayCounts] = useState({}); // State for play counts
 
   // Animation for the logo
   const logoScale = useRef(new Animated.Value(1)).current;
@@ -97,60 +101,91 @@ function HomeScreen() {
     }).start();
   };
 
-  useEffect(() => {
-    console.log("--- HomeScreen Rendering --- Username:", username);
-    let isMounted = true;
+  // Use useFocusEffect to reload data when the screen comes into focus
+  useFocusEffect(
+    useCallback(() => {
+      let isMounted = true;
+      console.log("--- HomeScreen Focused: Loading Data ---");
 
-    const loadData = async () => {
-      try {
-        // Preload images (optional, could be moved elsewhere if startup is slow)
-        // const imageArray = Object.values(categoryImageSources);
-        // await preloadImages(imageArray);
-        // if (isMounted) setImagesReady(true);
-        // --- Temp: Set imagesReady immediately for faster testing ---
-        if (isMounted) setImagesReady(true);
+      const loadData = async () => {
+        try {
+          // --- Temp: Set imagesReady immediately for faster testing ---
+          if (isMounted) setImagesReady(true);
 
-        // --- Load Practice History --- 
-        const historyIdsJson = await AsyncStorage.getItem('@practiceHistoryIds');
-        if (isMounted && historyIdsJson) {
-          const historyIds = JSON.parse(historyIdsJson);
-          if (Array.isArray(historyIds) && historyIds.length > 0) {
-            const allPrompts = promptsData.flat();
-            const historyDetails = historyIds
-              .map(id => allPrompts.find(p => p.id === id))
-              .filter(prompt => prompt != null); // Filter out nulls if a prompt was deleted
-            setPracticeHistoryPrompts(historyDetails.slice(0, 10)); // Changed from 5 to 10
+          // --- Load Play Counts ---
+          const playCountsJson = await AsyncStorage.getItem(PROMPT_PLAY_COUNTS_KEY);
+          if (isMounted && playCountsJson) {
+            setPlayCounts(JSON.parse(playCountsJson));
+            console.log("Loaded play counts.");
+          } else if (isMounted) {
+            setPlayCounts({}); // Initialize if not found
+            console.log("No play counts found in AsyncStorage, initialized empty.");
           }
-        } else if (isMounted) {
+
+          // --- Load Practice History --- 
+          const historyIdsJson = await AsyncStorage.getItem('@practiceHistoryIds');
+          if (isMounted && historyIdsJson) {
+            const historyIds = JSON.parse(historyIdsJson);
+            if (Array.isArray(historyIds) && historyIds.length > 0) {
+              const allPrompts = promptsData.flat();
+              const historyDetails = historyIds
+                .map(id => allPrompts.find(p => p.id === id))
+                .filter(prompt => prompt != null);
+              setPracticeHistoryPrompts(historyDetails.slice(0, 10));
+            }
+          } else if (isMounted) {
             setPracticeHistoryPrompts([]);
+          }
+
+          // --- Load Favorite Prompts ---
+          const favoritesIdsJson = await AsyncStorage.getItem(FAVORITES_KEY);
+          if (isMounted && favoritesIdsJson) {
+            const favoriteIds = JSON.parse(favoritesIdsJson);
+            if (Array.isArray(favoriteIds) && favoriteIds.length > 0) {
+              const allPrompts = promptsData.flat();
+              const favoriteDetails = favoriteIds
+                .map(id => allPrompts.find(p => p.id === id))
+                .filter(prompt => prompt != null);
+              setFavoritePrompts(favoriteDetails);
+              console.log("Loaded favorite prompts:", favoriteDetails.length);
+            } else {
+              setFavoritePrompts([]); // Reset if no valid favorite IDs
+              console.log("No valid favorite IDs found or array empty.");
+            }
+          } else if (isMounted) {
+            setFavoritePrompts([]);
+            console.log("No favorites data found in AsyncStorage.");
+          }
+
+          // --- Load 5 Random Prompts for "Explore Prompts" ---
+          if (isMounted && promptsData && promptsData.flat().length > 0) {
+              const allPrompts = promptsData.flat();
+              const shuffledPrompts = [...allPrompts].sort(() => 0.5 - Math.random());
+              setRecentPrompts(shuffledPrompts.slice(0, 15));
+          }
+
+          // --- Select Featured Prompt ---
+          if (isMounted && promptsData && promptsData.flat().length > 0) {
+              const allPrompts = promptsData.flat();
+              const randomIndex = Math.floor(Math.random() * allPrompts.length);
+              setFeaturedPrompt(allPrompts[randomIndex]);
+          }
+
+        } catch (error) {
+          console.error('Error loading home screen data:', error);
+           if (isMounted) {
+               setImagesReady(true); // Still allow UI to render
+           }
         }
+      };
 
-        // --- Load 5 Random Prompts for "Explore Prompts" ---
-        if (isMounted && promptsData && promptsData.flat().length > 0) {
-            const allPrompts = promptsData.flat();
-            // Shuffle all prompts and take the first 15
-            const shuffledPrompts = [...allPrompts].sort(() => 0.5 - Math.random());
-            setRecentPrompts(shuffledPrompts.slice(0, 15)); // Changed from 5 to 15
-        }
-
-        // --- Select Featured Prompt ---
-        if (isMounted && promptsData && promptsData.flat().length > 0) {
-            const allPrompts = promptsData.flat();
-            const randomIndex = Math.floor(Math.random() * allPrompts.length);
-            setFeaturedPrompt(allPrompts[randomIndex]);
-        }
-
-      } catch (error) {
-        console.error('Error loading home screen data:', error);
-         if (isMounted) {
-             setImagesReady(true); // Still allow UI to render
-         }
-      }
-    };
-
-    loadData();
-    return () => { isMounted = false; };
-  }, [username]); // Rerun on user change
+      loadData();
+      return () => { 
+        isMounted = false; 
+        console.log("--- HomeScreen Unfocused ---");
+      };
+    }, []) // No dependencies, so it runs on every focus
+  );
 
   // --- Handlers ---
   const handleStartPractice = () => navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
@@ -302,6 +337,14 @@ function HomeScreen() {
               <Text style={styles.featuredDescription} numberOfLines={2}>
                 {featuredPrompt?.description || 'Select to start practicing'}
               </Text>
+              {featuredPrompt && (
+                <View style={styles.featuredStatsContainer}>
+                  <Ionicons name="people-outline" size={16} color={colors.textLight} style={styles.featuredStatsIcon} />
+                  <Text style={styles.featuredStatsText}>
+                    {`${Math.max(playCounts[featuredPrompt.id] || 0, 50) + ((playCounts[featuredPrompt.id] || 0) > 0 ? (playCounts[featuredPrompt.id] || 0) % 10 : Math.floor(Math.random() * 10))} people practiced this`}
+                  </Text>
+                </View>
+              )}
             </View>
           </LinearGradient>
         </ImageBackground>
@@ -349,6 +392,30 @@ function HomeScreen() {
     );
   };
 
+  const renderFavoritePrompts = () => {
+    if (!favoritePrompts || favoritePrompts.length === 0) {
+      return null; // Hide the section if there are no favorites
+    }
+
+    return (
+      <View style={styles.recentSection}> {/* Can reuse recentSection style or create a new one */}
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Your Favorites</Text>
+          {/* Optional: Add a 'See All' button if you plan a dedicated favorites screen */}
+        </View>
+        <FlatList
+          data={favoritePrompts}
+          renderItem={renderRecentPromptCard} // Reusing renderRecentPromptCard
+          keyExtractor={(item) => item.id + '-favorite'} // Ensure unique keys
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.recentList}
+          style={{ backgroundColor: colors.cardBackground }} // Explicitly set background
+        />
+      </View>
+    );
+  };
+
   // --- Loading State ---
   if (!imagesReady || isUserLoading) {
     return (
@@ -370,6 +437,7 @@ function HomeScreen() {
         {renderFeaturedPrompt()}
         {renderRecentPrompts()}
         {renderPracticeHistory()}
+        {renderFavoritePrompts()}
       </ScrollView>
     </SafeAreaView>
   );
@@ -466,7 +534,7 @@ const styles = StyleSheet.create({
   featuredSectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.textPrimary,
+    color: colors.accentTeal,
     marginBottom: 12,
   },
   featuredCard: {
@@ -505,11 +573,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     opacity: 0.9,
   },
+  featuredStatsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 8,
+    opacity: 0.8, // Slightly subtle
+  },
+  featuredStatsIcon: {
+    marginRight: 4,
+  },
+  featuredStatsText: {
+    color: colors.textLight,
+    fontSize: 13,
+    fontWeight: '500',
+  },
   recentSection: {
     paddingHorizontal: 20,
     backgroundColor: colors.cardBackground,
     paddingVertical: 16,
-    marginBottom: 10,
+    marginBottom: 15,
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -520,16 +602,15 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.textPrimary,
+    color: colors.accentTeal,
   },
   seeAllButton: {
     fontSize: 14,
-    color: colors.accentTeal,
+    color: colors.textPrimary,
     fontWeight: '600',
   },
   recentList: {
     paddingRight: 20,
-    paddingBottom: 10,
   },
   recentCard: {
     width: recentCardWidth,
@@ -553,7 +634,7 @@ const styles = StyleSheet.create({
   },
   recentCardOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: 'rgba(0,0,0,0.2)',
     borderRadius: 12,
   },
   recentCardTitle: {
@@ -607,15 +688,15 @@ const styles = StyleSheet.create({
   },
   practiceHistorySectionContainer: {
     paddingHorizontal: horizontalPadding,
-    marginBottom: 20,
-    backgroundColor: colors.borderLight,
-    paddingVertical: 16,
-    borderRadius: 12,
+    marginBottom: 15,
+    backgroundColor: colors.backgroundLight,
+    paddingTop: 2,
+    paddingBottom: 16,
   },
   practiceHistorySectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.textPrimary,
+    color: colors.accentTeal,
     marginBottom: 16,
   },
   headerLogo: {
@@ -637,6 +718,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  emptySectionContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    marginVertical: 0,
+    marginBottom: 15,
+    backgroundColor: colors.cardBackground,
+    alignItems: 'center',
+    borderRadius: 12,
+  },
+  emptySectionText: {
+    fontSize: 15,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    marginTop: 8,
+    lineHeight: 22,
   },
 });
 

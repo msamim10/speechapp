@@ -275,8 +275,8 @@ function UserProfileScreen() {
           </View>
 
           <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Help & Feedback</Text>
-            <Text style={styles.subtleText}>Have a question, found a bug, or have a suggestion? Let us know!</Text>
+            <Text style={styles.sectionTitle}>Support</Text>
+            <Text style={styles.subtleText}>If you have a question or a suggestion let us know</Text>
             <TextInput
               style={styles.feedbackInput}
               value={feedbackText}
@@ -472,6 +472,11 @@ const styles = StyleSheet.create({
   buttonIcon: {
     marginRight: 10,
   },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.textLight,
+  },
   logoutLink: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -525,7 +530,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   submitFeedbackButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.accentTeal,
   },
   disabledButton: {
     opacity: 0.7,

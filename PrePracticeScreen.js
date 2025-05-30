@@ -4,8 +4,10 @@ import { View, Text, StyleSheet, SafeAreaView, ActivityIndicator, TouchableOpaci
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import colors from './constants/colors'; // Assuming you have this
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 
 const COUNTDOWN_SECONDS = 5;
+const FAVORITES_KEY = '@favoritePromptIds'; // Key for AsyncStorage
 
 function PrePracticeScreen() {
   const navigation = useNavigation();
@@ -14,6 +16,52 @@ function PrePracticeScreen() {
 
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
   const timerRef = useRef(null);
+  const [isFavorited, setIsFavorited] = useState(false); // State for favorite status
+
+  // Load initial favorite status
+  useEffect(() => {
+    if (selectedPrompt?.id) {
+      const checkIfFavorited = async () => {
+        try {
+          const storedFavorites = await AsyncStorage.getItem(FAVORITES_KEY);
+          if (storedFavorites !== null) {
+            const favoriteIds = JSON.parse(storedFavorites);
+            setIsFavorited(favoriteIds.includes(selectedPrompt.id));
+          }
+        } catch (e) {
+          console.error("Failed to load favorite status.", e);
+        }
+      };
+      checkIfFavorited();
+    }
+  }, [selectedPrompt?.id]);
+
+  const handleToggleFavorite = async () => {
+    if (!selectedPrompt?.id) return;
+
+    const newFavoritedStatus = !isFavorited;
+    setIsFavorited(newFavoritedStatus);
+
+    try {
+      const storedFavorites = await AsyncStorage.getItem(FAVORITES_KEY);
+      let favoriteIds = storedFavorites ? JSON.parse(storedFavorites) : [];
+
+      if (newFavoritedStatus) {
+        // Add to favorites if not already there
+        if (!favoriteIds.includes(selectedPrompt.id)) {
+          favoriteIds.push(selectedPrompt.id);
+        }
+      } else {
+        // Remove from favorites
+        favoriteIds = favoriteIds.filter(id => id !== selectedPrompt.id);
+      }
+      await AsyncStorage.setItem(FAVORITES_KEY, JSON.stringify(favoriteIds));
+    } catch (e) {
+      console.error("Failed to update favorite status.", e);
+      // Optionally revert UI state if storage fails
+      setIsFavorited(!newFavoritedStatus);
+    }
+  };
 
   const handleGoHome = () => {
     clearInterval(timerRef.current); // Stop the countdown if active
@@ -101,6 +149,9 @@ function PrePracticeScreen() {
     <SafeAreaView style={styles.safeArea}>
       <TouchableOpacity onPress={handleGoHome} style={styles.homeButton}>
         <Ionicons name="home-outline" size={28} color={colors.primaryDark} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleToggleFavorite} style={styles.favoriteButton}>
+        <Ionicons name={isFavorited ? "star" : "star-outline"} size={28} color={colors.playfulYellow} />
       </TouchableOpacity>
       <View style={styles.container}>
         <Text style={styles.title}>Get Ready!</Text>
@@ -240,6 +291,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 55,
     left: 20,
+    zIndex: 10,
+    padding: 10,
+  },
+  favoriteButton: {
+    position: 'absolute',
+    top: 55,
+    right: 20,
     zIndex: 10,
     padding: 10,
   },
