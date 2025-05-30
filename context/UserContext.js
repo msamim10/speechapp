@@ -4,7 +4,7 @@ import { Platform, Alert } from 'react-native';
 import { auth, db } from '../firebase';
 import { onAuthStateChanged, signOut as firebaseSignOut, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { doc, updateDoc, serverTimestamp, setDoc, getDoc } from 'firebase/firestore';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 // Storage Keys
 const USERNAME_KEY = '@userProfile_username';
@@ -119,46 +119,75 @@ export const UserProvider = ({ children }) => {
         const userData = userDocSnap.data();
         console.log(" Firestore user data:", userData);
         displayNameFromStore = userData.displayName;
+
+        // Prioritize Firestore for points and streak
+        const firestorePoints = userData.points !== undefined ? Number(userData.points) : 0;
+        const firestoreStreak = userData.currentStreak !== undefined ? Number(userData.currentStreak) : 0;
+        const firestoreLastPracticed = userData.lastPracticedTimestamp || null; // Assuming it's stored as a non-Date object or null
+        const firestoreAvatarUri = userData.photoURL || null;
+
+        setPoints(firestorePoints);
+        setCurrentStreak(firestoreStreak);
+        if (firestoreLastPracticed) {
+            // If it's a Firestore Timestamp object, convert to JS Date then getTime()
+            // For simplicity, assuming it's already a number or null for now.
+            // If it's Firestore serverTimestamp, it might need conversion upon read.
+            // For now, if it's a direct timestamp number or null:
+            setLastPracticedTimestamp(typeof firestoreLastPracticed === 'number' ? firestoreLastPracticed : (firestoreLastPracticed?.toDate ? firestoreLastPracticed.toDate().getTime() : null) );
+        }
+        setAvatarUri(firestoreAvatarUri);
+
+        // Update AsyncStorage with Firestore data
+        await AsyncStorage.setItem(POINTS_KEY, firestorePoints.toString());
+        await AsyncStorage.setItem(STREAK_KEY, firestoreStreak.toString());
+        if (firestoreLastPracticed) {
+            const practiceTimestampToStore = typeof firestoreLastPracticed === 'number' ? firestoreLastPracticed : (firestoreLastPracticed?.toDate ? firestoreLastPracticed.toDate().getTime() : null);
+            if (practiceTimestampToStore) {
+                await AsyncStorage.setItem(LAST_PRACTICED_KEY, practiceTimestampToStore.toString());
+            }
+        }
+        if (firestoreAvatarUri) {
+            await AsyncStorage.setItem(AVATAR_URI_KEY, firestoreAvatarUri);
+        }
+
         if (displayNameFromStore) {
           finalUsername = getFirstName(displayNameFromStore);
-        } else if (firebaseUser.email) { // Fallback to email prefix if displayName is missing
+        } else if (firebaseUser.email) {
           finalUsername = getFirstName(firebaseUser.email.split('@')[0]);
         }
-        // Persist the determined username to AsyncStorage
         await AsyncStorage.setItem(USERNAME_KEY, finalUsername);
       } else {
-        console.log(" User document does not exist in Firestore. Will use default/email-based name.");
-        // If no Firestore doc, try to construct a name from Firebase Auth user email if available
-        if (firebaseUser.email) {
-          finalUsername = getFirstName(firebaseUser.email.split('@')[0]);
-          await AsyncStorage.setItem(USERNAME_KEY, finalUsername); // Save it
-        } else {
-          await AsyncStorage.setItem(USERNAME_KEY, DEFAULT_USERNAME); // Save default
-        }
+        console.log(" User document does not exist in Firestore. Initializing defaults and new user setup.");
+        finalUsername = firebaseUser.email ? getFirstName(firebaseUser.email.split('@')[0]) : DEFAULT_USERNAME;
+        // For a truly new user (no Firestore doc), ensure defaults are set in context & AsyncStorage
+        setPoints(0);
+        setCurrentStreak(0);
+        setLastPracticedTimestamp(null);
+        setAvatarUri(null);
+        setUsername(finalUsername);
+
+        await AsyncStorage.setItem(USERNAME_KEY, finalUsername);
+        await AsyncStorage.setItem(POINTS_KEY, '0');
+        await AsyncStorage.setItem(STREAK_KEY, '0');
+        await AsyncStorage.removeItem(LAST_PRACTICED_KEY);
+        await AsyncStorage.removeItem(AVATAR_URI_KEY);
+        
+        // Also, create the document in Firestore if it was missing (e.g. for Google Sign-In new user)
+        // This part was in googleSignInHandler, should be consolidated or ensured for all new users
+        // For now, relying on SignUpScreen to create it. If Google user is new and doc is missing,
+        // this path will be taken, and they'll have local defaults until a write happens.
       }
-      setUsername(finalUsername);
+      setUsername(finalUsername); // Set username after all checks
 
-      // Load other data from AsyncStorage as before
-      const storedAvatarUri = await AsyncStorage.getItem(AVATAR_URI_KEY);
-      const storedLastPracticed = await AsyncStorage.getItem(LAST_PRACTICED_KEY);
-      const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
-      const storedPoints = await AsyncStorage.getItem(POINTS_KEY);
+      // Fallback for data not directly from Firestore (if needed, but trying to avoid)
+      // const storedAvatarUri = await AsyncStorage.getItem(AVATAR_URI_KEY);
+      // const storedLastPracticed = await AsyncStorage.getItem(LAST_PRACTICED_KEY);
+      // const storedStreak = await AsyncStorage.getItem(STREAK_KEY);
+      // const storedPoints = await AsyncStorage.getItem(POINTS_KEY);
+      // setAvatarUri(storedAvatarUri);
+      // setPoints(storedPoints ? parseInt(storedPoints, 10) : 0);
+      // ... streak logic based on storedLastPracticed ...
 
-      setAvatarUri(storedAvatarUri);
-      setPoints(storedPoints ? parseInt(storedPoints, 10) : 0);
-
-      if (storedLastPracticed) {
-        const lastPracticedDate = new Date(parseInt(storedLastPracticed, 10));
-        const savedStreak = storedStreak ? parseInt(storedStreak, 10) : 0;
-        let initialStreak = 0;
-
-        const now = new Date();
-        if (isSameDay(lastPracticedDate, now) || isYesterday(lastPracticedDate, now)) {
-          initialStreak = savedStreak;
-        }
-        setLastPracticedTimestamp(lastPracticedDate.getTime());
-        setCurrentStreak(initialStreak);
-      }
     } catch (e) {
       console.error("❌ UserContext: Failed to load user data from Firestore/AsyncStorage:", e);
       // Fallback to defaults in case of error, potentially also clear USERNAME_KEY
@@ -299,34 +328,32 @@ export const UserProvider = ({ children }) => {
       const googleResponse = await GoogleSignin.signIn();
       console.log("UserContext: Raw googleResponse from GoogleSignin.signIn():", JSON.stringify(googleResponse, null, 2));
 
-      // Correctly destructure from googleResponse.data
       const { idToken, user: googleUserInfo } = googleResponse?.data || {}; 
 
       if (!idToken) {
         console.error("UserContext: idToken is missing from Google response. Full response was:", JSON.stringify(googleResponse, null, 2));
+        // This error will be caught by the catch block below
         throw new Error('Google Sign-In failed: No ID token received from response.data.');
       }
 
       let finalName = userNameFromInput;
       if (!finalName && googleUserInfo?.name) {
-        finalName = googleUserInfo.name.split(' ')[0]; // Use first name from Google
+        finalName = googleUserInfo.name.split(' ')[0];
       } else if (!finalName) {
-        finalName = DEFAULT_USERNAME; // Fallback name
+        finalName = DEFAULT_USERNAME;
       }
 
-      // Create Firebase credential
       const googleCredential = GoogleAuthProvider.credential(idToken);
       const userCredential = await signInWithCredential(auth, googleCredential);
       const firebaseUser = userCredential.user;
 
-      // Save/Update user data in Firestore
       if (firebaseUser) {
         const userDocRef = doc(db, 'users', firebaseUser.uid);
         const userDocSnap = await getDoc(userDocRef);
         const userDataToSet = {
           uid: firebaseUser.uid,
           email: firebaseUser.email,
-          displayName: finalName, // This is the full name from Google or input
+          displayName: finalName, 
           photoURL: googleUserInfo?.photo || firebaseUser.photoURL || null,
           lastLoginAt: serverTimestamp(),
           isActive: true,
@@ -336,25 +363,29 @@ export const UserProvider = ({ children }) => {
           console.log("UserContext: Google Sign-In - Firestore document updated for UID:", firebaseUser.uid);
         } else {
           userDataToSet.createdAt = serverTimestamp();
+          // Initialize points and streak for new Google users
+          userDataToSet.points = 0;
+          userDataToSet.currentStreak = 0;
           await setDoc(userDocRef, userDataToSet);
           console.log("UserContext: Google Sign-In - New Firestore document created for UID:", firebaseUser.uid);
         }
-        // The onAuthStateChanged listener will call loadUserDataFromFirestore, 
-        // which will parse and set the first name for the greeting.
       }
-
-      // The username state (for greeting) will be updated by onAuthStateChanged -> loadUserDataFromFirestore
-      // No need to call updateUsernameInContextAndStorage here directly, as it will be handled.
-
     } catch (error) {
       console.error("UserContext: Google Sign-In or Firestore error:", error);
-      if (error.code === 'USER_CANCELED') {
-        // Don't show alert here, let calling screen handle UI for cancellation
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log("UserContext: Google Sign-In was cancelled by the user (via status code).");
+        // Do not re-throw or show alert for user cancellation
+      } else if (error.message === 'Google Sign-In failed: No ID token received from response.data.') {
+        console.log("UserContext: Google Sign-In resulted in no ID token, likely due to user cancellation. No alert shown.");
+        // Do not re-throw or show alert for this specific message if it implies cancellation
       } else if (error.message && error.message.includes('NETWORK_ERROR')) {
         Alert.alert('Network Error', 'Please check your internet connection and try again.');
+        throw error; // Re-throw network errors so UI can update (e.g. stop loading)
+      } else {
+        // For other genuine errors, re-throw so the calling screen can handle them (e.g. stop loading state)
+        // The calling screen would be responsible for any alerts for these *other* errors.
+        throw error; 
       }
-      // Re-throw for the calling screen to handle specific UI updates (e.g., stop loading indicator)
-      throw error; 
     }
   }, []);
 

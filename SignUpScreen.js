@@ -66,6 +66,8 @@ function SignUpScreen({ navigation, route }) {
           photoURL: null, // Or a default avatar URL
           createdAt: serverTimestamp(),
           lastLoginAt: serverTimestamp(),
+          points: 0, // Initialize points
+          currentStreak: 0, // Initialize streak
           // Add any other default fields you want for a new user
         });
         console.log("User account created & Firestore document saved!");

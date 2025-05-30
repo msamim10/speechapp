@@ -7,7 +7,8 @@ import {
     Platform,
     SafeAreaView,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../constants/colors';
@@ -19,16 +20,19 @@ const onboardingSlidesContent = [
         key: '1',
         title: 'Master Your Message',
         subtitle: 'Confidently deliver impactful speeches and presentations.',
+        image: require('../assets/first.png')
     },
     {
         key: '2',
         title: 'Practice Anytime, Anywhere',
         subtitle: 'Access a library of prompts or create your own.',
+        image: null
     },
     {
         key: '3',
         title: 'Track Your Progress',
         subtitle: 'Build streaks and see your improvement over time.',
+        image: null
     },
 ];
 
@@ -55,6 +59,9 @@ const OnboardingFlowScreen = () => {
 
     const renderSlide = ({ item }) => (
         <View style={styles.slideContainer}>
+            {item.image && (
+                <Image source={item.image} style={styles.slideImage} resizeMode="contain" />
+            )}
             <View style={styles.slideContent}>
                 <Text style={styles.titleText}>{item.title}</Text>
                 <Text style={styles.subtitleText}>{item.subtitle}</Text>
@@ -125,6 +132,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20,
+    },
+    slideImage: {
+        width: screenWidth * 0.8,
+        height: screenHeight * 0.4,
+        marginBottom: 20,
     },
     slideContent: {
         alignItems: 'center',
