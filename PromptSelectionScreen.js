@@ -79,15 +79,13 @@ function PromptSelectionScreen({ route, navigation }) {
 
   return (
     <View style={styles.safeAreaContainer}>
-      {/* Back Button - Commented out */}
-      {/* <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-        <Ionicons name="arrow-back" size={28} color={colors.primary} />
-      </TouchableOpacity> */}
-
       {/* Existing Content - Wrapped in a container View for layout */}
       <View style={styles.contentContainer}>
-        {/* Random Prompt Button and Search Bar Container */}
+        {/* Random Prompt Button and Search Bar Container */}      
         <View style={styles.topControlsContainer}>
+          {/* <TouchableOpacity onPress={handleGoBack} style={styles.backButtonInRow}>
+            <Ionicons name="arrow-back" size={28} color={colors.primary} />
+          </TouchableOpacity> */}
           {displayPrompts && displayPrompts.length > 0 && (
             <TouchableOpacity 
               style={styles.randomButton} 
@@ -123,20 +121,24 @@ function PromptSelectionScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1, 
-    paddingTop: 50,
+    paddingTop: 50, // This might need adjustment now that arrow is in flow
     backgroundColor: colors.background,
   },
-  backButton: {
-    position: 'absolute',
-    top: 55,
-    left: 15, 
-    zIndex: 10,
-    padding: 5,
+  backButton: { // This style is no longer used for the in-flow button
+    // position: 'absolute',
+    // top: 55,
+    // left: 15, 
+    // zIndex: 10,
+    // padding: 5,
+  },
+  backButtonInRow: { // New style for the in-flow back button
+    padding: 5, // Keep some touch area
+    marginRight: 5, // Space before random button
   },
   contentContainer: {
     flex: 1,
     paddingHorizontal: 15,
-    paddingTop: 15,
+    paddingTop: 15, // Adjusted from 50, as arrow is now in flow
   },
   listStyle: {
     flex: 1,
