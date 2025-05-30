@@ -11,6 +11,7 @@ import { categoryImageSources, defaultImages, preloadImages } from './constants/
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { UserProvider } from './context/UserContext';
+import { initRevenueCat } from './RevenueCatService';
 
 import WelcomeScreen from './WelcomeScreen'; 
 import HomeScreen from './HomeScreen'; 
@@ -94,7 +95,27 @@ function MainTabs() {
       })}
     >
       <Tab.Screen name="HomeTab" component={HomeScreen} />
-      <Tab.Screen name="PracticeTab" component={PracticeStack} />
+      <Tab.Screen 
+        name="PracticeTab" 
+        component={PracticeStack} 
+        listeners={({ navigation, route }) => ({
+          tabPress: e => {
+            // Prevent default behavior
+            e.preventDefault();
+            // Always reset to CategorySelection
+            navigation.reset({
+              index: 0,
+              routes: [
+                { name: 'PracticeTab', state: {
+                  routes: [
+                    { name: 'CategorySelection' }
+                  ]
+                }}
+              ]
+            });
+          },
+        })}
+      />
       <Tab.Screen name="ProfileTab" component={ProfileStack} />
     </Tab.Navigator>
   );
@@ -138,6 +159,10 @@ function AuthStack() {
 }
 
 function App() {
+  // Initialize RevenueCat when app starts
+  useEffect(() => {
+    initRevenueCat();
+  }, []);
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null); 
 

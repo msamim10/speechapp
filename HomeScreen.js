@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   View,
   Text,
@@ -23,13 +23,15 @@ import { useUser } from './context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { promptsData } from './data/prompts';
 import { LinearGradient } from 'expo-linear-gradient';
+import { checkActiveSubscription } from "./RevenueCatService";
+import RevenueCatUI from "react-native-purchases-ui";
 
 const appLogo = require('./assets/applogo.png');
 const FAVORITES_KEY = '@favoritePromptIds'; // Key for AsyncStorage
 const PROMPT_PLAY_COUNTS_KEY = '@promptPlayCounts'; // Key for play counts
 
 // Calculate card widths based on screen dimensions
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get("window").width;
 const horizontalPadding = 20; // Consistent padding for sections
 const featuredCardWidth = screenWidth - horizontalPadding * 2;
 const recentCardWidth = screenWidth * 0.48; // Increased from 0.4
@@ -42,13 +44,15 @@ const RecentPromptDisplayCard = React.memo(({ item, onSelectPrompt }) => (
     activeOpacity={0.8}
   >
     <ImageBackground
-        source={item.image || defaultImages.promptBackground}
-        style={styles.recentCardBackground}
-        imageStyle={styles.recentCardImageStyle}
-        resizeMode="cover"
-     >
+      source={item.image || defaultImages.promptBackground}
+      style={styles.recentCardBackground}
+      imageStyle={styles.recentCardImageStyle}
+      resizeMode="cover"
+    >
       <View style={styles.recentCardOverlay} />
-      <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
+      <Text style={styles.recentCardTitle} numberOfLines={2}>
+        {item.title}
+      </Text>
     </ImageBackground>
   </TouchableOpacity>
 ));
@@ -61,20 +65,27 @@ const PracticeHistoryDisplayCard = React.memo(({ item, onSelectPrompt }) => (
     activeOpacity={0.8}
   >
     <ImageBackground
-        source={item.image || defaultImages.promptBackground}
-        style={styles.recentCardBackground}
-        imageStyle={styles.recentCardImageStyle}
-        resizeMode="cover"
-     >
+      source={item.image || defaultImages.promptBackground}
+      style={styles.recentCardBackground}
+      imageStyle={styles.recentCardImageStyle}
+      resizeMode="cover"
+    >
       <View style={styles.recentCardOverlay} />
-      <Text style={styles.recentCardTitle} numberOfLines={2}>{item.title}</Text>
+      <Text style={styles.recentCardTitle} numberOfLines={2}>
+        {item.title}
+      </Text>
     </ImageBackground>
   </TouchableOpacity>
 ));
 
 function HomeScreen() {
   const navigation = useNavigation();
-  const { username, currentStreak, isLoading: isUserLoading, points } = useUser();
+  const {
+    username,
+    currentStreak,
+    isLoading: isUserLoading,
+    points,
+  } = useUser();
   const [imagesReady, setImagesReady] = useState(false);
   const [practiceHistoryPrompts, setPracticeHistoryPrompts] = useState([]);
   const [recentPrompts, setRecentPrompts] = useState([]);
@@ -188,7 +199,14 @@ function HomeScreen() {
   );
 
   // --- Handlers ---
-  const handleStartPractice = () => navigation.navigate('PracticeTab', { screen: 'CategorySelection' });
+  const handleStartPractice = async () => {
+    try {
+      navigation.navigate("PracticeTab", { screen: "CategorySelection" });
+    } catch (e) {
+      console.log("error ", e);
+      Alert.alert("Error", "Unable to check subscription status.");
+    }
+  };
 
   // <<< Implement Quick Practice Navigation >>>
   const handleQuickPractice = () => {
@@ -198,81 +216,115 @@ function HomeScreen() {
       "Speak clearly and confidently, maintaining good pace and projection. " +
       "Public speaking is a skill that improves with consistent practice. " +
       "Focus on your breathing, posture, and articulation as you read these sentences.";
-    
+
     // Navigate to WarmUp screen (assuming it exists and takes warmUpText param)
     // If WarmUpScreen doesn't exist, this navigation will fail.
-    navigation.navigate('WarmUp', { 
-      warmUpText: quickText
+    navigation.navigate("WarmUp", {
+      warmUpText: quickText,
     });
   };
 
-  const handleGoToProfile = () => navigation.navigate('ProfileTab', { screen: 'UserProfile' });
+  const handleGoToProfile = () =>
+    navigation.navigate("ProfileTab", { screen: "UserProfile" });
 
   // <<< Implement Select Recent/Featured Prompt Navigation >>>
-  const handleSelectRecentPrompt = useCallback((prompt) => {
-    if (!prompt || !prompt.id || !prompt.category) {
-        console.error('Invalid prompt data for navigation:', prompt);
+  const handleSelectRecentPrompt = useCallback(
+    (prompt) => {
+      if (!prompt || !prompt.id || !prompt.category) {
+        console.error("Invalid prompt data for navigation:", prompt);
         Alert.alert("Error", "Could not load this prompt. Please try again.");
         return;
-    }
-    
-    const promptsInCategory = promptsData.flat().filter(p => p.category === prompt.category);
-    if (!promptsInCategory || promptsInCategory.length === 0) {
-        console.error('Could not find category prompts for selected prompt:', prompt.id, 'category:', prompt.category);
-        Alert.alert("Error", "Could not find related prompts in this category.");
-        return;
-    }
-
-    console.log(`Navigating to PrePractice screen for prompt: ${prompt.id} (${prompt.title}) in category: ${prompt.category}`);
-    navigation.navigate('PracticeTab', {
-        screen: 'PrePractice', // Navigate to PrePractice first
-        params: {
-            selectedPrompt: prompt, // Pass the whole prompt object
-            categoryPrompts: promptsInCategory
-        }
-    });
-  }, [navigation]);
-  
-  // Featured prompt uses the same logic as selecting a recent one
-  const handleSelectFeaturedPrompt = () => { 
-      if (featuredPrompt) {
-        handleSelectRecentPrompt(featuredPrompt);
-      } else {
-          Alert.alert("Error", "No featured prompt loaded.");
       }
-  }; 
+
+      const promptsInCategory = promptsData
+        .flat()
+        .filter((p) => p.category === prompt.category);
+      if (!promptsInCategory || promptsInCategory.length === 0) {
+        console.error(
+          "Could not find category prompts for selected prompt:",
+          prompt.id,
+          "category:",
+          prompt.category
+        );
+        Alert.alert(
+          "Error",
+          "Could not find related prompts in this category."
+        );
+        return;
+      }
+
+      console.log(
+        `Navigating to PrePractice screen for prompt: ${prompt.id} (${prompt.title}) in category: ${prompt.category}`
+      );
+      navigation.navigate("PracticeTab", {
+        screen: "PrePractice", // Navigate to PrePractice first
+        params: {
+          selectedPrompt: prompt, // Pass the whole prompt object
+          categoryPrompts: promptsInCategory,
+        },
+      });
+    },
+    [navigation]
+  );
+
+  // Featured prompt uses the same logic as selecting a recent one
+  const handleSelectFeaturedPrompt = () => {
+    if (featuredPrompt) {
+      handleSelectRecentPrompt(featuredPrompt);
+    } else {
+      Alert.alert("Error", "No featured prompt loaded.");
+    }
+  };
 
   // <<< Define renderHistoryItem at the top level of the component >>>
-  const renderHistoryItem = useCallback(({ item }) => (
-    <PracticeHistoryDisplayCard item={item} onSelectPrompt={handleSelectRecentPrompt} />
-  ), [handleSelectRecentPrompt]);
+  const renderHistoryItem = useCallback(
+    ({ item }) => (
+      <PracticeHistoryDisplayCard
+        item={item}
+        onSelectPrompt={handleSelectRecentPrompt}
+      />
+    ),
+    [handleSelectRecentPrompt]
+  );
 
   // --- Render Functions ---
 
   // <<< Component to render each recent prompt card >>>
-  const renderRecentPromptCard = useCallback(({ item }) => (
-    <RecentPromptDisplayCard item={item} onSelectPrompt={handleSelectRecentPrompt} />
-  ), [handleSelectRecentPrompt]);
+  const renderRecentPromptCard = useCallback(
+    ({ item }) => (
+      <RecentPromptDisplayCard
+        item={item}
+        onSelectPrompt={handleSelectRecentPrompt}
+      />
+    ),
+    [handleSelectRecentPrompt]
+  );
 
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <View style={styles.headerTopRow}>
-        <View style={styles.greetingAndStreakContainer}> 
-          <Text style={styles.greetingText}>Hello, {username || 'Guest'}!</Text>
+        <View style={styles.greetingAndStreakContainer}>
+          <Text style={styles.greetingText}>Hello, {username || "Guest"}!</Text>
           {/* Gamification Row: Streak and Points */}
           <View style={styles.gamificationRow}>
             <View style={styles.streakContainer}>
-              <Ionicons name="flame" size={20} color={colors.playfulYellow} /> 
-              <Text style={styles.streakText}>{currentStreak || 0} Day Streak</Text>
+              <Ionicons name="flame" size={20} color={colors.playfulYellow} />
+              <Text style={styles.streakText}>
+                {currentStreak || 0} Day Streak
+              </Text>
             </View>
             <View style={styles.headerStatItem}>
-              <Ionicons name="star-outline" size={20} color={colors.accentTeal} />
+              <Ionicons
+                name="star-outline"
+                size={20}
+                color={colors.accentTeal}
+              />
               <Text style={styles.headerStatText}>Points: {points}</Text>
             </View>
           </View>
           <Text style={styles.subGreetingText}>Ready to practice?</Text>
         </View>
-        <TouchableOpacity 
+        <TouchableOpacity
           activeOpacity={0.9} // To make the press feel responsive
           onPressIn={handleLogoPressIn}
           onPressOut={handleLogoPressOut}
@@ -302,7 +354,11 @@ function HomeScreen() {
           onPress={handleStartPractice}
         >
           <Ionicons name="mic" size={20} color={colors.textLight} />
-          <Text style={[styles.quickActionHeaderText, {color: colors.textLight}]}>Start Practice</Text>
+          <Text
+            style={[styles.quickActionHeaderText, { color: colors.textLight }]}
+          >
+            Start Practice
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.quickActionButton, styles.secondaryAction]}
@@ -316,7 +372,7 @@ function HomeScreen() {
   );
 
   const renderFeaturedPrompt = () => (
-    <View style={styles.featuredSectionContainer}> 
+    <View style={styles.featuredSectionContainer}>
       <Text style={styles.featuredSectionTitle}>Featured Practice</Text>
       <TouchableOpacity
         style={styles.featuredCard}
@@ -329,13 +385,15 @@ function HomeScreen() {
           imageStyle={styles.featuredCardImageStyle}
         >
           <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.8)']}
+            colors={["transparent", "rgba(0,0,0,0.8)"]}
             style={styles.featuredGradient}
           >
             <View style={styles.featuredContent}>
-              <Text style={styles.featuredTitle}>{featuredPrompt?.title || 'Loading...'}</Text>
+              <Text style={styles.featuredTitle}>
+                {featuredPrompt?.title || "Loading..."}
+              </Text>
               <Text style={styles.featuredDescription} numberOfLines={2}>
-                {featuredPrompt?.description || 'Select to start practicing'}
+                {featuredPrompt?.description || "Select to start practicing"}
               </Text>
               {featuredPrompt && (
                 <View style={styles.featuredStatsContainer}>
@@ -379,11 +437,13 @@ function HomeScreen() {
 
     return (
       <View style={styles.practiceHistorySectionContainer}>
-        <Text style={styles.practiceHistorySectionTitle}>Resume Last Practice</Text>
+        <Text style={styles.practiceHistorySectionTitle}>
+          Resume Last Practice
+        </Text>
         <FlatList
           data={practiceHistoryPrompts}
           renderItem={renderHistoryItem} // <<< Use memoized render function
-          keyExtractor={(item) => item.id + '-history'} // Ensure unique keys
+          keyExtractor={(item) => item.id + "-history"} // Ensure unique keys
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.recentList} // Reuse recentList style for padding
@@ -420,7 +480,9 @@ function HomeScreen() {
   if (!imagesReady || isUserLoading) {
     return (
       <SafeAreaView style={styles.safeArea}>
-        <View style={styles.loadingContainer}><Text style={styles.loadingText}>Loading...</Text></View>
+        <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -428,6 +490,7 @@ function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
+
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -457,23 +520,23 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'ios' ? 20 : 25,
+    paddingTop: Platform.OS === "ios" ? 20 : 25,
     paddingBottom: 25,
     backgroundColor: colors.cardBackground,
     borderBottomWidth: 1,
     borderBottomColor: colors.shadowColor,
   },
   headerTopRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    width: "100%",
     marginBottom: 20,
   },
   gamificationRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
     marginBottom: 6,
   },
   greetingAndStreakContainer: {
@@ -482,39 +545,39 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     fontSize: 24,
-    fontWeight: '700',
+    fontWeight: "700",
     color: colors.textPrimary,
     marginBottom: 8,
   },
   streakContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: colors.playfulLime,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 20,
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     marginBottom: 10,
   },
   headerStatItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginLeft: 10,
     backgroundColor: colors.playfulLime,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 20,
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
   },
   headerStatText: {
     fontSize: 15,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.primaryDark,
     marginLeft: 6,
   },
   streakText: {
     fontSize: 15,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.primaryDark,
     marginLeft: 6,
   },
@@ -540,7 +603,7 @@ const styles = StyleSheet.create({
   featuredCard: {
     height: 350,
     borderRadius: 16,
-    overflow: 'hidden',
+    overflow: "hidden",
     backgroundColor: colors.cardBackground,
     elevation: 4,
     shadowColor: colors.shadowColor,
@@ -549,15 +612,15 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
   },
   featuredCardBackground: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   featuredCardImageStyle: {
     borderRadius: 16,
   },
   featuredGradient: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
     padding: 20,
   },
   featuredContent: {
@@ -566,7 +629,7 @@ const styles = StyleSheet.create({
   featuredTitle: {
     color: colors.textLight,
     fontSize: 24,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   featuredDescription: {
     color: colors.textLight,
@@ -594,9 +657,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 16,
   },
   sectionTitle: {
@@ -617,7 +680,7 @@ const styles = StyleSheet.create({
     height: 190,
     marginRight: 12,
     borderRadius: 12,
-    overflow: 'hidden',
+    overflow: "hidden",
     backgroundColor: colors.cardBackground,
     elevation: 2,
     shadowColor: colors.shadowColor,
@@ -626,8 +689,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   recentCardBackground: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   recentCardImageStyle: {
     borderRadius: 12,
@@ -638,13 +701,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   recentCardTitle: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 10,
     left: 10,
     right: 10,
     color: colors.textLight,
     fontSize: 14,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   safeArea: {
     flex: 1,
@@ -652,23 +715,23 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   loadingText: {
     fontSize: 18,
     color: colors.textPrimary,
   },
   quickActionsHeaderContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     gap: 12,
   },
   quickActionButton: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 14,
     paddingHorizontal: 10,
     borderRadius: 10,
@@ -684,7 +747,7 @@ const styles = StyleSheet.create({
   },
   quickActionHeaderText: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   practiceHistorySectionContainer: {
     paddingHorizontal: horizontalPadding,
@@ -706,11 +769,11 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -737,4 +800,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen; 
+export default HomeScreen;
