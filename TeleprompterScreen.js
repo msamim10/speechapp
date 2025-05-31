@@ -20,6 +20,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { defaultImages } from "./constants/imageUtils";
 import { useUser } from "./context/UserContext"; // Import useUser
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { handlePromptViewAttempt } from "./RevenueCatService"; // Added import for handlePromptViewAttempt
 
 const PROMPT_PLAY_COUNTS_KEY = '@promptPlayCounts'; // Key for play counts
 
@@ -663,12 +664,15 @@ function TeleprompterScreen({ route, navigation }) {
 
     if (nextPrompt && nextPrompt.id !== selectedPromptId) {
       console.log(
-        `Navigating to PrePractice for next prompt: ${nextPrompt.title}`
+        `Attempting to navigate to PrePractice for next prompt: ${nextPrompt.title}`
       );
-      navigation.push("PrePractice", {
-        selectedPrompt: nextPrompt,
-        categoryPrompts: categoryPrompts,
-        isFromNextPrompt: true,
+      await handlePromptViewAttempt(navigation, {
+        screen: "PrePractice",
+        params: {
+          selectedPrompt: nextPrompt,
+          categoryPrompts: categoryPrompts,
+          isFromNextPrompt: true,
+        }
       });
     } else if (
       nextPrompt &&

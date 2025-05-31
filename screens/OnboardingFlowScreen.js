@@ -20,19 +20,34 @@ const onboardingSlidesContent = [
         key: '1',
         title: 'Master Your Message',
         subtitle: 'Confidently deliver impactful speeches and presentations.',
-        image: require('../assets/first.png')
+        image: null,
+        backgroundColor: '#FFFFFF',
+        fullScreenImage: false,
+        textColor: '#000000',
+        activeDotColor: colors.primary,
+        inactiveDotColor: '#CCCCCC'
     },
     {
         key: '2',
         title: 'Practice Anytime, Anywhere',
         subtitle: 'Access a library of prompts or create your own.',
-        image: null
+        image: null,
+        backgroundColor: '#FFFFFF',
+        fullScreenImage: false,
+        textColor: '#000000',
+        activeDotColor: colors.primary,
+        inactiveDotColor: '#CCCCCC'
     },
     {
         key: '3',
         title: 'Track Your Progress',
         subtitle: 'Build streaks and see your improvement over time.',
-        image: null
+        image: null,
+        backgroundColor: '#FFFFFF',
+        fullScreenImage: false,
+        textColor: '#000000',
+        activeDotColor: colors.primary,
+        inactiveDotColor: '#CCCCCC'
     },
 ];
 
@@ -58,19 +73,33 @@ const OnboardingFlowScreen = () => {
     const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 50 }).current;
 
     const renderSlide = ({ item }) => (
-        <View style={styles.slideContainer}>
+        <View style={[
+            styles.slideContainer,
+            item.backgroundColor ? { backgroundColor: item.backgroundColor } : {}
+        ]}>
             {item.image && (
-                <Image source={item.image} style={styles.slideImage} resizeMode="contain" />
+                <Image 
+                    source={item.image} 
+                    style={item.fullScreenImage ? styles.fullSlideImage : styles.slideImage} 
+                    resizeMode={item.fullScreenImage ? "contain" : "contain"}
+                />
             )}
-            <View style={styles.slideContent}>
-                <Text style={styles.titleText}>{item.title}</Text>
-                <Text style={styles.subtitleText}>{item.subtitle}</Text>
-            </View>
+            {!item.fullScreenImage && (
+                <View style={styles.slideContent}>
+                    <Text style={styles.titleText}>{item.title}</Text>
+                    <Text style={styles.subtitleText}>{item.subtitle}</Text>
+                </View>
+            )}
         </View>
     );
 
+    const currentSlideStyle = onboardingSlidesContent[currentIndex] || onboardingSlidesContent[0];
+
     return (
-        <SafeAreaView style={styles.safeAreaContainer}>
+        <SafeAreaView style={[
+            styles.safeAreaContainer,
+            { backgroundColor: currentSlideStyle.backgroundColor }
+        ]}>
             <FlatList
                 ref={flatListRef}
                 data={onboardingSlidesContent}
@@ -85,7 +114,10 @@ const OnboardingFlowScreen = () => {
             />
 
             {/* Bottom Controls */}
-            <View style={styles.bottomControlsContainer}>
+            <View style={[
+                styles.bottomControlsContainer,
+                { backgroundColor: currentSlideStyle.backgroundColor }
+            ]}>
                 {/* Auth buttons */}
                 <View style={styles.authButtonContainer}>
                     <TouchableOpacity style={styles.getStartedButton} onPress={handleGetStarted}>
@@ -104,14 +136,20 @@ const OnboardingFlowScreen = () => {
                             key={index}
                             style={[
                                 styles.dot,
-                                currentIndex === index ? styles.activeDot : styles.inactiveDot,
+                                {
+                                    backgroundColor: index === currentIndex 
+                                        ? currentSlideStyle.activeDotColor 
+                                        : currentSlideStyle.inactiveDotColor,
+                                    opacity: index === currentIndex ? 1 : 0.6,
+                                },
+                                index === currentIndex && styles.activeDotDimensions
                             ]}
                         />
                     ))}
                 </View>
                 {/* "Swipe for more" text, shown if not on the last slide */}
                 {currentIndex < onboardingSlidesContent.length - 1 && (
-                    <Text style={styles.swipeMoreText}>Swipe for more</Text>
+                    <Text style={[styles.swipeMoreText, { color: currentSlideStyle.textColor }]}>Swipe for more</Text>
                 )}
             </View>
         </SafeAreaView>
@@ -121,37 +159,40 @@ const OnboardingFlowScreen = () => {
 const styles = StyleSheet.create({
     safeAreaContainer: {
         flex: 1,
-        backgroundColor: '#FFFFFF', // White background
     },
     flatList: {
         flex: 1,
     },
     slideContainer: {
         width: screenWidth,
-        height: screenHeight * 0.6, // Take up 60% of screen height
+        height: screenHeight * 0.6,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20,
     },
     slideImage: {
         width: screenWidth * 0.8,
         height: screenHeight * 0.4,
         marginBottom: 20,
     },
+    fullSlideImage: {
+        width: '100%',
+        height: '100%',
+    },
     slideContent: {
         alignItems: 'center',
         width: '100%',
+        paddingHorizontal: 20,
     },
     titleText: {
         fontSize: 32,
         fontWeight: 'bold',
-        color: '#000000', // Black text
+        color: '#000000',
         textAlign: 'center',
         marginBottom: 15,
     },
     subtitleText: {
         fontSize: 18,
-        color: '#000000', // Black text
+        color: '#000000',
         fontWeight: '500',
         textAlign: 'center',
         paddingHorizontal: 15,
@@ -163,7 +204,6 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         paddingBottom: Platform.OS === 'ios' ? 40 : 30,
-        backgroundColor: '#FFFFFF', // White background
     },
     authButtonContainer: {
         width: '100%',
@@ -218,18 +258,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginHorizontal: 6,
     },
-    activeDot: {
-        backgroundColor: colors.primary,
+    activeDotDimensions: {
         width: 12,
         height: 12,
         borderRadius: 6,
     },
-    inactiveDot: {
-        backgroundColor: '#CCCCCC', // Light gray for inactive dots
-        opacity: 0.6,
-    },
     swipeMoreText: {
-        color: '#000000', // Black text
         fontSize: 12,
         fontWeight: '300',
         marginTop: 15,

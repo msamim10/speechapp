@@ -24,7 +24,7 @@ import { useUser } from './context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { promptsData } from './data/prompts';
 import { LinearGradient } from 'expo-linear-gradient';
-import { checkActiveSubscription } from "./RevenueCatService";
+import { checkActiveSubscription, handlePromptViewAttempt } from "./RevenueCatService";
 import RevenueCatUI from "react-native-purchases-ui";
 
 const appLogo = require('./assets/applogo.png');
@@ -256,7 +256,7 @@ function HomeScreen() {
 
   // <<< Implement Select Recent/Featured Prompt Navigation >>>
   const handleSelectRecentPrompt = useCallback(
-    (prompt) => {
+    async (prompt) => {
       if (!prompt || !prompt.id || !prompt.category) {
         console.error("Invalid prompt data for navigation:", prompt);
         Alert.alert("Error", "Could not load this prompt. Please try again.");
@@ -281,23 +281,26 @@ function HomeScreen() {
       }
 
       console.log(
-        `Navigating to PrePractice screen for prompt: ${prompt.id} (${prompt.title}) in category: ${prompt.category}`
+        `Attempting to navigate to PrePractice screen for prompt: ${prompt.id} (${prompt.title}) in category: ${prompt.category}`
       );
-      navigation.navigate("PracticeTab", {
-        screen: "PrePractice", // Navigate to PrePractice first
+      await handlePromptViewAttempt(navigation, {
+        screen: 'PracticeTab',
         params: {
-          selectedPrompt: prompt, // Pass the whole prompt object
-          categoryPrompts: promptsInCategory,
-        },
+          screen: "PrePractice",
+          params: {
+            selectedPrompt: prompt,
+            categoryPrompts: promptsInCategory,
+          },
+        }
       });
     },
     [navigation]
   );
 
   // Featured prompt uses the same logic as selecting a recent one
-  const handleSelectFeaturedPrompt = () => {
+  const handleSelectFeaturedPrompt = async () => {
     if (featuredPrompt) {
-      handleSelectRecentPrompt(featuredPrompt);
+      await handleSelectRecentPrompt(featuredPrompt);
     } else {
       Alert.alert("Error", "No featured prompt loaded.");
     }
@@ -473,32 +476,31 @@ function HomeScreen() {
 
   // <<< Function to render the Practice History Section >>>
   const renderPracticeHistory = () => {
+    if (!practiceHistoryPrompts || practiceHistoryPrompts.length === 0) {
+      return null; // If no practice history, render nothing for the entire section
+    }
     return (
       <View style={styles.practiceHistorySectionContainer}>
         <Text style={styles.practiceHistorySectionTitle}>
           Resume Last Practice
         </Text>
-        {(!practiceHistoryPrompts || practiceHistoryPrompts.length === 0) ? (
-          <View style={styles.emptySectionContent}>
-            <Text style={styles.emptySectionText}>
-              No practice history yet. Start a session to see it here!
-            </Text>
-          </View>
-        ) : (
-          <FlatList
-            data={practiceHistoryPrompts}
-            renderItem={renderHistoryItem}
-            keyExtractor={(item) => item.id + "-history"}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.recentList}
-          />
-        )}
+        {/* The FlatList is now only rendered if the above condition is false */}
+        <FlatList
+          data={practiceHistoryPrompts}
+          renderItem={renderHistoryItem}
+          keyExtractor={(item) => item.id + "-history"}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.recentList}
+        />
       </View>
     );
   };
 
   const renderFavoritePrompts = () => {
+    if (!favoritePrompts || favoritePrompts.length === 0) {
+      return null; // If no favorites, render nothing for the entire section
+    }
     // recentSection style includes top border and white background
     return (
       <View style={styles.recentSection}>
@@ -506,22 +508,15 @@ function HomeScreen() {
           <Text style={styles.sectionTitle}>Your Favorites</Text>
           {/* Optional: Add a 'See All' button if you plan a dedicated favorites screen */}
         </View>
-        {(!favoritePrompts || favoritePrompts.length === 0) ? (
-          <View style={styles.emptySectionContent}>
-            <Text style={styles.emptySectionText}>
-              You haven't favorited any prompts yet. Tap the heart icon on a prompt to add it!
-            </Text>
-          </View>
-        ) : (
-          <FlatList
-            data={favoritePrompts}
-            renderItem={renderRecentPromptCard}
-            keyExtractor={(item) => item.id + '-favorite'}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.recentList}
-          />
-        )}
+        {/* The FlatList is now only rendered if the above condition is false */}
+        <FlatList
+          data={favoritePrompts}
+          renderItem={renderRecentPromptCard}
+          keyExtractor={(item) => item.id + '-favorite'}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.recentList}
+        />
       </View>
     );
   };

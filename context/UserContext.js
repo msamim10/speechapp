@@ -304,8 +304,24 @@ export const UserProvider = ({ children }) => {
       }
       
       await firebaseSignOut(auth);
-      // Clear local storage
-      await AsyncStorage.multiRemove([USERNAME_KEY, AVATAR_URI_KEY, LAST_PRACTICED_KEY, STREAK_KEY, POINTS_KEY]);
+      // Clear local storage - EXPANDED LIST
+      const keysToRemove = [
+        USERNAME_KEY, 
+        AVATAR_URI_KEY, 
+        LAST_PRACTICED_KEY, 
+        STREAK_KEY, 
+        POINTS_KEY,
+        '@favoritePromptIds', // Added
+        '@practiceHistoryIds', // Added
+        '@promptPlayCounts', // Added
+        '@lastPromptId', // Added
+        '@totalPracticeTimeSeconds', // Added
+        '@imageScreenViewCount' // Added for the new feature
+        // Add any other app-specific AsyncStorage keys that should be cleared on logout
+      ];
+      await AsyncStorage.multiRemove(keysToRemove);
+      console.log("UserContext: Cleared the following AsyncStorage keys on signout:", keysToRemove);
+
       // Reset state
       setUsername(DEFAULT_USERNAME);
       setAvatarUri(null);

@@ -18,8 +18,8 @@ import * as ImagePicker from 'expo-image-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import colors from './constants/colors';
 import { useNavigation } from '@react-navigation/native';
-import { doc, getDoc, updateDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { signOut as firebaseSignOut } from 'firebase/auth';
+import { doc, getDoc, updateDoc, addDoc, collection, serverTimestamp, deleteDoc } from 'firebase/firestore';
+import { signOut as firebaseSignOut, getAuth, deleteUser } from 'firebase/auth';
 import { auth, db } from './firebase';
 
 // Date Formatting Helper - Copied from HomeScreen.js for now
@@ -147,12 +147,72 @@ function UserProfileScreen() {
 
   const handleLogoutCombined = async () => {
     try {
-      await firebaseSignOut(auth);
-      console.log('User signed out successfully via Firebase.');
+      // First, call the context sign out which handles AsyncStorage and local state reset
+      await signOutFromContext(); 
+      console.log('User signed out successfully via UserContext (AsyncStorage cleared).');
+      
+      // Then, sign out from Firebase. 
+      // Note: signOutFromContext might already call firebaseSignOut. 
+      // If UserContext.signOut ALREADY calls firebaseSignOut(auth), this next line might be redundant
+      // or could be removed from UserContext.signOut if we want ProfileScreen to be the sole caller of firebaseSignOut.
+      // For now, keeping both to ensure Firebase signout happens if not already done by context.
+      // await firebaseSignOut(auth); // This might be redundant if signOutFromContext does it.
+      // console.log('Firebase sign-out attempt after context signout.');
+
     } catch (e) {
       console.error('Failed to logout:', e);
       Alert.alert('Error', 'Failed to logout. Please try again.');
     }
+  };
+
+  const handleDeleteAccount = async () => {
+    Alert.alert(
+      "Delete Account",
+      "Are you sure you want to delete your account? This action is irreversible. All your data will be lost.",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "Delete",
+          onPress: async () => {
+            const user = getAuth().currentUser;
+            if (user) {
+              try {
+                // Delete user data from Firestore
+                const userDocRef = doc(db, "users", user.uid);
+                await deleteDoc(userDocRef);
+                console.log("User data deleted from Firestore.");
+
+                // Delete user from Firebase Authentication
+                await deleteUser(user);
+                console.log("User deleted from Firebase Auth.");
+
+                Alert.alert("Account Deleted", "Your account and all associated data have been successfully deleted.");
+                
+                // Navigate to login or home screen
+                // Ensure navigation is to a screen that doesn't require auth
+                navigation.navigate('AuthCheck'); // Or your initial/auth check screen like 'Login' or 'Welcome'
+
+              } catch (error) {
+                console.error("Error deleting account:", error);
+                // Provide more specific error messages if possible
+                let errorMessage = "Could not delete your account. Please try again.";
+                if (error.code === 'auth/requires-recent-login') {
+                  errorMessage = "This operation is sensitive and requires recent authentication. Please sign out and sign back in before trying again.";
+                }
+                Alert.alert("Error", errorMessage);
+              }
+            } else {
+              Alert.alert("Error", "No user found. Please ensure you are signed in.");
+            }
+          },
+          style: "destructive"
+        }
+      ],
+      { cancelable: false }
+    );
   };
 
   const handleFeedbackSubmit = async () => {
@@ -265,13 +325,18 @@ function UserProfileScreen() {
                 <Text style={styles.infoTextSmall} numberOfLines={1} ellipsizeMode="middle">{userId}</Text>
               </View>
             )}
-            {joinedDate && (
+            {/* {joinedDate && (
               <View style={styles.infoRow}>
                 <Ionicons name="calendar-outline" size={20} color={colors.textSecondary} style={styles.inputIcon} />
                 <Text style={styles.infoLabel}>Joined:</Text>
                 <Text style={styles.infoText}>{formatTimestamp(joinedDate)}</Text>
               </View>
-            )}
+            )} */}
+            {/* Moved Logout Button/Link */}
+            <TouchableOpacity onPress={handleLogoutCombined} style={styles.infoRowButton}>
+              <Ionicons name="log-out-outline" size={20} color={colors.danger} style={styles.logoutIconStyle} /> 
+              <Text style={[styles.infoLabel, styles.logoutButtonText]}>Logout</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.sectionContainer}>
@@ -304,10 +369,10 @@ function UserProfileScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Updated Logout Button/Link */}
-          <TouchableOpacity onPress={handleLogoutCombined} style={styles.logoutLink}>
-            <Ionicons name="log-out-outline" size={20} color={'#FF3B30'} style={styles.logoutLinkIcon} />
-            <Text style={styles.logoutLinkText}>Logout</Text>
+          {/* Delete Account Button */}
+          <TouchableOpacity onPress={handleDeleteAccount} style={[styles.logoutLink, styles.deleteLink]}>
+            <Ionicons name="trash-outline" size={20} color={colors.danger} style={styles.logoutLinkIcon} />
+            <Text style={[styles.logoutLinkText, styles.deleteLinkText]}>Delete Account</Text>
           </TouchableOpacity>
 
         </ScrollView>
@@ -493,6 +558,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FF3B30',
   },
+  deleteLink: {
+    marginTop: 10, // Add some space above the delete button
+  },
+  deleteLinkText: {
+    color: colors.danger, // Use a danger color for the text
+  },
   infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -556,6 +627,21 @@ const styles = StyleSheet.create({
   inlineLogoutButtonText: {
     fontSize: 15,
     color: colors.textSecondary,
+    fontWeight: '600',
+  },
+  infoRowButton: { // Style for the logout button when in infoRow
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', // Center content horizontally
+    paddingVertical: 12, 
+    marginTop: 10,
+  },
+  logoutIconStyle: { // Specific style for the logout icon in this context
+    marginRight: 8, // Keep some space between icon and text
+    // No color here, it's defined inline
+  },
+  logoutButtonText: { // Style for the logout button text
+    color: colors.danger,
     fontWeight: '600',
   },
 });

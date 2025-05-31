@@ -4,6 +4,7 @@ import { promptsData } from './data/prompts.js'; // Import the full data
 import colors from './constants/colors'; // Import colors
 import Ionicons from '@expo/vector-icons/Ionicons'; // Ensure Ionicons is imported
 import { useFocusEffect } from '@react-navigation/native';
+import { handlePromptViewAttempt } from './RevenueCatService'; 
 
 function PromptSelectionScreen({ route, navigation }) {
   // Get the category passed from HomeScreen
@@ -38,11 +39,14 @@ function PromptSelectionScreen({ route, navigation }) {
   // Determine the header text
   const headerText = category === 'All' ? 'All Prompts' : `${category} Prompts`;
 
-  const handleSelectPrompt = (item) => {
+  const handleSelectPrompt = async (item) => {
     // Navigate to PrePracticeScreen first, passing the selected item and the appropriate list
-    navigation.navigate('PrePractice', { // Changed from 'Teleprompter'
-      selectedPrompt: item,       // Pass the whole prompt object
-      categoryPrompts: displayPrompts, // Pass the list being displayed
+    await handlePromptViewAttempt(navigation, {
+      screen: "PrePractice", // Directly navigate to PrePractice (it's in the same stack)
+      params: {
+        selectedPrompt: item,       // Pass the whole prompt object
+        categoryPrompts: displayPrompts, // Pass the list being displayed
+      }
     });
   };
 

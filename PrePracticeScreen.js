@@ -153,31 +153,22 @@ function PrePracticeScreen() {
       // clearInterval(timerRef.current); // Already cleared by the countdown setter or focus effect cleanup
       (async () => {
         if (selectedPrompt && categoryPrompts) {
+          // REMOVED SUBSCRIPTION CHECK AND PAYWALL PRESENTATION FROM HERE
+          // The decision to allow viewing this screen (and thus proceeding)
+          // is now handled by handlePromptViewAttempt before navigating here.
           try {
-            const hasSubscription = await checkActiveSubscription();
-            console.log("BEFORE DISMISS");
-            if (!hasSubscription) {
-              if (paywallVisible) return;
-              setPaywallVisible(true);
-              const result = await RevenueCatUI.presentPaywall();
-              setPaywallVisible(false);
-              if (
-                result === PAYWALL_RESULT.CANCELLED ||
-                result === PAYWALL_RESULT.ERROR
-              ) {
-                await handleSubCancel();
-                console.log("Result: ", result);
-                return;
-              }
-            }
             navigation.push("Teleprompter", {
               selectedPromptId: selectedPrompt.id,
               categoryPrompts: categoryPrompts,
               isNextPromptSequence: !!isFromNextPrompt,
             });
           } catch (e) {
-            console.log("error ", e);
-            Alert.alert("Error", "Unable to check subscription status.");
+            // This catch block might still be relevant for other navigation errors,
+            // but not for subscription checks.
+            console.log("error during navigation push to Teleprompter: ", e);
+            Alert.alert("Navigation Error", "Could not proceed to the practice session.");
+             if (navigation.canGoBack()) navigation.goBack();
+             else navigation.navigate("PracticeTab", { screen: "CategorySelection" }); 
           }
         } else {
           console.error(
@@ -195,6 +186,7 @@ function PrePracticeScreen() {
     selectedPrompt,
     categoryPrompts,
     isFromNextPrompt,
+    // Removed paywallVisible and handleSubCancel as they are no longer used in this effect
   ]);
 
   const handleSkip = () => {
